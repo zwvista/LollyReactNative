@@ -8,6 +8,8 @@ target 'LollyReactNative' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'LollyReactNativeTests' do
     inherit! :complete
     # Pods for testing
@@ -20,5 +22,7 @@ target 'LollyReactNative' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
+    # https://github.com/oblador/react-native-vector-icons/issues/1074#issuecomment-616335309
+    system("sed -i '' '/s.resources/d' ../node_modules/react-native-vector-icons/RNVectorIcons.podspec")
   end
 end
