@@ -4,27 +4,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { HomeScreen, NotificationsScreen } from './screens/Search'
 
 // https://stackoverflow.com/questions/60316864/react-navigation-drawer-v5
 // https://stackoverflow.com/questions/60233339/react-native-hamburger-onpress-issue
-function HomeScreen({ navigation }:any) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    </View>
-  );
-}
-
-function NotificationsScreen({ navigation }:any) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -32,16 +15,8 @@ const Stack = createStackNavigator();
 const DrawerComponent = () => {
   return (
     <Drawer.Navigator initialRouteName="Home">
-      <Drawer.Screen name="Home" component={HomeScreen} 
-        options={{
-          drawerIcon: () => <Ionicons name='md-home' size={30} color='#130f40' />,
-        }}
-      />
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} 
-        options={{
-          drawerIcon: () => <Ionicons name='md-notifications' size={30} color='#130f40' />,
-        }}
-      />
+      <Drawer.Screen name="Home" component={HomeScreen} options={{drawerIcon: () => <Ionicons name='md-home' size={30} color='#130f40' />}}/>
+      <Drawer.Screen name="Notifications" component={NotificationsScreen} options={{drawerIcon: () => <Ionicons name='md-notifications' size={30} color='#130f40' />}}/>
     </Drawer.Navigator>
   );
 };
@@ -70,9 +45,6 @@ export default () => {
           component={DrawerComponent}
           name="Drawer"
         />
-        {/*
-         * Rest Screens
-         */}
       </Stack.Navigator>
     </NavigationContainer>
   );
