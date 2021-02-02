@@ -8,7 +8,7 @@ export class MLangWord {
   ID = 0;
   LANGID = 0;
   WORD = '';
-  NOTE: string | null = null;
+  NOTE = '';
   FAMIID = 0;
   CORRECT = 0;
   TOTAL = 0;
@@ -27,28 +27,5 @@ export class MLangWord {
     o.WORD = item.WORD;
     o.NOTE = item.NOTE;
     return o;
-  }
-  static fromTextbook(item: MUnitWord): MLangWord {
-    const o = new MLangWord();
-    o.ID = item.WORDID;
-    o.LANGID = item.LANGID;
-    o.WORD = item.WORD;
-    o.NOTE = item.NOTE;
-    return o;
-  }
-
-  combineNote(note: string | null): boolean {
-    const oldNote = this.NOTE;
-    if (note) {
-      if (!this.NOTE)
-        this.NOTE = note;
-      else {
-        const arr = note.split(',');
-        if (!arr.includes(note))
-          arr.push(note);
-        this.NOTE = arr.join(',');
-      }
-    }
-    return oldNote !== this.NOTE;
   }
 }
