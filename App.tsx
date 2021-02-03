@@ -28,6 +28,7 @@ import { WordsFamiService } from './view-models/words-fami.service';
 import { UsMappingService } from './services/misc/us-mapping.service';
 import { PatternService } from './services/wpp/pattern.service';
 import { PatternsService } from './view-models/patterns.service';
+import SettingsScreen from './screens/SettingsScreen';
 
 // https://stackoverflow.com/questions/60316864/react-navigation-drawer-v5
 // https://stackoverflow.com/questions/60233339/react-native-hamburger-onpress-issue
@@ -40,6 +41,7 @@ const DrawerComponent = () => {
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="Home" component={HomeScreen} options={{drawerIcon: () => <Ionicons name='md-home' size={30} color='#130f40' />}}/>
       <Drawer.Screen name="Notifications" component={NotificationsScreen} options={{drawerIcon: () => <Ionicons name='md-notifications' size={30} color='#130f40' />}}/>
+      <Drawer.Screen name="Settings" component={SettingsScreen} options={{drawerIcon: () => <Ionicons name='md-settings' size={30} color='#130f40' />}}/>
     </Drawer.Navigator>
   );
 };
@@ -55,6 +57,7 @@ const DrawerComponent = () => {
   ],
 })
 export default class App extends React.Component {
+  @Inject appService: AppService;
   render() {
     return (
       <NavigationContainer>
