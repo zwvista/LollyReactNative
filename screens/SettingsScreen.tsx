@@ -6,7 +6,11 @@ import { SafeAreaView, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class SettingsScreen extends React.Component implements SettingsListener {
-  @Inject settingsService: SettingsService;
+
+  constructor(props: any, @Inject private settingsService: SettingsService) {
+    super(props);
+  }
+  
   subscription = new Subscription();
 
   get toTypeIsUnit() {
@@ -26,6 +30,7 @@ export default class SettingsScreen extends React.Component implements SettingsL
   });
 
   componentDidMount() {
+    console.log(this.settingsService);
     this.settingsService.settingsListener = this;
     this.subscription.add(this.settingsService.getData().subscribe());
   }

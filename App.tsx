@@ -56,8 +56,13 @@ const DrawerComponent = () => {
     VoicesService, UsMappingService, PatternService, PatternsService
   ],
 })
-export default class App extends React.Component {
+export default class App extends React.Component<any, any> {
   @Inject appService: AppService;
+
+  componentDidMount() {
+    console.log(this.appService);
+  }
+
   render() {
     return (
       <NavigationContainer>
