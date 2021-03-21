@@ -6,6 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HomeScreen, NotificationsScreen } from './screens/Search'
 import { inject } from 'typedin';
 import SettingsScreen from './screens/SettingsScreen';
+import { AppService } from './view-models/app.service';
 
 // https://stackoverflow.com/questions/60316864/react-navigation-drawer-v5
 // https://stackoverflow.com/questions/60233339/react-native-hamburger-onpress-issue
