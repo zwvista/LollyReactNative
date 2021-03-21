@@ -7,7 +7,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class SettingsScreen extends React.Component implements SettingsListener {
 
-  constructor(props: any, @Inject private settingsService: SettingsService) {
+  settingsService = new SettingsService();
+
+  constructor(props: any) {
     super(props);
   }
   

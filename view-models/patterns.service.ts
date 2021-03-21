@@ -12,10 +12,9 @@ export class PatternsService {
   patterns: MPattern[] = [];
   patternCount = 0;
 
-  constructor(@Inject private patternService: PatternService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService) {
-  }
+  patternService = new PatternService();
+  settingsService = new SettingsService();
+  appService = new AppService();
 
   getData(page: number, rows: number, filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

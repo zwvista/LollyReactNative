@@ -12,8 +12,9 @@ export class AppService {
 
   isInitialized = false;
 
-  constructor(@Inject private settingsService: SettingsService) {
-    settingsService.getData().subscribe(_ => {
+  settingsService = new SettingsService();
+  constructor() {
+    this.settingsService.getData().subscribe(_ => {
       this.isInitialized = true;
       this._initializeObject.next(undefined);
     });

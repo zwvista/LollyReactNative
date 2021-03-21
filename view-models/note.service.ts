@@ -7,9 +7,8 @@ import { map } from 'rxjs/operators';
 @Injectable
 export class NoteService {
 
-  constructor(@Inject private settingsService: SettingsService,
-              @Inject private htmlService: HtmlService) {
-  }
+  settingsService = new SettingsService();
+  htmlService = new HtmlService();
 
   getNote(word: string): Observable<string> {
     const dictNote = this.settingsService.selectedDictNote;
