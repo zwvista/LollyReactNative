@@ -7,7 +7,6 @@ import { MTextbook } from '../../models/misc/textbook';
 import { MSPResult } from '../../common/sp-result';
 import { toParameters } from '../../common/common';
 
-@Injectable
 export class UnitWordService extends BaseService {
 
   getDataByTextbookUnitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Observable<MUnitWord[]> {

@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MUSMapping, MUSMappings } from '../../models/misc/usmapping';
 
-@Injectable
 export class UsMappingService extends BaseService {
 
   getData(): Observable<MUSMapping[]> {

@@ -6,7 +6,6 @@ import { concatMap, map } from 'rxjs/operators';
 import { MLangPhrase } from '../models/wpp/lang-phrase';
 import { Observable } from 'rxjs';
 
-@Injectable
 export class PhrasesLangService {
 
   langPhrases: MLangPhrase[] = [];

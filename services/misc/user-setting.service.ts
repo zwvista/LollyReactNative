@@ -4,7 +4,6 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MUserSetting, MUserSettingInfo, MUserSettings } from '../../models/misc/user-setting';
 
-@Injectable
 export class UserSettingService extends BaseService {
 
   getDataByUser(userid: number): Observable<MUserSetting[]> {

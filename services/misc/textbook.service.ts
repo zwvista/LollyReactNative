@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { MTextbook, MTextbooks } from '../../models/misc/textbook';
 import { MSelectItem } from '../../common/selectitem';
 
-@Injectable
 export class TextbookService extends BaseService {
 
   getDataByLang(langid: number): Observable<MTextbook[]> {

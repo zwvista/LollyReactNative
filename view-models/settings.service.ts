@@ -21,7 +21,6 @@ import { UsMappingService } from '../services/misc/us-mapping.service';
 
 const userid = 1;
 
-@Injectable
 export class SettingsService {
 
   usMappings: MUSMapping[] = [];

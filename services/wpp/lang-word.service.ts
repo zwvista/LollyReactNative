@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { toParameters } from '../../common/common';
 import { MSPResult } from '../../common/sp-result';
 
-@Injectable
 export class LangWordService extends BaseService {
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MLangWords> {

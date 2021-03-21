@@ -7,7 +7,6 @@ import {
   MDictionaries,
 } from '../../models/misc/dictionary';
 
-@Injectable
 export class DictionaryService extends BaseService {
 
   getDictsReference(langid: number): Observable<MDictionary[]> {

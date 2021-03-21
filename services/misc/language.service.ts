@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MLanguage, MLanguages } from '../../models/misc/language';
 
-@Injectable
 export class LanguageService extends BaseService {
 
   getData(): Observable<MLanguage[]> {

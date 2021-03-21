@@ -10,7 +10,6 @@ import { LangWordService } from '../services/wpp/lang-word.service';
 import { MLangWord } from '../models/wpp/lang-word';
 import { WordsFamiService } from './words-fami.service';
 
-@Injectable
 export class WordsUnitService {
 
   unitWords: MUnitWord[] = [];

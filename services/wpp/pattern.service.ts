@@ -6,7 +6,6 @@ import { map } from 'rxjs/operators';
 import { MSPResult } from '../../common/sp-result';
 import { toParameters } from '../../common/common';
 
-@Injectable
 export class PatternService extends BaseService {
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MPatterns> {

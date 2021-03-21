@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MPatternWebPage, MPatternWebPages } from '../../models/wpp/pattern-webpage';
 
-@Injectable
 export class PatternWebpageService extends BaseService {
 
   getDataByPattern(patternid: number): Observable<MPatternWebPage[]> {

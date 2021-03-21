@@ -4,7 +4,6 @@ import { MWordFami } from '../models/wpp/word-fami';
 import { EMPTY as empty, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 
-@Injectable
 export class WordsFamiService {
 
   userid = 1;

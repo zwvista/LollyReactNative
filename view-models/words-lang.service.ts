@@ -8,7 +8,6 @@ import { concatMap, map } from 'rxjs/operators';
 import { NoteService } from './note.service';
 import { WordsFamiService } from './words-fami.service';
 
-@Injectable
 export class WordsLangService {
 
   langWords: MLangWord[] = [];

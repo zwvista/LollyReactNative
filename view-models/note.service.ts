@@ -4,7 +4,6 @@ import { EMPTY as empty, interval, Observable, Subscription } from 'rxjs';
 import { HtmlService } from '../services/misc/html.service';
 import { map } from 'rxjs/operators';
 
-@Injectable
 export class NoteService {
 
   constructor(@Inject private settingsService: SettingsService,
