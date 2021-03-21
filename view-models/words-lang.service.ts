@@ -1,4 +1,4 @@
-import { Inject, Injectable } from 'react.di';
+import { inject } from 'typedin';
 import { SettingsService } from './settings.service';
 import { AppService } from './app.service';
 import { LangWordService } from '../services/wpp/lang-word.service';
@@ -13,12 +13,11 @@ export class WordsLangService {
   langWords: MLangWord[] = [];
   langWordsCount = 0;
 
-  constructor(@Inject private langWordService: LangWordService,
-              @Inject private wordsFamiService: WordsFamiService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService,
-              @Inject private noteService: NoteService) {
-  }
+  @inject private langWordService: LangWordService;
+  @inject private wordsFamiService: WordsFamiService;
+  @inject private settingsService: SettingsService;
+  @inject private appService: AppService;
+  @inject private noteService: NoteService;
 
   getData(page: number, rows: number, filter: string, filterType: number): Observable<void> {
     return this.appService.initializeObject.pipe(

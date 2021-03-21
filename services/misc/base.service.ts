@@ -1,5 +1,4 @@
 import { Rxios } from '../../common/rxios';
-import { Injectable } from 'react.di';
 
 export class BaseService {
   protected readonly baseUrlAPI = 'https://zwvista.tk/lolly/api.php/records/';

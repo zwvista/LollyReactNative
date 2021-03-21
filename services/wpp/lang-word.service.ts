@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { BaseService } from '../misc/base.service';
 import { Observable } from 'rxjs';
 import { MLangWord, MLangWords } from '../../models/wpp/lang-word';

@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { MUnitWord, MUnitWords } from '../../models/wpp/unit-word';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

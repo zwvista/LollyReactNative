@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from './base.service';

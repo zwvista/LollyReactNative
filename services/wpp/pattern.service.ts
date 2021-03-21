@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { BaseService } from '../misc/base.service';
 import { Observable } from 'rxjs';
 import { MPattern, MPatterns } from '../../models/wpp/pattern';

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from 'react.di';
+import { inject } from 'typedin';
 import { AppService } from './app.service';
 import { SettingsService } from './settings.service';
 import { MUnitPhrase } from '../models/wpp/unit-phrase';
@@ -15,11 +15,10 @@ export class PhrasesUnitService {
   textbookPhrases: MUnitPhrase[] = [];
   textbookPhraseCount = 0;
 
-  constructor(@Inject private unitPhraseService: UnitPhraseService,
-              @Inject private langPhraseService: LangPhraseService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService) {
-  }
+  @inject private unitPhraseService: UnitPhraseService;
+  @inject private langPhraseService: LangPhraseService;
+  @inject private settingsService: SettingsService;
+  @inject private appService: AppService;
 
   getDataInTextbook(filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

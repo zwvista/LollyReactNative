@@ -1,4 +1,4 @@
-import { Inject, Injectable } from 'react.di';
+import { inject } from 'typedin';
 import { LangPhraseService } from '../services/wpp/lang-phrase.service';
 import { SettingsService } from './settings.service';
 import { AppService } from './app.service';
@@ -11,10 +11,9 @@ export class PhrasesLangService {
   langPhrases: MLangPhrase[] = [];
   langPhraseCount = 0;
 
-  constructor(@Inject private langPhraseService: LangPhraseService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService) {
-  }
+  @inject private langPhraseService: LangPhraseService;
+  @inject private settingsService: SettingsService;
+  @inject private appService: AppService;
 
   getData(page: number, rows: number, filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

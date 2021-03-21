@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HomeScreen, NotificationsScreen } from './screens/Search'
-import { Inject, Module } from 'react.di';
+import { inject } from 'typedin';
 import { WordsUnitService } from './view-models/words-unit.service';
 import { AppService } from './view-models/app.service';
 import { UserSettingService } from './services/misc/user-setting.service';
@@ -57,7 +57,7 @@ const DrawerComponent = () => {
   ],
 })
 export default class App extends React.Component<any, any> {
-  @Inject appService: AppService;
+  @inject appService: AppService;
 
   componentDidMount() {
     console.log(this.appService);
