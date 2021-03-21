@@ -12,9 +12,10 @@ export class PhrasesLangService {
   langPhrases: MLangPhrase[] = [];
   langPhraseCount = 0;
 
-  langPhraseService = new LangPhraseService();
-  settingsService = new SettingsService();
-  appService = new AppService();
+  constructor(@Inject private langPhraseService: LangPhraseService,
+              @Inject private settingsService: SettingsService,
+              @Inject private appService: AppService) {
+  }
 
   getData(page: number, rows: number, filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

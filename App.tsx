@@ -57,7 +57,7 @@ const DrawerComponent = () => {
   ],
 })
 export default class App extends React.Component<any, any> {
-  appService = new AppService();
+  @Inject appService: AppService;
 
   componentDidMount() {
     console.log(this.appService);

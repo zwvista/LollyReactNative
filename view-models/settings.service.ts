@@ -231,16 +231,14 @@ export class SettingsService {
   phraseFilterTypes = ['Phrase', 'Translation'].map((v, i) => new MSelectItem(i, v));
   patternFilterTypes = ['Pattern', 'Note', 'Tags'].map((v, i) => new MSelectItem(i, v));
 
-  langService = new LanguageService();
-  usMappingService = new UsMappingService();
-  userSettingService = new UserSettingService();
-  dictionaryService = new DictionaryService();
-  textbookService = new TextbookService();
-  autoCorrectService = new AutoCorrectService();
-  voiceService = new VoicesService();
-  wordsFamiService = new WordsFamiService();
-
-  constructor() {
+  constructor(@Inject private langService: LanguageService,
+              @Inject private usMappingService: UsMappingService,
+              @Inject private userSettingService: UserSettingService,
+              @Inject private dictionaryService: DictionaryService,
+              @Inject private textbookService: TextbookService,
+              @Inject private autoCorrectService: AutoCorrectService,
+              @Inject private voiceService: VoicesService,
+              @Inject private wordsFamiService: WordsFamiService) {
     this.speech.init();
   }
 

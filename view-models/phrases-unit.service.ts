@@ -16,10 +16,11 @@ export class PhrasesUnitService {
   textbookPhrases: MUnitPhrase[] = [];
   textbookPhraseCount = 0;
 
-  unitPhraseService = new UnitPhraseService();
-  langPhraseService = new LangPhraseService();
-  settingsService = new SettingsService();
-  appService = new AppService();
+  constructor(@Inject private unitPhraseService: UnitPhraseService,
+              @Inject private langPhraseService: LangPhraseService,
+              @Inject private settingsService: SettingsService,
+              @Inject private appService: AppService) {
+  }
 
   getDataInTextbook(filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

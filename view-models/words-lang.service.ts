@@ -14,11 +14,12 @@ export class WordsLangService {
   langWords: MLangWord[] = [];
   langWordsCount = 0;
 
-  langWordService = new LangWordService();
-  wordsFamiService = new WordsFamiService();
-  settingsService = new SettingsService();
-  appService = new AppService();
-  noteService = new NoteService();
+  constructor(@Inject private langWordService: LangWordService,
+              @Inject private wordsFamiService: WordsFamiService,
+              @Inject private settingsService: SettingsService,
+              @Inject private appService: AppService,
+              @Inject private noteService: NoteService) {
+  }
 
   getData(page: number, rows: number, filter: string, filterType: number): Observable<void> {
     return this.appService.initializeObject.pipe(
