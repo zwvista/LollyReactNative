@@ -1,15 +1,13 @@
-import { Inject, Injectable } from 'react.di';
+import { inject } from 'typedin';
 import { SettingsService } from './settings.service';
 import { EMPTY as empty, interval, Observable, Subscription } from 'rxjs';
 import { HtmlService } from '../services/misc/html.service';
 import { map } from 'rxjs/operators';
 
-@Injectable
 export class NoteService {
 
-  constructor(@Inject private settingsService: SettingsService,
-              @Inject private htmlService: HtmlService) {
-  }
+  @inject private settingsService: SettingsService;
+  @inject private htmlService: HtmlService;
 
   getNote(word: string): Observable<string> {
     const dictNote = this.settingsService.selectedDictNote;
