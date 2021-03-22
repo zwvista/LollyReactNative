@@ -2,9 +2,7 @@ import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MAutoCorrect, MAutoCorrects } from '../../models/misc/autocorrect';
-import { Injectable } from 'react.di';
 
-@Injectable
 export class AutoCorrectService extends BaseService {
 
   getDataByLang(langid: number): Observable<MAutoCorrect[]> {

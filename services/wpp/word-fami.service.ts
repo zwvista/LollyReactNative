@@ -1,10 +1,8 @@
-import { Injectable } from 'react.di';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../misc/base.service';
 import { MWordFami, MWordsFami } from '../../models/wpp/word-fami';
 
-@Injectable
 export class WordFamiService extends BaseService {
 
   getDataByUserWord(userid: number, wordid: number): Observable<MWordFami[]> {

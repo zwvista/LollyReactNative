@@ -1,4 +1,4 @@
-import { Inject, Injectable } from 'react.di';
+import { inject } from 'typedin';
 import { SettingsService } from './settings.service';
 import { AppService } from './app.service';
 import { MPattern } from '../models/wpp/pattern';
@@ -6,16 +6,14 @@ import { concatMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { PatternService } from '../services/wpp/pattern.service';
 
-@Injectable
 export class PatternsService {
 
   patterns: MPattern[] = [];
   patternCount = 0;
 
-  constructor(@Inject private patternService: PatternService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService) {
-  }
+  @inject private patternService: PatternService;
+  @inject private settingsService: SettingsService;
+  @inject private appService: AppService;
 
   getData(page: number, rows: number, filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

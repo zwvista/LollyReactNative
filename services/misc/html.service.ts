@@ -1,8 +1,6 @@
-import { Injectable } from 'react.di';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 
-@Injectable
 export class HtmlService extends BaseService {
 
   static extractTextFrom(html: string, transform: string, template: string,
