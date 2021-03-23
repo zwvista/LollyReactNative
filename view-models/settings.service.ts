@@ -1,5 +1,5 @@
 import { concatMap, map } from 'rxjs/operators';
-import { inject } from 'typedin';
+import { Inject, Injectable } from 'react.di';
 import { LanguageService } from '../services/misc/language.service';
 import { UserSettingService } from '../services/misc/user-setting.service';
 import { MUserSetting, MUserSettingInfo } from '../models/misc/user-setting';
@@ -21,6 +21,7 @@ import { UsMappingService } from '../services/misc/us-mapping.service';
 
 const userid = 1;
 
+@Injectable
 export class SettingsService {
 
   usMappings: MUSMapping[] = [];
@@ -230,16 +231,14 @@ export class SettingsService {
   phraseFilterTypes = ['Phrase', 'Translation'].map((v, i) => new MSelectItem(i, v));
   patternFilterTypes = ['Pattern', 'Note', 'Tags'].map((v, i) => new MSelectItem(i, v));
 
-  @inject private langService: LanguageService;
-  @inject private usMappingService: UsMappingService;
-  @inject private userSettingService: UserSettingService;
-  @inject private dictionaryService: DictionaryService;
-  @inject private textbookService: TextbookService;
-  @inject private autoCorrectService: AutoCorrectService;
-  @inject private voiceService: VoicesService;
-  @inject private wordsFamiService: WordsFamiService;
-
-  constructor() {
+  constructor(@Inject private langService: LanguageService,
+              @Inject private usMappingService: UsMappingService,
+              @Inject private userSettingService: UserSettingService,
+              @Inject private dictionaryService: DictionaryService,
+              @Inject private textbookService: TextbookService,
+              @Inject private autoCorrectService: AutoCorrectService,
+              @Inject private voiceService: VoicesService,
+              @Inject private wordsFamiService: WordsFamiService) {
     this.speech.init();
   }
 

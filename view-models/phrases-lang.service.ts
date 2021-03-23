@@ -1,4 +1,4 @@
-import { inject } from 'typedin';
+import { Inject, Injectable } from 'react.di';
 import { LangPhraseService } from '../services/wpp/lang-phrase.service';
 import { SettingsService } from './settings.service';
 import { AppService } from './app.service';
@@ -6,14 +6,16 @@ import { concatMap, map } from 'rxjs/operators';
 import { MLangPhrase } from '../models/wpp/lang-phrase';
 import { Observable } from 'rxjs';
 
+@Injectable
 export class PhrasesLangService {
 
   langPhrases: MLangPhrase[] = [];
   langPhraseCount = 0;
 
-  @inject private langPhraseService: LangPhraseService;
-  @inject private settingsService: SettingsService;
-  @inject private appService: AppService;
+  constructor(@Inject private langPhraseService: LangPhraseService,
+              @Inject private settingsService: SettingsService,
+              @Inject private appService: AppService) {
+  }
 
   getData(page: number, rows: number, filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

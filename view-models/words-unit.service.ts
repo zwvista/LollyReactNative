@@ -1,4 +1,4 @@
-import { inject } from 'typedin';
+import { Inject, Injectable } from 'react.di';
 import { UnitWordService } from '../services/wpp/unit-word.service';
 import { SettingsService } from './settings.service';
 import { MUnitWord } from '../models/wpp/unit-word';
@@ -10,6 +10,7 @@ import { LangWordService } from '../services/wpp/lang-word.service';
 import { MLangWord } from '../models/wpp/lang-word';
 import { WordsFamiService } from './words-fami.service';
 
+@Injectable
 export class WordsUnitService {
 
   unitWords: MUnitWord[] = [];
@@ -17,12 +18,13 @@ export class WordsUnitService {
   textbookWords: MUnitWord[] = [];
   textbookWordCount = 0;
 
-  @inject private unitWordService: UnitWordService;
-  @inject private langWordService: LangWordService;
-  @inject private wordsFamiService: WordsFamiService;
-  @inject private settingsService: SettingsService;
-  @inject private appService: AppService;
-  @inject private noteService: NoteService;
+  constructor(@Inject private unitWordService: UnitWordService,
+              @Inject private langWordService: LangWordService,
+              @Inject private wordsFamiService: WordsFamiService,
+              @Inject private settingsService: SettingsService,
+              @Inject private appService: AppService,
+              @Inject private noteService: NoteService) {
+  }
 
   getDataInTextbook(filter: string, filterType: number): Observable<void> {
     return this.appService.initializeObject.pipe(
