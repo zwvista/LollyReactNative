@@ -27,7 +27,7 @@ export default class App extends React.Component<any, any> {
   appService = AppService.Instance;
 
   componentDidMount() {
-    console.log(this.appService);
+    this.appService.getData();
   }
 
   render() {

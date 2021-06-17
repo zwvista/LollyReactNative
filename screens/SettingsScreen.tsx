@@ -30,7 +30,6 @@ export default class SettingsScreen extends React.Component implements SettingsL
   });
 
   componentDidMount() {
-    console.log(this.settingsService);
     this.settingsService.settingsListener = this;
     this.subscription.add(this.settingsService.getData().subscribe());
   }
