@@ -6,6 +6,10 @@ import { MUserSetting, MUserSettingInfo, MUserSettings } from '../../models/misc
 
 @Injectable
 export class UserSettingService extends BaseService {
+  private static _instance: UserSettingService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByUser(userid: number): Observable<MUserSetting[]> {
     const url = `${this.baseUrlAPI}USERSETTINGS?filter=USERID,eq,${userid}`;

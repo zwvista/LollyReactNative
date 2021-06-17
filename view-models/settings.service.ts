@@ -23,6 +23,17 @@ const userid = 1;
 
 @Injectable
 export class SettingsService {
+  private static _instance: SettingsService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
+  private langService = LanguageService.Instance;
+  private usMappingService = UsMappingService.Instance;
+  private userSettingService = UserSettingService.Instance;
+  private dictionaryService = DictionaryService.Instance;
+  private textbookService = TextbookService.Instance;
+  private autoCorrectService = AutoCorrectService.Instance;
+  private voiceService = VoicesService.Instance;
 
   usMappings: MUSMapping[] = [];
   userSettings: MUserSetting[] = [];
@@ -231,14 +242,7 @@ export class SettingsService {
   phraseFilterTypes = ['Phrase', 'Translation'].map((v, i) => new MSelectItem(i, v));
   patternFilterTypes = ['Pattern', 'Note', 'Tags'].map((v, i) => new MSelectItem(i, v));
 
-  constructor(@Inject private langService: LanguageService,
-              @Inject private usMappingService: UsMappingService,
-              @Inject private userSettingService: UserSettingService,
-              @Inject private dictionaryService: DictionaryService,
-              @Inject private textbookService: TextbookService,
-              @Inject private autoCorrectService: AutoCorrectService,
-              @Inject private voiceService: VoicesService,
-              @Inject private wordsFamiService: WordsFamiService) {
+  constructor() {
     this.speech.init();
   }
 

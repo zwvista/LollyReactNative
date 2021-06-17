@@ -6,6 +6,10 @@ import { MLanguage, MLanguages } from '../../models/misc/language';
 
 @Injectable
 export class LanguageService extends BaseService {
+  private static _instance: LanguageService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getData(): Observable<MLanguage[]> {
     const url = `${this.baseUrlAPI}LANGUAGES?filter=ID,neq,0`;

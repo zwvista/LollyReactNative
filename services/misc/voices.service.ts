@@ -6,6 +6,10 @@ import { map } from 'rxjs/operators';
 
 @Injectable
 export class VoicesService extends BaseService {
+  private static _instance: VoicesService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByLang(langid: number): Observable<MVoice[]> {
     const url = `${this.baseUrlAPI}VVOICES?filter=LANGID,eq,${langid}&filter=VOICETYPEID,eq,5`;

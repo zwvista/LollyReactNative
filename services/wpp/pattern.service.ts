@@ -8,6 +8,10 @@ import { toParameters } from '../../common/common';
 
 @Injectable
 export class PatternService extends BaseService {
+  private static _instance: PatternService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MPatterns> {
     let url = `${this.baseUrlAPI}PATTERNS?filter=LANGID,eq,${langid}&order=PATTERN&page=${page},${rows}`;

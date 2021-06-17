@@ -7,6 +7,10 @@ import { MSelectItem } from '../../common/selectitem';
 
 @Injectable
 export class TextbookService extends BaseService {
+  private static _instance: TextbookService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByLang(langid: number): Observable<MTextbook[]> {
     const url = `${this.baseUrlAPI}TEXTBOOKS?filter=LANGID,eq,${langid}`;

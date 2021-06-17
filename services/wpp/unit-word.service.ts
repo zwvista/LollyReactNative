@@ -9,6 +9,10 @@ import { toParameters } from '../../common/common';
 
 @Injectable
 export class UnitWordService extends BaseService {
+  private static _instance: UnitWordService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByTextbookUnitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Observable<MUnitWord[]> {
     let url = `${this.baseUrlAPI}VUNITWORDS?filter=TEXTBOOKID,eq,${textbook.ID}&filter=UNITPART,bt,${unitPartFrom},${unitPartTo}&order=UNITPART&order=SEQNUM`;

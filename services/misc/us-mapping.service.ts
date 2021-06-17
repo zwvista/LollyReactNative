@@ -6,6 +6,10 @@ import { MUSMapping, MUSMappings } from '../../models/misc/usmapping';
 
 @Injectable
 export class UsMappingService extends BaseService {
+  private static _instance: UsMappingService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getData(): Observable<MUSMapping[]> {
     const url = `${this.baseUrlAPI}USMAPPINGS`;

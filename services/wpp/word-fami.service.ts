@@ -6,6 +6,10 @@ import { MWordFami, MWordsFami } from '../../models/wpp/word-fami';
 
 @Injectable
 export class WordFamiService extends BaseService {
+  private static _instance: WordFamiService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByUserWord(userid: number, wordid: number): Observable<MWordFami[]> {
     const url = `${this.baseUrlAPI}WORDSFAMI?filter=USERID,eq,${userid}&filter=WORDID,eq,${wordid}`;

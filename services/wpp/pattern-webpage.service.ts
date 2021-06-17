@@ -6,6 +6,10 @@ import { MPatternWebPage, MPatternWebPages } from '../../models/wpp/pattern-webp
 
 @Injectable
 export class PatternWebpageService extends BaseService {
+  private static _instance: PatternWebpageService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByPattern(patternid: number): Observable<MPatternWebPage[]> {
     const url = `${this.baseUrlAPI}VPATTERNSWEBPAGES?PATTERNID=ID,eq,${patternid}&order=SEQNUM`;

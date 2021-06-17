@@ -8,6 +8,10 @@ import { MSPResult } from '../../common/sp-result';
 
 @Injectable
 export class LangPhraseService extends BaseService {
+  private static _instance: LangPhraseService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MLangPhrases> {
     let url = `${this.baseUrlAPI}LANGPHRASES?filter=LANGID,eq,${langid}&order=PHRASE&page=${page},${rows}`;

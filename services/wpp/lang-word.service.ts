@@ -8,6 +8,10 @@ import { MSPResult } from '../../common/sp-result';
 
 @Injectable
 export class LangWordService extends BaseService {
+  private static _instance: LangWordService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MLangWords> {
     let url = `${this.baseUrlAPI}VLANGWORDS?filter=LANGID,eq,${langid}&order=WORD&page=${page},${rows}`;

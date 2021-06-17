@@ -9,6 +9,10 @@ import {
 
 @Injectable
 export class DictionaryService extends BaseService {
+  private static _instance: DictionaryService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
 
   getDictsReference(langid: number): Observable<MDictionary[]> {
     const url = `${this.baseUrlAPI}VDICTSREFERENCE?filter=LANGIDFROM,eq,${langid}&order=SEQNUM&order=DICTNAME`;

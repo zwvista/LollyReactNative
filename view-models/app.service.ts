@@ -4,6 +4,11 @@ import { SettingsService } from './settings.service';
 
 @Injectable
 export class AppService {
+  private static _instance: AppService;
+  static get Instance() {
+      return this._instance || (this._instance = new this());
+  }
+  private settingsService = SettingsService.Instance;
 
   private _initializeObject: ReplaySubject<void> = new ReplaySubject<void>();
   get initializeObject() {
@@ -12,10 +17,10 @@ export class AppService {
 
   isInitialized = false;
 
-  constructor(@Inject private settingsService: SettingsService) {
-    settingsService.getData().subscribe(_ => {
+  getData() {
+    this.settingsService.getData().subscribe(_ => {
       this.isInitialized = true;
-      this._initializeObject.next(undefined);
+      this._initializeObject.next();
     });
   }
 
