@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { BaseService } from '../misc/base.service';
 import { Observable } from 'rxjs';
 import { MPattern, MPatterns } from '../../models/wpp/pattern';
@@ -6,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { MSPResult } from '../../common/sp-result';
 import { toParameters } from '../../common/common';
 
-@Injectable
 export class PatternService extends BaseService {
   private static _instance: PatternService;
   static get Instance() {

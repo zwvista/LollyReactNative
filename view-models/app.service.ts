@@ -1,8 +1,6 @@
-import { Inject, Injectable } from 'react.di';
 import { ReplaySubject } from 'rxjs';
 import { SettingsService } from './settings.service';
 
-@Injectable
 export class AppService {
   private static _instance: AppService;
   static get Instance() {

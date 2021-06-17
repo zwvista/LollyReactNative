@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { BaseService } from '../misc/base.service';
 import { Observable } from 'rxjs';
 import { MLangPhrase, MLangPhrases } from '../../models/wpp/lang-phrase';
@@ -6,7 +5,6 @@ import { map } from 'rxjs/operators';
 import { toParameters } from '../../common/common';
 import { MSPResult } from '../../common/sp-result';
 
-@Injectable
 export class LangPhraseService extends BaseService {
   private static _instance: LangPhraseService;
   static get Instance() {

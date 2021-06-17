@@ -1,4 +1,3 @@
-import { Inject, Injectable } from 'react.di';
 import { AppService } from './app.service';
 import { SettingsService } from './settings.service';
 import { MUnitPhrase } from '../models/wpp/unit-phrase';
@@ -8,19 +7,16 @@ import { concatMap, map } from 'rxjs/operators';
 import { LangPhraseService } from '../services/wpp/lang-phrase.service';
 import { MLangPhrase } from '../models/wpp/lang-phrase';
 
-@Injectable
 export class PhrasesUnitService {
+  private unitPhraseService = UnitPhraseService.Instance;
+  private langPhraseService = LangPhraseService.Instance;
+  private settingsService = SettingsService.Instance;
+  private appService = AppService.Instance;
 
   unitPhrases: MUnitPhrase[] = [];
 
   textbookPhrases: MUnitPhrase[] = [];
   textbookPhraseCount = 0;
-
-  constructor(@Inject private unitPhraseService: UnitPhraseService,
-              @Inject private langPhraseService: LangPhraseService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService) {
-  }
 
   getDataInTextbook(filter: string, filterType: number) {
     return this.appService.initializeObject.pipe(

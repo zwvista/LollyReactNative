@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Inject } from 'react.di';
 import { SettingsListener, SettingsService } from '../view-models/settings.service';
 import { Subscription } from 'rxjs';
 import { SafeAreaView, StyleSheet } from 'react-native';
@@ -7,7 +6,8 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default class SettingsScreen extends React.Component implements SettingsListener {
 
-  constructor(props: any, @Inject private settingsService: SettingsService) {
+  private settingsService = SettingsService.Instance;
+  constructor(props: any) {
     super(props);
   }
   

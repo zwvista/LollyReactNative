@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from './base.service';
@@ -7,7 +6,6 @@ import {
   MDictionaries,
 } from '../../models/misc/dictionary';
 
-@Injectable
 export class DictionaryService extends BaseService {
   private static _instance: DictionaryService;
   static get Instance() {

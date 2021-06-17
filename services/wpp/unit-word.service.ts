@@ -1,4 +1,3 @@
-import { Injectable } from 'react.di';
 import { MUnitWord, MUnitWords } from '../../models/wpp/unit-word';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -7,7 +6,6 @@ import { MTextbook } from '../../models/misc/textbook';
 import { MSPResult } from '../../common/sp-result';
 import { toParameters } from '../../common/common';
 
-@Injectable
 export class UnitWordService extends BaseService {
   private static _instance: UnitWordService;
   static get Instance() {

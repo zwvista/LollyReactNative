@@ -1,30 +1,23 @@
-import { Inject, Injectable } from 'react.di';
 import { UnitWordService } from '../services/wpp/unit-word.service';
 import { SettingsService } from './settings.service';
 import { MUnitWord } from '../models/wpp/unit-word';
 import { AppService } from './app.service';
 import { EMPTY as empty, Observable, of } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
-import { NoteService } from './note.service';
 import { LangWordService } from '../services/wpp/lang-word.service';
 import { MLangWord } from '../models/wpp/lang-word';
-import { WordsFamiService } from './words-fami.service';
 
-@Injectable
 export class WordsUnitService {
+  private unitWordService = UnitWordService.Instance;
+  private langWordService: LangWordService.Instance;
+  private settingsService = SettingsService.Instance;
+  private appService = AppService.Instance;
 
   unitWords: MUnitWord[] = [];
 
   textbookWords: MUnitWord[] = [];
   textbookWordCount = 0;
 
-  constructor(@Inject private unitWordService: UnitWordService,
-              @Inject private langWordService: LangWordService,
-              @Inject private wordsFamiService: WordsFamiService,
-              @Inject private settingsService: SettingsService,
-              @Inject private appService: AppService,
-              @Inject private noteService: NoteService) {
-  }
 
   getDataInTextbook(filter: string, filterType: number): Observable<void> {
     return this.appService.initializeObject.pipe(
@@ -93,7 +86,7 @@ export class WordsUnitService {
 
   getNote(index: number): Observable<number> {
     const item = this.unitWords[index];
-    return this.noteService.getNote(item.WORD).pipe(
+    return this.settingsService.getNote(item.WORD).pipe(
       concatMap(note => {
         item.NOTE = note;
         return this.updateNote(item.WORDID, note);
@@ -102,7 +95,7 @@ export class WordsUnitService {
   }
 
   getNotes(ifEmpty: boolean, oneComplete: (index: number) => void, allComplete: () => void) {
-    this.noteService.getNotes(this.unitWords.length,
+    this.settingsService.getNotes(this.unitWords.length,
       i => !ifEmpty || !this.unitWords[i],
       i => this.getNote(i).subscribe(_ => oneComplete(i)), allComplete);
   }

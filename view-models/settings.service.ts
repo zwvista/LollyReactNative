@@ -1,12 +1,11 @@
 import { concatMap, map } from 'rxjs/operators';
-import { Inject, Injectable } from 'react.di';
 import { LanguageService } from '../services/misc/language.service';
 import { UserSettingService } from '../services/misc/user-setting.service';
 import { MUserSetting, MUserSettingInfo } from '../models/misc/user-setting';
 import { MLanguage } from '../models/misc/language';
 import { MDictionary } from '../models/misc/dictionary';
 import { MTextbook } from '../models/misc/textbook';
-import { forkJoin, Observable, of } from 'rxjs';
+import { forkJoin, interval, Observable, of, Subscription } from 'rxjs';
 import { DictionaryService } from '../services/misc/dictionary.service';
 import { TextbookService } from '../services/misc/textbook.service';
 import { AutoCorrectService } from '../services/misc/autocorrect.service';
@@ -15,13 +14,13 @@ import { MSelectItem } from '../common/selectitem';
 import * as Speech from 'speak-tts';
 import { VoicesService } from '../services/misc/voices.service';
 import { MVoice } from '../models/misc/voice';
-import { WordsFamiService } from './words-fami.service';
 import { MUSMapping } from '../models/misc/usmapping';
 import { UsMappingService } from '../services/misc/us-mapping.service';
+import { HtmlService } from '../services/misc/html.service';
+import { EMPTY as empty } from 'rxjs/internal/observable/empty';
 
 const userid = 1;
 
-@Injectable
 export class SettingsService {
   private static _instance: SettingsService;
   static get Instance() {
@@ -34,6 +33,7 @@ export class SettingsService {
   private textbookService = TextbookService.Instance;
   private autoCorrectService = AutoCorrectService.Instance;
   private voiceService = VoicesService.Instance;
+  private htmlService = HtmlService.Instance;
 
   usMappings: MUSMapping[] = [];
   userSettings: MUserSetting[] = [];
@@ -511,6 +511,37 @@ export class SettingsService {
         return 0;
       }),
     );
+  }
+
+  getNote(word: string): Observable<string> {
+    const dictNote = this.selectedDictNote;
+    if (!dictNote) return empty;
+    const url = dictNote.urlString(word, this.autoCorrects);
+    return this.htmlService.getHtml(url).pipe(
+      map(html => {
+        console.log(html);
+        return HtmlService.extractTextFrom(html, dictNote.TRANSFORM, '', (text, _) => text);
+      }));
+  }
+
+  getNotes(wordCount: number, isNoteEmpty: (index: number) => boolean, getOne: (index: number) => void, allComplete: () => void) {
+    const dictNote = this.selectedDictNote;
+    if (!dictNote) return;
+    let i = 0;
+    let subscription: Subscription;
+    // https://stackoverflow.com/questions/50200859/i-dont-get-rxjs-6-with-angular-6-with-interval-switchmap-and-map
+    subscription = interval(dictNote.WAIT).subscribe(_ => {
+      while (i < wordCount && !isNoteEmpty(i))
+        i++;
+      if (i > wordCount) {
+        allComplete();
+        subscription.unsubscribe();
+      } else {
+        if (i < wordCount)
+          getOne(i);
+        i++;
+      }
+    });
   }
 }
 
