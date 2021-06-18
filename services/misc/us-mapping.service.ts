@@ -11,9 +11,8 @@ export class UsMappingService extends BaseService {
 
   getData(): Observable<MUSMapping[]> {
     const url = `${this.baseUrlAPI}USMAPPINGS`;
-    return this.httpGet<MUSMappings>(url)
-      .pipe(
-        map(result => result.records.map(value => Object.assign(new MUSMapping(), value))),
-      );
+    return this.httpGet<MUSMappings>(url).pipe(
+      map(result => result.records.map(value => Object.assign(new MUSMapping(), value))),
+    );
   }
 }
