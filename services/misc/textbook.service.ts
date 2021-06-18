@@ -31,7 +31,7 @@ export class TextbookService extends BaseService {
         return m[1].split(',');
       return [];
     };
-    return this.http.get<MTextbooks>(url)
+    return this.httpGet<MTextbooks>(url)
       .pipe(
         map(result => result.records.map(value => {
             const o = Object.assign(new MTextbook(), value);

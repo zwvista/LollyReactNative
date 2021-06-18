@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SettingsListener, SettingsService } from '../view-models/settings.service';
+import { SettingsListener, SettingsService } from '../view-models/misc/settings.service';
 import { Subscription } from 'rxjs';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';

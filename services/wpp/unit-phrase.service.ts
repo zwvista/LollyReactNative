@@ -16,7 +16,7 @@ export class UnitPhraseService extends BaseService {
     let url = `${this.baseUrlAPI}VUNITPHRASES?filter=TEXTBOOKID,eq,${textbook.ID}&filter=UNITPART,bt,${unitPartFrom},${unitPartTo}&order=UNITPART&order=SEQNUM`;
     if (filter)
       url += `&filter=${filterType === 0 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
-    return this.http.get<MUnitPhrases>(url)
+    return this.httpGet<MUnitPhrases>(url)
       .pipe(
         map(result => {
           const result2 = result.records.map(value => Object.assign(new MUnitPhrase(), value));
@@ -32,7 +32,7 @@ export class UnitPhraseService extends BaseService {
       url += `&filter=${filterType === 1 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
     if (textbookFilter !== 0)
       url += `&filter=TEXTBOOKID,eq,${textbookFilter}`;
-    return this.http.get<MUnitPhrases>(url)
+    return this.httpGet<MUnitPhrases>(url)
       .pipe(
         map(result => ({
           records: result.records.map(value => {
@@ -47,7 +47,7 @@ export class UnitPhraseService extends BaseService {
 
   getDataByLangPhrase(phraseid: number): Observable<MUnitPhrase[]> {
     const url = `${this.baseUrlAPI}VUNITPHRASES?filter=PHRASEID,eq,${phraseid}`;
-    return this.http.get<MUnitPhrases>(url)
+    return this.httpGet<MUnitPhrases>(url)
       .pipe(
         map(result => result.records.map(value => Object.assign(new MUnitPhrase(), value))),
       );
@@ -55,7 +55,7 @@ export class UnitPhraseService extends BaseService {
 
   create(item: MUnitPhrase): Observable<number | any[]> {
     const url = `${this.baseUrlSP}UNITPHRASES_CREATE`;
-    return this.http.post<MSPResult[][] | any[]>(url, toParameters(item))
+    return this.httpPost<MSPResult[][] | any[]>(url, toParameters(item))
       .pipe(
         map(result => result[0][0].NEW_ID),
       );
@@ -63,20 +63,20 @@ export class UnitPhraseService extends BaseService {
 
   updateSeqNum(id: number, seqnum: number): Observable<number> {
     const url = `${this.baseUrlAPI}UNITPHRASES/${id}`;
-    return this.http.put<number>(url, {ID: id, SEQNUM: seqnum} as MUnitPhrase).pipe(
+    return this.httpPut<number>(url, {ID: id, SEQNUM: seqnum} as MUnitPhrase).pipe(
     );
   }
 
   update(item: MUnitPhrase): Observable<string> {
     const url = `${this.baseUrlSP}UNITPHRASES_UPDATE`;
-    return this.http.post<MSPResult[][]>(url, toParameters(item)).pipe(
+    return this.httpPost<MSPResult[][]>(url, toParameters(item)).pipe(
       map(result => result[0][0].result),
     );
   }
 
   delete(item: MUnitPhrase): Observable<string> {
     const url = `${this.baseUrlSP}UNITPHRASES_DELETE`;
-    return this.http.post<MSPResult[][]>(url, toParameters(item)).pipe(
+    return this.httpPost<MSPResult[][]>(url, toParameters(item)).pipe(
       map(result => result[0][0].result),
     );
   }

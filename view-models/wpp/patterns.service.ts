@@ -1,9 +1,9 @@
-import { SettingsService } from './settings.service';
-import { AppService } from './app.service';
-import { MPattern } from '../models/wpp/pattern';
+import { SettingsService } from '../misc/settings.service';
+import { AppService } from '../misc/app.service';
+import { MPattern } from '../../models/wpp/pattern';
 import { concatMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { PatternService } from '../services/wpp/pattern.service';
+import { PatternService } from '../../services/wpp/pattern.service';
 
 export class PatternsService {
   private patternService = PatternService.Instance;

@@ -1,8 +1,8 @@
-import { LangPhraseService } from '../services/wpp/lang-phrase.service';
-import { SettingsService } from './settings.service';
-import { AppService } from './app.service';
+import { LangPhraseService } from '../../services/wpp/lang-phrase.service';
+import { SettingsService } from '../misc/settings.service';
+import { AppService } from '../misc/app.service';
 import { concatMap, map } from 'rxjs/operators';
-import { MLangPhrase } from '../models/wpp/lang-phrase';
+import { MLangPhrase } from '../../models/wpp/lang-phrase';
 import { Observable } from 'rxjs';
 
 export class PhrasesLangService {

@@ -1,11 +1,10 @@
-import { UnitWordService } from '../services/wpp/unit-word.service';
-import { SettingsService } from './settings.service';
-import { MUnitWord } from '../models/wpp/unit-word';
-import { AppService } from './app.service';
+import { UnitWordService } from '../../services/wpp/unit-word.service';
+import { SettingsService } from '../misc/settings.service';
+import { MUnitWord } from '../../models/wpp/unit-word';
+import { AppService } from '../misc/app.service';
 import { EMPTY as empty, Observable, of } from 'rxjs';
 import { concatMap, map } from 'rxjs/operators';
-import { LangWordService } from '../services/wpp/lang-word.service';
-import { MLangWord } from '../models/wpp/lang-word';
+import { LangWordService } from '../../services/wpp/lang-word.service';
 
 export class WordsUnitService {
   private unitWordService = UnitWordService.Instance;

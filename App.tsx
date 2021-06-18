@@ -5,7 +5,7 @@ import { DrawerActions, NavigationContainer, useNavigation } from '@react-naviga
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { HomeScreen, NotificationsScreen } from './screens/Search'
 import SettingsScreen from './screens/SettingsScreen';
-import { AppService } from './view-models/app.service';
+import { AppService } from './view-models/misc/app.service';
 
 // https://stackoverflow.com/questions/60316864/react-navigation-drawer-v5
 // https://stackoverflow.com/questions/60233339/react-native-hamburger-onpress-issue

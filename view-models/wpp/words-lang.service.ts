@@ -1,8 +1,8 @@
-import { SettingsService } from './settings.service';
-import { AppService } from './app.service';
-import { LangWordService } from '../services/wpp/lang-word.service';
+import { SettingsService } from '../misc/settings.service';
+import { AppService } from '../misc/app.service';
+import { LangWordService } from '../../services/wpp/lang-word.service';
 import { Observable } from 'rxjs';
-import { MLangWord } from '../models/wpp/lang-word';
+import { MLangWord } from '../../models/wpp/lang-word';
 import { concatMap, map } from 'rxjs/operators';
 
 export class WordsLangService {
