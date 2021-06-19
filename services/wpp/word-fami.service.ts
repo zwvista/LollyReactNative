@@ -9,20 +9,18 @@ export class WordFamiService extends BaseService {
       return this._instance || (this._instance = new this());
   }
 
-  getDataByUserWord(userid: number, wordid: number): Observable<MWordFami[]> {
-    const url = `${this.baseUrlAPI}WORDSFAMI?filter=USERID,eq,${userid}&filter=WORDID,eq,${wordid}`;
-    return this.httpGet<MWordsFami>(url)
-      .pipe(
-        map(result => result.records.map(value => Object.assign(new MWordFami(), value))),
-      );
+  getDataByUserWord(wordid: number): Observable<MWordFami[]> {
+    const url = `${this.baseUrlAPI}WORDSFAMI?filter=USERID,eq,${GlobalVars.userid}&filter=WORDID,eq,${wordid}`;
+    return this.httpGet<MWordsFami>(url).pipe(
+      map(result => result.records.map(value => Object.assign(new MWordFami(), value))),
+    );
   }
 
   create(item: MWordFami): Observable<number | any[]> {
     const url = `${this.baseUrlAPI}WORDSFAMI`;
     (item as any).ID = null;
-    return this.httpPost<number | any[]>(url, item)
-      .pipe(
-      );
+    return this.httpPost<number | any[]>(url, item).pipe(
+    );
   }
 
   update(item: MWordFami): Observable<number> {

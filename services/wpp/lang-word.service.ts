@@ -15,40 +15,36 @@ export class LangWordService extends BaseService {
     let url = `${this.baseUrlAPI}VLANGWORDS?filter=LANGID,eq,${langid}&order=WORD&page=${page},${rows}`;
     if (filter)
       url += `&filter=${filterType === 0 ? 'WORD' : 'NOTE'},cs,${encodeURIComponent(filter)}`;
-    return this.httpGet<MLangWords>(url)
-      .pipe(
-        map(result => ({
-          records: result.records.map(value => Object.assign(new MLangWord(), value)),
-          results: result.results,
-        })),
-      );
+    return this.httpGet<MLangWords>(url).pipe(
+      map(result => ({
+        records: result.records.map(value => Object.assign(new MLangWord(), value)),
+        results: result.results,
+      })),
+    );
   }
 
   getDataByLangWord(langid: number, word: string): Observable<MLangWord[]> {
     const url = `${this.baseUrlAPI}VLANGWORDS?filter=LANGID,eq,${langid}&filter=WORD,eq,${encodeURIComponent(word)}`;
-    return this.httpGet<MLangWords>(url)
-      .pipe(
-        map(result => result.records.map(value => Object.assign(new MLangWord(), value))
-          // Api is case insensitive
-          .filter(value => value.WORD === word)
-        ),
-      );
+    return this.httpGet<MLangWords>(url).pipe(
+      map(result => result.records.map(value => Object.assign(new MLangWord(), value))
+        // Api is case insensitive
+        .filter(value => value.WORD === word)
+      ),
+    );
   }
 
   getDataById(id: number): Observable<MLangWord[]> {
     const url = `${this.baseUrlAPI}VLANGWORDS?filter=ID,eq,${id}`;
-    return this.httpGet<MLangWords>(url)
-      .pipe(
-        map(result => result.records.map(value => Object.assign(new MLangWord(), value))),
-      );
+    return this.httpGet<MLangWords>(url).pipe(
+      map(result => result.records.map(value => Object.assign(new MLangWord(), value))),
+    );
   }
 
   create(item: MLangWord): Observable<number | any[]> {
     const url = `${this.baseUrlAPI}LANGWORDS`;
     (item as any).ID = null;
-    return this.httpPost<number | any[]>(url, item)
-      .pipe(
-      );
+    return this.httpPost<number | any[]>(url, item).pipe(
+    );
   }
 
   update(item: MLangWord): Observable<number> {
