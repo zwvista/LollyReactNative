@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 export class UserService extends BaseService {
   private static _instance: UserService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByLang(username: string, password: string): Observable<MUser[]> {

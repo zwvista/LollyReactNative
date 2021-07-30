@@ -6,7 +6,7 @@ import { MAutoCorrect, MAutoCorrects } from '../../models/misc/autocorrect';
 export class AutoCorrectService extends BaseService {
   private static _instance: AutoCorrectService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByLang(langid: number): Observable<MAutoCorrect[]> {

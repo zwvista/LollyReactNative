@@ -6,7 +6,7 @@ import { MWebPage, MWebPages } from '../../models/wpp/webpage';
 export class WebpageService extends BaseService {
   private static _instance: WebpageService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataById(id: number): Observable<MWebPage[]> {

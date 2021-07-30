@@ -9,7 +9,7 @@ import { toParameters } from '../../common/common';
 export class UnitPhraseService extends BaseService {
   private static _instance: UnitPhraseService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByTextbookUnitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Observable<MUnitPhrase[]> {

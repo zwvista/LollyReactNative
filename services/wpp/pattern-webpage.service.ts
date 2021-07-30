@@ -6,7 +6,7 @@ import { MPatternWebPage, MPatternWebPages } from '../../models/wpp/pattern-webp
 export class PatternWebpageService extends BaseService {
   private static _instance: PatternWebpageService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByPattern(patternid: number): Observable<MPatternWebPage[]> {

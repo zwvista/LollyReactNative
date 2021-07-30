@@ -9,7 +9,7 @@ import {
 export class DictionaryService extends BaseService {
   private static _instance: DictionaryService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDictsReference(langid: number): Observable<MDictionary[]> {

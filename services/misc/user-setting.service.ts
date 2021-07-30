@@ -6,7 +6,7 @@ import { MUserSetting, MUserSettingInfo, MUserSettings } from '../../models/misc
 export class UserSettingService extends BaseService {
   private static _instance: UserSettingService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByUser(): Observable<MUserSetting[]> {

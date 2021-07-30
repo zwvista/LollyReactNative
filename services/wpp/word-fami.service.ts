@@ -6,7 +6,7 @@ import { MWordFami, MWordsFami } from '../../models/wpp/word-fami';
 export class WordFamiService extends BaseService {
   private static _instance: WordFamiService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByUserWord(wordid: number): Observable<MWordFami[]> {

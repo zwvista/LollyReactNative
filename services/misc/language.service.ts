@@ -6,7 +6,7 @@ import { MLanguage, MLanguages } from '../../models/misc/language';
 export class LanguageService extends BaseService {
   private static _instance: LanguageService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getData(): Observable<MLanguage[]> {

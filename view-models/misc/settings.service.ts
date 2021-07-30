@@ -22,7 +22,7 @@ import { EMPTY as empty } from 'rxjs/internal/observable/empty';
 export class SettingsService {
   private static _instance: SettingsService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
   private langService = LanguageService.Instance;
   private usMappingService = UsMappingService.Instance;

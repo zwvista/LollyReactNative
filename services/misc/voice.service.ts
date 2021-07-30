@@ -6,7 +6,7 @@ import { map } from 'rxjs/operators';
 export class VoiceService extends BaseService {
   private static _instance: VoicesService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByLang(langid: number): Observable<MVoice[]> {

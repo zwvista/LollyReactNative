@@ -7,7 +7,7 @@ import { MSelectItem } from '../../common/selectitem';
 export class TextbookService extends BaseService {
   private static _instance: TextbookService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByLang(langid: number): Observable<MTextbook[]> {

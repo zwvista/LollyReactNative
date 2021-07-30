@@ -9,7 +9,7 @@ import { toParameters } from '../../common/common';
 export class UnitWordService extends BaseService {
   private static _instance: UnitWordService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByTextbookUnitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Observable<MUnitWord[]> {

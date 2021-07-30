@@ -4,7 +4,7 @@ import { SettingsService } from './settings.service';
 export class AppService {
   private static _instance: AppService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
   private settingsService = SettingsService.Instance;
 

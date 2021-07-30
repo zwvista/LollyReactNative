@@ -6,7 +6,7 @@ import { MUSMapping, MUSMappings } from '../../models/misc/usmapping';
 export class UsMappingService extends BaseService {
   private static _instance: UsMappingService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getData(): Observable<MUSMapping[]> {

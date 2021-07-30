@@ -8,7 +8,7 @@ import { toParameters } from '../../common/common';
 export class PatternService extends BaseService {
   private static _instance: PatternService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Observable<MPatterns> {

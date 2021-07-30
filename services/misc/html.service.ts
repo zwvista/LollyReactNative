@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 export class HtmlService extends BaseService {
   private static _instance: HtmlService;
   static get Instance() {
-      return this._instance || (this._instance = new this());
+    return this._instance || (this._instance = new this());
   }
 
   static extractTextFrom(html: string, transform: string, template: string,
