@@ -11,7 +11,7 @@ import { TextbookService } from '../../services/misc/textbook.service';
 import { AutoCorrectService } from '../../services/misc/autocorrect.service';
 import { autoCorrect, MAutoCorrect } from '../../models/misc/autocorrect';
 import { MSelectItem } from '../../common/selectitem';
-import * as Speech from 'speak-tts';
+import Tts from 'react-native-tts';
 import { VoiceService } from '../../services/misc/voice.service';
 import { MVoice } from '../../models/misc/voice';
 import { MUSMapping } from '../../models/misc/usmapping';
@@ -139,7 +139,6 @@ export class SettingsService {
   selectedLang!: MLanguage;
 
   voices: MVoice[] = [];
-  speech = new Speech.default();
   selectedVoice: MVoice | null = null;
 
   dictsReference: MDictionary[] = [];
@@ -183,7 +182,6 @@ export class SettingsService {
   patternFilterTypes = ['Pattern', 'Note', 'Tags'].map((v, i) => new MSelectItem(i, v));
 
   constructor() {
-    this.speech.init();
   }
 
   private getUSInfo(name: string): MUserSettingInfo {
@@ -308,7 +306,7 @@ export class SettingsService {
     const newVal = this.selectedVoice.ID;
     const dirty = this.USVOICE !== newVal;
     this.USVOICE = newVal;
-    this.speech.setVoice(this.selectedVoice.VOICENAME);
+    // this.speech.setVoice(this.selectedVoice.VOICENAME);
     return (dirty ? this.userSettingService.updateIntValue(this.INFO_USVOICE, this.USVOICE) : of(0)).pipe(
       tap( _ => { if (this.settingsListener) this.settingsListener.onUpdateVoice(); }),
     );
@@ -319,10 +317,10 @@ export class SettingsService {
   }
 
   speak(text: string) {
-    this.speech.speak({
-      text,
-      queue: false,
-    });
+    // this.speech.speak({
+    //   text,
+    //   queue: false,
+    // });
   }
 
   updateUnitFrom(value: number): Observable<number> {
