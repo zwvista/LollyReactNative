@@ -2,6 +2,7 @@ import { BaseService } from './base.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MUserSetting, MUserSettingInfo, MUserSettings } from '../../models/misc/user-setting';
+import {GlobalVars} from '../../common/common';
 
 export class UserSettingService extends BaseService {
   private static _instance: UserSettingService;
