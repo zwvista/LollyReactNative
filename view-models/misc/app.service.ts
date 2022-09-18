@@ -1,12 +1,11 @@
+import { injectable } from 'inversify';
+import 'reflect-metadata';
+import { inject } from "inversify";
 import { ReplaySubject } from 'rxjs';
 import { SettingsService } from './settings.service';
 
+@injectable()
 export class AppService {
-  private static _instance: AppService;
-  static get Instance() {
-    return this._instance || (this._instance = new this());
-  }
-  private settingsService = SettingsService.Instance;
 
   private _initializeObject: ReplaySubject<void> = new ReplaySubject<void>();
   get initializeObject() {
@@ -15,11 +14,13 @@ export class AppService {
 
   isInitialized = false;
 
-  getData() {
-    this.settingsService.getData().subscribe(_ => {
-      this.isInitialized = true;
-      this._initializeObject.next();
-    });
+  constructor(@inject(SettingsService) private settingsService: SettingsService) {
+  }
+
+  async getData() {
+    await this.settingsService.getData();
+    this.isInitialized = true;
+    this._initializeObject.next();
   }
 
 }

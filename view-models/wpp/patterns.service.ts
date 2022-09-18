@@ -1,38 +1,40 @@
+import { injectable } from 'inversify';
+import 'reflect-metadata';
+import { inject } from "inversify";
 import { SettingsService } from '../misc/settings.service';
 import { AppService } from '../misc/app.service';
 import { MPattern } from '../../models/wpp/pattern';
-import { concatMap, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { PatternService } from '../../services/wpp/pattern.service';
+import { take } from 'rxjs/operators';
 
+@injectable()
 export class PatternsService {
-  private patternService = PatternService.Instance;
-  private settingsService = SettingsService.Instance;
-  private appService = AppService.Instance;
 
   patterns: MPattern[] = [];
   patternCount = 0;
 
-  getData(page: number, rows: number, filter: string, filterType: number) {
-    return this.appService.initializeObject.pipe(
-      concatMap(_ => this.patternService.getDataByLang(this.settingsService.selectedLang.ID, page, rows, filter, filterType)),
-      map(res => {
-        this.patterns = res.records;
-        this.patternCount = res.results;
-      }),
-    );
+  constructor(@inject(PatternService) private patternService: PatternService,
+              @inject(SettingsService) private settingsService: SettingsService,
+              @inject(AppService) private appService: AppService) {
   }
 
-  create(item: MPattern): Observable<number | any[]> {
-    return this.patternService.create(item);
+  async getData(page: number, rows: number, filter: string, filterType: number) {
+    await this.appService.initializeObject.pipe(take(1));
+    const res = await this.patternService.getDataByLang(this.settingsService.selectedLang.ID, page, rows, filter, filterType);
+    this.patterns = res.records;
+    this.patternCount = res.results;
   }
 
-  update(item: MPattern): Observable<number> {
-    return this.patternService.update(item);
+  async create(item: MPattern): Promise<number | any[]> {
+    return await this.patternService.create(item);
   }
 
-  delete(id: number): Observable<number> {
-    return this.patternService.delete(id);
+  async update(item: MPattern): Promise<number> {
+    return await this.patternService.update(item);
+  }
+
+  async delete(id: number): Promise<number> {
+    return await this.patternService.delete(id);
   }
 
   newPattern(): MPattern {

@@ -1,16 +1,14 @@
+import { injectable } from 'inversify';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { MTextbook, MTextbooks } from '../../models/misc/textbook';
 import { MSelectItem } from '../../common/selectitem';
 
+@injectable()
 export class TextbookService extends BaseService {
-  private static _instance: TextbookService;
-  static get Instance() {
-    return this._instance || (this._instance = new this());
-  }
 
-  getDataByLang(langid: number): Observable<MTextbook[]> {
+  async getDataByLang(langid: number): Promise<MTextbook[]> {
     const url = `${this.baseUrlAPI}TEXTBOOKS?filter=LANGID,eq,${langid}`;
     const f = (UNITS: string) => {
       let m = /UNITS,(\d+)/g.exec(UNITS);
@@ -31,15 +29,13 @@ export class TextbookService extends BaseService {
         return m[1].split(',');
       return [];
     };
-    return this.httpGet<MTextbooks>(url).pipe(
-      map(result => result.records.map(value => {
-          const o = Object.assign(new MTextbook(), value);
-          o.units = f(o.UNITS).map((v, i) => new MSelectItem(i + 1, v));
-          o.parts = o.PARTS.split(',').map((v, i) => new MSelectItem(i + 1, v));
-          return o;
-        })
-      ),
-    );
+    const result = await this.httpGet<MTextbooks>(url);
+    return result.records.map(value => {
+      const o = Object.assign(new MTextbook(), value);
+      o.units = f(o.UNITS).map((v, i) => new MSelectItem(i + 1, v));
+      o.parts = o.PARTS.split(',').map((v, i) => new MSelectItem(i + 1, v));
+      return o;
+    });
   }
 
 }

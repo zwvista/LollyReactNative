@@ -1,42 +1,44 @@
+import { injectable } from 'inversify';
+import 'reflect-metadata';
+import { inject } from "inversify";
 import { SettingsService } from '../misc/settings.service';
 import { AppService } from '../misc/app.service';
 import { LangWordService } from '../../services/wpp/lang-word.service';
-import { Observable } from 'rxjs';
 import { MLangWord } from '../../models/wpp/lang-word';
-import { concatMap, map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
+@injectable()
 export class WordsLangService {
-  private langWordService = LangWordService.Instance;
-  private settingsService = SettingsService.Instance;
-  private appService = AppService.Instance;
 
   langWords: MLangWord[] = [];
   langWordsCount = 0;
 
-  getData(page: number, rows: number, filter: string, filterType: number): Observable<void> {
-    return this.appService.initializeObject.pipe(
-      concatMap(_ => this.langWordService.getDataByLang(this.settingsService.selectedLang.ID, page, rows, filter, filterType)),
-      map(res => {
-        this.langWords = res.records;
-        this.langWordsCount = res.results;
-      }),
-    );
+  constructor(@inject(LangWordService) private langWordService: LangWordService,
+              @inject(SettingsService) private settingsService: SettingsService,
+              @inject(AppService) private appService: AppService) {
   }
 
-  create(item: MLangWord): Observable<number | any[]> {
-    return this.langWordService.create(item);
+  async getData(page: number, rows: number, filter: string, filterType: number): Promise<void> {
+    await this.appService.initializeObject.pipe(take(1));
+    const res =　await this.langWordService.getDataByLang(this.settingsService.selectedLang.ID, page, rows, filter, filterType);
+    this.langWords = res.records;
+    this.langWordsCount = res.results;
   }
 
-  updateNote(id: number, note: string): Observable<number> {
-    return this.langWordService.updateNote(id, note);
+  async create(item: MLangWord): Promise<number | any[]> {
+    return await this.langWordService.create(item);
   }
 
-  update(item: MLangWord): Observable<number> {
-    return this.langWordService.update(item);
+  async updateNote(id: number, note: string): Promise<number> {
+    return await this.langWordService.updateNote(id, note);
   }
 
-  delete(item: MLangWord): Observable<string> {
-    return this.langWordService.delete(item);
+  async update(item: MLangWord): Promise<number> {
+    return await this.langWordService.update(item);
+  }
+
+  async delete(item: MLangWord): Promise<string> {
+    return await this.langWordService.delete(item);
   }
 
   newLangWord(): MLangWord {
@@ -45,13 +47,10 @@ export class WordsLangService {
     return o;
   }
 
-  getNote(index: number): Observable<number> {
+  async getNote(index: number): Promise<number> {
     const item = this.langWords[index];
-    return this.settingsService.getNote(item.WORD).pipe(
-      concatMap(note => {
-        item.NOTE = note;
-        return this.updateNote(item.ID, note);
-      }),
-    );
+    const note = await this.settingsService.getNote(item.WORD);
+    item.NOTE = note;
+    return await this.updateNote(item.ID, note);
   }
 }
