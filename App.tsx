@@ -1,14 +1,38 @@
-import * as React from 'react';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createStackNavigator } from '@react-navigation/stack';
-import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { HomeScreen, NotificationsScreen } from './screens/Search'
-import SettingsScreen from './screens/SettingsScreen';
-import { AppService } from './view-models/misc/app.service';
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * Generated with the TypeScript template
+ * https://github.com/react-native-community/react-native-template-typescript
+ *
+ * @format
+ */
 
-// https://stackoverflow.com/questions/60316864/react-navigation-drawer-v5
-// https://stackoverflow.com/questions/60233339/react-native-hamburger-onpress-issue
+import React, {type PropsWithChildren} from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  useColorScheme,
+  View,
+} from 'react-native';
+
+import {
+  Colors,
+  DebugInstructions,
+  Header,
+  LearnMoreLinks,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {createStackNavigator} from "@react-navigation/stack";
+import {HomeScreen, NotificationsScreen} from "./screens/Search";
+import SettingsScreen from "./screens/SettingsScreen";
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { DrawerActions, NavigationContainer, useNavigation } from '@react-navigation/native';
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -23,39 +47,33 @@ const DrawerComponent = () => {
   );
 };
 
-export default class App extends React.Component<any, any> {
-  appService = AppService.Instance;
-
-  componentDidMount() {
-    this.appService.getData();
-  }
-
-  render() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            options={{
-              title: 'My home',
-              headerStyle: {
-                backgroundColor: '#5f27cd',
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontWeight: 'bold',
-              },
-              headerLeft: () => {
-                const navigation = useNavigation();
-                return (
-                  <Ionicons name='md-menu' style={{paddingLeft: "4%"}} size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.openDrawer())} />
-                );
-              }
-            }}
-            component={DrawerComponent}
-            name="Drawer"
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  }
+const App = () => {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          options={{
+            title: 'My home',
+            headerStyle: {
+              backgroundColor: '#5f27cd',
+            },
+            headerTintColor: '#fff',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
+            headerLeft: () => {
+              const navigation = useNavigation();
+              return (
+                <Ionicons name='md-menu' style={{paddingLeft: "4%"}} size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.openDrawer())} />
+              );
+            }
+          }}
+          component={DrawerComponent}
+          name="Drawer"
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
+
+export default App;
