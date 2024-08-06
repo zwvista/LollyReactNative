@@ -1,7 +1,7 @@
 import { MUnitWord } from './unit-word';
 
 export class MLangWords {
-  records: MLangWord[];
+  records!: MLangWord[];
   results = 0;
 }
 export class MLangWord {

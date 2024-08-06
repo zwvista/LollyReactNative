@@ -16,7 +16,7 @@ export class MUnitPhrase {
   PHRASE = '';
   TRANSLATION = '';
 
-  textbook: MTextbook;
+  textbook!: MTextbook;
   get UNITSTR(): string {
     return this.textbook.UNITSTR(this.UNIT);
   }

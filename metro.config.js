@@ -13,5 +13,7 @@ module.exports = {
         inlineRequires: true,
       },
     }),
+    // https://github.com/inversify/InversifyJS/issues/1007
+    babelTransformerPath: require.resolve('react-native-typescript-transformer')
   },
 };

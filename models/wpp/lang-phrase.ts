@@ -1,7 +1,7 @@
 import { MUnitPhrase } from './unit-phrase';
 
 export class MLangPhrases {
-  records: MLangPhrase[];
+  records!: MLangPhrase[];
   results = 0;
 }
 export class MLangPhrase {

@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { SettingsListener, SettingsService } from '../view-models/misc/settings.service';
-import { Subscription } from 'rxjs';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { container } from "tsyringe";
 
 export default class SettingsScreen extends React.Component implements SettingsListener {
 
-  private settingsService = SettingsService.Instance;
+  settingsService = container.resolve(SettingsService);
   constructor(props: any) {
     super(props);
   }
-  
-  subscription = new Subscription();
 
   get toTypeIsUnit() {
     return this.settingsService.toType === 0;
@@ -29,13 +27,9 @@ export default class SettingsScreen extends React.Component implements SettingsL
     },
   });
 
-  componentDidMount() {
+  async componentDidMount() {
     this.settingsService.settingsListener = this;
-    this.subscription.add(this.settingsService.getData().subscribe());
-  }
-
-  componentWillUnmount() {
-    this.subscription.unsubscribe();
+    await this.settingsService.getData();
   }
 
   render() {

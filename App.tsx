@@ -35,7 +35,6 @@ import { DrawerActions, NavigationContainer, useNavigation } from '@react-naviga
 
 
 const Drawer = createDrawerNavigator();
-const Stack = createStackNavigator();
 
 const DrawerComponent = () => {
   return (
@@ -50,28 +49,7 @@ const DrawerComponent = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          options={{
-            title: 'My home',
-            headerStyle: {
-              backgroundColor: '#5f27cd',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-            headerLeft: () => {
-              const navigation = useNavigation();
-              return (
-                <Ionicons name='md-menu' style={{paddingLeft: "4%"}} size={30} color='white' onPress={() => navigation.dispatch(DrawerActions.openDrawer())} />
-              );
-            }
-          }}
-          component={DrawerComponent}
-          name="Drawer"
-        />
-      </Stack.Navigator>
+      <DrawerComponent />
     </NavigationContainer>
   );
 };

@@ -1,11 +1,9 @@
-import { injectable } from 'inversify';
 import { BaseService } from './base.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { MTextbook, MTextbooks } from '../../models/misc/textbook';
 import { MSelectItem } from '../../common/selectitem';
+import { singleton } from "tsyringe";
 
-@injectable()
+@singleton()
 export class TextbookService extends BaseService {
 
   async getDataByLang(langid: number): Promise<MTextbook[]> {
