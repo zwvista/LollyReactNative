@@ -6,6 +6,7 @@
  */
 
 import './gesture-handler';
+import "reflect-metadata"
 import React, {type PropsWithChildren} from 'react';
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import {HomeScreen, NotificationsScreen} from "./screens/Search";
