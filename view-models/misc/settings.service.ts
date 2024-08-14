@@ -11,7 +11,7 @@ import { autoCorrect, MAutoCorrect } from '../../models/misc/autocorrect';
 import { AutoCorrectService } from '../../services/misc/autocorrect.service';
 import { MSelectItem } from '../../common/selectitem';
 // @ts-ignore
-import * as Speech from 'speak-tts';
+// import * as Speech from 'speak-tts';
 import { VoiceService } from '../../services/misc/voice.service';
 import { MVoice } from '../../models/misc/voice';
 import { UsMappingService } from '../../services/misc/us-mapping.service';
@@ -128,7 +128,7 @@ export class SettingsService {
   selectedLang!: MLanguage;
 
   voices: MVoice[] = [];
-  speech = new Speech.default();
+  // speech = new Speech.default();
   selectedVoice: MVoice | null = null;
 
   dictsReference: MDictionary[] = [];
@@ -179,7 +179,7 @@ export class SettingsService {
               private autoCorrectService: AutoCorrectService,
               private voiceService: VoiceService,
               private htmlService: HtmlService) {
-    this.speech.init();
+    // this.speech.init();
   }
 
   private getUSInfo(name: string): MUserSettingInfo {
@@ -292,7 +292,7 @@ export class SettingsService {
     const newVal = this.selectedVoice.ID;
     const dirty = this.USVOICE !== newVal;
     this.USVOICE = newVal;
-    this.speech.setVoice(this.selectedVoice.VOICENAME);
+    // this.speech.setVoice(this.selectedVoice.VOICENAME);
     if (dirty) await this.userSettingService.updateIntValue(this.INFO_USVOICE, this.USVOICE);
     if (this.settingsListener) this.settingsListener.onUpdateVoice();
   }
@@ -302,10 +302,10 @@ export class SettingsService {
   }
 
   speak(text: string) {
-    this.speech.speak({
-      text,
-      queue: false,
-    });
+    // this.speech.speak({
+    //   text,
+    //   queue: false,
+    // });
   }
 
   async updateUnitFrom(value: number) {
