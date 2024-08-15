@@ -4,17 +4,18 @@ import { container } from "tsyringe";
 import { AppService } from "../view-models/misc/app.service.ts";
 import LoginDialog from "./LoginDialog.tsx";
 import { useEffect, useReducer, useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GlobalVars } from "../common/common.ts";
+import { MMKVLoader, useMMKVStorage } from "react-native-mmkv-storage";
 
 export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const [showLogin, setShowLogin] = useState(false);
-  const [loggedIn, setLoggedIn] = useState('');
+  const storage = new MMKVLoader().initialize();
+  const [loggedIn, setLoggedIn] = useMMKVStorage('userid', storage, '');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
-    await AsyncStorage.removeItem('userid');
+    setLoggedIn('');
     GlobalVars.userid = "";
     updateLoginCount();
   };
@@ -27,16 +28,16 @@ export default function SearchScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      setLoggedIn((await AsyncStorage.getItem('userid')) ?? '');
       if (!loggedIn) {
         setShowLogin(true);
       } else {
         GlobalVars.userid = loggedIn;
+        await appService.getData();
       }
     })();
   }, [loginCount]);
 
-  return !loggedIn ? <View /> : (
+  return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
         onPress={() => navigation.navigate('Notifications')}

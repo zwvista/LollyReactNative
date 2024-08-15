@@ -14,8 +14,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button } from "react-native";
 import WordsUnitScreen from "./screens/WordsUnitScreen.tsx";
-import { container } from "tsyringe";
-import { AppService } from "./view-models/misc/app.service.ts";
 import WordsTextbookScreen from "./screens/WordsTextboookScreen.tsx";
 import WordsLangScreen from "./screens/WordsLangScreen.tsx";
 import PhrasesUnitScreen from "./screens/PhrasesUnitScreen.tsx";
@@ -26,13 +24,6 @@ import PatternsScreen from "./screens/PatternsScreen.tsx";
 const Drawer = createDrawerNavigator();
 
 const App = () => {
-  const appService = container.resolve(AppService);
-  useEffect(() => {
-    (async () => {
-      await appService.getData();
-    })();
-  }, []);
-
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Search">

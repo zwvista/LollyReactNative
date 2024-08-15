@@ -1,16 +1,20 @@
 import * as React from 'react';
 import { Button, Modal, TextInput, View } from 'react-native';
 import { container } from "tsyringe";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useReducer } from "react";
 import { GlobalVars } from "../common/common.ts";
 import { LoginService } from "../view-models/misc/login.service.ts";
+import { MMKVLoader, useMMKVStorage } from "react-native-mmkv-storage";
+import { AppService } from "../view-models/misc/app.service.ts";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
+  const appService = container.resolve(AppService);
   const loginService = container.resolve(LoginService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+  const storage = new MMKVLoader().initialize();
+  const [, setUserid] = useMMKVStorage('userid', storage, '');
 
   const onChangeUsername = (e: string) => {
     loginService.item.USERNAME = e;
@@ -25,8 +29,9 @@ export default function LoginDialog(
   const login = async () => {
     const userid = await loginService.login();
     if (userid) {
-      await AsyncStorage.setItem('userid', userid);
+      setUserid(userid);
       GlobalVars.userid = userid;
+      await appService.getData();
       handleCloseDialog();
     }
   };
