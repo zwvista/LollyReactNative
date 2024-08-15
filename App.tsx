@@ -20,6 +20,7 @@ import PhrasesUnitScreen from "./screens/PhrasesUnitScreen.tsx";
 import PhrasesTextbookScreen from "./screens/PhrasesTextboookScreen.tsx";
 import PhrasesLangScreen from "./screens/PhrasesLangScreen.tsx";
 import PatternsScreen from "./screens/PatternsScreen.tsx";
+import SettingsScreen from "./screens/SettingsScreen.tsx";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,9 @@ const App = () => {
         <Drawer.Screen name="Search" component={SearchScreen} options={{
           headerRight: () => <Button title="Logout" />,
           drawerIcon: () => <Ionicons name='home' size={30} color='#130f40' />
+        }}/>
+        <Drawer.Screen name="Settings" component={SettingsScreen} options={{
+          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Unit" component={WordsUnitScreen} options={{
           drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
