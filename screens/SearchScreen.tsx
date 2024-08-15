@@ -43,11 +43,7 @@ export default function SearchScreen({ navigation }:any) {
   }, [loginCount]);
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title={`Go to notifications ${appService.isInitialized}`}
-      />
+    <View style={{padding: 8}}>
       {showLogin && <LoginDialog isDialogOpened={showLogin} handleCloseDialog={handleCloseLogin} />}
     </View>
   );
