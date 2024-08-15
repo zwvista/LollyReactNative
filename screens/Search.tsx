@@ -10,6 +10,7 @@ import { GlobalVars } from "../common/common.ts";
 export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const [showLogin, setShowLogin] = useState(false);
+  const [loggedIn, setLoggedIn] = useState('');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
@@ -26,16 +27,16 @@ export default function SearchScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      const loggedIn = await AsyncStorage.getItem('userid');
+      setLoggedIn((await AsyncStorage.getItem('userid')) ?? '');
       if (!loggedIn) {
         setShowLogin(true);
       } else {
-        GlobalVars.userid = loggedIn!;
+        GlobalVars.userid = loggedIn;
       }
     })();
   }, [loginCount]);
 
-  return (
+  return !loggedIn ? <View /> : (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button
         onPress={() => navigation.navigate('Notifications')}

@@ -6,13 +6,14 @@ import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 
-export default function WordsUnitScreen({ navigation }:any) {
+export default function WordsTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
+  const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 

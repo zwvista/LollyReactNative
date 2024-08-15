@@ -2,17 +2,18 @@ import { FlatList, StyleSheet, Text, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
-import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
+import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
 
-export default function WordsUnitScreen({ navigation }:any) {
+export default function PhrasesTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
-  const wordsUnitService = container.resolve(WordsUnitService);
+  const phrasesUnitService = container.resolve(PhrasesUnitService);
   const settingsService = container.resolve(SettingsService);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
+  const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -30,7 +31,7 @@ export default function WordsUnitScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await wordsUnitService.getDataInTextbook(filter, filterType);
+      await phrasesUnitService.getDataInTextbook(filter, filterType);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -38,8 +39,8 @@ export default function WordsUnitScreen({ navigation }:any) {
   return (
     <View>
       <FlatList
-        data={wordsUnitService.unitWords}
-        renderItem={({item}) => <Text style={styles.item}>{item.WORD}</Text>}
+        data={phrasesUnitService.unitPhrases}
+        renderItem={({item}) => <Text style={styles.item}>{item.PHRASE}</Text>}
       />
     </View>
   );
