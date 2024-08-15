@@ -10,7 +10,6 @@ import { AppService } from "../view-models/misc/app.service.ts";
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
-  const appService = container.resolve(AppService);
   const loginService = container.resolve(LoginService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
   const storage = new MMKVLoader().initialize();
@@ -30,8 +29,6 @@ export default function LoginDialog(
     const userid = await loginService.login();
     if (userid) {
       setUserid(userid);
-      GlobalVars.userid = userid;
-      await appService.getData();
       handleCloseDialog();
     }
   };

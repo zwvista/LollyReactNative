@@ -20,6 +20,11 @@ export default function SearchScreen({ navigation }:any) {
     updateLoginCount();
   };
 
+  const handleCloseLogin = () => {
+    setShowLogin(false);
+    updateLoginCount();
+  };
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => <Button onPress={logout} title="Logout" />
@@ -43,7 +48,7 @@ export default function SearchScreen({ navigation }:any) {
         onPress={() => navigation.navigate('Notifications')}
         title={`Go to notifications ${appService.isInitialized}`}
       />
-      {showLogin && <LoginDialog isDialogOpened={showLogin} handleCloseDialog={() => setShowLogin(false)} />}
+      {showLogin && <LoginDialog isDialogOpened={showLogin} handleCloseDialog={handleCloseLogin} />}
     </View>
   );
 }
