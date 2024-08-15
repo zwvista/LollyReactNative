@@ -5,12 +5,14 @@ import { container } from "tsyringe";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export default function PhrasesUnitScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const phrasesUnitService = container.resolve(PhrasesUnitService);
   const settingsService = container.resolve(SettingsService);
 
+  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
@@ -37,6 +39,13 @@ export default function PhrasesUnitScreen({ navigation }:any) {
 
   return (
     <View>
+      <DropDownPicker
+        open={open}
+        value={filterType}
+        items={settingsService.phraseFilterTypes}
+        setOpen={setOpen}
+        setValue={setFilterType}
+      />
       <FlatList
         data={phrasesUnitService.unitPhrases}
         renderItem={({item}) => <Text style={styles.item}>{item.PHRASE}</Text>}
