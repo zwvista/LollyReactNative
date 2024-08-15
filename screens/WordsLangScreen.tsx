@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import { FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
@@ -63,7 +63,11 @@ export default function WordsLangScreen({ navigation }:any) {
       </View>
       <FlatList
         data={wordsLangService.langWords}
-        renderItem={({item}) => <Text style={styles.item}>{item.WORD}</Text>}
+        renderItem={({item}) =>
+          <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+            <Text style={styles.item}>{item.WORD}</Text>
+          </TouchableWithoutFeedback>
+        }
       />
       {showDetail && <WordsLangDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
     </View>
