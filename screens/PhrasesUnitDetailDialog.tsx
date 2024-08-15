@@ -1,6 +1,6 @@
 import { View } from "react-native";
 
-export default function WordsUnitDetailDialog(
+export default function PhrasesUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
   return (

@@ -6,11 +6,14 @@ import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
 import DropDownPicker from "react-native-dropdown-picker";
+import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const phrasesUnitService = container.resolve(PhrasesUnitService);
   const settingsService = container.resolve(SettingsService);
+  const [showDetail, setShowDetail] = useState(false);
+  const [detailId, setDetailId] = useState(0);
 
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
@@ -18,6 +21,11 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const showDetailDialog = (id: number) => {
+    setDetailId(id);
+    setShowDetail(true);
+  };
 
   useEffect(() => {
     (async () => {
@@ -39,25 +47,26 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   });
 
   return (
-    <View style={{flexDirection: "row", padding: 8}}>
-      <View style={{flexGrow: 1}}>
-        <TextInput
-          value={filter} onChangeText={setFilter}
-        />
-      </View>
-      <View style={{width: '30%'}}>
-        <DropDownPicker
-          open={open}
-          value={filterType}
-          items={settingsService.phraseFilterTypes}
-          setOpen={setOpen}
-          setValue={setFilterType}
-        />
+    <View style={{padding: 8}}>
+      <View style={{flexDirection: "row"}}>
+        <View style={{flexGrow: 1}}>
+          <TextInput value={filter} onChangeText={setFilter} />
+        </View>
+        <View style={{width: '30%'}}>
+          <DropDownPicker
+            open={open}
+            value={filterType}
+            items={settingsService.phraseFilterTypes}
+            setOpen={setOpen}
+            setValue={setFilterType}
+          />
+        </View>
       </View>
       <FlatList
         data={phrasesUnitService.unitPhrases}
         renderItem={({item}) => <Text style={styles.item}>{item.PHRASE}</Text>}
       />
+      {showDetail && <PhrasesTextbookDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
     </View>
   );
 }
