@@ -6,7 +6,7 @@ import { useReducer } from "react";
 import { GlobalVars } from "../common/common.ts";
 import { LoginService } from "../view-models/misc/login.service.ts";
 
-export function Login(
+export default function Login(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
   const loginService = container.resolve(LoginService);

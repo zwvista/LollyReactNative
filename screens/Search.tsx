@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { container } from "tsyringe";
 import { AppService } from "../view-models/misc/app.service.ts";
-import { Login } from "./Login.tsx";
+import Login from "./Login.tsx";
 import { useEffect, useReducer, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GlobalVars } from "../common/common.ts";
 
-export function HomeScreen({ navigation }:any) {
+export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const [showLogin, setShowLogin] = useState(false);
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
@@ -42,14 +42,6 @@ export function HomeScreen({ navigation }:any) {
         title={`Go to notifications ${appService.isInitialized}`}
       />
       {showLogin && <Login isDialogOpened={showLogin} handleCloseDialog={() => setShowLogin(false)} />}
-    </View>
-  );
-}
-
-export function NotificationsScreen({ navigation }:any) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
     </View>
   );
 }
