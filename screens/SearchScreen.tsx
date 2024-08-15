@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { container } from "tsyringe";
 import { AppService } from "../view-models/misc/app.service.ts";
-import Login from "./Login.tsx";
+import LoginDialog from "./LoginDialog.tsx";
 import { useEffect, useReducer, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { GlobalVars } from "../common/common.ts";
@@ -42,7 +42,7 @@ export default function SearchScreen({ navigation }:any) {
         onPress={() => navigation.navigate('Notifications')}
         title={`Go to notifications ${appService.isInitialized}`}
       />
-      {showLogin && <Login isDialogOpened={showLogin} handleCloseDialog={() => setShowLogin(false)} />}
+      {showLogin && <LoginDialog isDialogOpened={showLogin} handleCloseDialog={() => setShowLogin(false)} />}
     </View>
   );
 }

@@ -1,22 +1,30 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
+import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import { WordsLangService } from "../view-models/wpp/words-lang.service.ts";
 import DropDownPicker from "react-native-dropdown-picker";
 
-export default function WordsLangScreen({ navigation }:any) {
+export default function WordsTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
-  const wordsLangService = container.resolve(WordsLangService);
+  const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
 
   const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
+  const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  useEffect(() => {
+    (async () => {
+      await wordsUnitService.getDataInTextbook(filter, filterType);
+      forceUpdate();
+    })();
+  }, [refreshCount]);
 
   const styles = StyleSheet.create({
     container: {
@@ -30,24 +38,24 @@ export default function WordsLangScreen({ navigation }:any) {
     },
   });
 
-  useEffect(() => {
-    (async () => {
-      // await wordsLangService.getData(filter, filterType);
-      forceUpdate();
-    })();
-  }, [refreshCount]);
-
   return (
-    <View>
-      <DropDownPicker
-        open={open}
-        value={filterType}
-        items={settingsService.wordFilterTypes}
-        setOpen={setOpen}
-        setValue={setFilterType}
-      />
+    <View style={{flexDirection: "row", padding: 8}}>
+      <View style={{flexGrow: 1}}>
+        <TextInput
+          value={filter} onChangeText={setFilter}
+        />
+      </View>
+      <View style={{width: '30%'}}>
+        <DropDownPicker
+          open={open}
+          value={filterType}
+          items={settingsService.wordFilterTypes}
+          setOpen={setOpen}
+          setValue={setFilterType}
+        />
+      </View>
       <FlatList
-        data={wordsLangService.langWords}
+        data={wordsUnitService.unitWords}
         renderItem={({item}) => <Text style={styles.item}>{item.WORD}</Text>}
       />
     </View>

@@ -9,19 +9,19 @@ import './gesture-handler';
 import "reflect-metadata"
 import React, { type PropsWithChildren, useEffect } from 'react';
 import {createDrawerNavigator} from "@react-navigation/drawer";
-import SearchScreen from "./screens/Search";
+import SearchScreen from "./screens/SearchScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button } from "react-native";
-import WordsUnitScreen from "./screens/WordsUnit.tsx";
+import WordsUnitScreen from "./screens/WordsUnitScreen.tsx";
 import { container } from "tsyringe";
 import { AppService } from "./view-models/misc/app.service.ts";
-import WordsTextbookScreen from "./screens/WordsTextboook.tsx";
-import WordsLangScreen from "./screens/WordsLang.tsx";
-import PhrasesUnitScreen from "./screens/PhrasesUnit.tsx";
-import PhrasesTextbookScreen from "./screens/PhrasesTextboook.tsx";
-import PhrasesLangScreen from "./screens/PhrasesLang.tsx";
-import PatternsScreen from "./screens/Patterns.tsx";
+import WordsTextbookScreen from "./screens/WordsTextboookScreen.tsx";
+import WordsLangScreen from "./screens/WordsLangScreen.tsx";
+import PhrasesUnitScreen from "./screens/PhrasesUnitScreen.tsx";
+import PhrasesTextbookScreen from "./screens/PhrasesTextboookScreen.tsx";
+import PhrasesLangScreen from "./screens/PhrasesLangScreen.tsx";
+import PatternsScreen from "./screens/PatternsScreen.tsx";
 
 const Drawer = createDrawerNavigator();
 

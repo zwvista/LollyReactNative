@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, TextInput, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
@@ -18,6 +18,13 @@ export default function PatternsScreen({ navigation }:any) {
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
+  useEffect(() => {
+    (async () => {
+      // await patternsService.getData(filter, filterType);
+      forceUpdate();
+    })();
+  }, [refreshCount]);
+
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -30,22 +37,22 @@ export default function PatternsScreen({ navigation }:any) {
     },
   });
 
-  useEffect(() => {
-    (async () => {
-      // await patternsService.getData(filter, filterType);
-      forceUpdate();
-    })();
-  }, [refreshCount]);
-
   return (
-    <View>
-      <DropDownPicker
-        open={open}
-        value={filterType}
-        items={settingsService.patternFilterTypes}
-        setOpen={setOpen}
-        setValue={setFilterType}
-      />
+    <View style={{flexDirection: "row", padding: 8}}>
+      <View style={{flexGrow: 1}}>
+        <TextInput
+          value={filter} onChangeText={setFilter}
+        />
+      </View>
+      <View style={{width: '30%'}}>
+        <DropDownPicker
+          open={open}
+          value={filterType}
+          items={settingsService.patternFilterTypes}
+          setOpen={setOpen}
+          setValue={setFilterType}
+        />
+      </View>
       <FlatList
         data={patternsService.patterns}
         renderItem={({item}) => <Text style={styles.item}>{item.PATTERN}</Text>}
