@@ -8,7 +8,6 @@ import { MDictionary } from "../../models/misc/dictionary.ts";
 import { useEffect, useReducer, useState } from "react";
 import WebView from "react-native-webview";
 import OnlineDict from "../../components/OnlineDict.ts";
-import { async } from "rxjs";
 
 interface ValueOnly {
   value: string;

@@ -5,7 +5,6 @@ import { useReducer } from "react";
 import { LoginService } from "../../view-models/misc/login.service.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
 import { storage, stylesApp } from "../../App.tsx";
-import { Dropdown } from "react-native-element-dropdown";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
