@@ -5,11 +5,11 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
-import { stylesApp } from "../../App.tsx";
+import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 
 export default function WordsLangDetailDialog(
-  {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
+  {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
 ) {
   const wordsLangService = container.resolve(WordsLangService);
   const settingsService = container.resolve(SettingsService);

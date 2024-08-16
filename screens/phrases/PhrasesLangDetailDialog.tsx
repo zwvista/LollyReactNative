@@ -5,11 +5,11 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.ts";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
-import { stylesApp } from "../../App.tsx";
+import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 
 export default function PhrasesLangDetailDialog(
-  {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
+  {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
 ) {
   const phrasesLangService = container.resolve(PhrasesLangService);
   const settingsService = container.resolve(SettingsService);

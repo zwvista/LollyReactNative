@@ -26,6 +26,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import WordsDictScreen from "./screens/words/WordsDictScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
+export interface DetailDialogProps {
+  id: number,
+  isDialogOpened: boolean,
+  handleCloseDialog: () => void,
+}
 export const stylesApp = StyleSheet.create({
   textinput: {
     height: 50,

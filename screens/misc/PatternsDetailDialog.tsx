@@ -5,11 +5,11 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
-import { stylesApp } from "../../App.tsx";
+import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 
 export default function PatternsDetailDialog(
-  {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
+  {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
 ) {
   const patternsService = container.resolve(PatternsService);
   const settingsService = container.resolve(SettingsService);

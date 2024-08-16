@@ -7,11 +7,11 @@ import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { stylesApp } from "../../App.tsx";
+import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 
 export default function WordsTextbookDetailDialog(
-  {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
+  {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
 ) {
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);

@@ -7,11 +7,11 @@ import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.t
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { stylesApp } from "../../App.tsx";
+import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 
 export default function PhrasesTextbookDetailDialog(
-  {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
+  {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
 ) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
   const settingsService = container.resolve(SettingsService);
