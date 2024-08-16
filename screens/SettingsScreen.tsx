@@ -180,7 +180,6 @@ export default function SettingsScreen({ navigation }:any) {
             value={settingsService.selectedTextbook}
             data={settingsService.textbooks}
             onChange={onTextbookChange}
-            disable={toTypeIsUnit}
           />
         </View>
       </View>
@@ -198,7 +197,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown style={[stylesApp.dropdown, toTypeIsUnit && {backgroundColor: 'darkgray'}]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
@@ -219,7 +218,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && {backgroundColor: 'darkgray'}]}
             labelField="label"
             valueField="value"
             value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
@@ -229,7 +228,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && {backgroundColor: 'darkgray'}]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
