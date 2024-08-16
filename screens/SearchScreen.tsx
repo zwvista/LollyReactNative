@@ -73,12 +73,12 @@ export default function SearchScreen({ navigation }:any) {
           <View style={{width: '100%'}}>
             <TextInput value={word} onChangeText={setWord} />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center", zIndex: 2}}>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{width: '50%'}}>
               <Dropdown
                 labelField="NAME"
                 valueField="ID"
-                value={settingsService.selectedLang.ID.toString()}
+                value={settingsService.selectedLang}
                 data={settingsService.languages}
                 onChange={onLangChange}
               />
@@ -87,7 +87,7 @@ export default function SearchScreen({ navigation }:any) {
               <Dropdown
                 labelField="NAME"
                 valueField="ID"
-                value={settingsService.selectedDictReference?.ID.toString()}
+                value={settingsService.selectedDictReference}
                 data={settingsService.dictsReference}
                 onChange={onDictChange}
               />

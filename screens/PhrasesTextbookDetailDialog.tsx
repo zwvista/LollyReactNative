@@ -62,7 +62,7 @@ export default function PhrasesTextbookDetailDialog(
             <TextInput value={item.TEXTBOOKNAME} editable={false} />
           </View>
         </View>
-        <View style={{flexDirection: "row", alignItems: "center", zIndex: 3}}>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
             <Text>UNIT:</Text>
           </View>
@@ -70,13 +70,13 @@ export default function PhrasesTextbookDetailDialog(
             <Dropdown
               labelField="label"
               valueField="value"
-              value={item.UNIT.toString()}
+              value={settingsService.units.find(o => o.value === item.UNIT)}
               data={settingsService.units}
               onChange={onUnitChange}
             />
           </View>
         </View>
-        <View style={{flexDirection: "row", alignItems: "center", zIndex: 2}}>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
             <Text>PART:</Text>
           </View>
@@ -84,7 +84,7 @@ export default function PhrasesTextbookDetailDialog(
             <Dropdown
               labelField="label"
               valueField="value"
-              value={item.PART.toString()}
+              value={settingsService.parts.find(o => o.value === item.PART)}
               data={settingsService.parts}
               onChange={onPartChange}
             />

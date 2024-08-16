@@ -98,92 +98,92 @@ export default function SettingsScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
         <View style={{width: '30%'}}>
           <Text>Language:</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="NAME"
-            value={settingsService.selectedLang.ID.toString()}
+            labelField="NAME"
+            valueField="ID"
+            value={settingsService.selectedLang}
             data={settingsService.languages}
             onChange={onLangChange}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 7, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>Voice:</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="VOICENAME"
-            value={settingsService.selectedVoice?.ID.toString()}
+            labelField="VOICENAME"
+            valueField="ID"
+            value={settingsService.selectedVoice}
             data={settingsService.voices}
             onChange={onVoiceChange}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 6, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>Dictionary(Reference):</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="NAME"
-            value={settingsService.selectedDictReference?.ID.toString()}
+            labelField="NAME"
+            valueField="ID"
+            value={settingsService.selectedDictReference}
             data={settingsService.dictsReference}
             onChange={onDictReferenceChange}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 5, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>Dictionary(Note):</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="NAME"
-            value={settingsService.selectedDictNote?.ID.toString()}
+            labelField="NAME"
+            valueField="ID"
+            value={settingsService.selectedDictNote}
             data={settingsService.dictsNote}
             onChange={onDictNoteChange}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 4, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>Dictionary(Translation):</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="NAME"
-            value={settingsService.selectedDictTranslation?.ID.toString()}
+            labelField="NAME"
+            valueField="ID"
+            value={settingsService.selectedDictTranslation}
             data={settingsService.dictsTranslation}
             onChange={onDictTranslationChange}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 3, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>Textbook:</Text>
         </View>
         <View style={{width: '70%'}}>
           <Dropdown
-            labelField="ID"
-            valueField="NAME"
-            value={settingsService.selectedTextbook?.ID.toString()}
+            labelField="NAME"
+            valueField="ID"
+            value={settingsService.selectedTextbook}
             data={settingsService.textbooks}
             onChange={onTextbookChange}
             disable={toTypeIsUnit}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 2, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Text>UNIT:</Text>
         </View>
@@ -191,7 +191,7 @@ export default function SettingsScreen({ navigation }:any) {
           <Dropdown
             labelField="label"
             valueField="value"
-            value={settingsService.USUNITFROM.toString()}
+            value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
             data={settingsService.units}
             onChange={onUnitFromChange}
           />
@@ -200,19 +200,19 @@ export default function SettingsScreen({ navigation }:any) {
           <Dropdown
             labelField="label"
             valueField="value"
-            value={settingsService.USPARTFROM.toString()}
+            value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
             data={settingsService.parts}
             onChange={onPartFromChange}
             disable={toTypeIsUnit}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 1, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
           <Dropdown
             labelField="label"
             valueField="value"
-            value={settingsService.toType.toString()}
+            value={settingsService.toTypes.find(o => o.value === settingsService.toType)}
             data={settingsService.toTypes}
             onChange={onToTypeChange}
           />
@@ -221,7 +221,7 @@ export default function SettingsScreen({ navigation }:any) {
           <Dropdown
             labelField="label"
             valueField="value"
-            value={settingsService.USUNITTO.toString()}
+            value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
             data={settingsService.units}
             onChange={onUnitToChange}
             disable={!toTypeIsTo}
@@ -231,14 +231,14 @@ export default function SettingsScreen({ navigation }:any) {
           <Dropdown
             labelField="label"
             valueField="value"
-            value={settingsService.USPARTTO.toString()}
+            value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
             data={settingsService.parts}
             onChange={onPartToChange}
             disable={!toTypeIsTo}
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", zIndex: 0, marginTop: 8}}>
+      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}} />
         <View style={{marginRight: 8}}>
           <Button title="Previous" onPress={previousUnitPart} />
