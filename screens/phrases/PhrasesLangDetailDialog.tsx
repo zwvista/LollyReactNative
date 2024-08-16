@@ -1,4 +1,4 @@
-import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
+import { Button, SafeAreaView, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -6,6 +6,7 @@ import * as React from "react";
 import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.ts";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
 import { stylesApp } from "../../App.tsx";
+import Modal from "react-native-modal";
 
 export default function PhrasesLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -28,8 +29,8 @@ export default function PhrasesLangDetailDialog(
   };
 
   return (
-    <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
-      <SafeAreaView style={{padding: 8}}>
+    <Modal isVisible={isDialogOpened}>
+      <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
         <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <View style={{marginRight: 8}}>
             <Button title="Cancel" onPress={handleCloseDialog} />

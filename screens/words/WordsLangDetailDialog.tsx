@@ -1,4 +1,4 @@
-import { Button, Modal, Text, TextInput, View } from "react-native";
+import { Button, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -6,6 +6,7 @@ import * as React from "react";
 import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
 import { stylesApp } from "../../App.tsx";
+import Modal from "react-native-modal";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -28,7 +29,7 @@ export default function WordsLangDetailDialog(
   };
 
   return (
-    <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
+    <Modal isVisible={isDialogOpened}>
       <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
         <View style={{marginRight: 8}}>
           <Button title="Cancel" onPress={handleCloseDialog} />
