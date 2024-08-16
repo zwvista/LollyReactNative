@@ -100,7 +100,9 @@ export default function App() {
           component={Root}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Word Dictionary" component={WordsDictScreen} />
+        <Stack.Screen name="Word Dictionary" component={WordsDictScreen} options={{
+          title: 'Word Dictionary'
+        }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

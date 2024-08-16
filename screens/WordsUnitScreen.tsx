@@ -76,7 +76,11 @@ export default function WordsUnitScreen({ navigation }:any) {
           <View style={{height: 1, backgroundColor: 'gray'}} />
         }
         data={wordsUnitService.unitWords}
-        renderItem={({item}) =>
+        renderItem={({item, index}) =>
+          <TouchableWithoutFeedback onPress={ () => navigation.navigate("Word Dictionary", {
+            words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
+            wordIndex: index,
+          })}>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View>
               <Text>{item.UNITSTR}</Text>
@@ -91,6 +95,7 @@ export default function WordsUnitScreen({ navigation }:any) {
               <FontAwesome name='chevron-right' size={20} />
             </TouchableWithoutFeedback>
           </View>
+          </TouchableWithoutFeedback>
         }
       />
       {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
