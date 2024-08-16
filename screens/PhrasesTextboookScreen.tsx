@@ -5,8 +5,8 @@ import { container } from "tsyringe";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
-import DropDownPicker from "react-native-dropdown-picker";
 import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -15,7 +15,6 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
 
-  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [textbookFilter, setTextbookFilter] = useState(0);
@@ -53,12 +52,12 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <DropDownPicker
-            open={open}
-            value={filterType}
-            items={settingsService.phraseFilterTypes}
-            setOpen={setOpen}
-            setValue={setFilterType}
+          <Dropdown
+            labelField="label"
+            valueField="value"
+            value={filterType.toString()}
+            data={settingsService.phraseFilterTypes}
+            onChange={item => setFilterType(item.value)}
           />
         </View>
       </View>

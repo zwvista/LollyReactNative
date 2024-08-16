@@ -4,8 +4,8 @@ import { container } from "tsyringe";
 import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import DropDownPicker from "react-native-dropdown-picker";
 import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -13,7 +13,6 @@ export default function WordsUnitScreen({ navigation }:any) {
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
 
-  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
@@ -50,12 +49,12 @@ export default function WordsUnitScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <DropDownPicker
-            open={open}
-            value={filterType}
-            items={settingsService.wordFilterTypes}
-            setOpen={setOpen}
-            setValue={setFilterType}
+          <Dropdown
+            labelField="label"
+            valueField="value"
+            value={filterType.toString()}
+            data={settingsService.wordFilterTypes}
+            onChange={item => setFilterType(item.value)}
           />
         </View>
       </View>

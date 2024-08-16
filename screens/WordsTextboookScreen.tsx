@@ -5,8 +5,8 @@ import { container } from "tsyringe";
 import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import DropDownPicker from "react-native-dropdown-picker";
 import WordsTextbookDetailDialog from "./WordsTextbookDetailDialog.tsx";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -15,7 +15,6 @@ export default function WordsTextbookScreen({ navigation }:any) {
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
 
-  const [open, setOpen] = useState(false);
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [textbookFilter, setTextbookFilter] = useState(0);
@@ -50,27 +49,28 @@ export default function WordsTextbookScreen({ navigation }:any) {
     <View style={{padding: 8}}>
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
-          <TextInput value={filter} onChangeText={setFilter} />
+          <TextInput value={filter} onChangeText={setFilter}/>
         </View>
         <View style={{width: '30%'}}>
-          <DropDownPicker
-            open={open}
-            value={filterType}
-            items={settingsService.wordFilterTypes}
-            setOpen={setOpen}
-            setValue={setFilterType}
+          <Dropdown
+            labelField="label"
+            valueField="value"
+            value={filterType.toString()}
+            data={settingsService.wordFilterTypes}
+            onChange={item => setFilterType(item.value)}
           />
         </View>
       </View>
       <FlatList
         data={wordsUnitService.textbookWords}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+          <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
             <Text style={styles.item}>{item.WORD}</Text>
           </TouchableWithoutFeedback>
         }
       />
-      {showDetail && <WordsTextbookDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showDetail && <WordsTextbookDetailDialog id={detailId} isDialogOpened={showDetail}
+                                                handleCloseDialog={() => setShowDetail(false)}/>}
     </View>
   );
 }

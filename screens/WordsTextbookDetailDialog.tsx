@@ -1,38 +1,29 @@
 import { Button, Modal, Text, TextInput, View } from "react-native";
-import { useCallback, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { MUnitWord } from "../models/wpp/unit-word.ts";
-import DropDownPicker from "react-native-dropdown-picker";
 import * as React from "react";
+import { Dropdown } from "react-native-element-dropdown";
+import { MSelectItem } from "../common/selectitem.ts";
 
 export default function WordsTextbookDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
-  const [openUnit, setOpenUnit] = useState(false);
-  const [openPart, setOpenPart] = useState(false);
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
   const itemOld = wordsUnitService.unitWords.find(value => value.ID === id);
   const [item] = useState(itemOld ? Object.create(itemOld) as MUnitWord : wordsUnitService.newUnitWord());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onOpenUnit = useCallback(() => {
-    setOpenPart(false);
-  }, []);
-
-  const onOpenPart = useCallback(() => {
-    setOpenUnit(false);
-  }, []);
-
-  const onUnitChange = (e: any) => {
-    item.UNIT = e(item.UNIT);
+  const onUnitChange = (e: MSelectItem) => {
+    item.UNIT = e.value;
     forceUpdate();
   };
 
-  const onPartChange = (e: any) => {
-    item.PART = e(item.PART);
+  const onPartChange = (e: MSelectItem) => {
+    item.PART = e.value;
     forceUpdate();
   };
 
@@ -77,13 +68,12 @@ export default function WordsTextbookDetailDialog(
             <Text>UNIT:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <DropDownPicker
-              open={openUnit}
-              onOpen={onOpenUnit}
-              value={item.UNIT}
-              items={settingsService.units}
-              setOpen={setOpenUnit}
-              setValue={onUnitChange}
+            <Dropdown
+              labelField="label"
+              valueField="value"
+              value={item.UNIT.toString()}
+              data={settingsService.units}
+              onChange={onUnitChange}
             />
           </View>
         </View>
@@ -92,13 +82,12 @@ export default function WordsTextbookDetailDialog(
             <Text>PART:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <DropDownPicker
-              open={openPart}
-              onOpen={onOpenPart}
-              value={item.PART}
-              items={settingsService.parts}
-              setOpen={setOpenPart}
-              setValue={onPartChange}
+            <Dropdown
+              labelField="label"
+              valueField="value"
+              value={item.PART.toString()}
+              data={settingsService.parts}
+              onChange={onPartChange}
             />
           </View>
         </View>

@@ -3,18 +3,18 @@ import { Button, TextInput, View } from 'react-native';
 import { container } from "tsyringe";
 import { AppService } from "../view-models/misc/app.service.ts";
 import LoginDialog from "./LoginDialog.tsx";
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { GlobalVars } from "../common/common.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
-import DropDownPicker from "react-native-dropdown-picker";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import WebView from "react-native-webview";
 import { storage } from "../App.tsx";
 import OnlineDict from "../components/OnlineDict.ts";
+import { Dropdown } from "react-native-element-dropdown";
+import { MLanguage } from "../models/misc/language.ts";
+import { MDictionary } from "../models/misc/dictionary.ts";
 
 export default function SearchScreen({ navigation }:any) {
-  const [openLang, setOpenLang] = useState(false);
-  const [openDict, setOpenDict] = useState(false);
   const appService = container.resolve(AppService);
   const settingsService = container.resolve(SettingsService);
   const [showLogin, setShowLogin] = useState(false);
@@ -36,27 +36,16 @@ export default function SearchScreen({ navigation }:any) {
     updateLoginCount();
   };
 
-  const onOpenLang = useCallback(() => {
-    setOpenDict(false);
-  }, []);
-
-  const onOpenDict = useCallback(() => {
-    setOpenLang(false);
-  }, []);
-
-  const onLangChange = async (e: any) => {
-    const index = settingsService.languages.findIndex(o => o.ID === e(settingsService.selectedLang.ID));
-    settingsService.selectedLang = settingsService.languages[index];
+  const onLangChange = async (e: MLanguage) => {
+    settingsService.selectedLang = e;
     await settingsService.updateLang();
     forceUpdate();
   };
 
-  const onDictChange = async (e: any) => {
-    const index = settingsService.dictsReference.findIndex(o => o.ID === e(settingsService.selectedDictReference.ID));
-    settingsService.selectedDictReference = settingsService.dictsReference[index];
+  const onDictChange = async (e: MDictionary) => {
+    settingsService.selectedDictReference = e;
     await settingsService.updateDictReference();
     await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
-    forceUpdate();
   };
 
   useEffect(() => {
@@ -86,23 +75,21 @@ export default function SearchScreen({ navigation }:any) {
           </View>
           <View style={{flexDirection: "row", alignItems: "center", zIndex: 2}}>
             <View style={{width: '50%'}}>
-              <DropDownPicker
-                open={openLang}
-                onOpen={onOpenLang}
-                value={settingsService.selectedLang.ID}
-                items={settingsService.languages.map(o => ({label: o.NAME, value: o.ID}))}
-                setOpen={setOpenLang}
-                setValue={onLangChange}
+              <Dropdown
+                labelField="NAME"
+                valueField="ID"
+                value={settingsService.selectedLang.ID.toString()}
+                data={settingsService.languages}
+                onChange={onLangChange}
               />
             </View>
             <View style={{width: '50%'}}>
-              <DropDownPicker
-                open={openDict}
-                onOpen={onOpenDict}
-                value={settingsService.selectedDictReference?.ID ?? null}
-                items={settingsService.dictsReference.map(o => ({label: o.NAME, value: o.ID}))}
-                setOpen={setOpenDict}
-                setValue={onDictChange}
+              <Dropdown
+                labelField="NAME"
+                valueField="ID"
+                value={settingsService.selectedDictReference?.ID.toString()}
+                data={settingsService.dictsReference}
+                onChange={onDictChange}
               />
             </View>
           </View>
