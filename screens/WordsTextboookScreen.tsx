@@ -49,7 +49,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
     <View style={{padding: 8}}>
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
-          <TextInput value={filter} onChangeText={setFilter}/>
+          <TextInput style={stylesApp.textinput} value={filter} onChangeText={setFilter}/>
         </View>
       </View>
       <View style={{flexDirection: "row"}}>

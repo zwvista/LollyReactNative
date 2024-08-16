@@ -53,7 +53,7 @@ export default function WordsUnitScreen({ navigation }:any) {
     <View style={{padding: 8}}>
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
-          <TextInput value={filter} onChangeText={setFilter} />
+          <TextInput style={stylesApp.textinput} value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
           <Dropdown

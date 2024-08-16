@@ -34,8 +34,8 @@ export default function LoginDialog(
   return (
     <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <TextInput placeholder="USERNAME" style={{width: '100%'}} value={loginService.item.USERNAME} onChangeText={onChangeUsername} />
-        <TextInput placeholder="PASSWORD" secureTextEntry style={{width: '100%'}} value={loginService.item.PASSWORD} onChangeText={onChangePassword} />
+        <TextInput style={stylesApp.textinput} placeholder="USERNAME" style={{width: '100%'}} value={loginService.item.USERNAME} onChangeText={onChangeUsername} />
+        <TextInput style={stylesApp.textinput} placeholder="PASSWORD" secureTextEntry style={{width: '100%'}} value={loginService.item.PASSWORD} onChangeText={onChangePassword} />
         <Button title="Login" onPress={login} />
       </View>
     </Modal>

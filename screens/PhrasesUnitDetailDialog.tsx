@@ -53,7 +53,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>ID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput value={item.ID.toString()} editable={false} />
+            <TextInput style={stylesApp.textinput} value={item.ID.toString()} editable={false} />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -91,7 +91,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>SEQNUM:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput value={item.SEQNUM.toString()} onChangeText={e => onChangeTextInput("SEQNUM", e)} />
+            <TextInput style={stylesApp.textinput} value={item.SEQNUM.toString()} onChangeText={e => onChangeTextInput("SEQNUM", e)} />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -99,7 +99,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>PHRASEID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput value={item.PHRASEID.toString()} editable={false} />
+            <TextInput style={stylesApp.textinput} value={item.PHRASEID.toString()} editable={false} />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -107,7 +107,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>PHRASE:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput id="WORD" value={item.PHRASE} onChangeText={e => onChangeTextInput("PHRASE", e)} />
+            <TextInput style={stylesApp.textinput} id="WORD" value={item.PHRASE} onChangeText={e => onChangeTextInput("PHRASE", e)} />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -115,7 +115,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>TRANSLATION:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput value={item.TRANSLATION} onChangeText={e => onChangeTextInput("TRANSLATION", e)} />
+            <TextInput style={stylesApp.textinput} value={item.TRANSLATION} onChangeText={e => onChangeTextInput("TRANSLATION", e)} />
           </View>
         </View>
       </View>

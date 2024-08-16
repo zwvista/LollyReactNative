@@ -27,6 +27,13 @@ const Drawer = createDrawerNavigator();
 
 export const storage = new MMKVLoader().initialize();
 export const stylesApp = StyleSheet.create({
+  textinput: {
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
   dropdown: {
     height: 50,
     borderColor: 'gray',

@@ -75,7 +75,7 @@ export default function SearchScreen({ navigation }:any) {
       {!appService.isInitialized ? <View /> : (
         <View style={{flex:1}}>
           <View style={{width: '100%'}}>
-            <TextInput value={word} onChangeText={setWord} />
+            <TextInput style={stylesApp.textinput} value={word} onChangeText={setWord} />
           </View>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{width: '50%'}}>
