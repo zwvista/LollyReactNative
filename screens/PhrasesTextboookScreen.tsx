@@ -10,7 +10,6 @@ import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
-  const appService = container.resolve(AppService);
   const phrasesUnitService = container.resolve(PhrasesUnitService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);

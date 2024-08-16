@@ -10,7 +10,6 @@ import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
 
 export default function PatternsScreen({ navigation }:any) {
-  const appService = container.resolve(AppService);
   const patternsService = container.resolve(PatternsService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
