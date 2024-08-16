@@ -21,8 +21,8 @@ export default function SearchScreen({ navigation }:any) {
   const [loggedIn, setLoggedIn] = useMMKVStorage('userid', storage, '');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
   const [word, setWord] = useState('');
-  const [webViewSource, setWebViewSource] = useState({ uri: 'https://infinite.red' });
-  const onlineDict = container.resolve(OnlineDict);
+  const [webViewSource, setWebViewSource] = useState({uri: 'about:blank'});
+  const onlineDict = new OnlineDict(settingsService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
@@ -42,10 +42,14 @@ export default function SearchScreen({ navigation }:any) {
     forceUpdate();
   };
 
+  const searchDict = async () => {
+    await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
+  };
+
   const onDictChange = async (e: MDictionary) => {
     settingsService.selectedDictReference = e;
     await settingsService.updateDictReference();
-    await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
+    await searchDict();
   };
 
   useEffect(() => {
@@ -61,7 +65,7 @@ export default function SearchScreen({ navigation }:any) {
       } else {
         GlobalVars.userid = loggedIn;
         await appService.getData();
-        forceUpdate();
+        await searchDict();
       }
     })();
   }, [loginCount]);

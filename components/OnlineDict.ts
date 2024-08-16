@@ -1,11 +1,9 @@
 import { MDictionary } from "../models/misc/dictionary.ts";
 import { Dispatch, SetStateAction } from "react";
-import { injectable } from "tsyringe";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 
 type DictWebViewStatus = "Ready" | "Navigating" | "Automating";
 
-@injectable()
 export default class OnlineDict {
 
   dictStatus: DictWebViewStatus = "Ready";
@@ -13,11 +11,7 @@ export default class OnlineDict {
   constructor(private settingsService: SettingsService) {
   }
 
-  async searchDict(
-    word: string,
-    item: MDictionary,
-    setWebViewSource: Dispatch<SetStateAction<any>>
-  ) {
+  async searchDict(word: string, item: MDictionary, setWebViewSource: Dispatch<SetStateAction<any>>) {
     const url = item.urlString(word, this.settingsService.autoCorrects)
     if (item.DICTTYPENAME == "OFFLINE") {
       const s = await this.settingsService.getHtml(url);
