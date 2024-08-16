@@ -23,6 +23,7 @@ export default function SearchScreen({ navigation }:any) {
   const [word, setWord] = useState('');
   const [webViewSource, setWebViewSource] = useState({uri: 'about:blank'});
   const onlineDict = new OnlineDict(settingsService);
+  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
@@ -42,14 +43,10 @@ export default function SearchScreen({ navigation }:any) {
     forceUpdate();
   };
 
-  const searchDict = async () => {
-    await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
-  };
-
   const onDictChange = async (e: MDictionary) => {
     settingsService.selectedDictReference = e;
     await settingsService.updateDictReference();
-    await searchDict();
+    onRefresh();
   };
 
   useEffect(() => {
@@ -65,10 +62,16 @@ export default function SearchScreen({ navigation }:any) {
       } else {
         GlobalVars.userid = loggedIn;
         await appService.getData();
-        await searchDict();
+        onRefresh();
       }
     })();
   }, [loginCount]);
+
+  useEffect(() => {
+    (async () =>
+        await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource)
+    )();
+  }, [refreshCount]);
 
   return (
     <View style={{flex:1}}>
@@ -79,6 +82,8 @@ export default function SearchScreen({ navigation }:any) {
               style={stylesApp.textinput}
               value={word}
               onChangeText={setWord}
+              returnKeyType='search'
+              onSubmitEditing={onRefresh}
             />
           </View>
           <View style={{flexDirection: "row", alignItems: "center"}}>

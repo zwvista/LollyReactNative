@@ -5,9 +5,10 @@ import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import WebView from "react-native-webview";
 import OnlineDict from "../../components/OnlineDict.ts";
+import { async } from "rxjs";
 
 interface ValueOnly {
   value: string;
@@ -19,20 +20,24 @@ export default function WordsDictScreen({ route, navigation }:any) {
   const [word, setWord] = useState(words[wordIndex].value);
   const [webViewSource, setWebViewSource] = useState({uri: 'about:blank'});
   const onlineDict = new OnlineDict(settingsService);
+  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
 
-  const searchDict = async () => {
-    await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
+  const onWordChange = async (e: ValueOnly) => {
+    setWord(e.value);
+    onRefresh();
   };
 
   const onDictChange = async (e: MDictionary) => {
     settingsService.selectedDictReference = e;
     await settingsService.updateDictReference();
-    await searchDict();
+    onRefresh();
   };
 
   useEffect(() => {
-    (async () => await searchDict())();
-  }, [word]);
+    (async () =>
+      await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource)
+    )();
+  }, [refreshCount]);
 
   return (
     <View style={{flex:1}}>
@@ -44,7 +49,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
             valueField="value"
             value={words[wordIndex]}
             data={words}
-            onChange={e => setWord(e.value)}
+            onChange={onWordChange}
           />
         </View>
         <View style={{width: '50%'}}>
