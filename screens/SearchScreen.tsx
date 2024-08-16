@@ -77,13 +77,14 @@ export default function SearchScreen({ navigation }:any) {
           <View style={{width: '100%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={loginService.item.USERNAME}   onChangeText={onChangeUsername}
+              value={word}
+              onChangeText={setWord}
             />
           </View>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{width: '50%'}}>
               <Dropdown
-            style={stylesApp.dropdown}
+                style={stylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedLang}
