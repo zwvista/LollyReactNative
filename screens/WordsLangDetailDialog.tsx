@@ -5,6 +5,7 @@ import { SettingsService } from "../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { WordsLangService } from "../view-models/wpp/words-lang.service.ts";
 import { MLangWord } from "../models/wpp/lang-word.ts";
+import { stylesApp } from "../App.tsx";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -40,7 +41,11 @@ export default function WordsLangDetailDialog(
             <Text>ID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -48,7 +53,11 @@ export default function WordsLangDetailDialog(
             <Text>WORD:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} id="WORD" value={item.WORD} onChangeText={e => onChangeTextInput("WORD", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.WORD}
+              onChangeText={e => onChangeTextInput("WORD", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -56,7 +65,11 @@ export default function WordsLangDetailDialog(
             <Text>NOTE:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.NOTE} onChangeText={e => onChangeTextInput("NOTE", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -64,7 +77,11 @@ export default function WordsLangDetailDialog(
             <Text>FAMIID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.FAMIID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.FAMIID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -72,7 +89,11 @@ export default function WordsLangDetailDialog(
             <Text>ACCURACY:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ACCURACY} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ACCURACY}
+              editable={false}
+            />
           </View>
         </View>
       </View>

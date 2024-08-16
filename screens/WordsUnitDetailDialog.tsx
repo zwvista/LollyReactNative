@@ -53,7 +53,11 @@ export default function WordsUnitDetailDialog(
             <Text>ID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -91,7 +95,11 @@ export default function WordsUnitDetailDialog(
             <Text>SEQNUM:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.SEQNUM.toString()} onChangeText={e => onChangeTextInput("SEQNUM", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.SEQNUM.toString()}
+              onChangeText={e => onChangeTextInput("SEQNUM", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -99,7 +107,11 @@ export default function WordsUnitDetailDialog(
             <Text>WORDID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.WORDID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.WORDID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -107,7 +119,11 @@ export default function WordsUnitDetailDialog(
             <Text>WORD:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} id="WORD" value={item.WORD} onChangeText={e => onChangeTextInput("WORD", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.WORD}
+              onChangeText={e => onChangeTextInput("WORD", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -115,7 +131,11 @@ export default function WordsUnitDetailDialog(
             <Text>NOTE:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.NOTE} onChangeText={e => onChangeTextInput("NOTE", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -123,7 +143,11 @@ export default function WordsUnitDetailDialog(
             <Text>FAMIID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.FAMIID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.FAMIID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -131,7 +155,11 @@ export default function WordsUnitDetailDialog(
             <Text>ACCURACY:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ACCURACY} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ACCURACY}
+              editable={false}
+            />
           </View>
         </View>
       </View>

@@ -54,7 +54,11 @@ export default function PhrasesUnitScreen({ navigation }:any) {
     <View style={{padding: 8}}>
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
-          <TextInput style={stylesApp.textinput} value={filter} onChangeText={setFilter} />
+          <TextInput
+            style={stylesApp.textinput} 
+            value={filter} 
+            onChangeText={setFilter}
+          />
         </View>
         <View style={{width: '30%'}}>
           <Dropdown

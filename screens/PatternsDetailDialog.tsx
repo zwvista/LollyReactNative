@@ -5,6 +5,7 @@ import { SettingsService } from "../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PatternsService } from "../view-models/wpp/patterns.service.ts";
 import { MPattern } from "../models/wpp/pattern.ts";
+import { stylesApp } from "../App.tsx";
 
 export default function PatternsDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -40,7 +41,11 @@ export default function PatternsDetailDialog(
             <Text>ID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -48,7 +53,11 @@ export default function PatternsDetailDialog(
             <Text>PATTERN:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} id="WORD" value={item.PATTERN} onChangeText={e => onChangeTextInput("PATTERN", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.PATTERN}
+              onChangeText={e => onChangeTextInput("PATTERN", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -56,7 +65,11 @@ export default function PatternsDetailDialog(
             <Text>NOTE:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.NOTE} onChangeText={e => onChangeTextInput("NOTE", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -64,7 +77,11 @@ export default function PatternsDetailDialog(
             <Text>TAGS:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.TAGS} onChangeText={e => onChangeTextInput("TAGS", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.TAGS}
+              onChangeText={e => onChangeTextInput("TAGS", e)}
+            />
           </View>
         </View>
       </View>

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { Button, Modal, TextInput, View } from 'react-native';
+import { Button, Modal, Text, TextInput, View } from 'react-native';
 import { container } from "tsyringe";
 import { useReducer } from "react";
 import { LoginService } from "../view-models/misc/login.service.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
-import { storage } from "../App.tsx";
+import { storage, stylesApp } from "../App.tsx";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -33,10 +34,34 @@ export default function LoginDialog(
 
   return (
     <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <TextInput style={stylesApp.textinput} placeholder="USERNAME" style={{width: '100%'}} value={loginService.item.USERNAME} onChangeText={onChangeUsername} />
-        <TextInput style={stylesApp.textinput} placeholder="PASSWORD" secureTextEntry style={{width: '100%'}} value={loginService.item.PASSWORD} onChangeText={onChangePassword} />
-        <Button title="Login" onPress={login} />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 8}}>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{width: '30%'}}>
+            <Text>USERNAME:</Text>
+          </View>
+          <View style={{width: '70%'}}>
+            <TextInput
+              style={stylesApp.textinput} 
+              value={loginService.item.USERNAME} 
+              onChangeText={onChangeUsername}
+            />
+          </View>
+        </View>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{width: '30%'}}>
+            <Text>PASSWORD:</Text>
+          </View>
+          <View style={{width: '70%'}}>
+            <TextInput
+              style={stylesApp.textinput} 
+              value={loginService.item.PASSWORD} 
+              onChangeText={onChangePassword}
+            />
+          </View>
+        </View>
+        <View style={{flexDirection: "row", justifyContent: "center"}}>
+          <Button title="Login" onPress={login} />
+        </View>
       </View>
     </Modal>
   );

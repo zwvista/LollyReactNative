@@ -5,6 +5,7 @@ import { SettingsService } from "../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PhrasesLangService } from "../view-models/wpp/phrases-lang.service.ts";
 import { MLangPhrase } from "../models/wpp/lang-phrase.ts";
+import { stylesApp } from "../App.tsx";
 
 export default function PhrasesLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -40,7 +41,11 @@ export default function PhrasesLangDetailDialog(
             <Text>ID:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.ID.toString()} editable={false} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ID.toString()}
+              editable={false}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -48,7 +53,11 @@ export default function PhrasesLangDetailDialog(
             <Text>PHRASE:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} id="WORD" value={item.PHRASE} onChangeText={e => onChangeTextInput("PHRASE", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.PHRASE}
+              onChangeText={e => onChangeTextInput("PHRASE", e)}
+            />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
@@ -56,7 +65,11 @@ export default function PhrasesLangDetailDialog(
             <Text>TRANSLATION:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <TextInput style={stylesApp.textinput} value={item.TRANSLATION} onChangeText={e => onChangeTextInput("TRANSLATION", e)} />
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.TRANSLATION}
+              onChangeText={e => onChangeTextInput("TRANSLATION", e)}
+            />
           </View>
         </View>
       </View>
