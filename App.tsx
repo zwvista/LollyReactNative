@@ -7,10 +7,10 @@
 
 import './gesture-handler';
 import "reflect-metadata"
-import React, { type PropsWithChildren, useEffect } from 'react';
-import {createDrawerNavigator} from "@react-navigation/drawer";
+import * as React from 'react';
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "./screens/SearchScreen";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button, StyleSheet } from "react-native";
 import WordsUnitScreen from "./screens/WordsUnitScreen.tsx";
@@ -45,31 +45,31 @@ const App = () => {
       <Drawer.Navigator initialRouteName="Search">
         <Drawer.Screen name="Search" component={SearchScreen} options={{
           headerRight: () => <Button title="Logout" />,
-          drawerIcon: () => <Ionicons name='home' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='search' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Settings" component={SettingsScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='cog' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Unit" component={WordsUnitScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Phrases in Unit" component={PhrasesUnitScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Textbook" component={WordsTextbookScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='car' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Phrases in Textbook" component={PhrasesTextbookScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='taxi' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Language" component={WordsLangScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='plane' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Phrases in Language" component={PhrasesLangScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='rocket' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Patterns in Language" component={PatternsScreen} options={{
-          drawerIcon: () => <Ionicons name='notifications' size={30} color='#130f40' />
+          drawerIcon: () => <FontAwesome name='motorcycle' size={30} color='#130f40' />
         }}/>
       </Drawer.Navigator>
     </NavigationContainer>
