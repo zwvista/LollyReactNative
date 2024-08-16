@@ -8,6 +8,7 @@ import { PhrasesLangService } from "../view-models/wpp/phrases-lang.service.ts";
 import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const phrasesLangService = container.resolve(PhrasesLangService);
@@ -55,8 +56,8 @@ export default function PhrasesLangScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput} 
-            value={filter} 
+            style={stylesApp.textinput}
+            value={filter}
             onChangeText={setFilter}
           />
         </View>
@@ -72,11 +73,20 @@ export default function PhrasesLangScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
+        ItemSeparatorComponent={(props) =>
+          <View style={{height: 1, backgroundColor: 'gray'}} />
+        }
         data={phrasesLangService.langPhrases}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
-            <Text style={styles.item}>{item.PHRASE}</Text>
-          </TouchableWithoutFeedback>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{flexGrow: 1}}>
+              <Text style={styles.item}>{item.PHRASE}</Text>
+              <Text style={styles.item}>{item.TRANSLATION}</Text>
+            </View>
+            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+              <FontAwesome name='chevron-right' size={20} />
+            </TouchableWithoutFeedback>
+          </View>
         }
       />
       {showDetail && <PhrasesLangDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

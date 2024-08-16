@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
@@ -8,6 +8,7 @@ import { PatternsService } from "../view-models/wpp/patterns.service.ts";
 import PatternsDetailDialog from "./PatternsDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function PatternsScreen({ navigation }:any) {
   const patternsService = container.resolve(PatternsService);
@@ -24,6 +25,12 @@ export default function PatternsScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button onPress={() => showDetailDialog(0)} title="Add" />
+    });
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -49,8 +56,8 @@ export default function PatternsScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput} 
-            value={filter} 
+            style={stylesApp.textinput}
+            value={filter}
             onChangeText={setFilter}
           />
         </View>
@@ -66,11 +73,20 @@ export default function PatternsScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
+        ItemSeparatorComponent={(props) =>
+          <View style={{height: 1, backgroundColor: 'gray'}} />
+        }
         data={patternsService.patterns}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
-            <Text style={styles.item}>{item.PATTERN}</Text>
-          </TouchableWithoutFeedback>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{flexGrow: 1}}>
+              <Text style={styles.item}>{item.PATTERN}</Text>
+              <Text style={styles.item}>{item.TAGS}</Text>
+            </View>
+            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+              <FontAwesome name='chevron-right' size={20} />
+            </TouchableWithoutFeedback>
+          </View>
         }
       />
       {showDetail && <PatternsDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

@@ -8,6 +8,7 @@ import { WordsLangService } from "../view-models/wpp/words-lang.service.ts";
 import WordsLangDetailDialog from "./WordsLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function WordsLangScreen({ navigation }:any) {
   const wordsLangService = container.resolve(WordsLangService);
@@ -55,8 +56,8 @@ export default function WordsLangScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput} 
-            value={filter} 
+            style={stylesApp.textinput}
+            value={filter}
             onChangeText={setFilter}
           />
         </View>
@@ -72,11 +73,20 @@ export default function WordsLangScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
+        ItemSeparatorComponent={(props) =>
+          <View style={{height: 1, backgroundColor: 'gray'}} />
+        }
         data={wordsLangService.langWords}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
-            <Text style={styles.item}>{item.WORD}</Text>
-          </TouchableWithoutFeedback>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{flexGrow: 1}}>
+              <Text style={styles.item}>{item.WORD}</Text>
+              <Text style={styles.item}>{item.NOTE}</Text>
+            </View>
+            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+              <FontAwesome name='chevron-right' size={20} />
+            </TouchableWithoutFeedback>
+          </View>
         }
       />
       {showDetail && <WordsLangDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

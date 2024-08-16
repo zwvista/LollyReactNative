@@ -8,6 +8,7 @@ import { useEffect, useReducer, useState } from "react";
 import WordsTextbookDetailDialog from "./WordsTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../App.tsx";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -76,11 +77,25 @@ export default function WordsTextbookScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
+        ItemSeparatorComponent={(props) =>
+          <View style={{height: 1, backgroundColor: 'gray'}} />
+        }
         data={wordsUnitService.textbookWords}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
-            <Text style={styles.item}>{item.WORD}</Text>
-          </TouchableWithoutFeedback>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View>
+              <Text>{item.UNITSTR}</Text>
+              <Text>{item.PARTSTR}</Text>
+              <Text>{item.SEQNUM}</Text>
+            </View>
+            <View style={{flexGrow: 1}}>
+              <Text style={styles.item}>{item.WORD}</Text>
+              <Text style={styles.item}>{item.NOTE}</Text>
+            </View>
+            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+              <FontAwesome name='chevron-right' size={20} />
+            </TouchableWithoutFeedback>
+          </View>
         }
       />
       {showDetail && <WordsTextbookDetailDialog id={detailId} isDialogOpened={showDetail}
