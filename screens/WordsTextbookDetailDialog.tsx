@@ -69,7 +69,8 @@ export default function WordsTextbookDetailDialog(
             <Text>UNIT:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown style={stylesApp.dropdown}
+            <Dropdown
+            style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.units.find(o => o.value === item.UNIT)}
@@ -83,7 +84,8 @@ export default function WordsTextbookDetailDialog(
             <Text>PART:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown style={stylesApp.dropdown}
+            <Dropdown
+            style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.parts.find(o => o.value === item.PART)}

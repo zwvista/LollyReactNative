@@ -79,7 +79,8 @@ export default function SearchScreen({ navigation }:any) {
           </View>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{width: '50%'}}>
-              <Dropdown style={stylesApp.dropdown}
+              <Dropdown
+            style={stylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedLang}
@@ -88,7 +89,8 @@ export default function SearchScreen({ navigation }:any) {
               />
             </View>
             <View style={{width: '50%'}}>
-              <Dropdown style={stylesApp.dropdown}
+              <Dropdown
+            style={stylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedDictReference}

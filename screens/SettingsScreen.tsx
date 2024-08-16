@@ -104,7 +104,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Language:</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedLang}
@@ -118,7 +119,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Voice:</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="VOICENAME"
             valueField="ID"
             value={settingsService.selectedVoice}
@@ -132,7 +134,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Dictionary(Reference):</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictReference}
@@ -146,7 +149,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Dictionary(Note):</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictNote}
@@ -160,7 +164,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Dictionary(Translation):</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictTranslation}
@@ -174,7 +179,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>Textbook:</Text>
         </View>
         <View style={{width: '70%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedTextbook}
@@ -188,7 +194,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Text>UNIT:</Text>
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
@@ -209,7 +216,8 @@ export default function SettingsScreen({ navigation }:any) {
       </View>
       <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
         <View style={{width: '30%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.toTypes.find(o => o.value === settingsService.toType)}

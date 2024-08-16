@@ -52,7 +52,8 @@ export default function PhrasesLangScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}

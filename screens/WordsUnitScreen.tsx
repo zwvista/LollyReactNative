@@ -50,7 +50,8 @@ export default function WordsUnitScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown style={stylesApp.dropdown}
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.wordFilterTypes.find(o => o.value === filterType)}

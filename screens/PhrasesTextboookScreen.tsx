@@ -52,8 +52,21 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
         <View style={{flexGrow: 1}}>
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
-        <View style={{width: '30%'}}>
-          <Dropdown style={stylesApp.dropdown}
+      </View>
+      <View style={{flexDirection: "row"}}>
+        <View style={{width: '50%'}}>
+          <Dropdown
+            style={stylesApp.dropdown}
+            labelField="label"
+            valueField="value"
+            value={settingsService.textbookFilters.find(o => o.value === textbookFilter)}
+            data={settingsService.textbookFilters}
+            onChange={item => setTextbookFilter(item.value)}
+          />
+        </View>
+        <View style={{width: '50%'}}>
+          <Dropdown
+            style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}
