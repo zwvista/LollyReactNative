@@ -197,7 +197,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={[stylesApp.dropdown, toTypeIsUnit && {backgroundColor: 'darkgray'}]}
+          <Dropdown style={[stylesApp.dropdown, toTypeIsUnit && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
@@ -218,7 +218,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && {backgroundColor: 'darkgray'}]}
+          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
@@ -228,7 +228,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={{width: '35%'}}>
-          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && {backgroundColor: 'darkgray'}]}
+          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}

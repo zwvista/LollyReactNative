@@ -34,6 +34,9 @@ export const stylesApp = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 8,
   },
+  dropdownDisable: {
+    backgroundColor: 'darkgray'
+  }
 });
 
 const App = () => {
