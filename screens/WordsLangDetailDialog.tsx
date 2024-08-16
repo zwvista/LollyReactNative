@@ -29,72 +29,70 @@ export default function WordsLangDetailDialog(
 
   return (
     <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
-      <View style={{padding: 8}}>
-        <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
-          <View style={{marginRight: 8}}>
-            <Button title="Cancel" onPress={handleCloseDialog} />
-          </View>
-          <Button title="Save" onPress={save} />
+      <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
+        <View style={{marginRight: 8}}>
+          <Button title="Cancel" onPress={handleCloseDialog} />
         </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>ID:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.ID.toString()}
-              editable={false}
-            />
-          </View>
+        <Button title="Save" onPress={save} />
+      </View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
+        <View style={{width: '30%'}}>
+          <Text>ID:</Text>
         </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>WORD:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.WORD}
-              onChangeText={e => onChangeTextInput("WORD", e)}
-            />
-          </View>
+        <View style={{width: '70%'}}>
+          <TextInput
+            style={stylesApp.textinput}
+            value={item.ID.toString()}
+            editable={false}
+          />
         </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>NOTE:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
-            />
-          </View>
+      </View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
+        <View style={{width: '30%'}}>
+          <Text>WORD:</Text>
         </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>FAMIID:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.FAMIID.toString()}
-              editable={false}
-            />
-          </View>
+        <View style={{width: '70%'}}>
+          <TextInput
+            style={stylesApp.textinput}
+            value={item.WORD}
+            onChangeText={e => onChangeTextInput("WORD", e)}
+          />
         </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>ACCURACY:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.ACCURACY}
-              editable={false}
-            />
-          </View>
+      </View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
+        <View style={{width: '30%'}}>
+          <Text>NOTE:</Text>
+        </View>
+        <View style={{width: '70%'}}>
+          <TextInput
+            style={stylesApp.textinput}
+            value={item.NOTE}
+            onChangeText={e => onChangeTextInput("NOTE", e)}
+          />
+        </View>
+      </View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
+        <View style={{width: '30%'}}>
+          <Text>FAMIID:</Text>
+        </View>
+        <View style={{width: '70%'}}>
+          <TextInput
+            style={stylesApp.textinput}
+            value={item.FAMIID.toString()}
+            editable={false}
+          />
+        </View>
+      </View>
+      <View style={{flexDirection: "row", alignItems: "center"}}>
+        <View style={{width: '30%'}}>
+          <Text>ACCURACY:</Text>
+        </View>
+        <View style={{width: '70%'}}>
+          <TextInput
+            style={stylesApp.textinput}
+            value={item.ACCURACY}
+            editable={false}
+          />
         </View>
       </View>
     </Modal>

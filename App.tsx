@@ -80,7 +80,7 @@ const App = () => {
           drawerIcon: () => <FontAwesome name='rocket' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Patterns in Language" component={PatternsScreen} options={{
-          headerRight: () => <Button title="Logout" />,
+          headerRight: () => <Button title="Add" />,
           drawerIcon: () => <FontAwesome name='motorcycle' size={30} color='#130f40' />
         }}/>
       </Drawer.Navigator>

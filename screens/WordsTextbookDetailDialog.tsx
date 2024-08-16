@@ -1,4 +1,4 @@
-import { Button, Modal, Text, TextInput, View } from "react-native";
+import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
@@ -41,7 +41,7 @@ export default function WordsTextbookDetailDialog(
 
   return (
     <Modal visible={isDialogOpened} onRequestClose={handleCloseDialog}>
-      <View style={{padding: 8}}>
+      <SafeAreaView style={{padding: 8}}>
         <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <View style={{marginRight: 8}}>
             <Button title="Cancel" onPress={handleCloseDialog} />
@@ -174,7 +174,7 @@ export default function WordsTextbookDetailDialog(
             />
           </View>
         </View>
-      </View>
+      </SafeAreaView>
     </Modal>
   );
 }
