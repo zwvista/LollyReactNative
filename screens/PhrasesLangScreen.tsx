@@ -7,6 +7,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PhrasesLangService } from "../view-models/wpp/phrases-lang.service.ts";
 import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
+import { stylesApp } from "../App.tsx";
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -51,10 +52,10 @@ export default function PhrasesLangScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown
+          <Dropdown style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={filterType.toString()}
+            value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}
             data={settingsService.phraseFilterTypes}
             onChange={item => setFilterType(item.value)}
           />

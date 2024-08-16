@@ -7,6 +7,7 @@ import { MUnitWord } from "../models/wpp/unit-word.ts";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../common/selectitem.ts";
+import { stylesApp } from "../App.tsx";
 
 export default function WordsTextbookDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -68,7 +69,7 @@ export default function WordsTextbookDetailDialog(
             <Text>UNIT:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown
+            <Dropdown style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.units.find(o => o.value === item.UNIT)}
@@ -82,7 +83,7 @@ export default function WordsTextbookDetailDialog(
             <Text>PART:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown
+            <Dropdown style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.parts.find(o => o.value === item.PART)}

@@ -7,6 +7,7 @@ import { useEffect, useReducer, useState } from "react";
 import { WordsLangService } from "../view-models/wpp/words-lang.service.ts";
 import WordsLangDetailDialog from "./WordsLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
+import { stylesApp } from "../App.tsx";
 
 export default function WordsLangScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -51,10 +52,10 @@ export default function WordsLangScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown
+          <Dropdown style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={filterType.toString()}
+            value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
             data={settingsService.wordFilterTypes}
             onChange={item => setFilterType(item.value)}
           />

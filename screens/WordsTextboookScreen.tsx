@@ -7,6 +7,7 @@ import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import WordsTextbookDetailDialog from "./WordsTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
+import { stylesApp } from "../App.tsx";
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -52,10 +53,10 @@ export default function WordsTextbookScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter}/>
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown
+          <Dropdown style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={filterType.toString()}
+            value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
             data={settingsService.wordFilterTypes}
             onChange={item => setFilterType(item.value)}
           />

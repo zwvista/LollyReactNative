@@ -8,7 +8,7 @@ import { GlobalVars } from "../common/common.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import WebView from "react-native-webview";
-import { storage } from "../App.tsx";
+import { storage, stylesApp } from "../App.tsx";
 import OnlineDict from "../components/OnlineDict.ts";
 import { Dropdown } from "react-native-element-dropdown";
 import { MLanguage } from "../models/misc/language.ts";
@@ -75,7 +75,7 @@ export default function SearchScreen({ navigation }:any) {
           </View>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{width: '50%'}}>
-              <Dropdown
+              <Dropdown style={stylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedLang}
@@ -84,7 +84,7 @@ export default function SearchScreen({ navigation }:any) {
               />
             </View>
             <View style={{width: '50%'}}>
-              <Dropdown
+              <Dropdown style={stylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedDictReference}

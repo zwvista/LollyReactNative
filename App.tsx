@@ -12,7 +12,7 @@ import {createDrawerNavigator} from "@react-navigation/drawer";
 import SearchScreen from "./screens/SearchScreen";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { NavigationContainer } from '@react-navigation/native';
-import { Button } from "react-native";
+import { Button, StyleSheet } from "react-native";
 import WordsUnitScreen from "./screens/WordsUnitScreen.tsx";
 import WordsTextbookScreen from "./screens/WordsTextboookScreen.tsx";
 import WordsLangScreen from "./screens/WordsLangScreen.tsx";
@@ -26,6 +26,15 @@ import { MMKVLoader } from "react-native-mmkv-storage";
 const Drawer = createDrawerNavigator();
 
 export const storage = new MMKVLoader().initialize();
+export const stylesApp = StyleSheet.create({
+  dropdown: {
+    height: 50,
+    borderColor: 'gray',
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 8,
+  },
+});
 
 const App = () => {
   return (

@@ -7,6 +7,7 @@ import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
 import { MUnitPhrase } from "../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../common/selectitem.ts";
+import { stylesApp } from "../App.tsx";
 
 export default function PhrasesUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -60,7 +61,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>UNIT:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown
+            <Dropdown style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.units.find(o => o.value === item.UNIT)}
@@ -74,7 +75,7 @@ export default function PhrasesUnitDetailDialog(
             <Text>PART:</Text>
           </View>
           <View style={{width: '70%'}}>
-            <Dropdown
+            <Dropdown style={stylesApp.dropdown}
               labelField="label"
               valueField="value"
               value={settingsService.parts.find(o => o.value === item.PART)}

@@ -7,6 +7,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PatternsService } from "../view-models/wpp/patterns.service.ts";
 import PatternsDetailDialog from "./PatternsDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
+import { stylesApp } from "../App.tsx";
 
 export default function PatternsScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -51,10 +52,10 @@ export default function PatternsScreen({ navigation }:any) {
           <TextInput value={filter} onChangeText={setFilter} />
         </View>
         <View style={{width: '30%'}}>
-          <Dropdown
+          <Dropdown style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={filterType.toString()}
+            value={settingsService.patternFilterTypes.find(o => o.value === filterType)}
             data={settingsService.patternFilterTypes}
             onChange={item => setFilterType(item.value)}
           />
