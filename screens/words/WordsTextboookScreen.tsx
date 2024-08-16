@@ -9,6 +9,7 @@ import WordsTextbookDetailDialog from "./WordsTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { MSelectItem } from "../../common/selectitem.ts";
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -21,6 +22,11 @@ export default function WordsTextbookScreen({ navigation }:any) {
   const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const onFilterTypeChange = (e: MSelectItem) => {
+    setFilterType(e.value);
+    onRefresh();
+  }
 
   const showDetailDialog = (id: number) => {
     setDetailId(id);
@@ -51,7 +57,12 @@ export default function WordsTextbookScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput} value={filter} onChangeText={setFilter}/>
+            style={stylesApp.textinput}
+            value={filter}
+            onChangeText={setFilter}
+            returnKeyType='search'
+            onSubmitEditing={onRefresh}
+          />
         </View>
       </View>
       <View style={{flexDirection: "row"}}>
@@ -72,7 +83,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
             valueField="value"
             value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
             data={settingsService.wordFilterTypes}
-            onChange={item => setFilterType(item.value)}
+            onChange={onFilterTypeChange}
           />
         </View>
       </View>

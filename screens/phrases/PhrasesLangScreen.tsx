@@ -9,6 +9,7 @@ import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { MSelectItem } from "../../common/selectitem.ts";
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const phrasesLangService = container.resolve(PhrasesLangService);
@@ -20,6 +21,11 @@ export default function PhrasesLangScreen({ navigation }:any) {
   const [filterType, setFilterType] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const onFilterTypeChange = (e: MSelectItem) => {
+    setFilterType(e.value);
+    onRefresh();
+  }
 
   const showDetailDialog = (id: number) => {
     setDetailId(id);
@@ -59,6 +65,8 @@ export default function PhrasesLangScreen({ navigation }:any) {
             style={stylesApp.textinput}
             value={filter}
             onChangeText={setFilter}
+            returnKeyType='search'
+            onSubmitEditing={onRefresh}
           />
         </View>
         <View style={{width: '30%'}}>
@@ -68,7 +76,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
             valueField="value"
             value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}
             data={settingsService.phraseFilterTypes}
-            onChange={item => setFilterType(item.value)}
+            onChange={onFilterTypeChange}
           />
         </View>
       </View>

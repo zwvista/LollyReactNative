@@ -9,6 +9,7 @@ import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { MSelectItem } from "../../common/selectitem.ts";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -21,6 +22,11 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   const [textbookFilter, setTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const onFilterTypeChange = (e: MSelectItem) => {
+    setFilterType(e.value);
+    onRefresh();
+  }
 
   const showDetailDialog = (id: number) => {
     setDetailId(id);
@@ -54,6 +60,8 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
             style={stylesApp.textinput}
             value={filter}
             onChangeText={setFilter}
+            returnKeyType='search'
+            onSubmitEditing={onRefresh}
           />
         </View>
       </View>
@@ -75,7 +83,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
             valueField="value"
             value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}
             data={settingsService.phraseFilterTypes}
-            onChange={item => setFilterType(item.value)}
+            onChange={onFilterTypeChange}
           />
         </View>
       </View>
