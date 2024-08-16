@@ -21,8 +21,11 @@ import PhrasesTextbookScreen from "./screens/PhrasesTextboookScreen.tsx";
 import PhrasesLangScreen from "./screens/PhrasesLangScreen.tsx";
 import PatternsScreen from "./screens/PatternsScreen.tsx";
 import SettingsScreen from "./screens/SettingsScreen.tsx";
+import { MMKVLoader } from "react-native-mmkv-storage";
 
 const Drawer = createDrawerNavigator();
+
+export const storage = new MMKVLoader().initialize();
 
 const App = () => {
   return (

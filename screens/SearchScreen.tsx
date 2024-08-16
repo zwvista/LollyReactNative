@@ -10,6 +10,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { red } from "react-native-reanimated/lib/typescript/Colors";
 import WebView from "react-native-webview";
+import { storage } from "../App.tsx";
 
 export default function SearchScreen({ navigation }:any) {
   const [openLang, setOpenLang] = useState(false);
@@ -17,7 +18,6 @@ export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
   const settingsService = container.resolve(SettingsService);
   const [showLogin, setShowLogin] = useState(false);
-  const storage = new MMKVLoader().initialize();
   const [loggedIn, setLoggedIn] = useMMKVStorage('userid', storage, '');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
   const [word, setWord] = useState('');
@@ -103,10 +103,9 @@ export default function SearchScreen({ navigation }:any) {
               />
             </View>
           </View>
-          <View style={{flex: 1, alignSelf: "stretch", backgroundColor: "red"}}>
+          <View style={{flex: 1, alignSelf: "stretch"}}>
             <WebView
               source={{ uri: 'https://infinite.red' }}
-              style={{ marginTop: 20 }}
             />
           </View>
         </View>

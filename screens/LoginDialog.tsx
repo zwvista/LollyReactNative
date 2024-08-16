@@ -6,13 +6,13 @@ import { GlobalVars } from "../common/common.ts";
 import { LoginService } from "../view-models/misc/login.service.ts";
 import { MMKVLoader, useMMKVStorage } from "react-native-mmkv-storage";
 import { AppService } from "../view-models/misc/app.service.ts";
+import { storage } from "../App.tsx";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
   const loginService = container.resolve(LoginService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
-  const storage = new MMKVLoader().initialize();
   const [, setUserid] = useMMKVStorage('userid', storage, '');
 
   const onChangeUsername = (e: string) => {
