@@ -21,7 +21,7 @@ export default function SearchScreen({ navigation }:any) {
   const [loggedIn, setLoggedIn] = useMMKVStorage('userid', storage, '');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
   const [word, setWord] = useState('');
-  const [webViewSource, setWebViewSource] = useState({uri: 'about:blank'});
+  const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
   const onlineDict = new OnlineDict(settingsService);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);

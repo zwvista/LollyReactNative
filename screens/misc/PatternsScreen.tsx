@@ -44,18 +44,6 @@ export default function PatternsScreen({ navigation }:any) {
     })();
   }, [refreshCount]);
 
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22,
-    },
-    item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
-  });
-
   return (
     <View style={{padding: 8}}>
       <View style={{flexDirection: "row"}}>
@@ -87,8 +75,8 @@ export default function PatternsScreen({ navigation }:any) {
         renderItem={({item}) =>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View style={{flexGrow: 1}}>
-              <Text style={styles.item}>{item.PATTERN}</Text>
-              <Text style={styles.item}>{item.TAGS}</Text>
+              <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
+              <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
             </View>
             <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
               <FontAwesome name='chevron-right' size={20} />

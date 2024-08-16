@@ -48,7 +48,20 @@ export const stylesApp = StyleSheet.create({
   },
   dropdownDisable: {
     backgroundColor: 'darkgray'
-  }
+  },
+  unitpart: {color: '#0000FF'},
+  itemtext1: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    color: '#FFA500'
+  },
+  itemtext2: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+    color: '#FF00FF'
+  },
 });
 
 const Stack = createStackNavigator();

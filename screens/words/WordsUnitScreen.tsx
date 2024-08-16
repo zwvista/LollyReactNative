@@ -9,6 +9,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome.js";
 import { MSelectItem } from "../../common/selectitem.ts";
+import { applyStyle } from "react-native-reanimated/lib/typescript/screenTransition/styleUpdater";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -43,18 +44,6 @@ export default function WordsUnitScreen({ navigation }:any) {
       forceUpdate();
     })();
   }, [refreshCount]);
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22,
-    },
-    item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
-  });
 
   return (
     <View style={{padding: 8}}>
@@ -91,13 +80,13 @@ export default function WordsUnitScreen({ navigation }:any) {
           })}>
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View>
-              <Text>{item.UNITSTR}</Text>
-              <Text>{item.PARTSTR}</Text>
-              <Text>{item.SEQNUM}</Text>
+              <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
+              <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
+              <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
             </View>
             <View style={{flexGrow: 1}}>
-              <Text style={styles.item}>{item.WORD}</Text>
-              <Text style={styles.item}>{item.NOTE}</Text>
+              <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
+              <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
             </View>
             <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
               <FontAwesome name='chevron-right' size={20} />

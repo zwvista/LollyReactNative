@@ -17,7 +17,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
   const {words, wordIndex}: {words: ValueOnly[], wordIndex: number} = route.params;
   const settingsService = container.resolve(SettingsService);
   const [word, setWord] = useState(words[wordIndex].value);
-  const [webViewSource, setWebViewSource] = useState({uri: 'about:blank'});
+  const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
   const onlineDict = new OnlineDict(settingsService);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
 
