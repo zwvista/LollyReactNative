@@ -28,7 +28,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      // await phrasesLangService.getData(filter, filterType);
+      await phrasesLangService.getData(filter, filterType);
       forceUpdate();
     })();
   }, [refreshCount]);

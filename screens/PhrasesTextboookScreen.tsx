@@ -29,7 +29,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await phrasesUnitService.getDataInTextbook(filter, filterType);
+      await phrasesUnitService.getDataInLang(filter, filterType, textbookFilter);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -63,7 +63,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
-        data={phrasesUnitService.unitPhrases}
+        data={phrasesUnitService.textbookPhrases}
         renderItem={({item}) =>
           <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
             <Text style={styles.item}>{item.PHRASE}</Text>

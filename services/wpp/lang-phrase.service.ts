@@ -7,8 +7,8 @@ import { singleton } from "tsyringe";
 @singleton()
 export class LangPhraseService extends BaseService {
 
-  async getDataByLang(langid: number, page: number, rows: number, filter: string, filterType: number): Promise<MLangPhrases> {
-    let url = `${this.baseUrlAPI}LANGPHRASES?filter=LANGID,eq,${langid}&order=PHRASE&page=${page},${rows}`;
+  async getDataByLang(langid: number, filter: string, filterType: number): Promise<MLangPhrases> {
+    let url = `${this.baseUrlAPI}LANGPHRASES?filter=LANGID,eq,${langid}&order=PHRASE`;
     if (filter)
       url += `&filter=${filterType === 0 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
     const result = await this.httpGet<MLangPhrases>(url);

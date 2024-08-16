@@ -29,7 +29,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await wordsUnitService.getDataInTextbook(filter, filterType);
+      await wordsUnitService.getDataInLang(filter, filterType, textbookFilter);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -63,7 +63,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
         </View>
       </View>
       <FlatList
-        data={wordsUnitService.unitWords}
+        data={wordsUnitService.textbookWords}
         renderItem={({item}) =>
           <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
             <Text style={styles.item}>{item.WORD}</Text>

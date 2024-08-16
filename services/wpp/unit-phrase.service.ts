@@ -18,8 +18,8 @@ export class UnitPhraseService extends BaseService {
     return result2;
   }
 
-  async getDataByLang(langid: number, textbooks: MTextbook[], page: number, rows: number, filter: string, filterType: number, textbookFilter: number): Promise<MUnitPhrases> {
-    let url = `${this.baseUrlAPI}VUNITPHRASES?filter=LANGID,eq,${langid}&order=TEXTBOOKID&order=UNIT&order=PART&order=SEQNUM&page=${page},${rows}`;
+  async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number): Promise<MUnitPhrases> {
+    let url = `${this.baseUrlAPI}VUNITPHRASES?filter=LANGID,eq,${langid}&order=TEXTBOOKID&order=UNIT&order=PART&order=SEQNUM`;
     if (filterType !== 0 && filter)
       url += `&filter=${filterType === 1 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
     if (textbookFilter !== 0)

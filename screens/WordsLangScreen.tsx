@@ -28,7 +28,7 @@ export default function WordsLangScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      // await wordsLangService.getData(filter, filterType);
+      await wordsLangService.getData(filter, filterType);
       forceUpdate();
     })();
   }, [refreshCount]);

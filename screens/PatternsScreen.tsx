@@ -28,7 +28,7 @@ export default function PatternsScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      // await patternsService.getData(filter, filterType);
+      await patternsService.getData(filter, filterType);
       forceUpdate();
     })();
   }, [refreshCount]);

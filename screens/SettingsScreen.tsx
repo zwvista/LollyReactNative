@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import { ChangeEvent, useCallback, useEffect, useMemo, useReducer, useState } from "react";
+import { useCallback, useEffect, useMemo, useReducer, useState } from "react";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
 import { Button, Text, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
@@ -238,6 +238,7 @@ export default function SettingsScreen({ navigation }:any) {
             setOpen={setOpenPartFrom}
             setValue={onPartFromChange}
             disabled={toTypeIsUnit}
+            disabledStyle={{backgroundColor: 'yellow'}}
           />
         </View>
       </View>
@@ -261,6 +262,7 @@ export default function SettingsScreen({ navigation }:any) {
             setOpen={setOpenUnitTo}
             setValue={onUnitToChange}
             disabled={!toTypeIsTo}
+            disabledStyle={{backgroundColor: 'yellow'}}
           />
         </View>
         <View style={{width: '35%'}}>
@@ -272,6 +274,7 @@ export default function SettingsScreen({ navigation }:any) {
             setOpen={setOpenPartTo}
             setValue={onPartToChange}
             disabled={!toTypeIsTo}
+            disabledStyle={{backgroundColor: 'yellow'}}
           />
         </View>
       </View>

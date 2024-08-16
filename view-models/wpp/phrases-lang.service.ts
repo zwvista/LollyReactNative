@@ -16,9 +16,9 @@ export class PhrasesLangService {
               private appService: AppService) {
   }
 
-  async getData(page: number, rows: number, filter: string, filterType: number) {
+  async getData(filter: string, filterType: number) {
     await this.appService.initializeObject.pipe(take(1));
-    const res = await this.langPhraseService.getDataByLang(this.settingsService.selectedLang.ID, page, rows, filter, filterType);
+    const res = await this.langPhraseService.getDataByLang(this.settingsService.selectedLang.ID, filter, filterType);
     this.langPhrases = res.records;
     this.langPhraseCount = res.results;
   }

@@ -26,10 +26,10 @@ export class PhrasesUnitService {
         this.settingsService.USUNITPARTFROM, this.settingsService.USUNITPARTTO, filter, filterType);
   }
 
-  async getDataInLang(page: number, rows: number, filter: string, filterType: number, textbookFilter: number) {
+  async getDataInLang(filter: string, filterType: number, textbookFilter: number) {
     await this.appService.initializeObject.pipe(take(1));
     const res = await this.unitPhraseService.getDataByLang(this.settingsService.selectedLang.ID,
-        this.settingsService.textbooks, page, rows, filter, filterType, textbookFilter);
+        this.settingsService.textbooks, filter, filterType, textbookFilter);
     this.textbookPhrases = res.records;
     this.textbookPhraseCount = res.results;
   }
