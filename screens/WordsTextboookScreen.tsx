@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { container } from "tsyringe";

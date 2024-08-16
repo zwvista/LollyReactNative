@@ -51,9 +51,11 @@ const App = () => {
           drawerIcon: () => <FontAwesome name='cog' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Unit" component={WordsUnitScreen} options={{
+          headerRight: () => <Button title="Add" />,
           drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Phrases in Unit" component={PhrasesUnitScreen} options={{
+          headerRight: () => <Button title="Add" />,
           drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Textbook" component={WordsTextbookScreen} options={{
@@ -63,9 +65,11 @@ const App = () => {
           drawerIcon: () => <FontAwesome name='taxi' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Words in Language" component={WordsLangScreen} options={{
+          headerRight: () => <Button title="Add" />,
           drawerIcon: () => <FontAwesome name='plane' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Phrases in Language" component={PhrasesLangScreen} options={{
+          headerRight: () => <Button title="Add" />,
           drawerIcon: () => <FontAwesome name='rocket' size={30} color='#130f40' />
         }}/>
         <Drawer.Screen name="Patterns in Language" component={PatternsScreen} options={{

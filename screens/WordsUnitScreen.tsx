@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
@@ -23,6 +23,12 @@ export default function WordsUnitScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button onPress={() => showDetailDialog(0)} title="Add" />
+    });
+  }, []);
 
   useEffect(() => {
     (async () => {
