@@ -1,15 +1,15 @@
 import { container } from "tsyringe";
 import { useEffect, useMemo, useReducer } from "react";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { Button, Text, View } from "react-native";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
-import { MLanguage } from "../models/misc/language.ts";
-import { MVoice } from "../models/misc/voice.ts";
-import { MDictionary } from "../models/misc/dictionary.ts";
-import { MTextbook } from "../models/misc/textbook.ts";
-import { MSelectItem } from "../common/selectitem.ts";
-import { stylesApp } from "../App.tsx";
+import { MLanguage } from "../../models/misc/language.ts";
+import { MVoice } from "../../models/misc/voice.ts";
+import { MDictionary } from "../../models/misc/dictionary.ts";
+import { MTextbook } from "../../models/misc/textbook.ts";
+import { MSelectItem } from "../../common/selectitem.ts";
+import { stylesApp } from "../../App.tsx";
 
 export default function SettingsScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);

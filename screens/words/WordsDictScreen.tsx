@@ -1,13 +1,13 @@
 import { View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../App.tsx";
+import { stylesApp } from "../../App.tsx";
 import * as React from "react";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
-import { MDictionary } from "../models/misc/dictionary.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
+import { MDictionary } from "../../models/misc/dictionary.ts";
 import { useEffect, useState } from "react";
 import WebView from "react-native-webview";
-import OnlineDict from "../components/OnlineDict.ts";
+import OnlineDict from "../../components/OnlineDict.ts";
 
 interface ValueOnly {
   value: string;

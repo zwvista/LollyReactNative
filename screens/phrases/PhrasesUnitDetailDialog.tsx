@@ -1,13 +1,13 @@
 import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
-import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
-import { MUnitPhrase } from "../models/wpp/unit-phrase.ts";
+import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
+import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";
-import { MSelectItem } from "../common/selectitem.ts";
-import { stylesApp } from "../App.tsx";
+import { MSelectItem } from "../../common/selectitem.ts";
+import { stylesApp } from "../../App.tsx";
 
 export default function PhrasesUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}

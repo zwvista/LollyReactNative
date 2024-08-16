@@ -1,16 +1,17 @@
 import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
+import { AppService } from "../../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
-import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
+import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
+import PatternsDetailDialog from "./PatternsDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../App.tsx";
-import FontAwesome from "react-native-vector-icons/FontAwesome.js";
+import { stylesApp } from "../../App.tsx";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-export default function WordsUnitScreen({ navigation }:any) {
-  const wordsUnitService = container.resolve(WordsUnitService);
+export default function PatternsScreen({ navigation }:any) {
+  const patternsService = container.resolve(PatternsService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
@@ -33,7 +34,7 @@ export default function WordsUnitScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await wordsUnitService.getDataInTextbook(filter, filterType);
+      await patternsService.getData(filter, filterType);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -65,8 +66,8 @@ export default function WordsUnitScreen({ navigation }:any) {
             style={stylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
-            data={settingsService.wordFilterTypes}
+            value={settingsService.patternFilterTypes.find(o => o.value === filterType)}
+            data={settingsService.patternFilterTypes}
             onChange={item => setFilterType(item.value)}
           />
         </View>
@@ -75,30 +76,20 @@ export default function WordsUnitScreen({ navigation }:any) {
         ItemSeparatorComponent={(props) =>
           <View style={{height: 1, backgroundColor: 'gray'}} />
         }
-        data={wordsUnitService.unitWords}
-        renderItem={({item, index}) =>
-          <TouchableWithoutFeedback onPress={ () => navigation.navigate("Word Dictionary", {
-            words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
-            wordIndex: index,
-          })}>
+        data={patternsService.patterns}
+        renderItem={({item}) =>
           <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View>
-              <Text>{item.UNITSTR}</Text>
-              <Text>{item.PARTSTR}</Text>
-              <Text>{item.SEQNUM}</Text>
-            </View>
             <View style={{flexGrow: 1}}>
-              <Text style={styles.item}>{item.WORD}</Text>
-              <Text style={styles.item}>{item.NOTE}</Text>
+              <Text style={styles.item}>{item.PATTERN}</Text>
+              <Text style={styles.item}>{item.TAGS}</Text>
             </View>
             <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
               <FontAwesome name='chevron-right' size={20} />
             </TouchableWithoutFeedback>
           </View>
-          </TouchableWithoutFeedback>
         }
       />
-      {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showDetail && <PatternsDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
     </View>
   );
 }

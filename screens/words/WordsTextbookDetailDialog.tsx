@@ -1,20 +1,21 @@
 import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
+import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import * as React from "react";
-import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
-import { MUnitPhrase } from "../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";
-import { MSelectItem } from "../common/selectitem.ts";
-import { stylesApp } from "../App.tsx";
+import { MSelectItem } from "../../common/selectitem.ts";
+import { stylesApp } from "../../App.tsx";
 
-export default function PhrasesTextbookDetailDialog(
+export default function WordsTextbookDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
-  const phrasesUnitService = container.resolve(PhrasesUnitService);
+  const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
-  const [item] = useState(Object.create(phrasesUnitService.textbookPhrases.find(value => value.ID === id)!) as MUnitPhrase);
+  const itemOld = wordsUnitService.unitWords.find(value => value.ID === id);
+  const [item] = useState(itemOld ? Object.create(itemOld) as MUnitWord : wordsUnitService.newUnitWord());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const onUnitChange = (e: MSelectItem) => {
@@ -33,8 +34,8 @@ export default function PhrasesTextbookDetailDialog(
   }
 
   const save = async () => {
-    item.PHRASE = settingsService.autoCorrectInput(item.PHRASE);
-    await phrasesUnitService.update(item);
+    item.WORD = settingsService.autoCorrectInput(item.WORD);
+    await (item.ID ? wordsUnitService.update(item) : wordsUnitService.create(item));
     handleCloseDialog();
   };
 
@@ -115,37 +116,61 @@ export default function PhrasesTextbookDetailDialog(
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
-            <Text>PHRASEID:</Text>
+            <Text>WORDID:</Text>
           </View>
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={item.PHRASEID.toString()}
+              value={item.WORDID.toString()}
               editable={false}
             />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
-            <Text>PHRASE:</Text>
+            <Text>WORD:</Text>
           </View>
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={item.PHRASE}
-              onChangeText={e => onChangeTextInput("PHRASE", e)}
+              value={item.WORD}
+              onChangeText={e => onChangeTextInput("WORD", e)}
             />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
-            <Text>TRANSLATION:</Text>
+            <Text>NOTE:</Text>
           </View>
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={item.TRANSLATION}
-              onChangeText={e => onChangeTextInput("TRANSLATION", e)}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
+          </View>
+        </View>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{width: '30%'}}>
+            <Text>FAMIID:</Text>
+          </View>
+          <View style={{width: '70%'}}>
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.FAMIID.toString()}
+              editable={false}
+            />
+          </View>
+        </View>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{width: '30%'}}>
+            <Text>ACCURACY:</Text>
+          </View>
+          <View style={{width: '70%'}}>
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.ACCURACY}
+              editable={false}
             />
           </View>
         </View>

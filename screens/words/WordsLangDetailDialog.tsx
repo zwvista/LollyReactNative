@@ -1,11 +1,11 @@
 import { Button, Modal, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
-import { WordsLangService } from "../view-models/wpp/words-lang.service.ts";
-import { MLangWord } from "../models/wpp/lang-word.ts";
-import { stylesApp } from "../App.tsx";
+import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
+import { MLangWord } from "../../models/wpp/lang-word.ts";
+import { stylesApp } from "../../App.tsx";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}

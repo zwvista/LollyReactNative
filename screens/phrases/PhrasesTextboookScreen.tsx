@@ -1,13 +1,13 @@
 import { FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
-import { AppService } from "../view-models/misc/app.service.ts";
+import { AppService } from "../../view-models/misc/app.service.ts";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import { PhrasesUnitService } from "../view-models/wpp/phrases-unit.service.ts";
+import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
 import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../App.tsx";
+import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {

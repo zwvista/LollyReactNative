@@ -1,19 +1,19 @@
 import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
-import { PhrasesLangService } from "../view-models/wpp/phrases-lang.service.ts";
-import { MLangPhrase } from "../models/wpp/lang-phrase.ts";
-import { stylesApp } from "../App.tsx";
+import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
+import { MPattern } from "../../models/wpp/pattern.ts";
+import { stylesApp } from "../../App.tsx";
 
-export default function PhrasesLangDetailDialog(
+export default function PatternsDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
 ) {
-  const phrasesLangService = container.resolve(PhrasesLangService);
+  const patternsService = container.resolve(PatternsService);
   const settingsService = container.resolve(SettingsService);
-  const itemOld = phrasesLangService.langPhrases.find(value => value.ID === id);
-  const [item] = useState(itemOld ? Object.create(itemOld) as MLangPhrase : phrasesLangService.newLangPhrase());
+  const itemOld = patternsService.patterns.find(value => value.ID === id);
+  const [item] = useState(itemOld ? Object.create(itemOld) as MPattern : patternsService.newPattern());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const onChangeTextInput = (id: string, e: string) => {
@@ -22,8 +22,8 @@ export default function PhrasesLangDetailDialog(
   }
 
   const save = async () => {
-    item.PHRASE = settingsService.autoCorrectInput(item.PHRASE);
-    await (item.ID ? phrasesLangService.update(item) : await phrasesLangService.create(item));
+    item.PATTERN = settingsService.autoCorrectInput(item.PATTERN);
+    await (item.ID ? patternsService.update(item) : patternsService.create(item));
     handleCloseDialog();
   };
 
@@ -50,25 +50,37 @@ export default function PhrasesLangDetailDialog(
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
-            <Text>PHRASE:</Text>
+            <Text>PATTERN:</Text>
           </View>
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={item.PHRASE}
-              onChangeText={e => onChangeTextInput("PHRASE", e)}
+              value={item.PATTERN}
+              onChangeText={e => onChangeTextInput("PATTERN", e)}
             />
           </View>
         </View>
         <View style={{flexDirection: "row", alignItems: "center"}}>
           <View style={{width: '30%'}}>
-            <Text>TRANSLATION:</Text>
+            <Text>NOTE:</Text>
           </View>
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
-              value={item.TRANSLATION}
-              onChangeText={e => onChangeTextInput("TRANSLATION", e)}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
+          </View>
+        </View>
+        <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={{width: '30%'}}>
+            <Text>TAGS:</Text>
+          </View>
+          <View style={{width: '70%'}}>
+            <TextInput
+              style={stylesApp.textinput}
+              value={item.TAGS}
+              onChangeText={e => onChangeTextInput("TAGS", e)}
             />
           </View>
         </View>

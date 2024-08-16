@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { Button, TextInput, View } from 'react-native';
 import { container } from "tsyringe";
-import { AppService } from "../view-models/misc/app.service.ts";
+import { AppService } from "../../view-models/misc/app.service.ts";
 import LoginDialog from "./LoginDialog.tsx";
 import { useEffect, useReducer, useState } from "react";
-import { GlobalVars } from "../common/common.ts";
+import { GlobalVars } from "../../common/common.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import WebView from "react-native-webview";
-import { storage, stylesApp } from "../App.tsx";
-import OnlineDict from "../components/OnlineDict.ts";
+import { storage, stylesApp } from "../../App.tsx";
+import OnlineDict from "../../components/OnlineDict.ts";
 import { Dropdown } from "react-native-element-dropdown";
-import { MLanguage } from "../models/misc/language.ts";
-import { MDictionary } from "../models/misc/dictionary.ts";
+import { MLanguage } from "../../models/misc/language.ts";
+import { MDictionary } from "../../models/misc/dictionary.ts";
 
 export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);

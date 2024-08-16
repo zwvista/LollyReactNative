@@ -9,21 +9,21 @@ import './gesture-handler';
 import "reflect-metadata"
 import * as React from 'react';
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import SearchScreen from "./screens/SearchScreen";
+import SearchScreen from "./screens/misc/SearchScreen";
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { Button, Settings, StyleSheet } from "react-native";
-import WordsUnitScreen from "./screens/WordsUnitScreen.tsx";
-import WordsTextbookScreen from "./screens/WordsTextboookScreen.tsx";
-import WordsLangScreen from "./screens/WordsLangScreen.tsx";
-import PhrasesUnitScreen from "./screens/PhrasesUnitScreen.tsx";
-import PhrasesTextbookScreen from "./screens/PhrasesTextboookScreen.tsx";
-import PhrasesLangScreen from "./screens/PhrasesLangScreen.tsx";
-import PatternsScreen from "./screens/PatternsScreen.tsx";
-import SettingsScreen from "./screens/SettingsScreen.tsx";
+import WordsUnitScreen from "./screens/words/WordsUnitScreen.tsx";
+import WordsTextbookScreen from "./screens/words/WordsTextboookScreen.tsx";
+import WordsLangScreen from "./screens/words/WordsLangScreen.tsx";
+import PhrasesUnitScreen from "./screens/phrases/PhrasesUnitScreen.tsx";
+import PhrasesTextbookScreen from "./screens/phrases/PhrasesTextboookScreen.tsx";
+import PhrasesLangScreen from "./screens/phrases/PhrasesLangScreen.tsx";
+import PatternsScreen from "./screens/misc/PatternsScreen.tsx";
+import SettingsScreen from "./screens/misc/SettingsScreen.tsx";
 import { MMKVLoader } from "react-native-mmkv-storage";
 import { createStackNavigator } from "@react-navigation/stack";
-import WordsDictScreen from "./screens/WordsDictScreen.tsx";
+import WordsDictScreen from "./screens/words/WordsDictScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
 export const stylesApp = StyleSheet.create({

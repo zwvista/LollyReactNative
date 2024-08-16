@@ -1,13 +1,13 @@
 import { Button, Modal, SafeAreaView, Text, TextInput, View } from "react-native";
 import { container } from "tsyringe";
 import { useReducer, useState } from "react";
-import { WordsUnitService } from "../view-models/wpp/words-unit.service.ts";
-import { SettingsService } from "../view-models/misc/settings.service.ts";
-import { MUnitWord } from "../models/wpp/unit-word.ts";
+import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
+import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
-import { MSelectItem } from "../common/selectitem.ts";
-import { stylesApp } from "../App.tsx";
+import { MSelectItem } from "../../common/selectitem.ts";
+import { stylesApp } from "../../App.tsx";
 
 export default function WordsUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: {id: number, isDialogOpened: boolean, handleCloseDialog: () => void}
