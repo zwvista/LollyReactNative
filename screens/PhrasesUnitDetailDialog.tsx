@@ -26,12 +26,12 @@ export default function PhrasesUnitDetailDialog(
     setOpenUnit(false);
   }, []);
 
-  const setValueUnit = (e: any) => {
+  const onUnitChange = (e: any) => {
     item.UNIT = e(item.UNIT);
     forceUpdate();
   };
 
-  const setValuePart = (e: any) => {
+  const onPartChange = (e: any) => {
     item.PART = e(item.PART);
     forceUpdate();
   };
@@ -75,7 +75,7 @@ export default function PhrasesUnitDetailDialog(
               value={item.UNIT}
               items={settingsService.units}
               setOpen={setOpenUnit}
-              setValue={setValueUnit}
+              setValue={onUnitChange}
             />
           </View>
         </View>
@@ -90,7 +90,7 @@ export default function PhrasesUnitDetailDialog(
               value={item.PART}
               items={settingsService.parts}
               setOpen={setOpenPart}
-              setValue={setValuePart}
+              setValue={onPartChange}
             />
           </View>
         </View>

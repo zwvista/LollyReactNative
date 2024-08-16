@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { Button, Text, TextInput, View } from 'react-native';
+import { Button, TextInput, View } from 'react-native';
 import { container } from "tsyringe";
 import { AppService } from "../view-models/misc/app.service.ts";
 import LoginDialog from "./LoginDialog.tsx";
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { GlobalVars } from "../common/common.ts";
-import { MMKVLoader, useMMKVStorage } from "react-native-mmkv-storage";
+import { useMMKVStorage } from "react-native-mmkv-storage";
 import DropDownPicker from "react-native-dropdown-picker";
 import { SettingsService } from "../view-models/misc/settings.service.ts";
-import { red } from "react-native-reanimated/lib/typescript/Colors";
 import WebView from "react-native-webview";
 import { storage } from "../App.tsx";
+import OnlineDict from "../components/OnlineDict.ts";
 
 export default function SearchScreen({ navigation }:any) {
   const [openLang, setOpenLang] = useState(false);
@@ -21,6 +21,8 @@ export default function SearchScreen({ navigation }:any) {
   const [loggedIn, setLoggedIn] = useMMKVStorage('userid', storage, '');
   const [loginCount, updateLoginCount] = useReducer(x => x + 1, 0);
   const [word, setWord] = useState('');
+  const [webViewSource, setWebViewSource] = useState({ uri: 'https://infinite.red' });
+  const onlineDict = container.resolve(OnlineDict);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
@@ -53,6 +55,7 @@ export default function SearchScreen({ navigation }:any) {
     const index = settingsService.dictsReference.findIndex(o => o.ID === e(settingsService.selectedDictReference.ID));
     settingsService.selectedDictReference = settingsService.dictsReference[index];
     await settingsService.updateDictReference();
+    await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource);
     forceUpdate();
   };
 
@@ -105,7 +108,7 @@ export default function SearchScreen({ navigation }:any) {
           </View>
           <View style={{flex: 1, alignSelf: "stretch"}}>
             <WebView
-              source={{ uri: 'https://infinite.red' }}
+              source={webViewSource}
             />
           </View>
         </View>

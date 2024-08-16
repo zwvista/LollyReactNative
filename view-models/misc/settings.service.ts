@@ -405,6 +405,10 @@ export class SettingsService {
     if (dirty) await this.userSettingService.updateIntValue(this.INFO_USPARTTO, this.USPARTTO);
   }
 
+  async getHtml(url: string): Promise<string>  {
+    return this.htmlService.getHtml(url);
+  }
+
   async getNote(word: string): Promise<string> {
     const dictNote = this.selectedDictNote;
     if (!dictNote) return "";

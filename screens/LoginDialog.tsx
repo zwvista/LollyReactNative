@@ -4,7 +4,7 @@ import { container } from "tsyringe";
 import { useReducer } from "react";
 import { GlobalVars } from "../common/common.ts";
 import { LoginService } from "../view-models/misc/login.service.ts";
-import { MMKVLoader, useMMKVStorage } from "react-native-mmkv-storage";
+import { useMMKVStorage } from "react-native-mmkv-storage";
 import { AppService } from "../view-models/misc/app.service.ts";
 import { storage } from "../App.tsx";
 
