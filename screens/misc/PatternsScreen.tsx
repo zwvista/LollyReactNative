@@ -37,6 +37,7 @@ export default function PatternsScreen({ navigation }:any) {
   };
 
   const onPressItem = (item: MPattern) => {
+    settingsService.speak(item.PATTERN);
   };
 
   const onPressItemRight = (index: number) => {

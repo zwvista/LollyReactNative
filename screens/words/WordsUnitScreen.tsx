@@ -62,6 +62,8 @@ export default function WordsUnitScreen({ navigation }:any) {
   const onPressItem = (item: MUnitWord) => {
     if (editMode)
       showDetailDialog(item.ID);
+    else
+      settingsService.speak(item.WORD);
   };
 
   const onLongPressItem = (item: MUnitWord) => {

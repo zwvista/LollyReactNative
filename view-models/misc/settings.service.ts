@@ -10,14 +10,14 @@ import { TextbookService } from '../../services/misc/textbook.service';
 import { autoCorrect, MAutoCorrect } from '../../models/misc/autocorrect';
 import { AutoCorrectService } from '../../services/misc/autocorrect.service';
 import { MSelectItem } from '../../common/selectitem';
-// @ts-ignore
-// import * as Speech from 'speak-tts';
+import Tts from 'react-native-tts';
 import { VoiceService } from '../../services/misc/voice.service';
 import { MVoice } from '../../models/misc/voice';
 import { UsMappingService } from '../../services/misc/us-mapping.service';
 import { MUSMapping } from '../../models/misc/usmapping';
 import { HtmlService } from '../../services/misc/html.service';
 import { singleton } from "tsyringe";
+import { Platform } from "react-native";
 
 @singleton()
 export class SettingsService {
@@ -128,7 +128,6 @@ export class SettingsService {
   selectedLang!: MLanguage;
 
   voices: MVoice[] = [];
-  // speech = new Speech.default();
   selectedVoice: MVoice | null = null;
 
   dictsReference: MDictionary[] = [];
@@ -218,7 +217,7 @@ export class SettingsService {
     this.INFO_USDICTREFERENCE = this.getUSInfo(MUSMapping.NAME_USDICTREFERENCE);
     this.INFO_USDICTNOTE = this.getUSInfo(MUSMapping.NAME_USDICTNOTE);
     this.INFO_USDICTTRANSLATION = this.getUSInfo(MUSMapping.NAME_USDICTTRANSLATION);
-    this.INFO_USVOICE = this.getUSInfo(MUSMapping.NAME_USVOICE);
+    this.INFO_USVOICE = this.getUSInfo(Platform.OS === 'ios' ? MUSMapping.NAME_USVOICE_IOS : MUSMapping.NAME_USVOICE_ANDROID);
     const res = await Promise.all([
       this.dictionaryService.getDictsReference(this.USLANG),
       this.dictionaryService.getDictsNote(this.USLANG),
@@ -292,7 +291,7 @@ export class SettingsService {
     const newVal = this.selectedVoice.ID;
     const dirty = this.USVOICE !== newVal;
     this.USVOICE = newVal;
-    // this.speech.setVoice(this.selectedVoice.VOICENAME);
+    Tts.setDefaultVoice(this.selectedVoice.VOICENAME);
     if (dirty) await this.userSettingService.updateIntValue(this.INFO_USVOICE, this.USVOICE);
     if (this.settingsListener) this.settingsListener.onUpdateVoice();
   }
@@ -302,10 +301,7 @@ export class SettingsService {
   }
 
   speak(text: string) {
-    // this.speech.speak({
-    //   text,
-    //   queue: false,
-    // });
+    Tts.speak(text);
   }
 
   async updateUnitFrom(value: number) {

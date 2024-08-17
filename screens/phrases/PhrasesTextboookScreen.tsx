@@ -41,6 +41,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   };
 
   const onPressItem = (item: MUnitPhrase) => {
+    settingsService.speak(item.PHRASE);
   };
 
   const onLongPressItem = (item: MUnitPhrase) => {

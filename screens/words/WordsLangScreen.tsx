@@ -37,6 +37,7 @@ export default function WordsLangScreen({ navigation }:any) {
   };
 
   const onPressItem = (item: MLangWord) => {
+    settingsService.speak(item.WORD);
   };
 
   const onLongPressItem = (item: MLangWord) => {

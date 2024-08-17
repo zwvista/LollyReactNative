@@ -43,6 +43,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
   };
 
   const onPressItem = (item: MUnitWord) => {
+    settingsService.speak(item.WORD);
   };
 
   const onLongPressItem = (item: MUnitWord) => {

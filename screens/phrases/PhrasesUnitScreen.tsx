@@ -58,6 +58,8 @@ export default function PhrasesUnitScreen({ navigation }:any) {
   const onPressItem = (item: MUnitPhrase) => {
     if (editMode)
       showDetailDialog(item.ID);
+    else
+      settingsService.speak(item.PHRASE);
   };
 
   const onLongPressItem = (item: MUnitPhrase) => {
