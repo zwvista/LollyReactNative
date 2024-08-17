@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import { stylesApp, ValueOnly } from "../../App.tsx";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -8,10 +8,6 @@ import { MDictionary } from "../../models/misc/dictionary.ts";
 import { useEffect, useReducer, useState } from "react";
 import WebView from "react-native-webview";
 import OnlineDict from "../../components/OnlineDict.ts";
-
-interface ValueOnly {
-  value: string;
-}
 
 export default function WordsDictScreen({ route, navigation }:any) {
   const {words, wordIndex}: {words: ValueOnly[], wordIndex: number} = route.params;

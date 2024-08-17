@@ -25,12 +25,16 @@ import { MMKVLoader } from "react-native-mmkv-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import WordsDictScreen from "./screens/words/WordsDictScreen.tsx";
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import PatternsWebPageScreen from "./screens/misc/PatternsWebPageScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
   id: number,
   isDialogOpened: boolean,
   handleCloseDialog: () => void,
+}
+export interface ValueOnly {
+  value: string;
 }
 export const stylesApp = StyleSheet.create({
   textinput: {
@@ -107,18 +111,21 @@ function Root() {
 export default function App() {
   return (
     <ActionSheetProvider>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Root"
-          component={Root}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Word Dictionary" component={WordsDictScreen} options={{
-          title: 'Word Dictionary'
-        }} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Root"
+            component={Root}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen name="Word Dictionary" component={WordsDictScreen} options={{
+            title: 'Word Dictionary'
+          }} />
+          <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} options={{
+            title: 'Word Dictionary'
+          }} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </ActionSheetProvider>
   );
 }

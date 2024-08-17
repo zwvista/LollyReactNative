@@ -11,6 +11,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MPattern } from "../../models/wpp/pattern.ts";
+import { getPreferredRangeFromArray } from "../../common/common.ts";
 
 export default function PatternsScreen({ navigation }:any) {
   const patternsService = container.resolve(PatternsService);
@@ -59,6 +60,11 @@ export default function PatternsScreen({ navigation }:any) {
   };
 
   const onPressItemRight = (index: number) => {
+    const [start, end] = getPreferredRangeFromArray(index, patternsService.patterns.length, 50);
+    navigation.navigate("Patterns Web Page", {
+      patterns: patternsService.patterns.slice(start, end),
+      patternIndex: index - start,
+    });
   };
 
   useEffect(() => {
