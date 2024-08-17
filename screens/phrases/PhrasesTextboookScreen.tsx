@@ -18,7 +18,6 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
-  const [editMode, setEditMode] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -43,31 +42,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
 
   const { showActionSheetWithOptions } = useActionSheet();
 
-  const onPressMenu = () => {
-    showActionSheetWithOptions({
-      options: [
-        "Add",
-        "Retrieve All Notes",
-        "Retrieve Notes If Empty",
-        "Clear All Notes",
-        "Clear Notes If Empty",
-        "Batch Edit",
-        "Cancel"
-      ],
-      cancelButtonIndex: 6
-    }, (selectedIndex?: number) => {
-      switch (selectedIndex) {
-        case 0:
-          // Add
-          showDetailDialog(0);
-          break;
-      }
-    });
-  };
-
   const onPressItem = (item: MUnitPhrase) => {
-    if (editMode)
-      showDetailDialog(item.ID);
   };
 
   const onLongPressItem = (item: MUnitPhrase) => {
@@ -75,13 +50,11 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
       options: [
         "Delete",
         "Edit",
-        "Retrieve Note",
-        "Clear Note",
-        "Copy Word",
-        "Google Word",
+        "Copy Phrase",
+        "Google Phrase",
         "Cancel"
       ],
-      cancelButtonIndex: 6,
+      cancelButtonIndex: 4,
       destructiveButtonIndex: 0
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {
@@ -92,20 +65,6 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
       }
     });
   };
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () =>
-        <View style={{flexDirection: "row"}}>
-          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
-            <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={onPressMenu}>
-            <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-          </TouchableWithoutFeedback>
-        </View>
-    });
-  }, [editMode]);
 
   useEffect(() => {
     (async () => {

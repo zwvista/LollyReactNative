@@ -73,9 +73,10 @@ export default function WordsUnitScreen({ navigation }:any) {
         "Clear Note",
         "Copy Word",
         "Google Word",
+        "Online Dictionary",
         "Cancel"
       ],
-      cancelButtonIndex: 6,
+      cancelButtonIndex: 7,
       destructiveButtonIndex: 0
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {

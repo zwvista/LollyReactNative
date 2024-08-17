@@ -41,14 +41,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
     showActionSheetWithOptions({
       options: [
         "Add",
-        "Retrieve All Notes",
-        "Retrieve Notes If Empty",
-        "Clear All Notes",
-        "Clear Notes If Empty",
         "Batch Edit",
         "Cancel"
       ],
-      cancelButtonIndex: 6
+      cancelButtonIndex: 2
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 0:
@@ -69,13 +65,11 @@ export default function PhrasesUnitScreen({ navigation }:any) {
       options: [
         "Delete",
         "Edit",
-        "Retrieve Note",
-        "Clear Note",
-        "Copy Word",
-        "Google Word",
+        "Copy Phrase",
+        "Google Phrase",
         "Cancel"
       ],
-      cancelButtonIndex: 6,
+      cancelButtonIndex: 4,
       destructiveButtonIndex: 0
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {

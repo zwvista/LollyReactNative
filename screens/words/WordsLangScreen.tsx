@@ -19,7 +19,6 @@ export default function WordsLangScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
-  const [editMode, setEditMode] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -38,31 +37,7 @@ export default function WordsLangScreen({ navigation }:any) {
 
   const { showActionSheetWithOptions } = useActionSheet();
 
-  const onPressMenu = () => {
-    showActionSheetWithOptions({
-      options: [
-        "Add",
-        "Retrieve All Notes",
-        "Retrieve Notes If Empty",
-        "Clear All Notes",
-        "Clear Notes If Empty",
-        "Batch Edit",
-        "Cancel"
-      ],
-      cancelButtonIndex: 6
-    }, (selectedIndex?: number) => {
-      switch (selectedIndex) {
-        case 0:
-          // Add
-          showDetailDialog(0);
-          break;
-      }
-    });
-  };
-
   const onPressItem = (item: MLangWord) => {
-    if (editMode)
-      showDetailDialog(item.ID);
   };
 
   const onLongPressItem = (item: MLangWord) => {
@@ -74,9 +49,10 @@ export default function WordsLangScreen({ navigation }:any) {
         "Clear Note",
         "Copy Word",
         "Google Word",
+        "Online Dictionary",
         "Cancel"
       ],
-      cancelButtonIndex: 6,
+      cancelButtonIndex: 7,
       destructiveButtonIndex: 0
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {
@@ -99,16 +75,11 @@ export default function WordsLangScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{flexDirection: "row"}}>
-          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
-            <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={onPressMenu}>
-            <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-          </TouchableWithoutFeedback>
-        </View>
+        <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
+          <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
+        </TouchableWithoutFeedback>
     });
-  }, [editMode]);
+  }, []);
 
   useEffect(() => {
     navigation.setOptions({
