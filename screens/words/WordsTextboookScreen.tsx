@@ -27,6 +27,11 @@ export default function WordsTextbookScreen({ navigation }:any) {
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
+  const onTextbookFilterTypeChange = (e: MSelectItem) => {
+    setTextbookFilter(e.value);
+    onRefresh();
+  }
+
   const onFilterTypeChange = (e: MSelectItem) => {
     setFilterType(e.value);
     onRefresh();
@@ -139,7 +144,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
             valueField="value"
             value={settingsService.textbookFilters.find(o => o.value === textbookFilter)}
             data={settingsService.textbookFilters}
-            onChange={item => setTextbookFilter(item.value)}
+            onChange={onTextbookFilterTypeChange}
           />
         </View>
         <View style={{width: '50%'}}>
