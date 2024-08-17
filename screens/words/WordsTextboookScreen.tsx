@@ -146,9 +146,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
                   <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                   <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
                 </View>
-                <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
-                  <FontAwesome name='chevron-right' size={20} />
-                </TouchableNativeFeedback>
+                <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>
             </TouchableNativeFeedback>
           }

@@ -106,12 +106,8 @@ export default function WordsUnitScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <View style={{flexDirection: "row"}}>
-          <TouchableNativeFeedback onPress={() => setEditMode(!editMode)}>
-            <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
-          </TouchableNativeFeedback>
-          <TouchableNativeFeedback onPress={onPressMenu}>
-            <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-          </TouchableNativeFeedback>
+          <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} onPress={() => setEditMode(!editMode)} />
+          <MaterialCommunityIcons name='dots-vertical' size={30} onPress={onPressMenu} />
         </View>
     });
   }, [editMode]);

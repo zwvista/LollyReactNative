@@ -81,9 +81,7 @@ export default function PatternsScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <TouchableNativeFeedback onPress={() => showDetailDialog(0)}>
-          <FontAwesome name='plus-circle' size={30} color='blue' />
-        </TouchableNativeFeedback>
+        <FontAwesome name='plus-circle' size={30} onPress={() => showDetailDialog(0)} />
     });
   }, []);
 
@@ -134,9 +132,7 @@ export default function PatternsScreen({ navigation }:any) {
                   <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
                   <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
                 </View>
-                <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
-                  <FontAwesome name='chevron-right' size={20} />
-                </TouchableNativeFeedback>
+                <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>
             </TouchableNativeFeedback>
           }
