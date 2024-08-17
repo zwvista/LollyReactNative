@@ -7,8 +7,9 @@ import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
+import { DetailDialogProps } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function WordsUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps

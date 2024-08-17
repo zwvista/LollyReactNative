@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.ts";
 import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
@@ -115,8 +115,8 @@ export default function PhrasesLangScreen({ navigation }:any) {
             >
               <View style={stylesApp.row}>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
-                  <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
+                  <Text style={stylesApp.itemText1}>{item.PHRASE}</Text>
+                  <Text style={stylesApp.itemText2}>{item.TRANSLATION}</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>

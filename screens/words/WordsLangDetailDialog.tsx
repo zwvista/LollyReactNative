@@ -5,8 +5,9 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
-import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
+import { DetailDialogProps } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps

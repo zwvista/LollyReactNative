@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
 import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
@@ -125,13 +125,13 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
             >
               <View style={stylesApp.row}>
                 <View>
-                  <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
-                  <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
-                  <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+                  <Text style={stylesApp.unitPart}>{item.UNITSTR}</Text>
+                  <Text style={stylesApp.unitPart}>{item.PARTSTR}</Text>
+                  <Text style={stylesApp.unitPart}>{item.SEQNUM}</Text>
                 </View>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
-                  <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
+                  <Text style={stylesApp.itemText1}>{item.PHRASE}</Text>
+                  <Text style={stylesApp.itemText2}>{item.TRANSLATION}</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>

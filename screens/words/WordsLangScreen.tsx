@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import WordsLangDetailDialog from "./WordsLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
@@ -127,8 +127,8 @@ export default function WordsLangScreen({ navigation }:any) {
             >
               <View style={stylesApp.row}>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
-                  <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
+                  <Text style={stylesApp.itemText1}>{item.WORD}</Text>
+                  <Text style={stylesApp.itemText2}>{item.NOTE}</Text>
                 </View>
                 <FontAwesome name='chevron-right' size={20}onPress={() => onPressItemRight(index)} />
               </View>

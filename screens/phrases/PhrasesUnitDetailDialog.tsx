@@ -7,8 +7,9 @@ import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.t
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
+import { DetailDialogProps } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function PhrasesUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps

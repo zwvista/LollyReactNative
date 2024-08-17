@@ -5,8 +5,9 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
-import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
+import { DetailDialogProps } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function PatternsDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps

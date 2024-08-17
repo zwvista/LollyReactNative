@@ -22,8 +22,8 @@ export class PhrasesUnitService {
 
   async getDataInTextbook(filter: string, filterType: number) {
     await this.appService.initializeObject.pipe(take(1));
-    this.unitPhrases = await this.unitPhraseService.getDataByTextbookUnitPart(this.settingsService.selectedTextbook,
-        this.settingsService.USUNITPARTFROM, this.settingsService.USUNITPARTTO, filter, filterType);
+    this.unitPhrases = await this.unitPhraseService.getDataByTextbookunitPart(this.settingsService.selectedTextbook,
+        this.settingsService.USunitPartFROM, this.settingsService.USunitPartTO, filter, filterType);
   }
 
   async getDataInLang(filter: string, filterType: number, textbookFilter: number) {

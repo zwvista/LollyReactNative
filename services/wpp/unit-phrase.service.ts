@@ -8,8 +8,8 @@ import { singleton } from "tsyringe";
 @singleton()
 export class UnitPhraseService extends BaseService {
 
-  async getDataByTextbookUnitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Promise<MUnitPhrase[]> {
-    let url = `${this.baseUrlAPI}VUNITPHRASES?filter=TEXTBOOKID,eq,${textbook.ID}&filter=UNITPART,bt,${unitPartFrom},${unitPartTo}&order=UNITPART&order=SEQNUM`;
+  async getDataByTextbookunitPart(textbook: MTextbook, unitPartFrom: number, unitPartTo: number, filter: string, filterType: number): Promise<MUnitPhrase[]> {
+    let url = `${this.baseUrlAPI}VUNITPHRASES?filter=TEXTBOOKID,eq,${textbook.ID}&filter=unitPart,bt,${unitPartFrom},${unitPartTo}&order=unitPart&order=SEQNUM`;
     if (filter)
       url += `&filter=${filterType === 0 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
     const result = await this.httpGet<MUnitPhrases>(url);

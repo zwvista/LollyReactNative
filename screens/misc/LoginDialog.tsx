@@ -13,11 +13,12 @@ import {
 import { container } from "tsyringe";
 import { LoginService } from "../../view-models/misc/login.service.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
-import { storage, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
 import { Formik } from "formik";
 import { MUser } from "../../models/misc/user.ts";
 import { FormikHelpers } from "formik/dist/types";
+import { storage } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}

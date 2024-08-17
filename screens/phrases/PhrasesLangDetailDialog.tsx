@@ -5,8 +5,9 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import * as React from "react";
 import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.ts";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
-import { DetailDialogProps, stylesApp } from "../../App.tsx";
 import Modal from "react-native-modal";
+import { DetailDialogProps } from "../../App.tsx";
+import stylesApp from "../../components/stylesApp.ts";
 
 export default function PhrasesLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps

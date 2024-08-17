@@ -6,7 +6,7 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome.js";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
 import { MSelectItem } from "../../common/selectitem.ts";
@@ -156,13 +156,13 @@ export default function WordsUnitScreen({ navigation }:any) {
             >
               <View style={stylesApp.row}>
                 <View>
-                  <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
-                  <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
-                  <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+                  <Text style={stylesApp.unitPart}>{item.UNITSTR}</Text>
+                  <Text style={stylesApp.unitPart}>{item.PARTSTR}</Text>
+                  <Text style={stylesApp.unitPart}>{item.SEQNUM}</Text>
                 </View>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
-                  <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
+                  <Text style={stylesApp.itemText1}>{item.WORD}</Text>
+                  <Text style={stylesApp.itemText2}>{item.NOTE}</Text>
                 </View>
                 <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
                   <FontAwesome name='chevron-right' size={20} />

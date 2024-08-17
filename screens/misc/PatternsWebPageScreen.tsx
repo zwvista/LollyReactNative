@@ -3,7 +3,7 @@ import WebView from "react-native-webview";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
 
 export default function PatternsWebPageScreen({ route, navigation }:any) {

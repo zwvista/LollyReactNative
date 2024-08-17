@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
 import PatternsDetailDialog from "./PatternsDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
@@ -129,8 +129,8 @@ export default function PatternsScreen({ navigation }:any) {
             >
               <View style={stylesApp.row}>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
-                  <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
+                  <Text style={stylesApp.itemText1}>{item.PATTERN}</Text>
+                  <Text style={stylesApp.itemText2}>{item.TAGS}</Text>
                 </View>
                 <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>

@@ -9,7 +9,7 @@ import { MVoice } from "../../models/misc/voice.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
 import { MTextbook } from "../../models/misc/textbook.ts";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { stylesApp } from "../../App.tsx";
+import stylesApp from "../../components/StylesApp.ts";
 
 export default function SettingsScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
@@ -70,13 +70,13 @@ export default function SettingsScreen({ navigation }:any) {
     forceUpdate();
   };
 
-  const previousUnitPart = async () => {
-    await settingsService.previousUnitPart();
+  const previousunitPart = async () => {
+    await settingsService.previousunitPart();
     forceUpdate();
   };
 
-  const nextUnitPart = async () => {
-    await settingsService.nextUnitPart();
+  const nextunitPart = async () => {
+    await settingsService.nextunitPart();
     forceUpdate();
   };
 
@@ -258,10 +258,10 @@ export default function SettingsScreen({ navigation }:any) {
       <View style={stylesApp.row}>
         <View style={stylesApp.rowLeft} />
         <View style={styles.button}>
-          <Button title="Previous" onPress={previousUnitPart} />
+          <Button title="Previous" onPress={previousunitPart} />
         </View>
         <View style={styles.button}>
-          <Button title="Next" onPress={nextUnitPart} />
+          <Button title="Next" onPress={nextunitPart} />
         </View>
       </View>
     </View>
