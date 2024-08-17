@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { useEffect, useMemo, useReducer } from "react";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { Button, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MLanguage } from "../../models/misc/language.ts";
@@ -97,13 +97,22 @@ export default function SettingsScreen({ navigation }:any) {
     })();
   },[]);
 
+  const styles = StyleSheet.create({
+    rowRightHalf: {
+      width: '35%'
+    },
+    button: {
+      marginRight: 8
+    },
+  });
+
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row", alignItems: "center"}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Language:</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="NAME"
@@ -114,11 +123,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Voice:</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="VOICELANG"
@@ -129,11 +138,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Dictionary(Reference):</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="NAME"
@@ -144,11 +153,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Dictionary(Note):</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="NAME"
@@ -159,11 +168,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Dictionary(Translation):</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="NAME"
@@ -174,11 +183,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>Textbook:</Text>
         </View>
-        <View style={{width: '70%'}}>
+        <View style={stylesApp.rowRight}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="NAME"
@@ -189,11 +198,11 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Text>UNIT:</Text>
         </View>
-        <View style={{width: '35%'}}>
+        <View style={styles.rowRightHalf}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="label"
@@ -203,7 +212,7 @@ export default function SettingsScreen({ navigation }:any) {
             onChange={onUnitFromChange}
           />
         </View>
-        <View style={{width: '35%'}}>
+        <View style={styles.rowRightHalf}>
           <Dropdown style={[stylesApp.dropdown, toTypeIsUnit && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
@@ -214,8 +223,8 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="label"
@@ -225,7 +234,7 @@ export default function SettingsScreen({ navigation }:any) {
             onChange={onToTypeChange}
           />
         </View>
-        <View style={{width: '35%'}}>
+        <View style={styles.rowRightHalf}>
           <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
@@ -235,7 +244,7 @@ export default function SettingsScreen({ navigation }:any) {
             disable={!toTypeIsTo}
           />
         </View>
-        <View style={{width: '35%'}}>
+        <View style={styles.rowRightHalf}>
           <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
@@ -246,12 +255,14 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row", alignItems: "center", marginTop: 8}}>
-        <View style={{width: '30%'}} />
-        <View style={{marginRight: 8}}>
+      <View style={stylesApp.row}>
+        <View style={stylesApp.rowLeft} />
+        <View style={styles.button}>
           <Button title="Previous" onPress={previousUnitPart} />
         </View>
-        <Button title="Next" onPress={nextUnitPart} />
+        <View style={styles.button}>
+          <Button title="Next" onPress={nextUnitPart} />
+        </View>
       </View>
     </View>
   );

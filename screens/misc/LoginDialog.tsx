@@ -1,5 +1,15 @@
 import * as React from 'react';
-import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
+import {
+  Alert,
+  Button,
+  Keyboard,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableNativeFeedback,
+  View
+} from 'react-native';
 import { container } from "tsyringe";
 import { LoginService } from "../../view-models/misc/login.service.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";
@@ -21,6 +31,8 @@ export default function LoginDialog(
     if (userid) {
       setUserid(userid);
       handleCloseDialog();
+    } else {
+      Alert.alert('Wrong username or password!');
     }
   };
 
@@ -32,12 +44,12 @@ export default function LoginDialog(
       >
         {({handleChange, handleSubmit, values}) =>
           <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-            <SafeAreaView style={{alignItems: 'center', justifyContent: 'center', padding: 8, backgroundColor: 'white'}}>
-              <View style={{flexDirection: "row", alignItems: "center"}}>
-                <View style={{width: '30%'}}>
+            <SafeAreaView style={stylesApp.containerDialog}>
+              <View style={stylesApp.row}>
+                <View style={stylesApp.rowLeft}>
                   <Text>USERNAME:</Text>
                 </View>
-                <View style={{width: '70%'}}>
+                <View style={stylesApp.rowRight}>
                   <TextInput
                     style={stylesApp.textinput}
                     value={values.USERNAME}
@@ -45,11 +57,11 @@ export default function LoginDialog(
                   />
                 </View>
               </View>
-              <View style={{flexDirection: "row", alignItems: "center"}}>
-                <View style={{width: '30%'}}>
+              <View style={stylesApp.row}>
+                <View style={stylesApp.rowLeft}>
                   <Text>PASSWORD:</Text>
                 </View>
-                <View style={{width: '70%'}}>
+                <View style={stylesApp.rowRight}>
                   <TextInput
                     style={stylesApp.textinput}
                     secureTextEntry
@@ -58,7 +70,7 @@ export default function LoginDialog(
                   />
                 </View>
               </View>
-              <View style={{flexDirection: "row", justifyContent: "center"}}>
+              <View style={stylesApp.row}>
                 <Button title="Login" onPress={() => handleSubmit()} />
               </View>
             </SafeAreaView>

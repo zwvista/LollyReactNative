@@ -38,11 +38,11 @@ export default function WordsLangDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ID.toString()}
@@ -50,11 +50,11 @@ export default function WordsLangDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>WORD:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.WORD}
@@ -62,11 +62,11 @@ export default function WordsLangDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>NOTE:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.NOTE}
@@ -74,11 +74,11 @@ export default function WordsLangDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>FAMIID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.FAMIID.toString()}
@@ -86,11 +86,11 @@ export default function WordsLangDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ACCURACY:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ACCURACY}

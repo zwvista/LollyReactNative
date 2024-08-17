@@ -38,11 +38,11 @@ export default function PatternsDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ID.toString()}
@@ -50,11 +50,11 @@ export default function PatternsDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>PATTERN:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.PATTERN}
@@ -62,11 +62,11 @@ export default function PatternsDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>NOTE:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.NOTE}
@@ -74,11 +74,11 @@ export default function PatternsDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>TAGS:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.TAGS}

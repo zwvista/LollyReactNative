@@ -36,7 +36,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
 
   return (
     <View style={{flex:1}}>
-      <View style={{flexDirection: "row", alignItems: "center"}}>
+      <View style={stylesApp.row}>
         <View style={{width: '50%'}}>
           <Dropdown
             style={stylesApp.dropdown}

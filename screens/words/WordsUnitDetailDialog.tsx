@@ -50,11 +50,11 @@ export default function WordsUnitDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ID.toString()}
@@ -62,11 +62,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>UNIT:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <Dropdown
               style={stylesApp.dropdown}
                 labelField="label"
@@ -77,11 +77,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>PART:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <Dropdown
               style={stylesApp.dropdown}
                 labelField="label"
@@ -92,11 +92,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>SEQNUM:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 keyboardType="numeric"
@@ -105,11 +105,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>WORDID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.WORDID.toString()}
@@ -117,11 +117,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>WORD:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.WORD}
@@ -129,11 +129,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>NOTE:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.NOTE}
@@ -141,11 +141,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>FAMIID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.FAMIID.toString()}
@@ -153,11 +153,11 @@ export default function WordsUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ACCURACY:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ACCURACY}

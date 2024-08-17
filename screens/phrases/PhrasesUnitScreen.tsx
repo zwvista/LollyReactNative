@@ -116,7 +116,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
             onSubmitEditing={onRefresh}
           />
         </View>
-        <View style={{width: '30%'}}>
+        <View style={stylesApp.rowLeft}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="label"
@@ -139,7 +139,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View style={stylesApp.row}>
                 <View>
                   <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
                   <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>

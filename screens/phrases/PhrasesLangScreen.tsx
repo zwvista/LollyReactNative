@@ -90,7 +90,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
             onSubmitEditing={onRefresh}
           />
         </View>
-        <View style={{width: '30%'}}>
+        <View style={stylesApp.rowLeft}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="label"
@@ -113,7 +113,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View style={stylesApp.row}>
                 <View style={{flexGrow: 1}}>
                   <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
                   <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>

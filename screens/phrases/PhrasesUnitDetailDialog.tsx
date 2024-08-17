@@ -50,11 +50,11 @@ export default function PhrasesUnitDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.ID.toString()}
@@ -62,11 +62,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>UNIT:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <Dropdown
               style={stylesApp.dropdown}
                 labelField="label"
@@ -77,11 +77,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>PART:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <Dropdown
               style={stylesApp.dropdown}
                 labelField="label"
@@ -92,11 +92,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>SEQNUM:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 keyboardType="numeric"
@@ -105,11 +105,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>PHRASEID:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.PHRASEID.toString()}
@@ -117,11 +117,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>PHRASE:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.PHRASE}
@@ -129,11 +129,11 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{width: '30%'}}>
+          <View style={stylesApp.row}>
+            <View style={stylesApp.rowLeft}>
               <Text>TRANSLATION:</Text>
             </View>
-            <View style={{width: '70%'}}>
+            <View style={stylesApp.rowRight}>
               <TextInput
                 style={stylesApp.textinput}
                 value={item.TRANSLATION}

@@ -123,7 +123,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View style={stylesApp.row}>
                 <View>
                   <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
                   <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>

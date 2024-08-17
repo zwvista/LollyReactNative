@@ -86,7 +86,7 @@ export default function SearchScreen({ navigation }:any) {
               onSubmitEditing={onRefresh}
             />
           </View>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
+          <View style={stylesApp.row}>
             <View style={{width: '50%'}}>
               <Dropdown
                 style={stylesApp.dropdown}

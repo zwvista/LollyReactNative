@@ -104,7 +104,7 @@ export default function PatternsScreen({ navigation }:any) {
             onSubmitEditing={onRefresh}
           />
         </View>
-        <View style={{width: '30%'}}>
+        <View style={stylesApp.rowLeft}>
           <Dropdown
             style={stylesApp.dropdown}
             labelField="label"
@@ -127,7 +127,7 @@ export default function PatternsScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View style={stylesApp.row}>
                 <View style={{flexGrow: 1}}>
                   <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
                   <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
