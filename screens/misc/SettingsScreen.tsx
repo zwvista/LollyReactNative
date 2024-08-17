@@ -121,7 +121,7 @@ export default function SettingsScreen({ navigation }:any) {
         <View style={{width: '70%'}}>
           <Dropdown
             style={stylesApp.dropdown}
-            labelField="VOICENAME"
+            labelField="VOICELANG"
             valueField="ID"
             value={settingsService.selectedVoice}
             data={settingsService.voices}

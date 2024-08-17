@@ -239,6 +239,9 @@ export class SettingsService {
     this.textbookFilters = [new MSelectItem(0, 'All Textbooks')].concat(this.textbookFilters);
     this.autoCorrects = res[4] as MAutoCorrect[];
     this.voices = res[5] as MVoice[];
+    console.log(this.voices);
+    console.log(this.USVOICE);
+    // Tts.voices().then(voices => console.log(voices));
     this.selectedVoice = this.voices.find(value => value.ID === this.USVOICE) ||
       (this.voices.length === 0 ? null : this.voices[0]);
     await Promise.all([this.updateTextbook(), this.updateDictReference(), this.updateDictNote(),
@@ -291,7 +294,8 @@ export class SettingsService {
     const newVal = this.selectedVoice.ID;
     const dirty = this.USVOICE !== newVal;
     this.USVOICE = newVal;
-    Tts.setDefaultVoice(this.selectedVoice.VOICENAME);
+    // Tts.setDefaultVoice(this.selectedVoice.VOICENAME);
+    Tts.setDefaultLanguage(this.selectedVoice.VOICELANG);
     if (dirty) await this.userSettingService.updateIntValue(this.INFO_USVOICE, this.USVOICE);
     if (this.settingsListener) this.settingsListener.onUpdateVoice();
   }
