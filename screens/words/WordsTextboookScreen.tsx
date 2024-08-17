@@ -12,6 +12,7 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { getPreferredRangeFromArray } from "../../common/common.ts";
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -88,6 +89,14 @@ export default function WordsTextbookScreen({ navigation }:any) {
     });
   };
 
+  const onPressWordDict = (index: number) => {
+    const [start, end] = getPreferredRangeFromArray(index, wordsUnitService.textbookWords.length, 50);
+    navigation.navigate("Word Dictionary", {
+      words: wordsUnitService.textbookWords.slice(start, end).map(o => ({value: o.WORD})),
+      wordIndex: index - start,
+    });
+  };
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
@@ -149,7 +158,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           <View style={{height: 1, backgroundColor: 'gray'}} />
         }
         data={wordsUnitService.textbookWords}
-        renderItem={({item}) =>
+        renderItem={({item, index}) =>
           <TouchableWithoutFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
@@ -164,7 +173,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                 <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
               </View>
-              <TouchableWithoutFeedback>
+              <TouchableWithoutFeedback onPress={() => onPressWordDict(index)}>
                 <FontAwesome name='chevron-right' size={20} />
               </TouchableWithoutFeedback>
             </View>

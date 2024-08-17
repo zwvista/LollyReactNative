@@ -151,9 +151,6 @@ export default function PhrasesUnitScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
                 <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
               </View>
-              <TouchableWithoutFeedback>
-                <FontAwesome name='chevron-right' size={20} />
-              </TouchableWithoutFeedback>
             </View>
           </TouchableWithoutFeedback>
         }

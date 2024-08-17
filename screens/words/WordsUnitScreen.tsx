@@ -87,6 +87,14 @@ export default function WordsUnitScreen({ navigation }:any) {
     });
   };
 
+  const onPressWordDict = (index: number) => {
+    const words = wordsUnitService.unitWords.map(o => ({value: o.WORD}));
+    navigation.navigate("Word Dictionary", {
+      words,
+      wordIndex: index,
+    });
+  };
+
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
@@ -151,10 +159,7 @@ export default function WordsUnitScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                 <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
               </View>
-              <TouchableWithoutFeedback onPress={() => navigation.navigate("Word Dictionary", {
-                words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
-                wordIndex: index,
-              })}>
+              <TouchableWithoutFeedback onPress={() => onPressWordDict(index)}>
                 <FontAwesome name='chevron-right' size={20} />
               </TouchableWithoutFeedback>
             </View>
