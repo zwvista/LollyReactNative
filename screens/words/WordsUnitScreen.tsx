@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";

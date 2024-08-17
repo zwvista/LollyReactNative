@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { Button, FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -9,12 +9,16 @@ import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
+import { useActionSheet } from "@expo/react-native-action-sheet";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { MLangWord } from "../../models/wpp/lang-word.ts";
 
 export default function WordsLangScreen({ navigation }:any) {
   const wordsLangService = container.resolve(WordsLangService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -30,6 +34,72 @@ export default function WordsLangScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
+
+  const { showActionSheetWithOptions } = useActionSheet();
+
+  const onPressMenu = () => {
+    showActionSheetWithOptions({
+      options: [
+        "Add",
+        "Retrieve All Notes",
+        "Retrieve Notes If Empty",
+        "Clear All Notes",
+        "Clear Notes If Empty",
+        "Batch Edit",
+        "Cancel"
+      ],
+      cancelButtonIndex: 6
+    }, (selectedIndex?: number) => {
+      switch (selectedIndex) {
+        case 0:
+          // Add
+          showDetailDialog(0);
+          break;
+      }
+    });
+  };
+
+  const onPressItem = (item: MLangWord) => {
+    if (editMode)
+      showDetailDialog(item.ID);
+  };
+
+  const onLongPressItem = (item: MLangWord) => {
+    showActionSheetWithOptions({
+      options: [
+        "Delete",
+        "Edit",
+        "Retrieve Note",
+        "Clear Note",
+        "Copy Word",
+        "Google Word",
+        "Cancel"
+      ],
+      cancelButtonIndex: 6,
+      destructiveButtonIndex: 0
+    }, (selectedIndex?: number) => {
+      switch (selectedIndex) {
+        case 1:
+          // Edit
+          showDetailDialog(item.ID);
+          break;
+      }
+    });
+  };
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () =>
+        <View style={{flexDirection: "row"}}>
+          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
+            <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={onPressMenu}>
+            <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
+          </TouchableWithoutFeedback>
+        </View>
+    });
+  }, [editMode]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -73,15 +143,20 @@ export default function WordsLangScreen({ navigation }:any) {
         }
         data={wordsLangService.langWords}
         renderItem={({item}) =>
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View style={{flexGrow: 1}}>
-              <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
-              <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
+          <TouchableWithoutFeedback
+            onPress={() => onPressItem(item)}
+            onLongPress={() => onLongPressItem(item)}
+          >
+            <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View style={{flexGrow: 1}}>
+                <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
+                <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
+              </View>
+              <TouchableWithoutFeedback>
+                <FontAwesome name='chevron-right' size={20} />
+              </TouchableWithoutFeedback>
             </View>
-            <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
-              <FontAwesome name='chevron-right' size={20} />
-            </TouchableWithoutFeedback>
-          </View>
+          </TouchableWithoutFeedback>
         }
       />
       {showDetail && <WordsLangDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
