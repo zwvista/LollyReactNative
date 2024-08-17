@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
@@ -129,7 +129,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
         }
         data={wordsUnitService.textbookWords}
         renderItem={({item, index}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -143,11 +143,11 @@ export default function WordsTextbookScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                 <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
               </View>
-              <TouchableWithoutFeedback onPress={() => onPressItemRight(index)}>
+              <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
                 <FontAwesome name='chevron-right' size={20} />
-              </TouchableWithoutFeedback>
+              </TouchableNativeFeedback>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <WordsTextbookDetailDialog id={detailId} isDialogOpened={showDetail}

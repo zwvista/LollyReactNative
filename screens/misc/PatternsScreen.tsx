@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -80,9 +80,9 @@ export default function PatternsScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
+        <TouchableNativeFeedback onPress={() => showDetailDialog(0)}>
           <FontAwesome name='plus-circle' size={30} color='blue' />
-        </TouchableWithoutFeedback>
+        </TouchableNativeFeedback>
     });
   }, []);
 
@@ -122,7 +122,7 @@ export default function PatternsScreen({ navigation }:any) {
         }
         data={patternsService.patterns}
         renderItem={({item, index}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -131,11 +131,11 @@ export default function PatternsScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
                 <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
               </View>
-              <TouchableWithoutFeedback onPress={() => onPressItemRight(index)}>
+              <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
                 <FontAwesome name='chevron-right' size={20} />
-              </TouchableWithoutFeedback>
+              </TouchableNativeFeedback>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <PatternsDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

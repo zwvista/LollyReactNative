@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -89,12 +89,12 @@ export default function PhrasesUnitScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <View style={{flexDirection: "row"}}>
-          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
+          <TouchableNativeFeedback onPress={() => setEditMode(!editMode)}>
             <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={onPressMenu}>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={onPressMenu}>
             <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         </View>
     });
   }, [editMode]);
@@ -135,7 +135,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         }
         data={phrasesUnitService.unitPhrases}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -150,7 +150,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
               </View>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <PhrasesUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

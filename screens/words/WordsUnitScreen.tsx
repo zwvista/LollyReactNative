@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
@@ -104,12 +104,12 @@ export default function WordsUnitScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <View style={{flexDirection: "row"}}>
-          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
+          <TouchableNativeFeedback onPress={() => setEditMode(!editMode)}>
             <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
-          </TouchableWithoutFeedback>
-          <TouchableWithoutFeedback onPress={onPressMenu}>
+          </TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={onPressMenu}>
             <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         </View>
     });
   }, [editMode]);
@@ -150,7 +150,7 @@ export default function WordsUnitScreen({ navigation }:any) {
         }
         data={wordsUnitService.unitWords}
         renderItem={({item, index}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -164,11 +164,11 @@ export default function WordsUnitScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                 <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
               </View>
-              <TouchableWithoutFeedback onPress={() => onPressItemRight(index)}>
+              <TouchableNativeFeedback onPress={() => onPressItemRight(index)}>
                 <FontAwesome name='chevron-right' size={20} />
-              </TouchableWithoutFeedback>
+              </TouchableNativeFeedback>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -116,7 +116,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
         }
         data={phrasesUnitService.textbookPhrases}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -131,7 +131,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
               </View>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <PhrasesTextbookDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}

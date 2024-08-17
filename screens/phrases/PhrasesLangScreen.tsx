@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -66,9 +66,9 @@ export default function PhrasesLangScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
+        <TouchableNativeFeedback onPress={() => showDetailDialog(0)}>
           <FontAwesome name='plus-circle' size={30} color='blue' />
-        </TouchableWithoutFeedback>
+        </TouchableNativeFeedback>
     });
   }, []);
 
@@ -108,7 +108,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
         }
         data={phrasesLangService.langPhrases}
         renderItem={({item}) =>
-          <TouchableWithoutFeedback
+          <TouchableNativeFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
           >
@@ -118,7 +118,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
               </View>
             </View>
-          </TouchableWithoutFeedback>
+          </TouchableNativeFeedback>
         }
       />
       {showDetail && <PhrasesLangDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
