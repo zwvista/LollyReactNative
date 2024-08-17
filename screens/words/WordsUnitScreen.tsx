@@ -11,12 +11,14 @@ import FontAwesome from "react-native-vector-icons/FontAwesome.js";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
+import { MUnitWord } from "../../models/wpp/unit-word.ts";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const [editMode, setEditMode] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -49,14 +51,20 @@ export default function WordsUnitScreen({ navigation }:any) {
       cancelButtonIndex: 6
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {
-        case 1:
-          // Save
+        case 0:
+          // Add
+          showDetailDialog(0);
           break;
       }
     });
   };
 
-  const onLongPressItem = () => {
+  const onPressItem = (item: MUnitWord) => {
+    if (editMode)
+      showDetailDialog(item.ID);
+  };
+
+  const onLongPressItem = (item: MUnitWord) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -72,7 +80,8 @@ export default function WordsUnitScreen({ navigation }:any) {
     }, (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
-          // Save
+          // Edit
+          showDetailDialog(item.ID);
           break;
       }
     });
@@ -81,11 +90,16 @@ export default function WordsUnitScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <TouchableWithoutFeedback onPress={onPressMenu}>
-          <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
-        </TouchableWithoutFeedback>
+        <View style={{flexDirection: "row"}}>
+          <TouchableWithoutFeedback onPress={() => setEditMode(!editMode)}>
+            <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} />
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={onPressMenu}>
+            <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
+          </TouchableWithoutFeedback>
+        </View>
     });
-  }, []);
+  }, [editMode]);
 
   useEffect(() => {
     (async () => {
@@ -124,26 +138,26 @@ export default function WordsUnitScreen({ navigation }:any) {
         data={wordsUnitService.unitWords}
         renderItem={({item, index}) =>
           <TouchableWithoutFeedback
-            onPress={() => navigation.navigate("Word Dictionary", {
-              words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
-              wordIndex: index,
-            })}
-            onLongPress={onLongPressItem}
+            onPress={() => onPressItem(item)}
+            onLongPress={() => onLongPressItem(item)}
           >
-          <View style={{flexDirection: "row", alignItems: "center"}}>
-            <View>
-              <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
-              <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
-              <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+            <View style={{flexDirection: "row", alignItems: "center"}}>
+              <View>
+                <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
+                <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
+                <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+              </View>
+              <View style={{flexGrow: 1}}>
+                <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
+                <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
+              </View>
+              <TouchableWithoutFeedback onPress={() => navigation.navigate("Word Dictionary", {
+                words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
+                wordIndex: index,
+              })}>
+                <FontAwesome name='chevron-right' size={20} />
+              </TouchableWithoutFeedback>
             </View>
-            <View style={{flexGrow: 1}}>
-              <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
-              <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
-            </View>
-            <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
-              <FontAwesome name='chevron-right' size={20} />
-            </TouchableWithoutFeedback>
-          </View>
           </TouchableWithoutFeedback>
         }
       />
