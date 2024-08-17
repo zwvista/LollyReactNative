@@ -1,4 +1,4 @@
-import { Button, SafeAreaView, Text, TextInput, View } from "react-native";
+import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -30,62 +30,64 @@ export default function PatternsDetailDialog(
 
   return (
     <Modal isVisible={isDialogOpened}>
-      <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
-        <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
-          <View style={{marginRight: 8}}>
-            <Button title="Cancel" onPress={handleCloseDialog} />
+      <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
+          <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View style={{marginRight: 8}}>
+              <Button title="Cancel" onPress={handleCloseDialog} />
+            </View>
+            <Button title="Save" onPress={save} />
           </View>
-          <Button title="Save" onPress={save} />
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>ID:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>ID:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.ID.toString()}
+                editable={false}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.ID.toString()}
-              editable={false}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>PATTERN:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.PATTERN}
+                onChangeText={e => onChangeTextInput("PATTERN", e)}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>PATTERN:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>NOTE:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.NOTE}
+                onChangeText={e => onChangeTextInput("NOTE", e)}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.PATTERN}
-              onChangeText={e => onChangeTextInput("PATTERN", e)}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>TAGS:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.TAGS}
+                onChangeText={e => onChangeTextInput("TAGS", e)}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>NOTE:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>TAGS:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.TAGS}
-              onChangeText={e => onChangeTextInput("TAGS", e)}
-            />
-          </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </TouchableNativeFeedback>
     </Modal>
   );
 }

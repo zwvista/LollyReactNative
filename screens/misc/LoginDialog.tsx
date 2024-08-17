@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, SafeAreaView, Text, TextInput, View } from 'react-native';
+import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
 import { container } from "tsyringe";
 import { useReducer } from "react";
 import { LoginService } from "../../view-models/misc/login.service.ts";
@@ -34,35 +34,37 @@ export default function LoginDialog(
 
   return (
     <Modal isVisible={isDialogOpened}>
-      <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 8, backgroundColor: 'white'}}>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>USERNAME:</Text>
+      <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: 8, backgroundColor: 'white'}}>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>USERNAME:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={loginService.item.USERNAME}
+                onChangeText={onChangeUsername}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={loginService.item.USERNAME}
-              onChangeText={onChangeUsername}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>PASSWORD:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={loginService.item.PASSWORD}
+                onChangeText={onChangePassword}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>PASSWORD:</Text>
+          <View style={{flexDirection: "row", justifyContent: "center"}}>
+            <Button title="Login" onPress={login} />
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={loginService.item.PASSWORD}
-              onChangeText={onChangePassword}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", justifyContent: "center"}}>
-          <Button title="Login" onPress={login} />
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </TouchableNativeFeedback>
     </Modal>
   );
 }

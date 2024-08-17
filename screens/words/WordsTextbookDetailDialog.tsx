@@ -1,4 +1,4 @@
-import { Button, SafeAreaView, Text, TextInput, View } from "react-native";
+import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
@@ -42,141 +42,143 @@ export default function WordsTextbookDetailDialog(
 
   return (
     <Modal isVisible={isDialogOpened}>
-      <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
-        <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
-          <View style={{marginRight: 8}}>
-            <Button title="Cancel" onPress={handleCloseDialog} />
+      <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+        <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
+          <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View style={{marginRight: 8}}>
+              <Button title="Cancel" onPress={handleCloseDialog} />
+            </View>
+            <Button title="Save" onPress={save} />
           </View>
-          <Button title="Save" onPress={save} />
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>ID:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>ID:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.ID.toString()}
+                editable={false}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.ID.toString()}
-              editable={false}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>TEXTBOOK:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.TEXTBOOKNAME}
+                editable={false}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>TEXTBOOK:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>UNIT:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <Dropdown
+              style={stylesApp.dropdown}
+                labelField="label"
+                valueField="value"
+                value={settingsService.units.find(o => o.value === item.UNIT)}
+                data={settingsService.units}
+                onChange={onUnitChange}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.TEXTBOOKNAME}
-              editable={false}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>PART:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <Dropdown
+              style={stylesApp.dropdown}
+                labelField="label"
+                valueField="value"
+                value={settingsService.parts.find(o => o.value === item.PART)}
+                data={settingsService.parts}
+                onChange={onPartChange}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>UNIT:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>SEQNUM:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                keyboardType="numeric"
+                value={item.SEQNUM.toString()}
+                onChangeText={e => onChangeTextInput("SEQNUM", e)}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <Dropdown
-            style={stylesApp.dropdown}
-              labelField="label"
-              valueField="value"
-              value={settingsService.units.find(o => o.value === item.UNIT)}
-              data={settingsService.units}
-              onChange={onUnitChange}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>WORDID:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.WORDID.toString()}
+                editable={false}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>PART:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>WORD:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.WORD}
+                onChangeText={e => onChangeTextInput("WORD", e)}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <Dropdown
-            style={stylesApp.dropdown}
-              labelField="label"
-              valueField="value"
-              value={settingsService.parts.find(o => o.value === item.PART)}
-              data={settingsService.parts}
-              onChange={onPartChange}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>NOTE:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.NOTE}
+                onChangeText={e => onChangeTextInput("NOTE", e)}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>SEQNUM:</Text>
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>FAMIID:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.FAMIID.toString()}
+                editable={false}
+              />
+            </View>
           </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              keyboardType="numeric"
-              value={item.SEQNUM.toString()}
-              onChangeText={e => onChangeTextInput("SEQNUM", e)}
-            />
+          <View style={{flexDirection: "row", alignItems: "center"}}>
+            <View style={{width: '30%'}}>
+              <Text>ACCURACY:</Text>
+            </View>
+            <View style={{width: '70%'}}>
+              <TextInput
+                style={stylesApp.textinput}
+                value={item.ACCURACY}
+                editable={false}
+              />
+            </View>
           </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>WORDID:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.WORDID.toString()}
-              editable={false}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>WORD:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.WORD}
-              onChangeText={e => onChangeTextInput("WORD", e)}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>NOTE:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>FAMIID:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.FAMIID.toString()}
-              editable={false}
-            />
-          </View>
-        </View>
-        <View style={{flexDirection: "row", alignItems: "center"}}>
-          <View style={{width: '30%'}}>
-            <Text>ACCURACY:</Text>
-          </View>
-          <View style={{width: '70%'}}>
-            <TextInput
-              style={stylesApp.textinput}
-              value={item.ACCURACY}
-              editable={false}
-            />
-          </View>
-        </View>
-      </SafeAreaView>
+        </SafeAreaView>
+      </TouchableNativeFeedback>
     </Modal>
   );
 }
