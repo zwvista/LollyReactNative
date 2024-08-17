@@ -131,30 +131,33 @@ export default function PhrasesUnitScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <FlatList
-        ItemSeparatorComponent={(props) =>
-          <View style={{height: 1, backgroundColor: 'gray'}} />
-        }
-        data={phrasesUnitService.unitPhrases}
-        renderItem={({item}) =>
-          <TouchableNativeFeedback
-            onPress={() => onPressItem(item)}
-            onLongPress={() => onLongPressItem(item)}
-          >
-            <View style={{flexDirection: "row", alignItems: "center"}}>
-              <View>
-                <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
-                <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
-                <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+      <View style={{flexGrow: 1}}>
+        <FlatList
+          keyExtractor={item => item.ID.toString()}
+          ItemSeparatorComponent={(props) =>
+            <View style={{height: 1, backgroundColor: 'gray'}} />
+          }
+          data={phrasesUnitService.unitPhrases}
+          renderItem={({item}) =>
+            <TouchableNativeFeedback
+              onPress={() => onPressItem(item)}
+              onLongPress={() => onLongPressItem(item)}
+            >
+              <View style={{flexDirection: "row", alignItems: "center"}}>
+                <View>
+                  <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
+                  <Text style={stylesApp.unitpart}>{item.PARTSTR}</Text>
+                  <Text style={stylesApp.unitpart}>{item.SEQNUM}</Text>
+                </View>
+                <View style={{flexGrow: 1}}>
+                  <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
+                  <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
+                </View>
               </View>
-              <View style={{flexGrow: 1}}>
-                <Text style={stylesApp.itemtext1}>{item.PHRASE}</Text>
-                <Text style={stylesApp.itemtext2}>{item.TRANSLATION}</Text>
-              </View>
-            </View>
-          </TouchableNativeFeedback>
-        }
-      />
+            </TouchableNativeFeedback>
+          }
+        />
+      </View>
       {showDetail && <PhrasesUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
     </View>
   );

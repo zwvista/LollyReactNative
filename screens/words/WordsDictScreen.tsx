@@ -58,7 +58,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flex: 1, alignSelf: "stretch"}}>
+      <View style={{flexGrow: 1}}>
         <WebView
           source={webViewSource}
         />

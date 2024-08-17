@@ -31,7 +31,7 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
         data={patterns}
         onChange={onPatternChange}
       />
-      <View style={{flex: 1, alignSelf: "stretch"}}>
+      <View style={{flexGrow: 1}}>
         <WebView
           source={webViewSource}
         />

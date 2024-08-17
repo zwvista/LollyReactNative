@@ -109,6 +109,7 @@ export default function PhrasesTextbookDetailDialog(
           <View style={{width: '70%'}}>
             <TextInput
               style={stylesApp.textinput}
+              keyboardType="numeric"
               value={item.SEQNUM.toString()}
               onChangeText={e => onChangeTextInput("SEQNUM", e)}
             />
