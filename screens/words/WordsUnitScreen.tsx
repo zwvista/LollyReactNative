@@ -9,13 +9,31 @@ import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome.js";
 import { MSelectItem } from "../../common/selectitem.ts";
-import { applyStyle } from "react-native-reanimated/lib/typescript/screenTransition/styleUpdater";
+import ModalActionsDialog from "../../components/ModalActionsDialog.tsx";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const [showScreenActions, setShowScreenActions] = useState(false);
+  const [showItemActions, setShowItemActions] = useState(false);
+  const screenActions = [
+    "Add",
+    "Retrieve All Notes",
+    "Retrieve Notes If Empty",
+    "Clear All Notes",
+    "Clear Notes If Empty",
+    "Batch Edit",
+  ].map(s => ({title: s}));
+  const itemActions = [
+    "Delete",
+    "Edit",
+    "Retrieve Note",
+    "Clear Note",
+    "Copy Word",
+    "Google Word",
+  ].map(s => ({title: s}));
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -32,9 +50,21 @@ export default function WordsUnitScreen({ navigation }:any) {
     setShowDetail(true);
   };
 
+  const handelCloseScreenActions = (index: number) => {
+    setShowScreenActions(false);
+  };
+
+  const handelCloseItemActions = (index: number) => {
+    setShowItemActions(false);
+  };
+
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => <Button onPress={() => showDetailDialog(0)} title="Add" />
+      headerRight: () =>
+        <View style={{flexDirection: "row"}}>
+          <Button onPress={() => showDetailDialog(0)} title="Add" />
+          <Button onPress={() => setShowScreenActions(true)} title="More" />
+        </View>
     });
   }, []);
 
@@ -74,10 +104,13 @@ export default function WordsUnitScreen({ navigation }:any) {
         }
         data={wordsUnitService.unitWords}
         renderItem={({item, index}) =>
-          <TouchableWithoutFeedback onPress={ () => navigation.navigate("Word Dictionary", {
-            words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
-            wordIndex: index,
-          })}>
+          <TouchableWithoutFeedback
+            onPress={() => navigation.navigate("Word Dictionary", {
+              words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
+              wordIndex: index,
+            })}
+            onLongPress={() => setShowItemActions(true)}
+          >
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View>
               <Text style={stylesApp.unitpart}>{item.UNITSTR}</Text>
@@ -88,7 +121,7 @@ export default function WordsUnitScreen({ navigation }:any) {
               <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
               <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
             </View>
-            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+            <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
               <FontAwesome name='chevron-right' size={20} />
             </TouchableWithoutFeedback>
           </View>
@@ -96,6 +129,8 @@ export default function WordsUnitScreen({ navigation }:any) {
         }
       />
       {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showScreenActions && <ModalActionsDialog data={screenActions} isDialogOpened={showScreenActions} handleCloseDialog={handelCloseScreenActions} />}
+      {showItemActions && <ModalActionsDialog data={itemActions} isDialogOpened={showItemActions} handleCloseDialog={handelCloseItemActions} />}
     </View>
   );
 }

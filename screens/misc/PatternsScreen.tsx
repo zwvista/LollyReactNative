@@ -78,7 +78,7 @@ export default function PatternsScreen({ navigation }:any) {
               <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
               <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
             </View>
-            <TouchableWithoutFeedback onPress={ () => showDetailDialog(item.ID)}>
+            <TouchableWithoutFeedback onPress={() => showDetailDialog(item.ID)}>
               <FontAwesome name='chevron-right' size={20} />
             </TouchableWithoutFeedback>
           </View>
