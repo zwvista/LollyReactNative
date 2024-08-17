@@ -8,32 +8,15 @@ import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome.js";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
 import { MSelectItem } from "../../common/selectitem.ts";
-import ModalActionsDialog from "../../components/ModalActionsDialog.tsx";
+import { useActionSheet } from "@expo/react-native-action-sheet";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
-  const [showScreenActions, setShowScreenActions] = useState(false);
-  const [showItemActions, setShowItemActions] = useState(false);
-  const screenActions = [
-    "Add",
-    "Retrieve All Notes",
-    "Retrieve Notes If Empty",
-    "Clear All Notes",
-    "Clear Notes If Empty",
-    "Batch Edit",
-  ].map(s => ({title: s}));
-  const itemActions = [
-    "Delete",
-    "Edit",
-    "Retrieve Note",
-    "Clear Note",
-    "Copy Word",
-    "Google Word",
-  ].map(s => ({title: s}));
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -50,21 +33,57 @@ export default function WordsUnitScreen({ navigation }:any) {
     setShowDetail(true);
   };
 
-  const handelCloseScreenActions = (index: number) => {
-    setShowScreenActions(false);
+  const { showActionSheetWithOptions } = useActionSheet();
+
+  const onPressMenu = () => {
+    showActionSheetWithOptions({
+      options: [
+        "Add",
+        "Retrieve All Notes",
+        "Retrieve Notes If Empty",
+        "Clear All Notes",
+        "Clear Notes If Empty",
+        "Batch Edit",
+        "Cancel"
+      ],
+      cancelButtonIndex: 6
+    }, (selectedIndex?: number) => {
+      switch (selectedIndex) {
+        case 1:
+          // Save
+          break;
+      }
+    });
   };
 
-  const handelCloseItemActions = (index: number) => {
-    setShowItemActions(false);
+  const onLongPressItem = () => {
+    showActionSheetWithOptions({
+      options: [
+        "Delete",
+        "Edit",
+        "Retrieve Note",
+        "Clear Note",
+        "Copy Word",
+        "Google Word",
+        "Cancel"
+      ],
+      cancelButtonIndex: 6,
+      destructiveButtonIndex: 0
+    }, (selectedIndex?: number) => {
+      switch (selectedIndex) {
+        case 1:
+          // Save
+          break;
+      }
+    });
   };
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{flexDirection: "row"}}>
-          <Button onPress={() => showDetailDialog(0)} title="Add" />
-          <Button onPress={() => setShowScreenActions(true)} title="More" />
-        </View>
+        <TouchableWithoutFeedback onPress={onPressMenu}>
+          <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
+        </TouchableWithoutFeedback>
     });
   }, []);
 
@@ -109,7 +128,7 @@ export default function WordsUnitScreen({ navigation }:any) {
               words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
               wordIndex: index,
             })}
-            onLongPress={() => setShowItemActions(true)}
+            onLongPress={onLongPressItem}
           >
           <View style={{flexDirection: "row", alignItems: "center"}}>
             <View>
@@ -129,8 +148,6 @@ export default function WordsUnitScreen({ navigation }:any) {
         }
       />
       {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
-      {showScreenActions && <ModalActionsDialog data={screenActions} isDialogOpened={showScreenActions} handleCloseDialog={handelCloseScreenActions} />}
-      {showItemActions && <ModalActionsDialog data={itemActions} isDialogOpened={showItemActions} handleCloseDialog={handelCloseItemActions} />}
     </View>
   );
 }

@@ -24,6 +24,7 @@ import SettingsScreen from "./screens/misc/SettingsScreen.tsx";
 import { MMKVLoader } from "react-native-mmkv-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import WordsDictScreen from "./screens/words/WordsDictScreen.tsx";
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
@@ -71,18 +72,15 @@ function Root() {
   return (
     <Drawer.Navigator>
        <Drawer.Screen name="Search" component={SearchScreen} options={{
-         headerRight: () => <Button title="Logout" />,
          drawerIcon: () => <FontAwesome name='search' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Settings" component={SettingsScreen} options={{
          drawerIcon: () => <FontAwesome name='cog' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Unit" component={WordsUnitScreen} options={{
-         headerRight: () => <Button title="Add" />,
          drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Phrases in Unit" component={PhrasesUnitScreen} options={{
-         headerRight: () => <Button title="Add" />,
          drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Textbook" component={WordsTextbookScreen} options={{
@@ -92,15 +90,12 @@ function Root() {
          drawerIcon: () => <FontAwesome name='taxi' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Language" component={WordsLangScreen} options={{
-         headerRight: () => <Button title="Add" />,
          drawerIcon: () => <FontAwesome name='plane' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Phrases in Language" component={PhrasesLangScreen} options={{
-         headerRight: () => <Button title="Add" />,
          drawerIcon: () => <FontAwesome name='rocket' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Patterns in Language" component={PatternsScreen} options={{
-         headerRight: () => <Button title="Add" />,
          drawerIcon: () => <FontAwesome name='motorcycle' size={30} color='#130f40' />
        }}/>
     </Drawer.Navigator>
@@ -111,6 +106,7 @@ function Root() {
 // https://stackoverflow.com/questions/69974336/how-to-use-drawer-navigator-stack-navigator-combined-in-react-native
 export default function App() {
   return (
+    <ActionSheetProvider>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -123,5 +119,6 @@ export default function App() {
         }} />
       </Stack.Navigator>
     </NavigationContainer>
+    </ActionSheetProvider>
   );
 }

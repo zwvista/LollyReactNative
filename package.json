@@ -12,6 +12,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@expo/react-native-action-sheet": "^4.1.0",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/drawer": "^6.7.2",
     "@react-navigation/native": "^6.1.18",
