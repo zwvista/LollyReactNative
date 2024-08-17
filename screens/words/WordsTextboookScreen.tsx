@@ -11,7 +11,6 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { getPreferredRangeFromArray } from "../../common/common.ts";
 
 export default function WordsTextbookScreen({ navigation }:any) {

@@ -10,7 +10,6 @@ import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
 
 export default function PhrasesLangScreen({ navigation }:any) {
@@ -64,7 +63,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
-          <FontAwesome name='edit' size={30} color={'blue'} />
+          <FontAwesome name='plus-circle' size={30} color='blue' />
         </TouchableWithoutFeedback>
     });
   }, []);

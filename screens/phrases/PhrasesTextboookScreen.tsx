@@ -10,7 +10,6 @@ import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {

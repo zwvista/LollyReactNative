@@ -10,7 +10,6 @@ import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
 import { getPreferredRangeFromArray } from "../../common/common.ts";
 
@@ -76,14 +75,8 @@ export default function WordsLangScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
-          <MaterialCommunityIcons name='dots-vertical' size={30} color='blue' />
+          <FontAwesome name='plus-circle' size={30} color='blue' />
         </TouchableWithoutFeedback>
-    });
-  }, []);
-
-  useEffect(() => {
-    navigation.setOptions({
-      headerRight: () => <Button onPress={() => showDetailDialog(0)} title="Add" />
     });
   }, []);
 

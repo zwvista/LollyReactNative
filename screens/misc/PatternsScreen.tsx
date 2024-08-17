@@ -10,7 +10,6 @@ import { stylesApp } from "../../App.tsx";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { MPattern } from "../../models/wpp/pattern.ts";
 
 export default function PatternsScreen({ navigation }:any) {
@@ -64,7 +63,7 @@ export default function PatternsScreen({ navigation }:any) {
     navigation.setOptions({
       headerRight: () =>
         <TouchableWithoutFeedback onPress={() => showDetailDialog(0)}>
-          <MaterialCommunityIcons name='dots-vertical' size={30} color='blue'/>
+          <FontAwesome name='plus-circle' size={30} color='blue' />
         </TouchableWithoutFeedback>
     });
   }, []);
