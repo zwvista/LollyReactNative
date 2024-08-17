@@ -12,6 +12,7 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function PhrasesUnitScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -75,6 +76,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         case 1:
           // Edit
           showDetailDialog(item.ID);
+          break;
+        case 2:
+          // Copy Phrase
+          Clipboard.setString(item.PHRASE);
           break;
       }
     });

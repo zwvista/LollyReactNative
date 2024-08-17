@@ -11,6 +11,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const phrasesLangService = container.resolve(PhrasesLangService);
@@ -53,6 +54,10 @@ export default function PhrasesLangScreen({ navigation }:any) {
         case 1:
           // Edit
           showDetailDialog(item.ID);
+          break;
+        case 2:
+          // Copy Phrase
+          Clipboard.setString(item.PHRASE);
           break;
       }
     });

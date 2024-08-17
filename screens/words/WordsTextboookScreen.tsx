@@ -12,6 +12,7 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import { getPreferredRangeFromArray } from "../../common/common.ts";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function WordsTextbookScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -63,6 +64,10 @@ export default function WordsTextbookScreen({ navigation }:any) {
         case 1:
           // Edit
           showDetailDialog(item.ID);
+          break;
+        case 4:
+          // Copy Word
+          Clipboard.setString(item.WORD);
           break;
       }
     });

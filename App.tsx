@@ -122,7 +122,7 @@ export default function App() {
             title: 'Word Dictionary'
           }} />
           <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} options={{
-            title: 'Word Dictionary'
+            title: 'Patterns Web Page'
           }} />
         </Stack.Navigator>
       </NavigationContainer>

@@ -7,10 +7,10 @@ import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.t
 import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import { stylesApp } from "../../App.tsx";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
+import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -59,6 +59,10 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
         case 1:
           // Edit
           showDetailDialog(item.ID);
+          break;
+        case 2:
+          // Copy Phrase
+          Clipboard.setString(item.PHRASE);
           break;
       }
     });
