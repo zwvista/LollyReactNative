@@ -12,7 +12,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "./screens/misc/SearchScreen";
 import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
 import { NavigationContainer } from '@react-navigation/native';
-import { Button, Settings, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import WordsUnitScreen from "./screens/words/WordsUnitScreen.tsx";
 import WordsTextbookScreen from "./screens/words/WordsTextboookScreen.tsx";
 import WordsLangScreen from "./screens/words/WordsLangScreen.tsx";
