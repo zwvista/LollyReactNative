@@ -17,6 +17,7 @@ export default function PatternsScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -32,8 +33,6 @@ export default function PatternsScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
-
-  const { showActionSheetWithOptions } = useActionSheet();
 
   const onPressItem = (item: MPattern) => {
   };
@@ -57,6 +56,9 @@ export default function PatternsScreen({ navigation }:any) {
           break;
       }
     });
+  };
+
+  const onPressItemRight = (index: number) => {
   };
 
   useEffect(() => {
@@ -103,7 +105,7 @@ export default function PatternsScreen({ navigation }:any) {
           <View style={{height: 1, backgroundColor: 'gray'}} />
         }
         data={patternsService.patterns}
-        renderItem={({item}) =>
+        renderItem={({item, index}) =>
           <TouchableWithoutFeedback
             onPress={() => onPressItem(item)}
             onLongPress={() => onLongPressItem(item)}
@@ -113,6 +115,9 @@ export default function PatternsScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.PATTERN}</Text>
                 <Text style={stylesApp.itemtext2}>{item.TAGS}</Text>
               </View>
+              <TouchableWithoutFeedback onPress={() => onPressItemRight(index)}>
+                <FontAwesome name='chevron-right' size={20} />
+              </TouchableWithoutFeedback>
             </View>
           </TouchableWithoutFeedback>
         }

@@ -19,6 +19,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
   const [editMode, setEditMode] = useState(false);
+  const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -34,8 +35,6 @@ export default function PhrasesUnitScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
-
-  const { showActionSheetWithOptions } = useActionSheet();
 
   const onPressMenu = () => {
     showActionSheetWithOptions({

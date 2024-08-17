@@ -17,6 +17,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -32,8 +33,6 @@ export default function PhrasesLangScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
-
-  const { showActionSheetWithOptions } = useActionSheet();
 
   const onPressItem = (item: MLangPhrase) => {
   };

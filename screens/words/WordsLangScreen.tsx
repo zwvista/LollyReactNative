@@ -18,6 +18,7 @@ export default function WordsLangScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
+  const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -33,8 +34,6 @@ export default function WordsLangScreen({ navigation }:any) {
     setDetailId(id);
     setShowDetail(true);
   };
-
-  const { showActionSheetWithOptions } = useActionSheet();
 
   const onPressItem = (item: MLangWord) => {
   };
@@ -63,7 +62,7 @@ export default function WordsLangScreen({ navigation }:any) {
     });
   };
 
-  const onPressWordDict = (index: number) => {
+  const onPressItemRight = (index: number) => {
     const [start, end] = getPreferredRangeFromArray(index, wordsLangService.langWords.length, 50);
     navigation.navigate("Word Dictionary", {
       words: wordsLangService.langWords.slice(start, end).map(o => ({value: o.WORD})),
@@ -125,7 +124,7 @@ export default function WordsLangScreen({ navigation }:any) {
                 <Text style={stylesApp.itemtext1}>{item.WORD}</Text>
                 <Text style={stylesApp.itemtext2}>{item.NOTE}</Text>
               </View>
-              <TouchableWithoutFeedback onPress={() => onPressWordDict(index)}>
+              <TouchableWithoutFeedback onPress={() => onPressItemRight(index)}>
                 <FontAwesome name='chevron-right' size={20} />
               </TouchableWithoutFeedback>
             </View>
