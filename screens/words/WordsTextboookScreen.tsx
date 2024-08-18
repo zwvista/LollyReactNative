@@ -1,4 +1,4 @@
-import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
+import { FlatList, Linking, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
@@ -46,7 +46,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
     settingsService.speak(item.WORD);
   };
 
-  const onLongPressItem = (item: MUnitWord) => {
+  const onLongPressItem = (item: MUnitWord, index: number) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -62,9 +62,17 @@ export default function WordsTextbookScreen({ navigation }:any) {
       destructiveButtonIndex: 0
     }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
+        case 0:
+          // Delete
+          await wordsUnitService.delete(item);
+          break;
         case 1:
           // Edit
           showDetailDialog(item.ID);
+          break;
+        case 2:
+          // Retrieve Note
+          await wordsUnitService.getNote(index);
           break;
         case 4:
           // Copy Word
@@ -73,6 +81,11 @@ export default function WordsTextbookScreen({ navigation }:any) {
         case 5:
           // Google Word
           await googleString(item.WORD);
+          break;
+        case 6:
+          // Online Dictionary
+          const url = settingsService.selectedDictReference.urlString(item.WORD, settingsService.autoCorrects);
+          await Linking.openURL(url);
           break;
       }
     });
@@ -138,7 +151,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item)}
+              onLongPress={() => onLongPressItem(item, index)}
             >
               <View style={StylesApp.row}>
                 <View>

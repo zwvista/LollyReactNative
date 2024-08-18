@@ -63,7 +63,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
       settingsService.speak(item.PHRASE);
   };
 
-  const onLongPressItem = (item: MUnitPhrase) => {
+  const onLongPressItem = (item: MUnitPhrase, index: number) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -76,6 +76,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
       destructiveButtonIndex: 0
     }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
+        case 0:
+          // Delete
+          await phrasesUnitService.delete(item);
+          break;
         case 1:
           // Edit
           showDetailDialog(item.ID);
@@ -139,10 +143,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
             <View style={{height: 1, backgroundColor: 'gray'}} />
           }
           data={phrasesUnitService.unitPhrases}
-          renderItem={({item}) =>
+          renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item)}
+              onLongPress={() => onLongPressItem(item, index)}
             >
               <View style={StylesApp.row}>
                 <View>

@@ -48,7 +48,7 @@ export default function PatternsScreen({ navigation }:any) {
     });
   };
 
-  const onLongPressItem = (item: MPattern) => {
+  const onLongPressItem = (item: MPattern, index: number) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -62,6 +62,10 @@ export default function PatternsScreen({ navigation }:any) {
       destructiveButtonIndex: 0
     }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
+        case 0:
+          // Delete
+          await patternsService.delete(item.ID);
+          break;
         case 1:
           // Edit
           showDetailDialog(item.ID);
@@ -129,7 +133,7 @@ export default function PatternsScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item)}
+              onLongPress={() => onLongPressItem(item, index)}
             >
               <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>

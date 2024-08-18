@@ -40,7 +40,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
     settingsService.speak(item.PHRASE);
   };
 
-  const onLongPressItem = (item: MLangPhrase) => {
+  const onLongPressItem = (item: MLangPhrase, index: number) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -53,6 +53,10 @@ export default function PhrasesLangScreen({ navigation }:any) {
       destructiveButtonIndex: 0
     }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
+        case 0:
+          // Delete
+          await phrasesLangService.delete(item);
+          break;
         case 1:
           // Edit
           showDetailDialog(item.ID);
@@ -113,10 +117,10 @@ export default function PhrasesLangScreen({ navigation }:any) {
             <View style={{height: 1, backgroundColor: 'gray'}} />
           }
           data={phrasesLangService.langPhrases}
-          renderItem={({item}) =>
+          renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item)}
+              onLongPress={() => onLongPressItem(item, index)}
             >
               <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>
