@@ -12,6 +12,7 @@ export default function YesNoDialog(
       {
         text: 'No',
         style: 'cancel',
+        isPreferred: true,
       },
       {
         text: 'Yes',

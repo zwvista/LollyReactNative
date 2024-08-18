@@ -47,7 +47,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
     settingsService.speak(item.WORD);
   };
 
-  const onLongPressItem = (item: MUnitWord, index: number) => {
+  const onLongPressItem = (item: MUnitWord) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -157,7 +157,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item, index)}
+              onLongPress={() => onLongPressItem(item)}
             >
               <View style={StylesApp.row}>
                 <View>

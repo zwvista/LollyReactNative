@@ -49,7 +49,7 @@ export default function PatternsScreen({ navigation }:any) {
     });
   };
 
-  const onLongPressItem = (item: MPattern, index: number) => {
+  const onLongPressItem = (item: MPattern) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -135,7 +135,7 @@ export default function PatternsScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item, index)}
+              onLongPress={() => onLongPressItem(item)}
             >
               <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>

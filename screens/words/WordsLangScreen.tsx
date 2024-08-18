@@ -41,7 +41,7 @@ export default function WordsLangScreen({ navigation }:any) {
     settingsService.speak(item.WORD);
   };
 
-  const onLongPressItem = (item: MLangWord, index: number) => {
+  const onLongPressItem = (item: MLangWord) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -146,7 +146,7 @@ export default function WordsLangScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item, index)}
+              onLongPress={() => onLongPressItem(item)}
             >
               <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>

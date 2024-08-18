@@ -41,7 +41,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
     settingsService.speak(item.PHRASE);
   };
 
-  const onLongPressItem = (item: MLangPhrase, index: number) => {
+  const onLongPressItem = (item: MLangPhrase) => {
     showActionSheetWithOptions({
       options: [
         "Delete",
@@ -122,7 +122,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
-              onLongPress={() => onLongPressItem(item, index)}
+              onLongPress={() => onLongPressItem(item)}
             >
               <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>
