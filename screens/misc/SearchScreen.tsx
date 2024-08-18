@@ -69,9 +69,10 @@ export default function SearchScreen({ navigation }:any) {
   }, [loginCount]);
 
   useEffect(() => {
-    (async () =>
+    (async () => {
+      if (settingsService.selectedDictReference)
         await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource)
-    )();
+    })();
   }, [refreshCount]);
 
   return (
@@ -87,7 +88,7 @@ export default function SearchScreen({ navigation }:any) {
               onSubmitEditing={onRefresh}
             />
           </View>
-          <View style={StylesApp.row}>
+          <View style={StylesApp.rowCompact}>
             <View style={{width: '50%'}}>
               <Dropdown
                 style={StylesApp.dropdown}

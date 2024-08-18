@@ -1,5 +1,12 @@
 import { StyleSheet } from "react-native";
 
+const styles = StyleSheet.create({
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+});
+
 const StylesApp = StyleSheet.create({
   containerDialog: {
     alignItems: 'center',
@@ -7,9 +14,9 @@ const StylesApp = StyleSheet.create({
     padding: 8,
     backgroundColor: '#e6e6e6',
   },
+  rowCompact: styles.row,
   row: {
-    flexDirection: "row",
-    alignItems: "center",
+    ...styles.row,
     marginTop: 8,
   },
   rowLeft: {

@@ -108,7 +108,7 @@ export default function SettingsScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={StylesApp.row}>
+      <View style={StylesApp.rowCompact}>
         <View style={StylesApp.rowLeft}>
           <Text>Language:</Text>
         </View>

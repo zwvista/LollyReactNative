@@ -46,7 +46,7 @@ export default function LoginDialog(
         {({handleChange, handleSubmit, values}) =>
           <TouchableNativeFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={StylesApp.containerDialog}>
-              <View style={StylesApp.row}>
+              <View style={StylesApp.rowCompact}>
                 <View style={StylesApp.rowLeft}>
                   <Text>USERNAME:</Text>
                 </View>
