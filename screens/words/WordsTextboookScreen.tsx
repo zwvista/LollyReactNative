@@ -51,7 +51,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
       options: [
         "Delete",
         "Edit",
-        "Retrieve Note",
+        "Get Note",
         "Clear Note",
         "Copy Word",
         "Google Word",
@@ -71,8 +71,12 @@ export default function WordsTextbookScreen({ navigation }:any) {
           showDetailDialog(item.ID);
           break;
         case 2:
-          // Retrieve Note
-          await wordsUnitService.getNote(index);
+          // Get Note
+          await wordsUnitService.getNote(item);
+          break;
+        case 3:
+          // Clear Note
+          wordsUnitService.getNote(item);
           break;
         case 4:
           // Copy Word

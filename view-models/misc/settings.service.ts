@@ -409,6 +409,7 @@ export class SettingsService {
     return this.htmlService.getHtml(url);
   }
 
+  zeroNote = "O";
   async getNote(word: string): Promise<string> {
     const dictNote = this.selectedDictNote;
     if (!dictNote) return "";
@@ -436,6 +437,16 @@ export class SettingsService {
         i++;
       }
     });
+  }
+
+  clearNotes(wordCount: number, isNoteEmpty: (index: number) => boolean, getOne: (index: number) => void, allComplete: () => void) {
+    for (let i = 0; i < wordCount; i++) {
+      while (i < wordCount && !isNoteEmpty(i))
+        i++;
+      if (i < wordCount)
+        getOne(i);
+    }
+    allComplete();
   }
 }
 

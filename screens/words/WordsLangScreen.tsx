@@ -45,7 +45,7 @@ export default function WordsLangScreen({ navigation }:any) {
       options: [
         "Delete",
         "Edit",
-        "Retrieve Note",
+        "Get Note",
         "Clear Note",
         "Copy Word",
         "Google Word",
@@ -65,8 +65,12 @@ export default function WordsLangScreen({ navigation }:any) {
           showDetailDialog(item.ID);
           break;
         case 2:
-          // Retrieve Note
-          await wordsLangService.getNote(index);
+          // Get Note
+          await wordsLangService.getNote(item);
+          break;
+        case 3:
+          // Clear Note
+          wordsLangService.getNote(item);
           break;
         case 4:
           // Copy Word

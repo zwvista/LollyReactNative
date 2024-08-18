@@ -14,7 +14,6 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
-import { async } from "rxjs";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -28,6 +27,14 @@ export default function WordsUnitScreen({ navigation }:any) {
   const [filterType, setFilterType] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const getNotes = (ifEmpty: boolean) => {
+    wordsUnitService.getNotes(ifEmpty, () => {}, () => {});
+  };
+
+  const clearNotes = (ifEmpty: boolean) => {
+    wordsUnitService.clearNotes(ifEmpty, () => {}, () => {});
+  };
 
   const onFilterTypeChange = (e: MSelectItem) => {
     setFilterType(e.value);
@@ -43,8 +50,8 @@ export default function WordsUnitScreen({ navigation }:any) {
     showActionSheetWithOptions({
       options: [
         "Add",
-        "Retrieve All Notes",
-        "Retrieve Notes If Empty",
+        "Get All Notes",
+        "Get Notes If Empty",
         "Clear All Notes",
         "Clear Notes If Empty",
         "Batch Edit",
@@ -56,6 +63,22 @@ export default function WordsUnitScreen({ navigation }:any) {
         case 0:
           // Add
           showDetailDialog(0);
+          break;
+        case 1:
+          // Get All Notes
+          getNotes(false);
+          break;
+        case 2:
+          // Get Notes If Empty
+          getNotes(true);
+          break;
+        case 3:
+          // Clear Notes If Empty
+          clearNotes(false);
+          break;
+        case 4:
+          // Clear Notes If Empty
+          clearNotes(true);
           break;
       }
     });
@@ -73,7 +96,7 @@ export default function WordsUnitScreen({ navigation }:any) {
       options: [
         "Delete",
         "Edit",
-        "Retrieve Note",
+        "Get Note",
         "Clear Note",
         "Copy Word",
         "Google Word",
@@ -93,12 +116,12 @@ export default function WordsUnitScreen({ navigation }:any) {
           showDetailDialog(item.ID);
           break;
         case 2:
-          // Retrieve Note
-          await wordsUnitService.getNote(index);
+          // Get Note
+          await wordsUnitService.getNote(item);
           break;
         case 3:
           // Clear Note
-          // wordsUnitService.getNote(index);
+          wordsUnitService.getNote(item);
           break;
         case 4:
           // Copy Word
