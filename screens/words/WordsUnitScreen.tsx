@@ -14,6 +14,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
+import YesNoDialog from "../../components/YesNoDialog.tsx";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -109,7 +110,8 @@ export default function WordsUnitScreen({ navigation }:any) {
       switch (selectedIndex) {
         case 0:
           // Delete
-          await wordsUnitService.delete(item);
+          YesNoDialog('delete', `Do you really want to delete the word "${item.WORD}"?`,
+            async () => await wordsUnitService.delete(item));
           break;
         case 1:
           // Edit

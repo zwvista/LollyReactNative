@@ -12,6 +12,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
+import YesNoDialog from "../../components/YesNoDialog.tsx";
 
 export default function PhrasesTextbookScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -60,7 +61,8 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
       switch (selectedIndex) {
         case 0:
           // Delete
-          await phrasesUnitService.delete(item);
+          YesNoDialog('delete', `Do you really want to delete the phrase "${item.PHRASE}"?`,
+            async () => await phrasesUnitService.delete(item));
           break;
         case 1:
           // Edit

@@ -13,6 +13,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MPattern } from "../../models/wpp/pattern.ts";
 import { getPreferredRangeFromArray, googleString } from "../../common/common.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
+import YesNoDialog from "../../components/YesNoDialog.tsx";
 
 export default function PatternsScreen({ navigation }:any) {
   const patternsService = container.resolve(PatternsService);
@@ -64,7 +65,8 @@ export default function PatternsScreen({ navigation }:any) {
       switch (selectedIndex) {
         case 0:
           // Delete
-          await patternsService.delete(item.ID);
+          YesNoDialog('delete', `Do you really want to delete the pattern "${item.PATTERN}"?`,
+            async () => await patternsService.delete(item.ID));
           break;
         case 1:
           // Edit

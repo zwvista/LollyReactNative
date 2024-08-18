@@ -13,6 +13,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
+import YesNoDialog from "../../components/YesNoDialog.tsx";
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const phrasesLangService = container.resolve(PhrasesLangService);
@@ -55,7 +56,8 @@ export default function PhrasesLangScreen({ navigation }:any) {
       switch (selectedIndex) {
         case 0:
           // Delete
-          await phrasesLangService.delete(item);
+          YesNoDialog('delete', `Do you really want to delete the phrase "${item.PHRASE}"?`,
+            async () => await phrasesLangService.delete(item));
           break;
         case 1:
           // Edit

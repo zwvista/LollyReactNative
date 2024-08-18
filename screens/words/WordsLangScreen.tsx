@@ -13,6 +13,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
 import { getPreferredRangeFromArray, googleString } from "../../common/common.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
+import YesNoDialog from "../../components/YesNoDialog.tsx";
 
 export default function WordsLangScreen({ navigation }:any) {
   const wordsLangService = container.resolve(WordsLangService);
@@ -58,7 +59,8 @@ export default function WordsLangScreen({ navigation }:any) {
       switch (selectedIndex) {
         case 0:
           // Delete
-          await wordsLangService.delete(item);
+          YesNoDialog('delete', `Do you really want to delete the word "${item.WORD}"?`,
+            async () => await wordsLangService.delete(item));
           break;
         case 1:
           // Edit
