@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import WordsLangDetailDialog from "./WordsLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import stylesApp from "../../components/StylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
@@ -95,16 +95,16 @@ export default function WordsLangScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput}
+            style={StylesApp.textinput}
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
             onSubmitEditing={onRefresh}
           />
         </View>
-        <View style={stylesApp.rowLeft}>
+        <View style={StylesApp.rowLeft}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
@@ -125,10 +125,10 @@ export default function WordsLangScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={stylesApp.row}>
+              <View style={StylesApp.row}>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemText1}>{item.WORD}</Text>
-                  <Text style={stylesApp.itemText2}>{item.NOTE}</Text>
+                  <Text style={StylesApp.itemText1}>{item.WORD}</Text>
+                  <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
                 </View>
                 <FontAwesome name='chevron-right' size={20}onPress={() => onPressItemRight(index)} />
               </View>

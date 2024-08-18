@@ -7,7 +7,7 @@ import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.t
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function PhrasesLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
@@ -39,37 +39,37 @@ export default function PhrasesLangDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.ID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>PHRASE:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.PHRASE}
                 onChangeText={e => onChangeTextInput("PHRASE", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>TRANSLATION:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.TRANSLATION}
                 onChangeText={e => onChangeTextInput("TRANSLATION", e)}
               />

@@ -13,7 +13,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { MLanguage } from "../../models/misc/language.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
 import { storage } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function SearchScreen({ navigation }:any) {
   const appService = container.resolve(AppService);
@@ -80,17 +80,17 @@ export default function SearchScreen({ navigation }:any) {
         <View style={{flex:1}}>
           <View style={{width: '100%'}}>
             <TextInput
-              style={stylesApp.textinput}
+              style={StylesApp.textinput}
               value={word}
               onChangeText={setWord}
               returnKeyType='search'
               onSubmitEditing={onRefresh}
             />
           </View>
-          <View style={stylesApp.row}>
+          <View style={StylesApp.row}>
             <View style={{width: '50%'}}>
               <Dropdown
-                style={stylesApp.dropdown}
+                style={StylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedLang}
@@ -100,7 +100,7 @@ export default function SearchScreen({ navigation }:any) {
             </View>
             <View style={{width: '50%'}}>
               <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedDictReference}

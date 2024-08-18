@@ -9,7 +9,7 @@ import { MVoice } from "../../models/misc/voice.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
 import { MTextbook } from "../../models/misc/textbook.ts";
 import { MSelectItem } from "../../common/selectitem.ts";
-import stylesApp from "../../components/StylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function SettingsScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
@@ -108,13 +108,13 @@ export default function SettingsScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Language:</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedLang}
@@ -123,13 +123,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Voice:</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="VOICELANG"
             valueField="ID"
             value={settingsService.selectedVoice}
@@ -138,13 +138,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Dictionary(Reference):</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictReference}
@@ -153,13 +153,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Dictionary(Note):</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictNote}
@@ -168,13 +168,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Dictionary(Translation):</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictTranslation}
@@ -183,13 +183,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>Textbook:</Text>
         </View>
-        <View style={stylesApp.rowRight}>
+        <View style={StylesApp.rowRight}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedTextbook}
@@ -198,13 +198,13 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Text>UNIT:</Text>
         </View>
         <View style={styles.rowRightHalf}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
@@ -213,7 +213,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={styles.rowRightHalf}>
-          <Dropdown style={[stylesApp.dropdown, toTypeIsUnit && stylesApp.dropdownDisable]}
+          <Dropdown style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
@@ -223,10 +223,10 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft}>
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.toTypes.find(o => o.value === settingsService.toType)}
@@ -235,7 +235,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={styles.rowRightHalf}>
-          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
+          <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
@@ -245,7 +245,7 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
         <View style={styles.rowRightHalf}>
-          <Dropdown style={[stylesApp.dropdown, !toTypeIsTo && stylesApp.dropdownDisable]}
+          <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
             labelField="label"
             valueField="value"
             value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
@@ -255,8 +255,8 @@ export default function SettingsScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={stylesApp.row}>
-        <View style={stylesApp.rowLeft} />
+      <View style={StylesApp.row}>
+        <View style={StylesApp.rowLeft} />
         <View style={styles.button}>
           <Button title="Previous" onPress={previousunitPart} />
         </View>

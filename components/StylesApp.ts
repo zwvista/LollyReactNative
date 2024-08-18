@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 
-const stylesApp = StyleSheet.create({
+const StylesApp = StyleSheet.create({
   containerDialog: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -54,4 +54,4 @@ const stylesApp = StyleSheet.create({
   },
 });
 
-export default stylesApp;
+export default StylesApp;

@@ -6,7 +6,7 @@ import { useEffect, useReducer, useState } from "react";
 import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
 import PhrasesTextbookDetailDialog from "./PhrasesTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import stylesApp from "../../components/StylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
@@ -81,7 +81,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput}
+            style={StylesApp.textinput}
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
@@ -92,7 +92,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.textbookFilters.find(o => o.value === textbookFilter)}
@@ -102,7 +102,7 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
         </View>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.phraseFilterTypes.find(o => o.value === filterType)}
@@ -123,15 +123,15 @@ export default function PhrasesTextbookScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={stylesApp.row}>
+              <View style={StylesApp.row}>
                 <View>
-                  <Text style={stylesApp.unitPart}>{item.UNITSTR}</Text>
-                  <Text style={stylesApp.unitPart}>{item.PARTSTR}</Text>
-                  <Text style={stylesApp.unitPart}>{item.SEQNUM}</Text>
+                  <Text style={StylesApp.unitPart}>{item.UNITSTR}</Text>
+                  <Text style={StylesApp.unitPart}>{item.PARTSTR}</Text>
+                  <Text style={StylesApp.unitPart}>{item.SEQNUM}</Text>
                 </View>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemText1}>{item.PHRASE}</Text>
-                  <Text style={stylesApp.itemText2}>{item.TRANSLATION}</Text>
+                  <Text style={StylesApp.itemText1}>{item.PHRASE}</Text>
+                  <Text style={StylesApp.itemText2}>{item.TRANSLATION}</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>

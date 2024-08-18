@@ -18,7 +18,7 @@ import { Formik } from "formik";
 import { MUser } from "../../models/misc/user.ts";
 import { FormikHelpers } from "formik/dist/types";
 import { storage } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function LoginDialog(
   {isDialogOpened, handleCloseDialog}: {isDialogOpened: boolean, handleCloseDialog: () => void}
@@ -45,33 +45,33 @@ export default function LoginDialog(
       >
         {({handleChange, handleSubmit, values}) =>
           <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-            <SafeAreaView style={stylesApp.containerDialog}>
-              <View style={stylesApp.row}>
-                <View style={stylesApp.rowLeft}>
+            <SafeAreaView style={StylesApp.containerDialog}>
+              <View style={StylesApp.row}>
+                <View style={StylesApp.rowLeft}>
                   <Text>USERNAME:</Text>
                 </View>
-                <View style={stylesApp.rowRight}>
+                <View style={StylesApp.rowRight}>
                   <TextInput
-                    style={stylesApp.textinput}
+                    style={StylesApp.textinput}
                     value={values.USERNAME}
                     onChangeText={handleChange('USERNAME')}
                   />
                 </View>
               </View>
-              <View style={stylesApp.row}>
-                <View style={stylesApp.rowLeft}>
+              <View style={StylesApp.row}>
+                <View style={StylesApp.rowLeft}>
                   <Text>PASSWORD:</Text>
                 </View>
-                <View style={stylesApp.rowRight}>
+                <View style={StylesApp.rowRight}>
                   <TextInput
-                    style={stylesApp.textinput}
+                    style={StylesApp.textinput}
                     secureTextEntry
                     value={values.PASSWORD}
                     onChangeText={handleChange('PASSWORD')}
                   />
                 </View>
               </View>
-              <View style={stylesApp.row}>
+              <View style={StylesApp.row}>
                 <Button title="Login" onPress={() => handleSubmit()} />
               </View>
             </SafeAreaView>

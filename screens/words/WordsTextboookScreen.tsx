@@ -6,7 +6,7 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
 import WordsTextbookDetailDialog from "./WordsTextbookDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
-import stylesApp from "../../components/StylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
@@ -94,7 +94,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{flexGrow: 1}}>
           <TextInput
-            style={stylesApp.textinput}
+            style={StylesApp.textinput}
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
@@ -105,7 +105,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
       <View style={{flexDirection: "row"}}>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.textbookFilters.find(o => o.value === textbookFilter)}
@@ -115,7 +115,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
         </View>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.wordFilterTypes.find(o => o.value === filterType)}
@@ -136,15 +136,15 @@ export default function WordsTextbookScreen({ navigation }:any) {
               onPress={() => onPressItem(item)}
               onLongPress={() => onLongPressItem(item)}
             >
-              <View style={stylesApp.row}>
+              <View style={StylesApp.row}>
                 <View>
-                  <Text style={stylesApp.unitPart}>{item.UNITSTR}</Text>
-                  <Text style={stylesApp.unitPart}>{item.PARTSTR}</Text>
-                  <Text style={stylesApp.unitPart}>{item.SEQNUM}</Text>
+                  <Text style={StylesApp.unitPart}>{item.UNITSTR}</Text>
+                  <Text style={StylesApp.unitPart}>{item.PARTSTR}</Text>
+                  <Text style={StylesApp.unitPart}>{item.SEQNUM}</Text>
                 </View>
                 <View style={{flexGrow: 1}}>
-                  <Text style={stylesApp.itemText1}>{item.WORD}</Text>
-                  <Text style={stylesApp.itemText2}>{item.NOTE}</Text>
+                  <Text style={StylesApp.itemText1}>{item.WORD}</Text>
+                  <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
                 </View>
                 <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>

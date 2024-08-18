@@ -7,7 +7,7 @@ import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
 import { MLangWord } from "../../models/wpp/lang-word.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
@@ -39,61 +39,61 @@ export default function WordsLangDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.ID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>WORD:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.WORD}
                 onChangeText={e => onChangeTextInput("WORD", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>NOTE:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.NOTE}
                 onChangeText={e => onChangeTextInput("NOTE", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>FAMIID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.FAMIID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>ACCURACY:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.ACCURACY}
                 editable={false}
               />

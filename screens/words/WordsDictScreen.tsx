@@ -8,7 +8,7 @@ import { useEffect, useReducer, useState } from "react";
 import WebView from "react-native-webview";
 import OnlineDict from "../../components/OnlineDict.ts";
 import { ValueOnly } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function WordsDictScreen({ route, navigation }:any) {
   const {words, wordIndex}: {words: ValueOnly[], wordIndex: number} = route.params;
@@ -37,10 +37,10 @@ export default function WordsDictScreen({ route, navigation }:any) {
 
   return (
     <View style={{flex:1}}>
-      <View style={stylesApp.row}>
+      <View style={StylesApp.row}>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="value"
             valueField="value"
             value={words[wordIndex]}
@@ -50,7 +50,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
         </View>
         <View style={{width: '50%'}}>
           <Dropdown
-            style={stylesApp.dropdown}
+            style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
             value={settingsService.selectedDictReference}

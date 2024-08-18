@@ -57,6 +57,11 @@
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.4"
   },
+  "overrides": {
+    "@react-native-clipboard/clipboard": {
+      "react-native": "$react-native"
+    }
+  },
   "engines": {
     "node": ">=18"
   }

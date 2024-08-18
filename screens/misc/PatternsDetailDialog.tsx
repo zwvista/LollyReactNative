@@ -7,7 +7,7 @@ import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function PatternsDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
@@ -39,49 +39,49 @@ export default function PatternsDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.ID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>PATTERN:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.PATTERN}
                 onChangeText={e => onChangeTextInput("PATTERN", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>NOTE:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.NOTE}
                 onChangeText={e => onChangeTextInput("NOTE", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>TAGS:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.TAGS}
                 onChangeText={e => onChangeTextInput("TAGS", e)}
               />

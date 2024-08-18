@@ -9,7 +9,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { MSelectItem } from "../../common/selectitem.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
-import stylesApp from "../../components/stylesApp.ts";
+import StylesApp from "../../components/StylesApp.ts";
 
 export default function PhrasesUnitDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
@@ -51,25 +51,25 @@ export default function PhrasesUnitDetailDialog(
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>ID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.ID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>UNIT:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <Dropdown
-              style={stylesApp.dropdown}
+              style={StylesApp.dropdown}
                 labelField="label"
                 valueField="value"
                 value={settingsService.units.find(o => o.value === item.UNIT)}
@@ -78,13 +78,13 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>PART:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <Dropdown
-              style={stylesApp.dropdown}
+              style={StylesApp.dropdown}
                 labelField="label"
                 valueField="value"
                 value={settingsService.parts.find(o => o.value === item.PART)}
@@ -93,50 +93,50 @@ export default function PhrasesUnitDetailDialog(
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>SEQNUM:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 keyboardType="numeric"
                 value={item.SEQNUM.toString()}
                 onChangeText={e => onChangeTextInput("SEQNUM", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>PHRASEID:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.PHRASEID.toString()}
                 editable={false}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>PHRASE:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.PHRASE}
                 onChangeText={e => onChangeTextInput("PHRASE", e)}
               />
             </View>
           </View>
-          <View style={stylesApp.row}>
-            <View style={stylesApp.rowLeft}>
+          <View style={StylesApp.row}>
+            <View style={StylesApp.rowLeft}>
               <Text>TRANSLATION:</Text>
             </View>
-            <View style={stylesApp.rowRight}>
+            <View style={StylesApp.rowRight}>
               <TextInput
-                style={stylesApp.textinput}
+                style={StylesApp.textinput}
                 value={item.TRANSLATION}
                 onChangeText={e => onChangeTextInput("TRANSLATION", e)}
               />
