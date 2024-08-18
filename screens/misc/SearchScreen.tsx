@@ -76,10 +76,10 @@ export default function SearchScreen({ navigation }:any) {
   }, [refreshCount]);
 
   return (
-    <View style={{flex:1}}>
+    <View className="flex-1">
       {!appService.isInitialized ? <View /> : (
-        <View style={{flex:1}}>
-          <View style={{width: '100%'}}>
+        <View className="flex-1">
+          <View className="w-full">
             <TextInput
               style={StylesApp.textinput}
               value={word}
@@ -89,7 +89,7 @@ export default function SearchScreen({ navigation }:any) {
             />
           </View>
           <View style={StylesApp.rowCompact}>
-            <View style={{width: '50%'}}>
+            <View className="w-1/2">
               <Dropdown
                 style={StylesApp.dropdown}
                 labelField="NAME"
@@ -99,7 +99,7 @@ export default function SearchScreen({ navigation }:any) {
                 onChange={onLangChange}
               />
             </View>
-            <View style={{width: '50%'}}>
+            <View className="w-1/2">
               <Dropdown
             style={StylesApp.dropdown}
                 labelField="NAME"
@@ -110,7 +110,7 @@ export default function SearchScreen({ navigation }:any) {
               />
             </View>
           </View>
-          <View style={{flexGrow: 1}}>
+          <View className="grow">
             <WebView
               source={webViewSource}
             />

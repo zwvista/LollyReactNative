@@ -115,7 +115,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
   return (
     <View style={{padding: 8}}>
       <View className="flex-row">
-        <View style={{flexGrow: 1}}>
+        <View className="grow">
           <TextInput
             style={StylesApp.textinput}
             value={filter}
@@ -126,7 +126,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
         </View>
       </View>
       <View className="flex-row">
-        <View style={{width: '50%'}}>
+        <View className="w-1/2">
           <Dropdown
             style={StylesApp.dropdown}
             labelField="label"
@@ -136,7 +136,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
             onChange={onTextbookFilterTypeChange}
           />
         </View>
-        <View style={{width: '50%'}}>
+        <View className="w-1/2">
           <Dropdown
             style={StylesApp.dropdown}
             labelField="label"
@@ -147,7 +147,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexGrow: 1}}>
+      <View className="grow">
         <FlatList
           keyExtractor={item => item.ID.toString()}
           ItemSeparatorComponent={(props) =>
@@ -165,7 +165,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
                   <Text style={StylesApp.unitPart}>{item.PARTSTR}</Text>
                   <Text style={StylesApp.unitPart}>{item.SEQNUM}</Text>
                 </View>
-                <View style={{flexGrow: 1}}>
+                <View className="grow">
                   <Text style={StylesApp.itemText1}>{item.WORD}</Text>
                   <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
                 </View>

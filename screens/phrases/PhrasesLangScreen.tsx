@@ -92,7 +92,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
   return (
     <View style={{padding: 8}}>
       <View className="flex-row">
-        <View style={{flexGrow: 1}}>
+        <View className="grow">
           <TextInput
             style={StylesApp.textinput}
             value={filter}
@@ -112,7 +112,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexGrow: 1}}>
+      <View className="grow">
         <FlatList
           keyExtractor={item => item.ID.toString()}
           ItemSeparatorComponent={(props) =>
@@ -125,7 +125,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
               onLongPress={() => onLongPressItem(item)}
             >
               <View style={StylesApp.row}>
-                <View style={{flexGrow: 1}}>
+                <View className="grow">
                   <Text style={StylesApp.itemText1}>{item.PHRASE}</Text>
                   <Text style={StylesApp.itemText2}>{item.TRANSLATION}</Text>
                 </View>

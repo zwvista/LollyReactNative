@@ -36,9 +36,9 @@ export default function WordsDictScreen({ route, navigation }:any) {
   }, [refreshCount]);
 
   return (
-    <View style={{flex:1}}>
+    <View className="flex-1">
       <View style={StylesApp.row}>
-        <View style={{width: '50%'}}>
+        <View className="w-1/2">
           <Dropdown
             style={StylesApp.dropdown}
             labelField="value"
@@ -48,7 +48,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
             onChange={onWordChange}
           />
         </View>
-        <View style={{width: '50%'}}>
+        <View className="w-1/2">
           <Dropdown
             style={StylesApp.dropdown}
             labelField="NAME"
@@ -59,7 +59,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexGrow: 1}}>
+      <View className="grow">
         <WebView
           source={webViewSource}
         />

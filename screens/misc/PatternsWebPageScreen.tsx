@@ -22,7 +22,7 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
   }, [refreshCount]);
 
   return (
-    <View style={{flex:1}}>
+    <View className="flex-1">
       <Dropdown
         style={StylesApp.dropdown}
         labelField="PATTERN"
@@ -31,7 +31,7 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
         data={patterns}
         onChange={onPatternChange}
       />
-      <View style={{flexGrow: 1}}>
+      <View className="grow">
         <WebView
           source={webViewSource}
         />
