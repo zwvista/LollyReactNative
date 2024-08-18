@@ -13,6 +13,7 @@ import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
 import Clipboard from '@react-native-clipboard/clipboard';
+import { googleString } from "../../common/common.ts";
 
 export default function PhrasesUnitScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -45,7 +46,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         "Cancel"
       ],
       cancelButtonIndex: 2
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 0:
           // Add
@@ -73,7 +74,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
       ],
       cancelButtonIndex: 4,
       destructiveButtonIndex: 0
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
           // Edit
@@ -82,6 +83,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         case 2:
           // Copy Phrase
           Clipboard.setString(item.PHRASE);
+          break;
+        case 3:
+          // Google Phrase
+          await googleString(item.PHRASE);
           break;
       }
     });

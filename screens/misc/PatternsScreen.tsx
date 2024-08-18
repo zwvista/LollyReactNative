@@ -11,7 +11,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MPattern } from "../../models/wpp/pattern.ts";
-import { getPreferredRangeFromArray } from "../../common/common.ts";
+import { getPreferredRangeFromArray, googleString } from "../../common/common.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function PatternsScreen({ navigation }:any) {
@@ -60,7 +60,7 @@ export default function PatternsScreen({ navigation }:any) {
       ],
       cancelButtonIndex: 5,
       destructiveButtonIndex: 0
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
           // Edit
@@ -73,6 +73,10 @@ export default function PatternsScreen({ navigation }:any) {
         case 3:
           // Copy Pattern
           Clipboard.setString(item.PATTERN);
+          break;
+        case 4:
+          // Google Pattern
+          await googleString(item.PATTERN);
           break;
       }
     });

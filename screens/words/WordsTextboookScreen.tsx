@@ -11,7 +11,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
-import { getPreferredRangeFromArray } from "../../common/common.ts";
+import { getPreferredRangeFromArray, googleString } from "../../common/common.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 
 export default function WordsTextbookScreen({ navigation }:any) {
@@ -60,7 +60,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
       ],
       cancelButtonIndex: 7,
       destructiveButtonIndex: 0
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
           // Edit
@@ -69,6 +69,10 @@ export default function WordsTextbookScreen({ navigation }:any) {
         case 4:
           // Copy Word
           Clipboard.setString(item.WORD);
+          break;
+        case 5:
+          // Google Word
+          await googleString(item.WORD);
           break;
       }
     });

@@ -13,6 +13,8 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
+import { googleString } from "../../common/common.ts";
+import { async } from "rxjs";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -49,7 +51,7 @@ export default function WordsUnitScreen({ navigation }:any) {
         "Cancel"
       ],
       cancelButtonIndex: 6
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 0:
           // Add
@@ -80,7 +82,7 @@ export default function WordsUnitScreen({ navigation }:any) {
       ],
       cancelButtonIndex: 7,
       destructiveButtonIndex: 0
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
           // Edit
@@ -89,6 +91,10 @@ export default function WordsUnitScreen({ navigation }:any) {
         case 4:
           // Copy Word
           Clipboard.setString(item.WORD);
+          break;
+        case 5:
+          // Google Word
+          await googleString(item.WORD);
           break;
       }
     });

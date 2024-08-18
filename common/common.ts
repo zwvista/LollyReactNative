@@ -1,8 +1,9 @@
 import _ from 'lodash';
+import { Linking } from "react-native";
 
-// https://stackoverflow.com/questions/42775017/angular-2-redirect-to-an-external-url-and-open-in-a-new-tab
-export function googleString(str: string) {
-  window.open('https://www.google.com/search?q=' + encodeURIComponent(str), '_blank');
+// https://stackoverflow.com/questions/43804032/open-url-in-default-web-browser
+export async function googleString(str: string) {
+  await Linking.openURL('https://www.google.com/search?q=' + encodeURIComponent(str));
 }
 
 export function toParameters(item: Object): Object {

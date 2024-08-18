@@ -12,6 +12,7 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
+import { googleString } from "../../common/common.ts";
 
 export default function PhrasesLangScreen({ navigation }:any) {
   const phrasesLangService = container.resolve(PhrasesLangService);
@@ -50,7 +51,7 @@ export default function PhrasesLangScreen({ navigation }:any) {
       ],
       cancelButtonIndex: 4,
       destructiveButtonIndex: 0
-    }, (selectedIndex?: number) => {
+    }, async (selectedIndex?: number) => {
       switch (selectedIndex) {
         case 1:
           // Edit
@@ -59,6 +60,10 @@ export default function PhrasesLangScreen({ navigation }:any) {
         case 2:
           // Copy Phrase
           Clipboard.setString(item.PHRASE);
+          break;
+        case 3:
+          // Google Phrase
+          await googleString(item.PHRASE);
           break;
       }
     });
