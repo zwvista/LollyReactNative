@@ -95,9 +95,8 @@ export default function WordsUnitScreen({ navigation }:any) {
   };
 
   const onPressItemRight = (index: number) => {
-    const words = wordsUnitService.unitWords.map(o => ({value: o.WORD}));
     navigation.navigate("Word Dictionary", {
-      words,
+      words: wordsUnitService.unitWords.map(o => ({value: o.WORD})),
       wordIndex: index,
     });
   };

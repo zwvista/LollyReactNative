@@ -108,20 +108,20 @@ export class SettingsService {
   set USPARTTO(newValue: number) {
     this.setUSValue(this.INFO_USPARTTO, String(newValue));
   }
-  get USunitPartFROM(): number {
+  get USUNITPARTFROM(): number {
     return this.USUNITFROM * 10 + this.USPARTFROM;
   }
-  get USunitPartTO(): number {
+  get USUNITPARTTO(): number {
     return this.USUNITTO * 10 + this.USPARTTO;
   }
-  get isSingleunitPart(): boolean {
-    return this.USunitPartFROM === this.USunitPartTO;
+  get isSingleUnitPart(): boolean {
+    return this.USUNITPARTFROM === this.USUNITPARTTO;
   }
   get isSingleUnit(): boolean {
     return this.USUNITFROM === this.USUNITTO && this.USPARTFROM === 1 && this.USPARTTO === this.partCount;
   }
-  get isInvalidunitPart(): boolean {
-    return this.USunitPartFROM > this.USunitPartTO;
+  get isInvalidUnitPart(): boolean {
+    return this.USUNITPARTFROM > this.USUNITPARTTO;
   }
 
   languages: MLanguage[] = [];
@@ -258,7 +258,7 @@ export class SettingsService {
     this.INFO_USPARTFROM = this.getUSInfo(MUSMapping.NAME_USPARTFROM);
     this.INFO_USUNITTO = this.getUSInfo(MUSMapping.NAME_USUNITTO);
     this.INFO_USPARTTO = this.getUSInfo(MUSMapping.NAME_USPARTTO);
-    this.toType = this.isSingleUnit ? 0 : this.isSingleunitPart ? 1 : 2;
+    this.toType = this.isSingleUnit ? 0 : this.isSingleUnitPart ? 1 : 2;
     if (dirty) await this.userSettingService.updateIntValue(this.INFO_USTEXTBOOK, this.USTEXTBOOK);
     if (this.settingsListener) this.settingsListener.onUpdateTextbook();
   }
@@ -312,14 +312,14 @@ export class SettingsService {
     await this.doUpdateUnitFrom(value);
     if (this.toType === 0)
       await this.doUpdateSingleUnit();
-    else if (this.toType === 1 || this.isInvalidunitPart)
-      await this.doUpdateunitPartTo();
+    else if (this.toType === 1 || this.isInvalidUnitPart)
+      await this.doUpdateUnitPartTo();
   }
 
   async updatePartFrom(value: number) {
     await this.doUpdatePartFrom(value);
-    if (this.toType === 1 || this.isInvalidunitPart)
-      await this.doUpdateunitPartTo();
+    if (this.toType === 1 || this.isInvalidUnitPart)
+      await this.doUpdateUnitPartTo();
   }
 
   async updateToType(value: number) {
@@ -327,52 +327,52 @@ export class SettingsService {
     if (this.toType === 0)
       await this.doUpdateSingleUnit();
     else if (this.toType === 1)
-      await this.doUpdateunitPartTo();
+      await this.doUpdateUnitPartTo();
   }
 
-  async previousunitPart() {
+  async previousUnitPart() {
     if (this.toType === 0) {
       if (this.USUNITFROM > 1)
         await Promise.all([this.doUpdateUnitFrom(this.USUNITFROM - 1),
             this.doUpdateUnitTo(this.USUNITFROM)]);
     } else if (this.USPARTFROM > 1)
       await Promise.all([this.doUpdatePartFrom(this.USPARTFROM - 1),
-        this.doUpdateunitPartTo()]);
+        this.doUpdateUnitPartTo()]);
     else if (this.USUNITFROM > 1)
       await Promise.all([this.doUpdateUnitFrom(this.USUNITFROM - 1),
-        this.doUpdatePartFrom(this.partCount), this.doUpdateunitPartTo()]);
+        this.doUpdatePartFrom(this.partCount), this.doUpdateUnitPartTo()]);
   }
 
-  async nextunitPart() {
+  async nextUnitPart() {
     if (this.toType === 0) {
       if (this.USUNITFROM < this.unitCount)
         await Promise.all([this.doUpdateUnitFrom(this.USUNITFROM + 1),
           this.doUpdateUnitTo(this.USUNITFROM)]);
     } else if (this.USPARTFROM < this.partCount)
       await Promise.all([this.doUpdatePartFrom(this.USPARTFROM + 1),
-      this.doUpdateunitPartTo()]);
+      this.doUpdateUnitPartTo()]);
     else if (this.USUNITFROM < this.unitCount)
       await Promise.all([this.doUpdateUnitFrom(this.USUNITFROM + 1),
-      this.doUpdatePartFrom(1), this.doUpdateunitPartTo()]);
+      this.doUpdatePartFrom(1), this.doUpdateUnitPartTo()]);
   }
 
   async updateUnitTo(value: number) {
     await this.doUpdateUnitTo(value);
-    if (this.toType === 1 || this.isInvalidunitPart)
-      await this.doUpdateunitPartFrom();
+    if (this.toType === 1 || this.isInvalidUnitPart)
+      await this.doUpdateUnitPartFrom();
   }
 
   async updatePartTo(value: number) {
     await this.doUpdatePartTo(value);
-    if (this.toType === 1 || this.isInvalidunitPart)
-      await this.doUpdateunitPartFrom();
+    if (this.toType === 1 || this.isInvalidUnitPart)
+      await this.doUpdateUnitPartFrom();
   }
 
-  private async doUpdateunitPartFrom() {
+  private async doUpdateUnitPartFrom() {
     await Promise.all([this.doUpdateUnitFrom(this.USUNITTO), this.doUpdatePartFrom(this.USPARTTO)]);
   }
 
-  private async doUpdateunitPartTo() {
+  private async doUpdateUnitPartTo() {
     await Promise.all([this.doUpdateUnitTo(this.USUNITFROM), this.doUpdatePartTo(this.USPARTFROM)]);
   }
 
