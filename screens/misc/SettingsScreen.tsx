@@ -97,134 +97,81 @@ export default function SettingsScreen({ navigation }:any) {
     })();
   },[]);
 
-  const styles = StyleSheet.create({
-    rowRightHalf: {
-      width: '35%'
-    },
-    button: {
-      marginRight: 8
-    },
-  });
-
   return (
-    <View style={{padding: 8}}>
-      <View style={StylesApp.rowCompact}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Language:</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="NAME"
-            valueField="ID"
-            value={settingsService.selectedLang}
-            data={settingsService.languages}
-            onChange={onLangChange}
-          />
-        </View>
-      </View>
+    <View className="p-2">
+      <Text>Language:</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="NAME"
+        valueField="ID"
+        value={settingsService.selectedLang}
+        data={settingsService.languages}
+        onChange={onLangChange}
+      />
+      <Text>Voice:</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="VOICELANG"
+        valueField="ID"
+        value={settingsService.selectedVoice}
+        data={settingsService.voices}
+        onChange={onVoiceChange}
+      />
+      <Text>Dictionary(Reference):</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="NAME"
+        valueField="ID"
+        value={settingsService.selectedDictReference}
+        data={settingsService.dictsReference}
+        onChange={onDictReferenceChange}
+      />
+      <Text>Dictionary(Note):</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="NAME"
+        valueField="ID"
+        value={settingsService.selectedDictNote}
+        data={settingsService.dictsNote}
+        onChange={onDictNoteChange}
+      />
+      <Text>Dictionary(Translation):</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="NAME"
+        valueField="ID"
+        value={settingsService.selectedDictTranslation}
+        data={settingsService.dictsTranslation}
+        onChange={onDictTranslationChange}
+      />
+      <Text>Textbook:</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="NAME"
+        valueField="ID"
+        value={settingsService.selectedTextbook}
+        data={settingsService.textbooks}
+        onChange={onTextbookChange}
+      />
+      <Text>UNIT:</Text>
+      <Dropdown
+        style={StylesApp.dropdown}
+        labelField="label"
+        valueField="value"
+        value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
+        data={settingsService.units}
+        onChange={onUnitFromChange}
+      />
+      <Dropdown style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
+        labelField="label"
+        valueField="value"
+        value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
+        data={settingsService.parts}
+        onChange={onPartFromChange}
+        disable={toTypeIsUnit}
+      />
       <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Voice:</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="VOICELANG"
-            valueField="ID"
-            value={settingsService.selectedVoice}
-            data={settingsService.voices}
-            onChange={onVoiceChange}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Dictionary(Reference):</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="NAME"
-            valueField="ID"
-            value={settingsService.selectedDictReference}
-            data={settingsService.dictsReference}
-            onChange={onDictReferenceChange}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Dictionary(Note):</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="NAME"
-            valueField="ID"
-            value={settingsService.selectedDictNote}
-            data={settingsService.dictsNote}
-            onChange={onDictNoteChange}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Dictionary(Translation):</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="NAME"
-            valueField="ID"
-            value={settingsService.selectedDictTranslation}
-            data={settingsService.dictsTranslation}
-            onChange={onDictTranslationChange}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>Textbook:</Text>
-        </View>
-        <View style={StylesApp.rowRight}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="NAME"
-            valueField="ID"
-            value={settingsService.selectedTextbook}
-            data={settingsService.textbooks}
-            onChange={onTextbookChange}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
-          <Text>UNIT:</Text>
-        </View>
-        <View style={styles.rowRightHalf}>
-          <Dropdown
-            style={StylesApp.dropdown}
-            labelField="label"
-            valueField="value"
-            value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
-            data={settingsService.units}
-            onChange={onUnitFromChange}
-          />
-        </View>
-        <View style={styles.rowRightHalf}>
-          <Dropdown style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
-            labelField="label"
-            valueField="value"
-            value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
-            data={settingsService.parts}
-            onChange={onPartFromChange}
-            disable={toTypeIsUnit}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft}>
+        <View className="flex-1">
           <Dropdown
             style={StylesApp.dropdown}
             labelField="label"
@@ -234,36 +181,29 @@ export default function SettingsScreen({ navigation }:any) {
             onChange={onToTypeChange}
           />
         </View>
-        <View style={styles.rowRightHalf}>
-          <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
-            labelField="label"
-            valueField="value"
-            value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
-            data={settingsService.units}
-            onChange={onUnitToChange}
-            disable={!toTypeIsTo}
-          />
-        </View>
-        <View style={styles.rowRightHalf}>
-          <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
-            labelField="label"
-            valueField="value"
-            value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
-            data={settingsService.parts}
-            onChange={onPartToChange}
-            disable={!toTypeIsTo}
-          />
-        </View>
-      </View>
-      <View style={StylesApp.row}>
-        <View style={StylesApp.rowLeft} />
-        <View style={styles.button}>
+        <View className="flex-1 ml-2">
           <Button title="Previous" onPress={previousunitPart} />
         </View>
-        <View style={styles.button}>
+        <View className="flex-1 ml-2">
           <Button title="Next" onPress={nextunitPart} />
         </View>
       </View>
+      <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+        labelField="label"
+        valueField="value"
+        value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
+        data={settingsService.units}
+        onChange={onUnitToChange}
+        disable={!toTypeIsTo}
+      />
+      <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+        labelField="label"
+        valueField="value"
+        value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
+        data={settingsService.parts}
+        onChange={onPartToChange}
+        disable={!toTypeIsTo}
+      />
     </View>
   );
 }

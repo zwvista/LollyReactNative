@@ -167,7 +167,7 @@ export default function WordsUnitScreen({ navigation }:any) {
   }, [refreshCount]);
 
   return (
-    <View style={{padding: 8}}>
+    <View className="p-2">
       <View className="flex-row">
         <View className="grow">
           <TextInput
