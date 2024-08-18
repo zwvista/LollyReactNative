@@ -114,7 +114,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row"}}>
+      <View className="flex-row">
         <View style={{flexGrow: 1}}>
           <TextInput
             style={StylesApp.textinput}
@@ -125,7 +125,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           />
         </View>
       </View>
-      <View style={{flexDirection: "row"}}>
+      <View className="flex-row">
         <View style={{width: '50%'}}>
           <Dropdown
             style={StylesApp.dropdown}

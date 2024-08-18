@@ -101,7 +101,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{flexDirection: "row"}}>
+        <View className="flex-row">
           <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} onPress={() => setEditMode(!editMode)} />
           <MaterialCommunityIcons name='dots-vertical' size={30}  onPress={onPressMenu} />
         </View>
@@ -117,7 +117,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row"}}>
+      <View className="flex-row">
         <View style={{flexGrow: 1}}>
           <TextInput
             style={StylesApp.textinput}

@@ -67,19 +67,19 @@ export default function WordsUnitScreen({ navigation }:any) {
           break;
         case 1:
           // Get All Notes
-          await getNotes(false);
+          getNotes(false);
           break;
         case 2:
           // Get Notes If Empty
-          await getNotes(true);
+          getNotes(true);
           break;
         case 3:
           // Clear Notes If Empty
-          await clearNotes(false);
+          clearNotes(false);
           break;
         case 4:
           // Clear Notes If Empty
-          await clearNotes(true);
+          clearNotes(true);
           break;
       }
     });
@@ -152,7 +152,7 @@ export default function WordsUnitScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <View style={{flexDirection: "row"}}>
+        <View className="flex-row">
           <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} onPress={() => setEditMode(!editMode)} />
           <MaterialCommunityIcons name='dots-vertical' size={30} onPress={onPressMenu} />
         </View>
@@ -168,7 +168,7 @@ export default function WordsUnitScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row"}}>
+      <View className="flex-row">
         <View style={{flexGrow: 1}}>
           <TextInput
             style={StylesApp.textinput}

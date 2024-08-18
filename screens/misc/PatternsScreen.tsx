@@ -104,7 +104,7 @@ export default function PatternsScreen({ navigation }:any) {
 
   return (
     <View style={{padding: 8}}>
-      <View style={{flexDirection: "row"}}>
+      <View className="flex-row">
         <View style={{flexGrow: 1}}>
           <TextInput
             style={StylesApp.textinput}
