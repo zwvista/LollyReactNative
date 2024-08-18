@@ -71,12 +71,12 @@ export default function SettingsScreen({ navigation }:any) {
   };
 
   const previousunitPart = async () => {
-    await settingsService.previousunitPart();
+    await settingsService.previousUnitPart();
     forceUpdate();
   };
 
   const nextunitPart = async () => {
-    await settingsService.nextunitPart();
+    await settingsService.nextUnitPart();
     forceUpdate();
   };
 
