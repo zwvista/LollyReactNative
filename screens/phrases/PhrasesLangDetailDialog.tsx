@@ -32,48 +32,29 @@ export default function PhrasesLangDetailDialog(
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
+        <SafeAreaView className="p-2 bg-white">
           <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View style={{marginRight: 8}}>
               <Button title="Cancel" onPress={handleCloseDialog} />
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>ID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.ID.toString()}
-                editable={false}
-              />
-            </View>
+          <Text>ID: {item.ID}</Text>
+          <Text>PHRASE:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.PHRASE}
+              onChangeText={e => onChangeTextInput("PHRASE", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>PHRASE:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.PHRASE}
-                onChangeText={e => onChangeTextInput("PHRASE", e)}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>TRANSLATION:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.TRANSLATION}
-                onChangeText={e => onChangeTextInput("TRANSLATION", e)}
-              />
-            </View>
+          <Text>NOTE:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.TRANSLATION}
+              onChangeText={e => onChangeTextInput("TRANSLATION", e)}
+            />
           </View>
         </SafeAreaView>
       </TouchableNativeFeedback>

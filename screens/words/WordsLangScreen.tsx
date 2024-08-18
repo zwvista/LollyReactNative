@@ -153,7 +153,7 @@ export default function WordsLangScreen({ navigation }:any) {
                   <Text style={StylesApp.itemText1}>{item.WORD}</Text>
                   <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
                 </View>
-                <FontAwesome name='chevron-right' size={20}onPress={() => onPressItemRight(index)} />
+                <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>
             </TouchableNativeFeedback>
           }

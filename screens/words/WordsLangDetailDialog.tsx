@@ -8,6 +8,7 @@ import { MLangWord } from "../../models/wpp/lang-word.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
 import StylesApp from "../../components/StylesApp.ts";
+import { Dropdown } from "react-native-element-dropdown";
 
 export default function WordsLangDetailDialog(
   {id, isDialogOpened, handleCloseDialog}: DetailDialogProps
@@ -32,73 +33,32 @@ export default function WordsLangDetailDialog(
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
+        <SafeAreaView className="p-2 bg-white">
           <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View style={{marginRight: 8}}>
               <Button title="Cancel" onPress={handleCloseDialog} />
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>ID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.ID.toString()}
-                editable={false}
-              />
-            </View>
+          <Text>ID: {item.ID}</Text>
+          <Text>WORD:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.WORD}
+              onChangeText={e => onChangeTextInput("WORD", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>WORD:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.WORD}
-                onChangeText={e => onChangeTextInput("WORD", e)}
-              />
-            </View>
+          <Text>NOTE:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>NOTE:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.NOTE}
-                onChangeText={e => onChangeTextInput("NOTE", e)}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>FAMIID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.FAMIID.toString()}
-                editable={false}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>ACCURACY:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.ACCURACY}
-                editable={false}
-              />
-            </View>
-          </View>
+          <Text>FAMIID: {item.FAMIID}</Text>
+          <Text>ACCURACY: {item.ACCURACY}</Text>
         </SafeAreaView>
       </TouchableNativeFeedback>
     </Modal>

@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import { useEffect, useMemo, useReducer } from "react";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Animated, Button, StyleSheet, Text, View } from "react-native";
 import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MLanguage } from "../../models/misc/language.ts";
@@ -10,6 +10,7 @@ import { MDictionary } from "../../models/misc/dictionary.ts";
 import { MTextbook } from "../../models/misc/textbook.ts";
 import { MSelectItem } from "../../common/selectitem.ts";
 import StylesApp from "../../components/StylesApp.ts";
+import ScrollView = Animated.ScrollView;
 
 export default function SettingsScreen({ navigation }:any) {
   const settingsService = container.resolve(SettingsService);
@@ -98,7 +99,7 @@ export default function SettingsScreen({ navigation }:any) {
   },[]);
 
   return (
-    <View className="p-2">
+    <ScrollView className="flex-1 p-2">
       <Text>Language:</Text>
       <Dropdown
         style={StylesApp.dropdown}
@@ -162,7 +163,8 @@ export default function SettingsScreen({ navigation }:any) {
         data={settingsService.units}
         onChange={onUnitFromChange}
       />
-      <Dropdown style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
+      <Dropdown
+        style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
@@ -188,7 +190,8 @@ export default function SettingsScreen({ navigation }:any) {
           <Button title="Next" onPress={nextunitPart} />
         </View>
       </View>
-      <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+      <Dropdown
+        style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
@@ -204,6 +207,6 @@ export default function SettingsScreen({ navigation }:any) {
         onChange={onPartToChange}
         disable={!toTypeIsTo}
       />
-    </View>
+    </ScrollView>
   );
 }

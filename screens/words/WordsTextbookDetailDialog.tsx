@@ -16,7 +16,7 @@ export default function WordsTextbookDetailDialog(
 ) {
   const wordsUnitService = container.resolve(WordsUnitService);
   const settingsService = container.resolve(SettingsService);
-  const itemOld = wordsUnitService.unitWords.find(value => value.ID === id);
+  const itemOld = wordsUnitService.textbookWords.find(value => value.ID === id);
   const [item] = useState(itemOld ? Object.create(itemOld) as MUnitWord : wordsUnitService.newUnitWord());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -44,140 +44,61 @@ export default function WordsTextbookDetailDialog(
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView style={{padding: 8, backgroundColor: 'white'}}>
+        <SafeAreaView className="p-2 bg-white">
           <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View style={{marginRight: 8}}>
               <Button title="Cancel" onPress={handleCloseDialog} />
             </View>
             <Button title="Save" onPress={save} />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>ID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.ID.toString()}
-                editable={false}
-              />
-            </View>
+          <Text>ID: {item.ID}</Text>
+          <Text>TEXTBOOK: {item.TEXTBOOKNAME}</Text>
+          <Text>UNIT:</Text>
+          <Dropdown
+            style={StylesApp.dropdown}
+            labelField="label"
+            valueField="value"
+            value={settingsService.units.find(o => o.value === item.UNIT)}
+            data={settingsService.units}
+            onChange={onUnitChange}
+          />
+          <Text>PART:</Text>
+          <Dropdown
+            style={StylesApp.dropdown}
+            labelField="label"
+            valueField="value"
+            value={settingsService.parts.find(o => o.value === item.PART)}
+            data={settingsService.parts}
+            onChange={onPartChange}
+          />
+          <Text>SEQNUM:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              keyboardType="numeric"
+              value={item.SEQNUM.toString()}
+              onChangeText={e => onChangeTextInput("SEQNUM", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>TEXTBOOK:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.TEXTBOOKNAME}
-                editable={false}
-              />
-            </View>
+          <Text>WORDID: {item.WORDID}</Text>
+          <Text>WORD:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.WORD}
+              onChangeText={e => onChangeTextInput("WORD", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>UNIT:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <Dropdown
-              style={StylesApp.dropdown}
-                labelField="label"
-                valueField="value"
-                value={settingsService.units.find(o => o.value === item.UNIT)}
-                data={settingsService.units}
-                onChange={onUnitChange}
-              />
-            </View>
+          <Text>NOTE:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.NOTE}
+              onChangeText={e => onChangeTextInput("NOTE", e)}
+            />
           </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>PART:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <Dropdown
-              style={StylesApp.dropdown}
-                labelField="label"
-                valueField="value"
-                value={settingsService.parts.find(o => o.value === item.PART)}
-                data={settingsService.parts}
-                onChange={onPartChange}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>SEQNUM:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                keyboardType="numeric"
-                value={item.SEQNUM.toString()}
-                onChangeText={e => onChangeTextInput("SEQNUM", e)}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>WORDID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.WORDID.toString()}
-                editable={false}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>WORD:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.WORD}
-                onChangeText={e => onChangeTextInput("WORD", e)}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>NOTE:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.NOTE}
-                onChangeText={e => onChangeTextInput("NOTE", e)}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>FAMIID:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.FAMIID.toString()}
-                editable={false}
-              />
-            </View>
-          </View>
-          <View style={StylesApp.row}>
-            <View style={StylesApp.rowLeft}>
-              <Text>ACCURACY:</Text>
-            </View>
-            <View style={StylesApp.rowRight}>
-              <TextInput
-                style={StylesApp.textinput}
-                value={item.ACCURACY}
-                editable={false}
-              />
-            </View>
-          </View>
+          <Text>FAMIID: {item.FAMIID}</Text>
+          <Text>ACCURACY: {item.ACCURACY}</Text>
         </SafeAreaView>
       </TouchableNativeFeedback>
     </Modal>
