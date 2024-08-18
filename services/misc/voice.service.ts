@@ -1,6 +1,6 @@
 import { BaseService } from './base.service';
 import { MVoice, MVoices } from '../../models/misc/voice';
-import { singleton } from "tsyringe";
+import { singleton } from 'tsyringe';
 import { Platform } from "react-native";
 import { MUSMapping } from "../../models/misc/usmapping.ts";
 

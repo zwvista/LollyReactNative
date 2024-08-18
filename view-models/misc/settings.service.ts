@@ -16,7 +16,7 @@ import { MVoice } from '../../models/misc/voice';
 import { UsMappingService } from '../../services/misc/us-mapping.service';
 import { MUSMapping } from '../../models/misc/usmapping';
 import { HtmlService } from '../../services/misc/html.service';
-import { singleton } from "tsyringe";
+import { singleton } from 'tsyringe';
 import { Platform } from "react-native";
 
 @singleton()
