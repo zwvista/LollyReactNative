@@ -98,11 +98,18 @@ export default function SettingsScreen({ navigation }:any) {
     })();
   },[]);
 
+  const styles = StyleSheet.create({
+    dropdown: {
+      ...StylesApp.dropdown,
+      backgroundColor: "yellow",
+    },
+  });
+
   return (
     <ScrollView className="flex-1 p-2">
       <Text>Language:</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="NAME"
         valueField="ID"
         value={settingsService.selectedLang}
@@ -111,7 +118,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>Voice:</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="VOICELANG"
         valueField="ID"
         value={settingsService.selectedVoice}
@@ -120,7 +127,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>Dictionary(Reference):</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="NAME"
         valueField="ID"
         value={settingsService.selectedDictReference}
@@ -129,7 +136,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>Dictionary(Note):</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="NAME"
         valueField="ID"
         value={settingsService.selectedDictNote}
@@ -138,7 +145,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>Dictionary(Translation):</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="NAME"
         valueField="ID"
         value={settingsService.selectedDictTranslation}
@@ -147,7 +154,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>Textbook:</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="NAME"
         valueField="ID"
         value={settingsService.selectedTextbook}
@@ -156,7 +163,7 @@ export default function SettingsScreen({ navigation }:any) {
       />
       <Text>UNIT:</Text>
       <Dropdown
-        style={StylesApp.dropdown}
+        style={styles.dropdown}
         labelField="label"
         valueField="value"
         value={settingsService.units.find(o => o.value === settingsService.USUNITFROM)}
@@ -164,7 +171,7 @@ export default function SettingsScreen({ navigation }:any) {
         onChange={onUnitFromChange}
       />
       <Dropdown
-        style={[StylesApp.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
+        style={[styles.dropdown, toTypeIsUnit && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.parts.find(o => o.value === settingsService.USPARTFROM)}
@@ -175,7 +182,7 @@ export default function SettingsScreen({ navigation }:any) {
       <View style={StylesApp.row}>
         <View className="flex-1">
           <Dropdown
-            style={StylesApp.dropdown}
+            style={styles.dropdown}
             labelField="label"
             valueField="value"
             value={settingsService.toTypes.find(o => o.value === settingsService.toType)}
@@ -191,7 +198,7 @@ export default function SettingsScreen({ navigation }:any) {
         </View>
       </View>
       <Dropdown
-        style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+        style={[styles.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.units.find(o => o.value === settingsService.USUNITTO)}
@@ -199,7 +206,7 @@ export default function SettingsScreen({ navigation }:any) {
         onChange={onUnitToChange}
         disable={!toTypeIsTo}
       />
-      <Dropdown style={[StylesApp.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+      <Dropdown style={[styles.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
