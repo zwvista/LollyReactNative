@@ -66,19 +66,19 @@ export default function WordsUnitScreen({ navigation }:any) {
           break;
         case 1:
           // Get All Notes
-          getNotes(false);
+          await getNotes(false);
           break;
         case 2:
           // Get Notes If Empty
-          getNotes(true);
+          await getNotes(true);
           break;
         case 3:
           // Clear Notes If Empty
-          clearNotes(false);
+          await clearNotes(false);
           break;
         case 4:
           // Clear Notes If Empty
-          clearNotes(true);
+          await clearNotes(true);
           break;
       }
     });
@@ -121,7 +121,7 @@ export default function WordsUnitScreen({ navigation }:any) {
           break;
         case 3:
           // Clear Note
-          wordsUnitService.getNote(item);
+          await wordsUnitService.clearNote(item);
           break;
         case 4:
           // Copy Word

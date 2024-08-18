@@ -70,7 +70,7 @@ export default function WordsLangScreen({ navigation }:any) {
           break;
         case 3:
           // Clear Note
-          wordsLangService.getNote(item);
+          await wordsLangService.clearNote(item);
           break;
         case 4:
           // Copy Word

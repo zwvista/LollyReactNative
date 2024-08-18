@@ -76,7 +76,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
           break;
         case 3:
           // Clear Note
-          wordsUnitService.getNote(item);
+          await wordsUnitService.clearNote(item);
           break;
         case 4:
           // Copy Word
