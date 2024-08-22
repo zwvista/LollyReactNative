@@ -15,6 +15,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
 import YesNoDialog from "../../components/YesNoDialog.tsx";
+import PhrasesUnitBatchEditDialog from "./PhrasesUnitBatchEditDialog.tsx";
 
 export default function PhrasesUnitScreen({ navigation }:any) {
   const phrasesUnitService = container.resolve(PhrasesUnitService);
@@ -23,6 +24,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
   const [detailId, setDetailId] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const {showActionSheetWithOptions} = useActionSheet();
+  const [showBatchEdit, setShowBatchEdit] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -52,6 +54,10 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         case 0:
           // Add
           showDetailDialog(0);
+          break;
+        case 1:
+          // Batch Edit
+          setShowBatchEdit(true);
           break;
       }
     });
@@ -166,6 +172,7 @@ export default function PhrasesUnitScreen({ navigation }:any) {
         />
       </View>
       {showDetail && <PhrasesUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showBatchEdit && <PhrasesUnitBatchEditDialog isDialogOpened={showBatchEdit} handleCloseDialog={() => setShowBatchEdit(false)} />}
     </View>
   );
 }

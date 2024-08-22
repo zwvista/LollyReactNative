@@ -15,6 +15,7 @@ import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import Clipboard from '@react-native-clipboard/clipboard';
 import { googleString } from "../../common/common.ts";
 import YesNoDialog from "../../components/YesNoDialog.tsx";
+import WordsUnitBatchEditDialog from "./WordsUnitBatchEditDialog.tsx";
 
 export default function WordsUnitScreen({ navigation }:any) {
   const wordsUnitService = container.resolve(WordsUnitService);
@@ -23,6 +24,7 @@ export default function WordsUnitScreen({ navigation }:any) {
   const [detailId, setDetailId] = useState(0);
   const [editMode, setEditMode] = useState(false);
   const {showActionSheetWithOptions} = useActionSheet();
+  const [showBatchEdit, setShowBatchEdit] = useState(false);
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
@@ -80,6 +82,10 @@ export default function WordsUnitScreen({ navigation }:any) {
         case 4:
           // Clear Notes If Empty
           clearNotes(true);
+          break;
+        case 5:
+          // Batch Edit
+          setShowBatchEdit(true);
           break;
       }
     });
@@ -218,6 +224,7 @@ export default function WordsUnitScreen({ navigation }:any) {
         />
       </View>
       {showDetail && <WordsUnitDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showBatchEdit && <WordsUnitBatchEditDialog isDialogOpened={showBatchEdit} handleCloseDialog={() => setShowBatchEdit(false)} />}
     </View>
   );
 }

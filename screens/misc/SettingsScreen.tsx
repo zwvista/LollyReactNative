@@ -206,7 +206,8 @@ export default function SettingsScreen({ navigation }:any) {
         onChange={onUnitToChange}
         disable={!toTypeIsTo}
       />
-      <Dropdown style={[styles.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
+      <Dropdown
+        style={[styles.dropdown, !toTypeIsTo && StylesApp.dropdownDisable]}
         labelField="label"
         valueField="value"
         value={settingsService.parts.find(o => o.value === settingsService.USPARTTO)}
