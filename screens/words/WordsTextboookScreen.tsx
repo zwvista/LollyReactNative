@@ -161,9 +161,9 @@ export default function WordsTextbookScreen({ navigation }:any) {
             >
               <View style={StylesApp.row}>
                 <View>
-                  <Text style={StylesApp.unitPart}>{item.UNITSTR}</Text>
-                  <Text style={StylesApp.unitPart}>{item.PARTSTR}</Text>
-                  <Text style={StylesApp.unitPart}>{item.SEQNUM}</Text>
+                  <Text style={StylesApp.ups}>{item.UNITSTR}</Text>
+                  <Text style={StylesApp.ups}>{item.PARTSTR}</Text>
+                  <Text style={StylesApp.ups}>{item.SEQNUM}</Text>
                 </View>
                 <View className="grow">
                   <Text style={StylesApp.itemText1}>{item.WORD}</Text>

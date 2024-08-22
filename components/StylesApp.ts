@@ -44,7 +44,7 @@ const StylesApp = StyleSheet.create({
   dropdownDisable: {
     backgroundColor: 'darkgray',
   },
-  unitPart: {
+  ups: {
     color: '#0000FF',
   },
   itemText1: {

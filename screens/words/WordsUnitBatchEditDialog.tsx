@@ -44,95 +44,98 @@ export default function WordsUnitBatchEditDialog(
     forceUpdate();
   };
 
-  // @ts-ignore
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-        <SafeAreaView className="flex-1 p-2 bg-white">
-          <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
-            <View style={{marginRight: 8}}>
-              <Button title="Cancel" onPress={handleCloseDialog} />
+        <SafeAreaView className="flex-1">
+          <View className="p-2 bg-white">
+            <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
+              <View style={{marginRight: 8}}>
+                <Button title="Cancel" onPress={handleCloseDialog} />
+              </View>
+              <Button title="Save" onPress={wordsUnitBatchEditService.save} />
             </View>
-            <Button title="Save" onPress={wordsUnitBatchEditService.save} />
-          </View>
-          <View style={stylesApp.row}>
-            <BouncyCheckbox
-              className="w-1/3"
-              text="UNIT:"
-              isChecked={wordsUnitBatchEditService.unitChecked}
-              onPress={e => onChangeCheckBox("unitChecked", e)}
-            />
-            <Dropdown
-              style={[StylesApp.dropdown, !wordsUnitBatchEditService.unitChecked && StylesApp.dropdownDisable]}
-              className="grow"
-              labelField="label"
-              valueField="value"
-              value={settingsService.units.find(o => o.value === wordsUnitBatchEditService.unit)}
-              data={settingsService.units}
-              onChange={onUnitChange}
-              disable={!wordsUnitBatchEditService.unitChecked}
-            />
-          </View>
-          <View style={stylesApp.row}>
-            <BouncyCheckbox
-              className="w-1/3"
-              text="PART:"
-              isChecked={wordsUnitBatchEditService.partChecked}
-              onPress={e => onChangeCheckBox("partChecked", e)}
-            />
-            <Dropdown
-              style={[StylesApp.dropdown, !wordsUnitBatchEditService.partChecked && StylesApp.dropdownDisable]}
-              className="grow"
-              labelField="label"
-              valueField="value"
-              value={settingsService.parts.find(o => o.value === wordsUnitBatchEditService.part)}
-              data={settingsService.parts}
-              onChange={onPartChange}
-              disable={!wordsUnitBatchEditService.partChecked}
-            />
-          </View>
-          <View style={stylesApp.row}>
-            <BouncyCheckbox
-              className="w-1/3"
-              text="SEQNUM (+):"
-              isChecked={wordsUnitBatchEditService.seqnumChecked}
-              onPress={e => onChangeCheckBox("seqnumChecked", e)}
-            />
-            <TextInput
-              style={StylesApp.textinput}
-              className="grow"
-              keyboardType="numeric"
-              value={wordsUnitBatchEditService.seqnum.toString()}
-              onChangeText={e => onSeqnumChange(e)}
-              readOnly={!wordsUnitBatchEditService.seqnumChecked}
-            />
-          </View>
-          <View className="grow">
-            <FlatList
-              keyExtractor={item => item.ID.toString()}
-              ItemSeparatorComponent={(props) =>
-                <View style={{height: 1, backgroundColor: 'gray'}} />
-              }
-              data={wordsUnitService.unitWords}
-              renderItem={({item, index}) =>
-                <TouchableNativeFeedback
-                  onPress={() => onPressItem(item)}
-                >
-                  <View style={StylesApp.row}>
-                    <View>
-                      <Text style={StylesApp.unitPart}>{item.UNITSTR}</Text>
-                      <Text style={StylesApp.unitPart}>{item.PARTSTR}</Text>
-                      <Text style={StylesApp.unitPart}>{item.SEQNUM}</Text>
+            <View style={stylesApp.row}>
+              <BouncyCheckbox
+                className="w-1/3"
+                text="UNIT:"
+                isChecked={wordsUnitBatchEditService.unitChecked}
+                onPress={e => onChangeCheckBox("unitChecked", e)}
+              />
+              <Dropdown
+                style={[StylesApp.dropdown, !wordsUnitBatchEditService.unitChecked && StylesApp.dropdownDisable]}
+                // @ts-ignore
+                className="grow"
+                labelField="label"
+                valueField="value"
+                value={settingsService.units.find(o => o.value === wordsUnitBatchEditService.unit)}
+                data={settingsService.units}
+                onChange={onUnitChange}
+                disable={!wordsUnitBatchEditService.unitChecked}
+              />
+            </View>
+            <View style={stylesApp.row}>
+              <BouncyCheckbox
+                className="w-1/3"
+                text="PART:"
+                isChecked={wordsUnitBatchEditService.partChecked}
+                onPress={e => onChangeCheckBox("partChecked", e)}
+              />
+              <Dropdown
+                style={[StylesApp.dropdown, !wordsUnitBatchEditService.partChecked && StylesApp.dropdownDisable]}
+                // @ts-ignore
+                className="grow"
+                labelField="label"
+                valueField="value"
+                value={settingsService.parts.find(o => o.value === wordsUnitBatchEditService.part)}
+                data={settingsService.parts}
+                onChange={onPartChange}
+                disable={!wordsUnitBatchEditService.partChecked}
+              />
+            </View>
+            <View style={stylesApp.row}>
+              <BouncyCheckbox
+                className="w-1/3"
+                text="SEQNUM (+):"
+                isChecked={wordsUnitBatchEditService.seqnumChecked}
+                onPress={e => onChangeCheckBox("seqnumChecked", e)}
+              />
+              <TextInput
+                style={StylesApp.textinput}
+                className="grow"
+                keyboardType="numeric"
+                value={wordsUnitBatchEditService.seqnum.toString()}
+                onChangeText={e => onSeqnumChange(e)}
+                readOnly={!wordsUnitBatchEditService.seqnumChecked}
+              />
+            </View>
+            <View className="grow">
+              <FlatList
+                keyExtractor={item => item.ID.toString()}
+                ItemSeparatorComponent={(props) =>
+                  <View style={{height: 1, backgroundColor: 'gray'}} />
+                }
+                data={wordsUnitService.unitWords}
+                renderItem={({item, index}) =>
+                  <TouchableNativeFeedback
+                    onPress={() => onPressItem(item)}
+                  >
+                    <View style={StylesApp.row}>
+                      <View>
+                        <Text style={StylesApp.ups}>{item.UNITSTR}</Text>
+                        <Text style={StylesApp.ups}>{item.PARTSTR}</Text>
+                        <Text style={StylesApp.ups}>{item.SEQNUM}</Text>
+                      </View>
+                      <View className="grow">
+                        <Text style={StylesApp.itemText1}>{item.WORD}</Text>
+                        <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
+                      </View>
+                      {item.isChecked && <FontAwesome name='check' size={20} />}
                     </View>
-                    <View className="grow">
-                      <Text style={StylesApp.itemText1}>{item.WORD}</Text>
-                      <Text style={StylesApp.itemText2}>{item.NOTE}</Text>
-                    </View>
-                    {item.isChecked && <FontAwesome name='check' size={20} />}
-                  </View>
-                </TouchableNativeFeedback>
-              }
-            />
+                  </TouchableNativeFeedback>
+                }
+              />
+            </View>
           </View>
         </SafeAreaView>
       </TouchableNativeFeedback>
