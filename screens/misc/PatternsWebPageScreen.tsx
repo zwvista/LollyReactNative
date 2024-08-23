@@ -10,15 +10,17 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
   const {patterns, patternIndex}: {patterns: MPattern[], patternIndex: number} = route.params;
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
   const [pattern, setPattern] = useState(patterns[patternIndex].PATTERN);
+  const [url, setUrl] = useState(patterns[patternIndex].URL);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
 
   const onPatternChange = async (e: MPattern) => {
     setPattern(e.PATTERN);
+    setUrl(e.URL);
     onRefresh();
   };
 
   useEffect(() => {
-    setWebViewSource({uri: pattern});
+    setWebViewSource({uri: url});
   }, [refreshCount]);
 
   return (

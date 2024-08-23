@@ -48,20 +48,28 @@ export default function PatternsDetailDialog(
               onChangeText={e => onChangeTextInput("PATTERN", e)}
             />
           </View>
-          <Text>NOTE:</Text>
-          <View className="w-full">
-            <TextInput
-              style={StylesApp.textinput}
-              value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
-            />
-          </View>
           <Text>TAGS:</Text>
           <View className="w-full">
             <TextInput
               style={StylesApp.textinput}
               value={item.TAGS}
               onChangeText={e => onChangeTextInput("TAGS", e)}
+            />
+          </View>
+          <Text>TITLE:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.TITLE}
+              onChangeText={e => onChangeTextInput("TITLE", e)}
+            />
+          </View>
+          <Text>URL:</Text>
+          <View className="w-full">
+            <TextInput
+              style={StylesApp.textinput}
+              value={item.URL}
+              onChangeText={e => onChangeTextInput("URL", e)}
             />
           </View>
         </SafeAreaView>
