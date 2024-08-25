@@ -18,6 +18,14 @@ export class UnitPhraseService extends BaseService {
     return result2;
   }
 
+  async getDataByTextbook(textbook: MTextbook): Promise<MUnitPhrase[]> {
+    let url = `${this.baseUrlAPI}VUNITPHRASES?filter=TEXTBOOKID,eq,${textbook.ID}}&order=UNITPART&order=SEQNUM`;
+    const result = await this.httpGet<MUnitPhrases>(url);
+    const result2 = result.records.map(value => Object.assign(new MUnitPhrase(), value));
+    result2.forEach(o => o.textbook = textbook);
+    return result2;
+  }
+
   async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number): Promise<MUnitPhrases> {
     let url = `${this.baseUrlAPI}VUNITPHRASES?filter=LANGID,eq,${langid}&order=TEXTBOOKID&order=UNIT&order=PART&order=SEQNUM`;
     if (filterType !== 0 && filter)
