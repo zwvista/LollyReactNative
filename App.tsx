@@ -18,13 +18,15 @@ import WordsLangScreen from "./screens/words/WordsLangScreen.tsx";
 import PhrasesUnitScreen from "./screens/phrases/PhrasesUnitScreen.tsx";
 import PhrasesTextbookScreen from "./screens/phrases/PhrasesTextboookScreen.tsx";
 import PhrasesLangScreen from "./screens/phrases/PhrasesLangScreen.tsx";
-import PatternsScreen from "./screens/misc/PatternsScreen.tsx";
+import PatternsScreen from "./screens/patterns/PatternsScreen.tsx";
 import SettingsScreen from "./screens/misc/SettingsScreen.tsx";
 import { MMKVLoader } from "react-native-mmkv-storage";
 import { createStackNavigator } from "@react-navigation/stack";
 import WordsDictScreen from "./screens/words/WordsDictScreen.tsx";
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import PatternsWebPageScreen from "./screens/misc/PatternsWebPageScreen.tsx";
+import PatternsWebPageScreen from "./screens/patterns/PatternsWebPageScreen.tsx";
+import WordsReviewScreen from "./screens/words/WordsReviewScreen.tsx";
+import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
@@ -52,6 +54,12 @@ function Root() {
          drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Phrases in Unit" component={PhrasesUnitScreen} options={{
+         drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
+       }}/>
+       <Drawer.Screen name="Words Review" component={WordsReviewScreen} options={{
+         drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
+       }}/>
+       <Drawer.Screen name="Phrases Review" component={PhrasesReviewScreen} options={{
          drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Textbook" component={WordsTextbookScreen} options={{
