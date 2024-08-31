@@ -69,13 +69,6 @@ export default function WebTextbooksScreen({ navigation }:any) {
   };
 
   useEffect(() => {
-    navigation.setOptions({
-      headerRight: () =>
-        <FontAwesome name='plus-circle' size={30} onPress={() => showDetailDialog(0)} />
-    });
-  }, []);
-
-  useEffect(() => {
     (async () => {
       await webTextbooksService.getData(textbookFilter);
       forceUpdate();

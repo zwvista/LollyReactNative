@@ -91,7 +91,7 @@ export default function PatternsScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <FontAwesome name='plus-circle' size={30} onPress={() => showDetailDialog(0)} />
+        <FontAwesome name='circle-plus' size={30} onPress={() => showDetailDialog(0)} />
     });
   }, []);
 

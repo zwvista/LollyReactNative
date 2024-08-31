@@ -160,7 +160,7 @@ export default function WordsUnitScreen({ navigation }:any) {
       headerRight: () =>
         <View className="flex-row">
           <FontAwesome name='edit' size={30} color={editMode ? 'red' : 'black'} onPress={() => setEditMode(!editMode)} />
-          <MaterialCommunityIcons name='dots-vertical' size={30} onPress={onPressMenu} />
+          <MaterialCommunityIcons name='dots-horizontal' size={30} onPress={onPressMenu} />
         </View>
     });
   }, [editMode]);
