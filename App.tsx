@@ -30,6 +30,10 @@ import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
 import WebTextbooksScreen from "./screens/webtextbooks/WebTextbooksScreen.tsx";
 import WebTextbooksWebPageScreen from "./screens/webtextbooks/WebTextbooksWebPageScreen.tsx";
 
+if (__DEV__) {
+  require("./ReactotronConfig");
+}
+
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
   id: number,
