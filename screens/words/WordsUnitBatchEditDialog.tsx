@@ -10,7 +10,7 @@ import { MSelectItem } from "../../common/selectitem.ts";
 import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
 import WordsUnitBatchEditService from "../../view-models/wpp/words-unit-batch-edit.service.ts";
 import stylesApp from "../../components/StylesApp.ts";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 

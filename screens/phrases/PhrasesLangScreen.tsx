@@ -7,7 +7,7 @@ import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.t
 import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { MLangPhrase } from "../../models/wpp/lang-phrase.ts";

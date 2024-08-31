@@ -10,7 +10,7 @@ import "reflect-metadata"
 import * as React from 'react';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "./screens/misc/SearchScreen";
-import FontAwesome from 'react-native-vector-icons/FontAwesome.js';
+import FontAwesome from 'react-native-vector-icons/FontAwesome6';
 import { NavigationContainer } from '@react-navigation/native';
 import WordsUnitScreen from "./screens/words/WordsUnitScreen.tsx";
 import WordsTextbookScreen from "./screens/words/WordsTextboookScreen.tsx";
@@ -45,10 +45,10 @@ function Root() {
   return (
     <Drawer.Navigator>
        <Drawer.Screen name="Search" component={SearchScreen} options={{
-         drawerIcon: () => <FontAwesome name='search' size={30} color='#130f40' />
+         drawerIcon: () => <FontAwesome name='magnifying-glass' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Settings" component={SettingsScreen} options={{
-         drawerIcon: () => <FontAwesome name='cog' size={30} color='#130f40' />
+         drawerIcon: () => <FontAwesome name='gear' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Unit" component={WordsUnitScreen} options={{
          drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
@@ -57,10 +57,10 @@ function Root() {
          drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words Review" component={WordsReviewScreen} options={{
-         drawerIcon: () => <FontAwesome name='bus' size={30} color='#130f40' />
+         drawerIcon: () => <FontAwesome name='truck' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Phrases Review" component={PhrasesReviewScreen} options={{
-         drawerIcon: () => <FontAwesome name='train' size={30} color='#130f40' />
+         drawerIcon: () => <FontAwesome name='van-shuttle' size={30} color='#130f40' />
        }}/>
        <Drawer.Screen name="Words in Textbook" component={WordsTextbookScreen} options={{
          drawerIcon: () => <FontAwesome name='car' size={30} color='#130f40' />
