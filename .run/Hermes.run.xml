@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Android" type="ReactNative" factoryName="React Native">
+  <configuration default="false" name="Hermes" type="ReactNative" factoryName="React Native">
     <node-interpreter value="project" />
     <react-native value="$USER_HOME$/.nodebrew/node/v22.6.0/lib/node_modules/react-native-cli" />
     <platform value="ANDROID" />
