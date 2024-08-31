@@ -142,6 +142,7 @@ export class SettingsService {
   textbooks: MTextbook[] = [];
   selectedTextbook!: MTextbook;
   textbookFilters: MSelectItem[] = [];
+  webTextbookFilters: MSelectItem[] = [];
 
   get units(): MSelectItem[] {
     return this.selectedTextbook.units;
@@ -238,6 +239,8 @@ export class SettingsService {
     this.selectedTextbook = this.textbooks.find(value => value.ID === this.USTEXTBOOK)!;
     this.textbookFilters = this.textbooks.map(value => new MSelectItem(value.ID, value.NAME));
     this.textbookFilters = [new MSelectItem(0, 'All Textbooks')].concat(this.textbookFilters);
+    this.webTextbookFilters = this.textbooks.filter(value => value.ISWEB === 1).map(value => new MSelectItem(value.ID, value.NAME));
+    this.webTextbookFilters = [new MSelectItem(0, 'All Textbooks')].concat(this.webTextbookFilters);
     this.autoCorrects = res[4] as MAutoCorrect[];
     this.voices = res[5] as MVoice[];
     console.log(this.voices);

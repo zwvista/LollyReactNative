@@ -27,6 +27,8 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import PatternsWebPageScreen from "./screens/patterns/PatternsWebPageScreen.tsx";
 import WordsReviewScreen from "./screens/words/WordsReviewScreen.tsx";
 import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
+import WebTextbooksScreen from "./screens/webtextbooks/WebTextbooksScreen.tsx";
+import WebTextbooksWebPageScreen from "./screens/webtextbooks/WebTextbooksWebPageScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
@@ -77,6 +79,9 @@ function Root() {
        <Drawer.Screen name="Patterns in Language" component={PatternsScreen} options={{
          drawerIcon: () => <FontAwesome name='motorcycle' size={30} color='#130f40' />
        }}/>
+       <Drawer.Screen name="WebTextbooks" component={WebTextbooksScreen} options={{
+         drawerIcon: () => <FontAwesome name='helicopter' size={30} color='#130f40' />
+       }}/>
     </Drawer.Navigator>
   );
 }
@@ -98,6 +103,9 @@ export default function App() {
           }} />
           <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} options={{
             title: 'Patterns Web Page'
+          }} />
+          <Stack.Screen name="WebTextbooks Web Page" component={WebTextbooksWebPageScreen} options={{
+            title: 'WebTextbook Web Page'
           }} />
         </Stack.Navigator>
       </NavigationContainer>
