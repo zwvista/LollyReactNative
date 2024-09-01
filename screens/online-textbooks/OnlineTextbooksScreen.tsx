@@ -3,14 +3,14 @@ import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import { OnlineTextbooksService } from "../../view-models/misc/onlinetextbooks.service.ts";
+import { OnlineTextbooksService } from "../../view-models/misc/online-textbooks.service.ts";
 import OnlineTextbooksDetailDialog from "./OnlineTextbooksDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import { MOnlineTextbook } from "../../models/misc/onlinetextbook.ts";
+import { MOnlineTextbook } from "../../models/misc/online-textbook.ts";
 import { getPreferredRangeFromArray } from "../../common/common.ts";
 
 export default function OnlineTextbooksScreen({ navigation }:any) {

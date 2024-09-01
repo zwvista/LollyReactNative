@@ -1,7 +1,7 @@
 import { SettingsService } from '../misc/settings.service';
 import { AppService } from '../misc/app.service';
-import { MOnlineTextbook } from '../../models/misc/onlinetextbook';
-import { OnlineTextbookService } from '../../services/misc/onlinetextbook.service';
+import { MOnlineTextbook } from '../../models/misc/online-textbook';
+import { OnlineTextbookService } from '../../services/misc/online-textbook.service';
 import { singleton } from 'tsyringe';
 
 @singleton()

@@ -4,7 +4,7 @@ import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
-import { MOnlineTextbook } from "../../models/misc/onlinetextbook.ts";
+import { MOnlineTextbook } from "../../models/misc/online-textbook.ts";
 
 export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) {
   const {onlineTextbooks, onlineTextbookIndex}: {onlineTextbooks: MOnlineTextbook[], onlineTextbookIndex: number} = route.params;

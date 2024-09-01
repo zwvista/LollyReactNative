@@ -27,8 +27,8 @@ import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import PatternsWebPageScreen from "./screens/patterns/PatternsWebPageScreen.tsx";
 import WordsReviewScreen from "./screens/words/WordsReviewScreen.tsx";
 import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
-import OnlineTextbooksScreen from "./screens/onlinetextbooks/OnlineTextbooksScreen.tsx";
-import OnlineTextbooksWebPageScreen from "./screens/onlinetextbooks/OnlineTextbooksWebPageScreen.tsx";
+import OnlineTextbooksScreen from "./screens/online-textbooks/OnlineTextbooksScreen.tsx";
+import OnlineTextbooksWebPageScreen from "./screens/online-textbooks/OnlineTextbooksWebPageScreen.tsx";
 
 if (__DEV__) {
   require("./ReactotronConfig");
@@ -102,15 +102,9 @@ export default function App() {
             component={Root}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Word Dictionary" component={WordsDictScreen} options={{
-            title: 'Word Dictionary'
-          }} />
-          <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} options={{
-            title: 'Patterns Web Page'
-          }} />
-          <Stack.Screen name="Online Textbooks (Web Page)" component={OnlineTextbooksWebPageScreen} options={{
-            title: 'Online Textbooks (Web Page)'
-          }} />
+          <Stack.Screen name="Word Dictionary" component={WordsDictScreen} />
+          <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} />
+          <Stack.Screen name="Online Textbooks (Web Page)" component={OnlineTextbooksWebPageScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ActionSheetProvider>
