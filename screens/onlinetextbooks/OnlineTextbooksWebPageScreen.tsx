@@ -4,17 +4,17 @@ import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
-import { MWebTextbook } from "../../models/misc/webtextbook.ts";
+import { MOnlineTextbook } from "../../models/misc/onlinetextbook.ts";
 
-export default function WebTextbooksWebPageScreen({ route, navigation }:any) {
-  const {webTextbooks, webTextbookIndex}: {webTextbooks: MWebTextbook[], webTextbookIndex: number} = route.params;
+export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) {
+  const {onlineTextbooks, onlineTextbookIndex}: {onlineTextbooks: MOnlineTextbook[], onlineTextbookIndex: number} = route.params;
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const [webTextbook, setWebTextbook] = useState(webTextbooks[webTextbookIndex].TITLE);
-  const [url, setUrl] = useState(webTextbooks[webTextbookIndex].URL);
+  const [onlineTextbook, setOnlineTextbook] = useState(onlineTextbooks[onlineTextbookIndex].TITLE);
+  const [url, setUrl] = useState(onlineTextbooks[onlineTextbookIndex].URL);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
 
-  const onWebTextbookChange = async (e: MWebTextbook) => {
-    setWebTextbook(e.TITLE);
+  const onOnlineTextbookChange = async (e: MOnlineTextbook) => {
+    setOnlineTextbook(e.TITLE);
     setUrl(e.URL);
     onRefresh();
   };
@@ -29,9 +29,9 @@ export default function WebTextbooksWebPageScreen({ route, navigation }:any) {
         style={StylesApp.dropdown}
         labelField="TITLE"
         valueField="ID"
-        value={webTextbooks[webTextbookIndex]}
-        data={webTextbooks}
-        onChange={onWebTextbookChange}
+        value={onlineTextbooks[onlineTextbookIndex]}
+        data={onlineTextbooks}
+        onChange={onOnlineTextbookChange}
       />
       <View className="grow">
         <WebView

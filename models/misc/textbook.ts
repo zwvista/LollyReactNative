@@ -9,7 +9,7 @@ export class MTextbook {
   NAME = '';
   UNITS = '';
   PARTS = '';
-  ISWEB = 0;
+  ONLINE = 0;
 
   units: MSelectItem[] = [];
   parts: MSelectItem[] = [];

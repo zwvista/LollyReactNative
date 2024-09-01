@@ -1,7 +1,7 @@
-export class MWebTextbooks {
-  records!: MWebTextbook[];
+export class MOnlineTextbooks {
+  records!: MOnlineTextbook[];
 }
-export class MWebTextbook {
+export class MOnlineTextbook {
   ID = 0;
   LANGID = 0;
   TEXTBOOKID = 0;

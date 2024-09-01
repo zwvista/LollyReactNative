@@ -3,18 +3,18 @@ import * as React from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { useEffect, useReducer, useState } from "react";
-import { WebTextbooksService } from "../../view-models/misc/webtextbooks.service.ts";
-import WebTextbooksDetailDialog from "./WebTextbooksDetailDialog.tsx";
+import { OnlineTextbooksService } from "../../view-models/misc/onlinetextbooks.service.ts";
+import OnlineTextbooksDetailDialog from "./OnlineTextbooksDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import { MWebTextbook } from "../../models/misc/webtextbook.ts";
+import { MOnlineTextbook } from "../../models/misc/onlinetextbook.ts";
 import { getPreferredRangeFromArray } from "../../common/common.ts";
 
-export default function WebTextbooksScreen({ navigation }:any) {
-  const webTextbooksService = container.resolve(WebTextbooksService);
+export default function OnlineTextbooksScreen({ navigation }:any) {
+  const onlineTextbooksService = container.resolve(OnlineTextbooksService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
   const [detailId, setDetailId] = useState(0);
@@ -34,19 +34,19 @@ export default function WebTextbooksScreen({ navigation }:any) {
     setShowDetail(true);
   };
 
-  const onPressItem = (item: MWebTextbook) => {
+  const onPressItem = (item: MOnlineTextbook) => {
     settingsService.speak(item.TEXTBOOKNAME);
   };
 
   const onPressItemRight = (index: number) => {
-    const [start, end] = getPreferredRangeFromArray(index, webTextbooksService.webTextbooks.length, 50);
-    navigation.navigate("WebTextbooks Web Page", {
-      webTextbooks: webTextbooksService.webTextbooks.slice(start, end),
-      webTextbookIndex: index - start,
+    const [start, end] = getPreferredRangeFromArray(index, onlineTextbooksService.onlineTextbooks.length, 50);
+    navigation.navigate("Online Textbooks (Web Page)", {
+      onlineTextbooks: onlineTextbooksService.onlineTextbooks.slice(start, end),
+      onlineTextbookIndex: index - start,
     });
   };
 
-  const onLongPressItem = (item: MWebTextbook) => {
+  const onLongPressItem = (item: MOnlineTextbook) => {
     showActionSheetWithOptions({
       options: [
         "Edit",
@@ -62,7 +62,7 @@ export default function WebTextbooksScreen({ navigation }:any) {
           break;
         case 1:
           // Browse Web Page
-          onPressItemRight(webTextbooksService.webTextbooks.indexOf(item));
+          onPressItemRight(onlineTextbooksService.onlineTextbooks.indexOf(item));
           break;
       }
     });
@@ -70,7 +70,7 @@ export default function WebTextbooksScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await webTextbooksService.getData(textbookFilter);
+      await onlineTextbooksService.getData(textbookFilter);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -83,8 +83,8 @@ export default function WebTextbooksScreen({ navigation }:any) {
             style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={settingsService.webTextbookFilters.find(o => o.value === textbookFilter)}
-            data={settingsService.webTextbookFilters}
+            value={settingsService.onlineTextbookFilters.find(o => o.value === textbookFilter)}
+            data={settingsService.onlineTextbookFilters}
             onChange={onTextbookFilterChange}
           />
         </View>
@@ -95,7 +95,7 @@ export default function WebTextbooksScreen({ navigation }:any) {
           ItemSeparatorComponent={(props) =>
             <View style={{height: 1, backgroundColor: 'gray'}} />
           }
-          data={webTextbooksService.webTextbooks}
+          data={onlineTextbooksService.onlineTextbooks}
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
@@ -112,7 +112,7 @@ export default function WebTextbooksScreen({ navigation }:any) {
           }
         />
       </View>
-      {showDetail && <WebTextbooksDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
+      {showDetail && <OnlineTextbooksDetailDialog id={detailId} isDialogOpened={showDetail} handleCloseDialog={() => setShowDetail(false)} />}
     </View>
   );
 }
