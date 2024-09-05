@@ -20,12 +20,12 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
   const [detailId, setDetailId] = useState(0);
   const {showActionSheetWithOptions} = useActionSheet();
 
-  const [textbookFilter, setTextbookFilter] = useState(0);
+  const [onlineTextbookFilter, setOnlineTextbookFilter] = useState(0);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onTextbookFilterChange = (e: MSelectItem) => {
-    setTextbookFilter(e.value);
+  const onOnlineTextbookFilterChange = (e: MSelectItem) => {
+    setOnlineTextbookFilter(e.value);
     onRefresh();
   }
 
@@ -70,7 +70,7 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await onlineTextbooksService.getData(textbookFilter);
+      await onlineTextbooksService.getData(onlineTextbookFilter);
       forceUpdate();
     })();
   }, [refreshCount]);
@@ -83,9 +83,9 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
             style={StylesApp.dropdown}
             labelField="label"
             valueField="value"
-            value={settingsService.onlineTextbookFilters.find(o => o.value === textbookFilter)}
+            value={settingsService.onlineTextbookFilters.find(o => o.value === onlineTextbookFilter)}
             data={settingsService.onlineTextbookFilters}
-            onChange={onTextbookFilterChange}
+            onChange={onOnlineTextbookFilterChange}
           />
         </View>
       </View>

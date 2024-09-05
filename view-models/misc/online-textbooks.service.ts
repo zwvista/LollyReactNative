@@ -15,7 +15,7 @@ export class OnlineTextbooksService {
               private appService: AppService) {
   }
 
-  async getData(textbookFilter: number) {
+  async getData(onlineTextbookFilter: number) {
     await this.appService.getData();
     const res = await this.onlineTextbookService.getDataByLang(this.settingsService.selectedLang.ID);
     this.onlineTextbooks = res;

@@ -15,7 +15,7 @@ export function getPreferredRangeFromArray(
   index: number,
   length: number,
   preferredLength: number
-): number[] {
+): [number, number] {
   let start, end;
   if (length < preferredLength) {
     start = 0; end = length;
