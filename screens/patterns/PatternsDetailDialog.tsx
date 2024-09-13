@@ -1,8 +1,8 @@
 import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
+import * as React from "react";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import * as React from "react";
 import { PatternsService } from "../../view-models/wpp/patterns.service.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
 import Modal from "react-native-modal";

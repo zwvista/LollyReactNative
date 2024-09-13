@@ -1,15 +1,5 @@
 import * as React from 'react';
-import {
-  Alert,
-  Button,
-  Keyboard,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableNativeFeedback,
-  View
-} from 'react-native';
+import { Alert, Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from 'react-native';
 import { container } from "tsyringe";
 import { LoginService } from "../../view-models/misc/login.service.ts";
 import { useMMKVStorage } from "react-native-mmkv-storage";

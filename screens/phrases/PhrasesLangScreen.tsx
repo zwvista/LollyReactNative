@@ -1,8 +1,8 @@
 import { FlatList, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
+import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { useEffect, useReducer, useState } from "react";
 import { PhrasesLangService } from "../../view-models/wpp/phrases-lang.service.ts";
 import PhrasesLangDetailDialog from "./PhrasesLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";

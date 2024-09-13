@@ -1,8 +1,8 @@
 import { container } from "tsyringe";
+import * as React from "react";
 import { useEffect, useMemo, useReducer } from "react";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { Animated, Button, StyleSheet, Text, View } from "react-native";
-import * as React from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import { MLanguage } from "../../models/misc/language.ts";
 import { MVoice } from "../../models/misc/voice.ts";

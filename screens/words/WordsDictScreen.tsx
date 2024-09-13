@@ -1,10 +1,10 @@
 import { View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import * as React from "react";
+import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
-import { useEffect, useReducer, useState } from "react";
 import WebView from "react-native-webview";
 import OnlineDict from "../../components/OnlineDict.ts";
 import { ValueOnly } from "../../App.tsx";

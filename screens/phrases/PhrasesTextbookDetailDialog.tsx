@@ -1,8 +1,8 @@
 import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
+import * as React from "react";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import * as React from "react";
 import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
 import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import { Dropdown } from "react-native-element-dropdown";

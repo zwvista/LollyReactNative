@@ -1,12 +1,12 @@
 import Modal from "react-native-modal";
 import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
+import { useReducer } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MReviewOptions } from "../../models/misc/review-options.ts";
-import { useReducer } from "react";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 export default function ReviewOptionsDialog(

@@ -4,7 +4,6 @@ import { LangWordService } from '../../services/wpp/lang-word.service';
 import { MLangWord } from '../../models/wpp/lang-word';
 import { WordFamiService } from '../../services/wpp/word-fami.service';
 import { singleton } from 'tsyringe';
-import { MUnitWord } from "../../models/wpp/unit-word";
 
 @singleton()
 export class WordsLangService {

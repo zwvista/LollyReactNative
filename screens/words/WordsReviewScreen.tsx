@@ -1,8 +1,8 @@
 import { View } from "react-native";
+import * as React from "react";
 import { useState } from "react";
 import { MReviewOptions } from "../../models/misc/review-options.ts";
 import ReviewOptionsDialog from "../misc/ReviewOptionsDialog.tsx";
-import * as React from "react";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
