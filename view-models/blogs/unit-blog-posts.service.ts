@@ -10,16 +10,23 @@ export class UnitBlogPostsService {
   get units(): MSelectItem[] {
     return this.settingsService.units;
   }
-  currentUnit: MSelectItem;
+  selectedUnitIndex: number;
+  get selectedUnit(): MSelectItem {
+    return this.units[this.selectedUnitIndex];
+  }
 
   constructor(private settingsService: SettingsService,
               private appService: AppService) {
-    this.currentUnit = this.units.find(x => x.value === this.settingsService.USUNITTO)!;
+    this.selectedUnitIndex = this.units.findIndex(x => x.value === this.settingsService.USUNITTO);
   }
 
-  async getHtml(unit: number): Promise<string> {
+  async getHtml(): Promise<string> {
     await this.appService.getData();
-    const content = await this.settingsService.getBlogContent(unit);
+    const content = await this.settingsService.getBlogContent(this.selectedUnit.value);
     return this.blogService.markedToHtml(content);
+  }
+
+  next(delta: number) {
+    this.selectedUnitIndex = (this.selectedUnitIndex + delta + this.units.length) % this.units.length;
   }
 }
