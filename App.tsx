@@ -29,6 +29,7 @@ import WordsReviewScreen from "./screens/words/WordsReviewScreen.tsx";
 import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
 import OnlineTextbooksScreen from "./screens/online-textbooks/OnlineTextbooksScreen.tsx";
 import OnlineTextbooksWebPageScreen from "./screens/online-textbooks/OnlineTextbooksWebPageScreen.tsx";
+import UnitBlogPostsScreen from "./screens/blogs/UnitBlogPostsScreen.tsx";
 
 if (__DEV__) {
   require("./ReactotronConfig");
@@ -85,6 +86,9 @@ function Root() {
        }}/>
        <Drawer.Screen name="Online Textbooks" component={OnlineTextbooksScreen} options={{
          drawerIcon: () => <FontAwesome name='helicopter' size={30} color='#130f40' />
+       }}/>
+       <Drawer.Screen name="Unit Blog Posts" component={UnitBlogPostsScreen} options={{
+         drawerIcon: () => <FontAwesome name='bicycle' size={30} color='#130f40' />
        }}/>
     </Drawer.Navigator>
   );

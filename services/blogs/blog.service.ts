@@ -1,7 +1,7 @@
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import _ from "lodash";
 
-class BlogService {
+export class BlogService {
   private html1With(s: string): string {
     return `<strong><span style="color:#0000ff;">${s}</span></strong>`;
   }
@@ -47,9 +47,9 @@ class BlogService {
           lst[i] += "</li>";
         if (isLast || m2 == null)
           lst.splice(++i, 0, "</ul>");
-      } else if (!s)
+      } else if (!s) {
         lst[i] = this.htmlEmptyLine;
-      else {
+      } else {
         s = s.replace(this.regMarkedB, this.htmlBWith("$1"));
         s = s.replace(this.regMarkedI, this.htmlIWith("$1"));
         lst[i] = `<div>${s}</div>`;
@@ -61,22 +61,21 @@ class BlogService {
   private regHtmlB = new RegExp(this.htmlBWith("(.+?)"), "g");
   private regHtmlI = new RegExp(this.htmlIWith("(.+?)"), "g");
   private regHtmlEntry = new RegExp(`(<li>|<br>)${this.htmlWordWith("(.*?)")}(?:${this.htmlE1With("(.*?)")})?(?:${this.htmlE2With("(.*?)")})?(?:</li>)?`, "g");
-  htmlToMarked(text: string): string
-  {
+  htmlToMarked(text: string): string {
     const lst = text.split("\n");
     for (let i = 0; i < lst.length; i++) {
       let s = lst[i]
       if (s === "<!-- wp:html -->" || s === "<!-- /wp:html -->" || s === "<ul>" || s === "</ul>")
         lst.splice(i--, 1)
-      else if (s === this.htmlEmptyLine)
+      else if (s === this.htmlEmptyLine) {
         lst[i] = "";
-      else {
+      } else {
         let m = this.regLine.exec(s);
         if (m != null) {
           s = m[1];
-          s = s.replace(this.regHtmlB, "<B>$1</B>")
-          s = s.replace(this.regHtmlI, "<I>$1</I>")
-          lst[i] = s
+          s = s.replace(this.regHtmlB, "<B>$1</B>");
+          s = s.replace(this.regHtmlI, "<I>$1</I>");
+          lst[i] = s;
         } else {
           m = this.regHtmlEntry.exec(s);
           if (m != null)
@@ -140,7 +139,7 @@ class BlogService {
       const j = _.findIndex(note, ch => _.isNumber(ch));
       const s21 = j === -1 ? note : note.substring(0, j);
       const s22 = j === -1 ? "" : f(note.substring(j));
-      const s2 = word + (s21 == word || !s21 ? "" : `（${s21}）`) + s22
+      const s2 = word + (s21 == word || !s21 ? "" : `（${s21}）`) + s22;
       items[i] = `${s1} ${s2}：${s3}：${s4}`;
     }, () => allComplete(items.join("\n")));
   }

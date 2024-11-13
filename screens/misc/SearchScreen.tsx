@@ -101,7 +101,7 @@ export default function SearchScreen({ navigation }:any) {
             </View>
             <View className="w-1/2">
               <Dropdown
-            style={StylesApp.dropdown}
+                style={StylesApp.dropdown}
                 labelField="NAME"
                 valueField="ID"
                 value={settingsService.selectedDictReference}

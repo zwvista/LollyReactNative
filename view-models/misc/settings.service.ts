@@ -4,7 +4,7 @@ import { MUserSetting, MUserSettingInfo } from '../../models/misc/user-setting';
 import { MLanguage } from '../../models/misc/language';
 import { MDictionary } from '../../models/misc/dictionary';
 import { MTextbook } from '../../models/misc/textbook';
-import { interval, Subscription } from 'rxjs';
+import { async, interval, Subscription } from 'rxjs';
 import { DictionaryService } from '../../services/misc/dictionary.service';
 import { TextbookService } from '../../services/misc/textbook.service';
 import { autoCorrect, MAutoCorrect } from '../../models/misc/autocorrect';
@@ -18,6 +18,7 @@ import { MUSMapping } from '../../models/misc/usmapping';
 import { HtmlService } from '../../services/misc/html.service';
 import { singleton } from 'tsyringe';
 import { Platform } from "react-native";
+import { UnitBlogPostService } from "../../services/blogs/unit-blog-post.service.ts";
 
 @singleton()
 export class SettingsService {
@@ -179,7 +180,8 @@ export class SettingsService {
               private textbookService: TextbookService,
               private autoCorrectService: AutoCorrectService,
               private voiceService: VoiceService,
-              private htmlService: HtmlService) {
+              private htmlService: HtmlService,
+              private unitBlogPostService: UnitBlogPostService) {
     // this.speech.init();
   }
 
@@ -451,6 +453,16 @@ export class SettingsService {
         getOne(i);
     }
     allComplete();
+  }
+
+  async getBlogContent(unit: number): Promise<string> {
+    const item = await this.unitBlogPostService.getDataByTextbook(
+      this.selectedTextbook!.ID, unit);
+    return item?.CONTENT ?? "";
+  }
+
+  async saveBlogContent(content: string) {
+    await this.unitBlogPostService.updatePost(this.selectedTextbook!.ID, this.USUNITTO, content);
   }
 }
 
