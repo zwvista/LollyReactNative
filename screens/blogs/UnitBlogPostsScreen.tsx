@@ -3,7 +3,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import WebView from "react-native-webview";
 import * as React from "react";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import { container } from "tsyringe";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { UnitBlogPostsService } from "../../view-models/blogs/unit-blog-posts.service.ts";
@@ -11,17 +11,16 @@ import { UnitBlogPostsService } from "../../view-models/blogs/unit-blog-posts.se
 export default function UnitBlogPostsScreen({ navigation }:any) {
   const unitBlogPostsService = container.resolve(UnitBlogPostsService);
   const [webViewSource, setWebViewSource] = useState({html: ''});
-  const [html, setHtml] = useState('');
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
 
   const onUnitChange = async (e: MSelectItem) => {
-    setHtml(await unitBlogPostsService.getHtml(e.value));
-    onRefresh();
+    setWebViewSource({html: await unitBlogPostsService.getHtml(e.value)});
   };
 
   useEffect(() => {
-    setWebViewSource({html: html});
-  }, [refreshCount]);
+    (async () => {
+      await onUnitChange(unitBlogPostsService.currentUnit);
+    })();
+  }, []);
 
   return (
     <View className="flex-1">
@@ -29,7 +28,7 @@ export default function UnitBlogPostsScreen({ navigation }:any) {
         style={StylesApp.dropdown}
         labelField="label"
         valueField="value"
-        value={unitBlogPostsService.unit}
+        value={unitBlogPostsService.currentUnit}
         data={unitBlogPostsService.units}
         onChange={onUnitChange}
       />
