@@ -7,28 +7,29 @@ import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { UnitBlogPostsService } from "../../view-models/blogs/unit-blog-posts.service.ts";
 import { Directions, Gesture, GestureDetector } from "react-native-gesture-handler";
+import { MSelectItem } from "../../common/selectitem.ts";
 
 export default function UnitBlogPostsScreen({ navigation }:any) {
-  const unitBlogPostsService = container.resolve(UnitBlogPostsService);
+  const service = container.resolve(UnitBlogPostsService);
   const [webViewSource, setWebViewSource] = useState({html: ''});
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
-      unitBlogPostsService.next(delta);
+      service.next(delta);
       onRefresh();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
-  const onUnitChange = (index: number) => {
-    unitBlogPostsService.selectedUnitIndex = index;
+  const onUnitChange = (e: MSelectItem) => {
+    service.selectedUnitIndex = service.units.indexOf(e);
     onRefresh();
   };
 
   useEffect(() => {
     (async () => {
-      setWebViewSource({html: await unitBlogPostsService.getHtml()});
+      setWebViewSource({html: await service.getHtml()});
     })();
   }, [refreshCount]);
 
@@ -38,9 +39,9 @@ export default function UnitBlogPostsScreen({ navigation }:any) {
         style={StylesApp.dropdown}
         labelField="label"
         valueField="value"
-        value={unitBlogPostsService.selectedUnit}
-        data={unitBlogPostsService.units}
-        onChange={e => onUnitChange(unitBlogPostsService.units.indexOf(e))}
+        value={service.selectedUnit}
+        data={service.units}
+        onChange={onUnitChange}
       />
       <GestureDetector gesture={fling}>
         <View className="grow">

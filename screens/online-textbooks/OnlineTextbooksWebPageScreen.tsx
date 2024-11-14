@@ -10,7 +10,7 @@ import { Directions, Gesture, GestureDetector } from "react-native-gesture-handl
 
 export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) {
   const {onlineTextbooks, onlineTextbookIndex}: {onlineTextbooks: MOnlineTextbook[], onlineTextbookIndex: number} = route.params;
-  const service = new OnlineTextbooksWebPageService(onlineTextbooks, onlineTextbookIndex);
+  const [service,] = useState(new OnlineTextbooksWebPageService(onlineTextbooks, onlineTextbookIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
@@ -22,8 +22,8 @@ export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) 
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
-  const onOnlineTextbookChange = async (index: number) => {
-    service.selectedOnlineTextbookIndex = index;
+  const onOnlineTextbookChange = async (e: MOnlineTextbook) => {
+    service.selectedOnlineTextbookIndex = service.onlineTextbooks.indexOf(e);
     onRefresh();
   };
 
@@ -39,7 +39,7 @@ export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) 
         valueField="ID"
         value={service.selectedOnlineTextbook}
         data={service.onlineTextbooks}
-        onChange={e => onOnlineTextbookChange(service.onlineTextbooks.indexOf(e))}
+        onChange={onOnlineTextbookChange}
       />
       <GestureDetector gesture={fling}>
         <View className="grow">

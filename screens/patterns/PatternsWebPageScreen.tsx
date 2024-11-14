@@ -5,20 +5,30 @@ import { useEffect, useReducer, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
+import { PatternsWebPageService } from "../../view-models/wpp/patterns-webpage.ts";
+import { Directions, Gesture, GestureDetector } from "react-native-gesture-handler";
 
 export default function PatternsWebPageScreen({ route, navigation }:any) {
   const {patterns, patternIndex}: {patterns: MPattern[], patternIndex: number} = route.params;
+  const [service,] = useState(new PatternsWebPageService(patterns, patternIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const [url, setUrl] = useState(patterns[patternIndex].URL);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const flingFun = (direction: number, delta: number) => Gesture.Fling()
+    .runOnJS(true)
+    .direction(direction)
+    .onStart(() => {
+      service.next(delta);
+      onRefresh();
+    });
+  const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onPatternChange = async (e: MPattern) => {
-    setUrl(e.URL);
+    service.selectedPatternIndex = service.patterns.indexOf(e);
     onRefresh();
   };
 
   useEffect(() => {
-    setWebViewSource({uri: url});
+    setWebViewSource({uri: service.selectedPattern.URL});
   }, [refreshCount]);
 
   return (
@@ -27,15 +37,17 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
         style={StylesApp.dropdown}
         labelField="PATTERN"
         valueField="ID"
-        value={patterns[patternIndex]}
-        data={patterns}
+        value={service.selectedPattern}
+        data={service.patterns}
         onChange={onPatternChange}
       />
-      <View className="grow">
-        <WebView
-          source={webViewSource}
-        />
-      </View>
+      <GestureDetector gesture={fling}>
+        <View className="grow">
+          <WebView
+            source={webViewSource}
+          />
+        </View>
+      </GestureDetector>
     </View>
   );
 }
