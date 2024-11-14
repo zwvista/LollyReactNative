@@ -1,7 +1,7 @@
 import { Button, Keyboard, SafeAreaView, Text, TouchableNativeFeedback, View } from "react-native";
 import { container } from "tsyringe";
 import * as React from "react";
-import { OnlineTextbooksService } from "../../view-models/misc/online-textbooks.service.ts";
+import { OnlineTextbooksService } from "../../view-models/online-textbooks/online-textbooks.service.ts";
 import Modal from "react-native-modal";
 import { DetailDialogProps } from "../../App.tsx";
 

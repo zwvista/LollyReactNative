@@ -3,7 +3,7 @@ import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { OnlineTextbooksService } from "../../view-models/misc/online-textbooks.service.ts";
+import { OnlineTextbooksService } from "../../view-models/online-textbooks/online-textbooks.service.ts";
 import OnlineTextbooksDetailDialog from "./OnlineTextbooksDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
