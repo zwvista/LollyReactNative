@@ -2,36 +2,40 @@ import { View } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
-import { container } from "tsyringe";
-import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MDictionary } from "../../models/misc/dictionary.ts";
 import WebView from "react-native-webview";
-import OnlineDict from "../../components/OnlineDict.ts";
 import { ValueOnly } from "../../App.tsx";
+import { WordsDictService } from "../../view-models/words/words-dict.service.ts";
 import StylesApp from "../../components/StylesApp.ts";
+import { Directions, Gesture, GestureDetector } from "react-native-gesture-handler";
 
 export default function WordsDictScreen({ route, navigation }:any) {
   const {words, wordIndex}: {words: ValueOnly[], wordIndex: number} = route.params;
-  const settingsService = container.resolve(SettingsService);
-  const [word, setWord] = useState(words[wordIndex].value);
+  const [service,] = useState(new WordsDictService(words, wordIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const onlineDict = new OnlineDict(settingsService);
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const flingFun = (direction: number, delta: number) => Gesture.Fling()
+    .runOnJS(true)
+    .direction(direction)
+    .onStart(() => {
+      service.next(delta);
+      onRefresh();
+    });
+  const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onWordChange = async (e: ValueOnly) => {
-    setWord(e.value);
+    service.onWordChange(e);
     onRefresh();
   };
 
   const onDictChange = async (e: MDictionary) => {
-    settingsService.selectedDictReference = e;
-    await settingsService.updateDictReference();
+    service.onDictChange(e);
     onRefresh();
   };
 
   useEffect(() => {
     (async () =>
-      await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource)
+      await service.searchDict(setWebViewSource)
     )();
   }, [refreshCount]);
 
@@ -43,8 +47,8 @@ export default function WordsDictScreen({ route, navigation }:any) {
             style={StylesApp.dropdown}
             labelField="value"
             valueField="value"
-            value={words[wordIndex]}
-            data={words}
+            value={service.selectedWord}
+            data={service.words}
             onChange={onWordChange}
           />
         </View>
@@ -53,17 +57,19 @@ export default function WordsDictScreen({ route, navigation }:any) {
             style={StylesApp.dropdown}
             labelField="NAME"
             valueField="ID"
-            value={settingsService.selectedDictReference}
-            data={settingsService.dictsReference}
+            value={service.selectedDictReference}
+            data={service.dictsReference}
             onChange={onDictChange}
           />
         </View>
       </View>
-      <View className="grow">
-        <WebView
-          source={webViewSource}
-        />
-      </View>
+      <GestureDetector gesture={fling}>
+        <View className="grow">
+          <WebView
+            source={webViewSource}
+          />
+        </View>
+      </GestureDetector>
     </View>
   );
 }
