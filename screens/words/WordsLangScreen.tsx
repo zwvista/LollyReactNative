@@ -3,7 +3,7 @@ import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { WordsLangService } from "../../view-models/wpp/words-lang.service.ts";
+import { WordsLangService } from "../../view-models/words/words-lang.service.ts";
 import WordsLangDetailDialog from "./WordsLangDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";

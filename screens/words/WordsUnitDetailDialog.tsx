@@ -2,7 +2,7 @@ import { Button, Keyboard, SafeAreaView, Text, TextInput, TouchableNativeFeedbac
 import { container } from "tsyringe";
 import * as React from "react";
 import { useReducer, useState } from "react";
-import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
+import { WordsUnitService } from "../../view-models/words/words-unit.service.ts";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
 import { Dropdown } from "react-native-element-dropdown";

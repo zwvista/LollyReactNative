@@ -2,7 +2,7 @@ import { FlatList, Linking, Text, TextInput, TouchableNativeFeedback, View } fro
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
-import { WordsUnitService } from "../../view-models/wpp/words-unit.service.ts";
+import { WordsUnitService } from "../../view-models/words/words-unit.service.ts";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";

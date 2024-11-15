@@ -5,7 +5,7 @@ import { useEffect, useReducer, useState } from "react";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import { MPattern } from "../../models/wpp/pattern.ts";
-import { PatternsWebPageService } from "../../view-models/wpp/patterns-webpage.ts";
+import { PatternsWebPageService } from "../../view-models/patterns/patterns-webpage.ts";
 import { Directions, Gesture, GestureDetector } from "react-native-gesture-handler";
 
 export default function PatternsWebPageScreen({ route, navigation }:any) {

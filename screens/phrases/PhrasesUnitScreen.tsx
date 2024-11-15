@@ -3,7 +3,7 @@ import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { PhrasesUnitService } from "../../view-models/wpp/phrases-unit.service.ts";
+import { PhrasesUnitService } from "../../view-models/phrases/phrases-unit.service.ts";
 import PhrasesUnitDetailDialog from "./PhrasesUnitDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
