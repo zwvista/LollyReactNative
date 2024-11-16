@@ -29,7 +29,7 @@ export default function WordsDictScreen({ route, navigation }:any) {
   };
 
   const onDictChange = async (e: MDictionary) => {
-    service.onDictChange(e);
+    await service.onDictChange(e);
     onRefresh();
   };
 

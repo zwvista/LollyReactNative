@@ -28,9 +28,7 @@ export default function UnitBlogPostsScreen({ navigation }:any) {
   };
 
   useEffect(() => {
-    (async () => {
-      setWebViewSource({html: await service.getHtml()});
-    })();
+    (async () => setWebViewSource({html: await service.getHtml()}))();
   }, [refreshCount]);
 
   return (
