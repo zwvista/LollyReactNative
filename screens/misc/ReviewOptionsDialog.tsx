@@ -13,7 +13,7 @@ export default function ReviewOptionsDialog(
   {options, isDialogOpened, handleCloseDialog}: {
     options: MReviewOptions,
     isDialogOpened: boolean,
-    handleCloseDialog: () => void
+    handleCloseDialog: (ok: boolean) => void
   }
 ) {
   const settingsService = container.resolve(SettingsService);
@@ -25,19 +25,15 @@ export default function ReviewOptionsDialog(
     forceUpdate();
   };
 
-  const save = () => {
-
-  };
-
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView className="p-2 bg-white">
           <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View style={{marginRight: 8}}>
-              <Button title="Cancel" onPress={handleCloseDialog} />
+              <Button title="Cancel" onPress={() => handleCloseDialog(false)} />
             </View>
-            <Button title="Save" onPress={save} />
+            <Button title="Save" onPress={() => handleCloseDialog(true)} />
           </View>
           <Text>Mode:</Text>
           <Dropdown
