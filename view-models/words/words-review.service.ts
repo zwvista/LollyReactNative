@@ -207,7 +207,7 @@ export default class WordsReviewService {
       this.stopTimer();
   }
 
-  private stopTimer() {
+  stopTimer() {
     this.subscription?.unsubscribe();
   }
 }

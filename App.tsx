@@ -50,7 +50,9 @@ const Drawer = createDrawerNavigator();
 
 function Root() {
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{unmountOnBlur: true}}
+    >
        <Drawer.Screen name="Search" component={SearchScreen} options={{
          drawerIcon: () => <FontAwesome name='magnifying-glass' size={30} color='#130f40' />
        }}/>

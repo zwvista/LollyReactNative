@@ -11,7 +11,7 @@ import StylesApp from "../../components/StylesApp.ts";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
-  const options = new MReviewOptions();
+  const [options,] = useState(new MReviewOptions());
   const handleCloseDialog = async (ok: boolean) => {
     setShowOptions(false);
     if (ok) await service.newTest();
@@ -23,6 +23,7 @@ export default function WordsReviewScreen({ navigation }:any) {
       headerRight: () =>
         <FontAwesome name='circle-plus' size={30} onPress={() => setShowOptions(true)} />
     });
+    return () => service.stopTimer();
   }, []);
 
   return (
