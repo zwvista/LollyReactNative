@@ -57,6 +57,7 @@ export default function WordsUnitBatchEditDialog(
             </View>
             <View style={stylesApp.row}>
               <BouncyCheckbox
+                textStyle={{textDecorationLine: "none"}}
                 className="w-1/3"
                 text="UNIT:"
                 isChecked={wordsUnitBatchEditService.unitChecked}
@@ -76,6 +77,7 @@ export default function WordsUnitBatchEditDialog(
             </View>
             <View style={stylesApp.row}>
               <BouncyCheckbox
+                textStyle={{textDecorationLine: "none"}}
                 className="w-1/3"
                 text="PART:"
                 isChecked={wordsUnitBatchEditService.partChecked}
@@ -95,6 +97,7 @@ export default function WordsUnitBatchEditDialog(
             </View>
             <View style={stylesApp.row}>
               <BouncyCheckbox
+                textStyle={{textDecorationLine: "none"}}
                 className="w-1/3"
                 text="SEQNUM (+):"
                 isChecked={wordsUnitBatchEditService.seqnumChecked}

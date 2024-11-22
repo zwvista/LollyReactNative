@@ -36,9 +36,8 @@ export default class WordsReviewService {
     return this.options.mode == "Test" || this.options.mode == "Textbook";
   }
   subscription?: Subscription;
-  showOptions = true;
-  optionsDone = false;
   inputFocused = false;
+  onTestUpdated?: () => void;
 
   isSpeaking = true;
   indexString = "";
@@ -110,7 +109,7 @@ export default class WordsReviewService {
       if (this.options.shuffled) this.lstWords = _.shuffle(this.lstWords);
       await f();
       if (this.options.mode === "Review(Auto)")
-        this.subscription = interval(this.options.interval).subscribe(_ => {
+        this.subscription = interval(this.options.interval * 1000).subscribe(_ => {
           this.check(true);
         });
     }
@@ -205,6 +204,7 @@ export default class WordsReviewService {
         this.wordInputString = this.currentWord;
     } else if (this.options.mode === "Review(Auto)")
       this.stopTimer();
+    this.onTestUpdated?.();
   }
 
   stopTimer() {

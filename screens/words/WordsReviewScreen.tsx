@@ -1,6 +1,6 @@
 import { Button, Text, TextInput, View } from "react-native";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { MReviewOptions } from "../../models/misc/review-options.ts";
 import ReviewOptionsDialog from "../misc/ReviewOptionsDialog.tsx";
 import { container } from "tsyringe";
@@ -17,17 +17,22 @@ export default function WordsReviewScreen({ navigation }:any) {
     if (ok) await service.newTest();
   };
   const service = container.resolve(WordsReviewService);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
         <FontAwesome name='circle-plus' size={30} onPress={() => setShowOptions(true)} />
     });
-    return () => service.stopTimer();
+    service.onTestUpdated = () => forceUpdate();
+    return () => {
+      service.onTestUpdated = undefined;
+      service.stopTimer();
+    }
   }, []);
 
   return (
-    <View className="p-4">
+    <View className="flex-grow p-4">
       <View className="flex-row">
         <View>
           {service.indexVisible && (<Text>{service.indexString}</Text>)}
@@ -40,12 +45,15 @@ export default function WordsReviewScreen({ navigation }:any) {
           {service.incorrectVisible && <Text className="font-bold text-red-500">Incorrect</Text>}
         </View>
       </View>
-      <View className="flex-row">
+      <View className="flex-row pt-2">
         <View>
           <Button title="Speak" onPress={() => {}} />
         </View>
-        <View className="grow">
+        <View className="flex-grow justify-center items-center">
           <BouncyCheckbox
+            className="flex-none items-center"
+            textStyle={{textDecorationLine: "none"}}
+            textContainerStyle={{flex: 0, marginLeft: 16}}
             text="Speak"
             isChecked={service.isSpeaking}
             onPress={() => {}}
@@ -55,34 +63,43 @@ export default function WordsReviewScreen({ navigation }:any) {
           <Button title={service.checkNextStringRes} onPress={() => {}} />
         </View>
       </View>
-      <View className="flex-row">
-        <View className="grow">
+      <View className="flex-row pt-2">
+        <View className="grow justify-center">
           {service.onRepeatVisible && <BouncyCheckbox
+            textStyle={{textDecorationLine: "none"}}
             text="On Repeat"
             isChecked={service.onRepeat}
             onPress={() => {}}
           />}
         </View>
-        <View className="grow">
+        <View className="grow justify-center">
           {service.moveForwardVisible && <BouncyCheckbox
-              text="Forward"
-              isChecked={service.moveForward}
-              onPress={() => {}}
+            textStyle={{textDecorationLine: "none"}}
+            text="Forward"
+            isChecked={service.moveForward}
+            onPress={() => {}}
           />}
         </View>
         <View>
           <Button title={service.checkPrevStringRes} onPress={() => {}} />
         </View>
       </View>
-      <View className="justify-items-center">
-        {service.wordHintVisible && <Text>{service.wordHintString}</Text>}
-        {service.noteTargetVisible && <Text>{service.noteTargetString}</Text>}
-        <Text>{service.translationString}</Text>
-        <TextInput
-          style={StylesApp.textinput}
-          value={service.wordInputString}
-          onChangeText={e => {}}
-        />
+      <View className="grow justify-center">
+        <View className="items-center">
+          {service.wordTargetVisible && <Text className="text-4xl">{service.wordTargetString}</Text>}
+          {service.noteTargetVisible && <Text className="text-3xl pt-2">{service.noteTargetString}</Text>}
+        </View>
+        <View className="flex-row pt-2">
+          <Text>{service.translationString}</Text>
+        </View>
+        <View className="flex-row pt-2">
+          <TextInput
+            className="grow"
+            style={StylesApp.textinput}
+            value={service.wordInputString}
+            onChangeText={e => {}}
+          />
+        </View>
       </View>
       {showOptions && <ReviewOptionsDialog options={options} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
     </View>

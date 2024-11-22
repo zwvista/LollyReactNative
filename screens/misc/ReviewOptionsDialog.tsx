@@ -45,21 +45,25 @@ export default function ReviewOptionsDialog(
             onChange={e => onOptionChange("mode", e.value)}
           />
           <BouncyCheckbox
+            textStyle={{textDecorationLine: "none"}}
             text="Order(Shuffled):"
             isChecked={options.shuffled}
             onPress={e => onOptionChange("shuffled", e)}
           />
           <BouncyCheckbox
+            textStyle={{textDecorationLine: "none"}}
             text="Speak(Enabled):"
             isChecked={options.speakingEnabled}
             onPress={e => onOptionChange("speakingEnabled", e)}
           />
           <BouncyCheckbox
+            textStyle={{textDecorationLine: "none"}}
             text="On Repeat:"
             isChecked={options.onRepeat}
             onPress={e => onOptionChange("onRepeat", e)}
           />
           <BouncyCheckbox
+            textStyle={{textDecorationLine: "none"}}
             text="Move forward:"
             isChecked={options.moveForward}
             onPress={e => onOptionChange("moveForward", e)}
