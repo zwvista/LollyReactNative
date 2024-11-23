@@ -33,9 +33,8 @@ export default class PhrasesReviewService {
     return this.options.mode == "Test" || this.options.mode == "Textbook";
   }
   subscription?: Subscription;
-  showOptions = true;
-  optionsDone = false;
   inputFocused = false;
+  onTestUpdated?: () => void;
 
   isSpeaking = true;
   indexString = "";
@@ -163,9 +162,10 @@ check(toNext: Boolean) {
       this.indexString = "${index + 1}/$count";
     else if (this.options.mode === "Review(Auto)")
       this.stopTimer();
+    this.onTestUpdated?.();
   }
 
-  private stopTimer() {
+  stopTimer() {
     this.subscription?.unsubscribe();
   }
 }
