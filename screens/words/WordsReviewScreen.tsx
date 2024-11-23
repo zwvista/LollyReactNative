@@ -7,6 +7,7 @@ import WordsReviewService from "../../view-models/words/words-review.service.ts"
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import StylesApp from "../../components/StylesApp.ts";
+import { SettingsService } from "../../view-models/misc/settings.service.ts";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
@@ -14,10 +15,11 @@ export default function WordsReviewScreen({ navigation }:any) {
     setShowOptions(false);
     if (ok) await service.newTest();
   };
+  const settingsService = container.resolve(SettingsService);
   const service = container.resolve(WordsReviewService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onChangeCheckBox = (id: string, e: boolean) => {
+  const handleChange = (id: string, e: any) => {
     (service as any)[id] = e;
     forceUpdate();
   };
@@ -25,7 +27,7 @@ export default function WordsReviewScreen({ navigation }:any) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () =>
-        <FontAwesome name='circle-plus' size={30} onPress={() => setShowOptions(true)} />
+        <FontAwesome name='circle-arrow-down' size={30} onPress={() => setShowOptions(true)} />
     });
     service.onTestUpdated = () => forceUpdate();
     return () => {
@@ -50,7 +52,7 @@ export default function WordsReviewScreen({ navigation }:any) {
       </View>
       <View className="flex-row pt-2">
         <View>
-          <Button title="Speak" onPress={() => {}} />
+          <Button title="Speak" onPress={() => settingsService.speak(service.currentWord)} />
         </View>
         <View className="flex-grow justify-center items-center">
           <BouncyCheckbox
@@ -59,7 +61,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textContainerStyle={{flex: 0, marginLeft: 16}}
             text="Speak"
             isChecked={service.isSpeaking}
-            onPress={e => onChangeCheckBox("isSpeaking", e)}
+            onPress={e => handleChange("isSpeaking", e)}
           />
         </View>
         <View>
@@ -72,7 +74,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="On Repeat"
             isChecked={service.onRepeat}
-            onPress={e => onChangeCheckBox("onRepeat", e)}
+            onPress={e => handleChange("onRepeat", e)}
           />}
         </View>
         <View className="grow justify-center">
@@ -80,7 +82,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="Forward"
             isChecked={service.moveForward}
-            onPress={e => onChangeCheckBox("moveForward", e)}
+            onPress={e => handleChange("moveForward", e)}
           />}
         </View>
         <View>
@@ -100,7 +102,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             className="grow"
             style={StylesApp.textinput}
             value={service.wordInputString}
-            onChangeText={e => {}}
+            onChangeText={e => handleChange("wordInputString", e)}
           />
         </View>
       </View>

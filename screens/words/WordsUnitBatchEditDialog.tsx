@@ -22,7 +22,7 @@ export default function WordsUnitBatchEditDialog(
   const [wordsUnitBatchEditService] = useState(new WordsUnitBatchEditService(wordsUnitService, settingsService));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onChangeCheckBox = (id: string, e: boolean) => {
+  const handleChange = (id: string, e: boolean) => {
     (wordsUnitBatchEditService as any)[id] = e;
     forceUpdate();
   };
@@ -61,7 +61,7 @@ export default function WordsUnitBatchEditDialog(
                 className="w-1/3"
                 text="UNIT:"
                 isChecked={wordsUnitBatchEditService.unitChecked}
-                onPress={e => onChangeCheckBox("unitChecked", e)}
+                onPress={e => handleChange("unitChecked", e)}
               />
               <Dropdown
                 style={[StylesApp.dropdown, !wordsUnitBatchEditService.unitChecked && StylesApp.dropdownDisable]}
@@ -81,7 +81,7 @@ export default function WordsUnitBatchEditDialog(
                 className="w-1/3"
                 text="PART:"
                 isChecked={wordsUnitBatchEditService.partChecked}
-                onPress={e => onChangeCheckBox("partChecked", e)}
+                onPress={e => handleChange("partChecked", e)}
               />
               <Dropdown
                 style={[StylesApp.dropdown, !wordsUnitBatchEditService.partChecked && StylesApp.dropdownDisable]}
@@ -101,7 +101,7 @@ export default function WordsUnitBatchEditDialog(
                 className="w-1/3"
                 text="SEQNUM (+):"
                 isChecked={wordsUnitBatchEditService.seqnumChecked}
-                onPress={e => onChangeCheckBox("seqnumChecked", e)}
+                onPress={e => handleChange("seqnumChecked", e)}
               />
               <TextInput
                 style={StylesApp.textinput}
