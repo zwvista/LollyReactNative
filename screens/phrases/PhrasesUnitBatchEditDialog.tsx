@@ -22,20 +22,8 @@ export default function PhrasesUnitBatchEditDialog(
   const [phrasesUnitBatchEditService] = useState(new PhrasesUnitBatchEditService(phrasesUnitService, settingsService));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const handleChange = (id: string, e: boolean) => {
+  const handleChange = (id: string, e: any) => {
     (phrasesUnitBatchEditService as any)[id] = e;
-    forceUpdate();
-  };
-  const onUnitChange = (e: MSelectItem) => {
-    phrasesUnitBatchEditService.unit = e.value;
-    forceUpdate();
-  };
-  const onPartChange = (e: MSelectItem) => {
-    phrasesUnitBatchEditService.part = e.value;
-    forceUpdate();
-  };
-  const onSeqnumChange = (e: string) => {
-    phrasesUnitBatchEditService.seqnum = +e;
     forceUpdate();
   };
 
@@ -71,7 +59,7 @@ export default function PhrasesUnitBatchEditDialog(
                 valueField="value"
                 value={settingsService.units.find(o => o.value === phrasesUnitBatchEditService.unit)}
                 data={settingsService.units}
-                onChange={onUnitChange}
+                onChange={e => handleChange("unit", e.value)}
                 disable={!phrasesUnitBatchEditService.unitChecked}
               />
             </View>
@@ -91,7 +79,7 @@ export default function PhrasesUnitBatchEditDialog(
                 valueField="value"
                 value={settingsService.parts.find(o => o.value === phrasesUnitBatchEditService.part)}
                 data={settingsService.parts}
-                onChange={onPartChange}
+                onChange={e => handleChange("part", e.value)}
                 disable={!phrasesUnitBatchEditService.partChecked}
               />
             </View>
@@ -108,7 +96,7 @@ export default function PhrasesUnitBatchEditDialog(
                 className="grow"
                 keyboardType="numeric"
                 value={phrasesUnitBatchEditService.seqnum.toString()}
-                onChangeText={e => onSeqnumChange(e)}
+                onChangeText={e => handleChange("seqnum", parseInt(e))}
                 readOnly={!phrasesUnitBatchEditService.seqnumChecked}
               />
             </View>

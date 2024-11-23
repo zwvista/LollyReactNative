@@ -24,7 +24,7 @@ export default function WordsReviewScreen({ navigation }:any) {
   const service = container.resolve(WordsReviewService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const handleChange = (id: string, e: any) => {
+  const handleChange = (id: string) => (e: any) => {
     (service as any)[id] = e;
     forceUpdate();
   };
@@ -66,7 +66,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textContainerStyle={{flex: 0, marginLeft: 16}}
             text="Speak"
             isChecked={service.isSpeaking}
-            onPress={e => handleChange("isSpeaking", e)}
+            onPress={handleChange("isSpeaking")}
           />
         </View>
         <View>
@@ -79,7 +79,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="On Repeat"
             isChecked={service.onRepeat}
-            onPress={e => handleChange("onRepeat", e)}
+            onPress={handleChange("onRepeat")}
           />}
         </View>
         <View className="grow justify-center">
@@ -87,7 +87,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="Forward"
             isChecked={service.moveForward}
-            onPress={e => handleChange("moveForward", e)}
+            onPress={handleChange("moveForward")}
           />}
         </View>
         <View>
@@ -107,7 +107,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             className="grow"
             style={StylesApp.textinput}
             value={service.wordInputString}
-            onChangeText={e => handleChange("wordInputString", e)}
+            onChangeText={handleChange("wordInputString")}
           />
         </View>
       </View>
