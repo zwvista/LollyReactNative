@@ -6,17 +6,19 @@ import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { clone } from "lodash";
+import WordsReviewService from "../../view-models/words/words-review.service.ts";
 
 export default function ReviewOptionsDialog(
-  {options, isDialogOpened, handleCloseDialog}: {
-    options: MReviewOptions,
+  {isDialogOpened, handleCloseDialog}: {
     isDialogOpened: boolean,
     handleCloseDialog: (ok: boolean) => void
   }
 ) {
   const settingsService = container.resolve(SettingsService);
+  const service = container.resolve(WordsReviewService);
+  const [options,] = React.useState(clone(service.options));
   const reviewModes = settingsService.reviewModes.map(v => ({label: v, value: v}));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -24,6 +26,11 @@ export default function ReviewOptionsDialog(
     (options as any)[id] = e;
     forceUpdate();
   };
+
+  const onSave = () => {
+    service.options = clone(options);
+    handleCloseDialog(true);
+  }
 
   return (
     <Modal isVisible={isDialogOpened}>
@@ -33,7 +40,7 @@ export default function ReviewOptionsDialog(
             <View style={{marginRight: 8}}>
               <Button title="Cancel" onPress={() => handleCloseDialog(false)} />
             </View>
-            <Button title="Save" onPress={() => handleCloseDialog(true)} />
+            <Button title="Save" onPress={onSave} />
           </View>
           <Text>Mode:</Text>
           <Dropdown

@@ -1,7 +1,6 @@
 import { Button, Text, TextInput, View } from "react-native";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
 import ReviewOptionsDialog from "../misc/ReviewOptionsDialog.tsx";
 import { container } from "tsyringe";
 import WordsReviewService from "../../view-models/words/words-review.service.ts";
@@ -11,13 +10,17 @@ import StylesApp from "../../components/StylesApp.ts";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
-  const [options,] = useState(new MReviewOptions());
   const handleCloseDialog = async (ok: boolean) => {
     setShowOptions(false);
     if (ok) await service.newTest();
   };
   const service = container.resolve(WordsReviewService);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
+
+  const onChangeCheckBox = (id: string, e: boolean) => {
+    (service as any)[id] = e;
+    forceUpdate();
+  };
 
   useEffect(() => {
     navigation.setOptions({
@@ -56,11 +59,11 @@ export default function WordsReviewScreen({ navigation }:any) {
             textContainerStyle={{flex: 0, marginLeft: 16}}
             text="Speak"
             isChecked={service.isSpeaking}
-            onPress={() => {}}
+            onPress={e => onChangeCheckBox("isSpeaking", e)}
           />
         </View>
         <View>
-          <Button title={service.checkNextStringRes} onPress={() => {}} />
+          <Button title={service.checkNextStringRes} onPress={() => service.check(true)} />
         </View>
       </View>
       <View className="flex-row pt-2">
@@ -69,7 +72,7 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="On Repeat"
             isChecked={service.onRepeat}
-            onPress={() => {}}
+            onPress={e => onChangeCheckBox("onRepeat", e)}
           />}
         </View>
         <View className="grow justify-center">
@@ -77,11 +80,11 @@ export default function WordsReviewScreen({ navigation }:any) {
             textStyle={{textDecorationLine: "none"}}
             text="Forward"
             isChecked={service.moveForward}
-            onPress={() => {}}
+            onPress={e => onChangeCheckBox("moveForward", e)}
           />}
         </View>
         <View>
-          <Button title={service.checkPrevStringRes} onPress={() => {}} />
+          <Button title={service.checkPrevStringRes} onPress={() => service.check(false)} />
         </View>
       </View>
       <View className="grow justify-center">
@@ -101,7 +104,7 @@ export default function WordsReviewScreen({ navigation }:any) {
           />
         </View>
       </View>
-      {showOptions && <ReviewOptionsDialog options={options} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
+      {showOptions && <ReviewOptionsDialog isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
     </View>
   );
 }
