@@ -96,7 +96,7 @@ export default function WordsUnitBatchEditDialog(
                 className="grow"
                 keyboardType="numeric"
                 value={wordsUnitBatchEditService.seqnum.toString()}
-                onChangeText={e => handleChange("seqnum", parseInt(e))}
+                onChangeText={e => handleChange("seqnum", e)}
                 readOnly={!wordsUnitBatchEditService.seqnumChecked}
               />
             </View>

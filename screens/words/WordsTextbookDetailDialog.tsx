@@ -20,17 +20,7 @@ export default function WordsTextbookDetailDialog(
   const [item] = useState(itemOld ? Object.create(itemOld) as MUnitWord : wordsUnitService.newUnitWord());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onUnitChange = (e: MSelectItem) => {
-    item.UNIT = e.value;
-    forceUpdate();
-  };
-
-  const onPartChange = (e: MSelectItem) => {
-    item.PART = e.value;
-    forceUpdate();
-  };
-
-  const onChangeTextInput = (id: string, e: string) => {
+  const handleChange = (id: string, e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -60,7 +50,7 @@ export default function WordsTextbookDetailDialog(
             valueField="value"
             value={settingsService.units.find(o => o.value === item.UNIT)}
             data={settingsService.units}
-            onChange={onUnitChange}
+            onChange={e => handleChange("UNIT", e.value)}
           />
           <Text>PART:</Text>
           <Dropdown
@@ -69,7 +59,7 @@ export default function WordsTextbookDetailDialog(
             valueField="value"
             value={settingsService.parts.find(o => o.value === item.PART)}
             data={settingsService.parts}
-            onChange={onPartChange}
+            onChange={e => handleChange("PART", e.value)}
           />
           <Text>SEQNUM:</Text>
           <View className="w-full">
@@ -77,7 +67,7 @@ export default function WordsTextbookDetailDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={item.SEQNUM.toString()}
-              onChangeText={e => onChangeTextInput("SEQNUM", e)}
+              onChangeText={e => handleChange("SEQNUM", e)}
             />
           </View>
           <Text>WORDID: {item.WORDID}</Text>
@@ -86,7 +76,7 @@ export default function WordsTextbookDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.WORD}
-              onChangeText={e => onChangeTextInput("WORD", e)}
+              onChangeText={e => handleChange("WORD", e)}
             />
           </View>
           <Text>NOTE:</Text>
@@ -94,7 +84,7 @@ export default function WordsTextbookDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
+              onChangeText={e => handleChange("NOTE", e)}
             />
           </View>
           <Text>FAMIID: {item.FAMIID}</Text>

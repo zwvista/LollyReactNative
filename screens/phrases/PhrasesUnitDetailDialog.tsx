@@ -20,17 +20,7 @@ export default function PhrasesUnitDetailDialog(
   const [item] = useState(itemOld ? Object.create(itemOld) as MUnitPhrase : phrasesUnitService.newUnitPhrase());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onUnitChange = (e: MSelectItem) => {
-    item.UNIT = e.value;
-    forceUpdate();
-  };
-
-  const onPartChange = (e: MSelectItem) => {
-    item.PART = e.value;
-    forceUpdate();
-  };
-
-  const onChangeTextInput = (id: string, e: string) => {
+  const handleChange = (id: string, e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -59,7 +49,7 @@ export default function PhrasesUnitDetailDialog(
             valueField="value"
             value={settingsService.units.find(o => o.value === item.UNIT)}
             data={settingsService.units}
-            onChange={onUnitChange}
+            onChange={e => handleChange("UNIT", e.value)}
           />
           <Text>PART:</Text>
           <Dropdown
@@ -68,7 +58,7 @@ export default function PhrasesUnitDetailDialog(
             valueField="value"
             value={settingsService.parts.find(o => o.value === item.PART)}
             data={settingsService.parts}
-            onChange={onPartChange}
+            onChange={e => handleChange("PART", e.value)}
           />
           <Text>SEQNUM:</Text>
           <View className="w-full">
@@ -76,7 +66,7 @@ export default function PhrasesUnitDetailDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={item.SEQNUM.toString()}
-              onChangeText={e => onChangeTextInput("SEQNUM", e)}
+              onChangeText={e => handleChange("SEQNUM", e)}
             />
           </View>
           <Text>PHRASEID: {item.PHRASEID}</Text>
@@ -85,7 +75,7 @@ export default function PhrasesUnitDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.PHRASE}
-              onChangeText={e => onChangeTextInput("PHRASE", e)}
+              onChangeText={e => handleChange("PHRASE", e)}
             />
           </View>
           <Text>NOTE:</Text>
@@ -93,7 +83,7 @@ export default function PhrasesUnitDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.TRANSLATION}
-              onChangeText={e => onChangeTextInput("TRANSLATION", e)}
+              onChangeText={e => handleChange("TRANSLATION", e)}
             />
           </View>
         </SafeAreaView>

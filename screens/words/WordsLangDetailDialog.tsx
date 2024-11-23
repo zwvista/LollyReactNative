@@ -18,7 +18,7 @@ export default function WordsLangDetailDialog(
   const [item] = useState(itemOld ? Object.create(itemOld) as MLangWord : wordsLangService.newLangWord());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onChangeTextInput = (id: string, e: string) => {
+  const handleChange = (id: string, e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -45,7 +45,7 @@ export default function WordsLangDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.WORD}
-              onChangeText={e => onChangeTextInput("WORD", e)}
+              onChangeText={e => handleChange("WORD", e)}
             />
           </View>
           <Text>NOTE:</Text>
@@ -53,7 +53,7 @@ export default function WordsLangDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.NOTE}
-              onChangeText={e => onChangeTextInput("NOTE", e)}
+              onChangeText={e => handleChange("NOTE", e)}
             />
           </View>
           <Text>FAMIID: {item.FAMIID}</Text>

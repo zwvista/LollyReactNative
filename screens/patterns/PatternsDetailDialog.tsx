@@ -18,7 +18,7 @@ export default function PatternsDetailDialog(
   const [item] = useState(itemOld ? Object.create(itemOld) as MPattern : patternsService.newPattern());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onChangeTextInput = (id: string, e: string) => {
+  const handleChange = (id: string, e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -45,7 +45,7 @@ export default function PatternsDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.PATTERN}
-              onChangeText={e => onChangeTextInput("PATTERN", e)}
+              onChangeText={e => handleChange("PATTERN", e)}
             />
           </View>
           <Text>TAGS:</Text>
@@ -53,7 +53,7 @@ export default function PatternsDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.TAGS}
-              onChangeText={e => onChangeTextInput("TAGS", e)}
+              onChangeText={e => handleChange("TAGS", e)}
             />
           </View>
           <Text>TITLE:</Text>
@@ -61,7 +61,7 @@ export default function PatternsDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.TITLE}
-              onChangeText={e => onChangeTextInput("TITLE", e)}
+              onChangeText={e => handleChange("TITLE", e)}
             />
           </View>
           <Text>URL:</Text>
@@ -69,7 +69,7 @@ export default function PatternsDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.URL}
-              onChangeText={e => onChangeTextInput("URL", e)}
+              onChangeText={e => handleChange("URL", e)}
             />
           </View>
         </SafeAreaView>
