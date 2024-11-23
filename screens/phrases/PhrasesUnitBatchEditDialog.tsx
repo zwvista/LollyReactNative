@@ -22,7 +22,7 @@ export default function PhrasesUnitBatchEditDialog(
   const [phrasesUnitBatchEditService] = useState(new PhrasesUnitBatchEditService(phrasesUnitService, settingsService));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const handleChange = (id: string, e: any) => {
+  const handleChange = (id: string) => (e: any) => {
     (phrasesUnitBatchEditService as any)[id] = e;
     forceUpdate();
   };
@@ -49,7 +49,7 @@ export default function PhrasesUnitBatchEditDialog(
                 className="w-1/3"
                 text="UNIT:"
                 isChecked={phrasesUnitBatchEditService.unitChecked}
-                onPress={e => handleChange("unitChecked", e)}
+                onPress={handleChange("unitChecked")}
               />
               <Dropdown
                 style={[StylesApp.dropdown, !phrasesUnitBatchEditService.unitChecked && StylesApp.dropdownDisable]}
@@ -59,7 +59,7 @@ export default function PhrasesUnitBatchEditDialog(
                 valueField="value"
                 value={settingsService.units.find(o => o.value === phrasesUnitBatchEditService.unit)}
                 data={settingsService.units}
-                onChange={e => handleChange("unit", e.value)}
+                onChange={e => handleChange("unit")(e.value)}
                 disable={!phrasesUnitBatchEditService.unitChecked}
               />
             </View>
@@ -69,7 +69,7 @@ export default function PhrasesUnitBatchEditDialog(
                 className="w-1/3"
                 text="PART:"
                 isChecked={phrasesUnitBatchEditService.partChecked}
-                onPress={e => handleChange("partChecked", e)}
+                onPress={handleChange("partChecked")}
               />
               <Dropdown
                 style={[StylesApp.dropdown, !phrasesUnitBatchEditService.partChecked && StylesApp.dropdownDisable]}
@@ -79,7 +79,7 @@ export default function PhrasesUnitBatchEditDialog(
                 valueField="value"
                 value={settingsService.parts.find(o => o.value === phrasesUnitBatchEditService.part)}
                 data={settingsService.parts}
-                onChange={e => handleChange("part", e.value)}
+                onChange={e => handleChange("part")(e.value)}
                 disable={!phrasesUnitBatchEditService.partChecked}
               />
             </View>
@@ -89,14 +89,14 @@ export default function PhrasesUnitBatchEditDialog(
                 className="w-1/3"
                 text="SEQNUM (+):"
                 isChecked={phrasesUnitBatchEditService.seqnumChecked}
-                onPress={e => handleChange("seqnumChecked", e)}
+                onPress={handleChange("seqnumChecked")}
               />
               <TextInput
                 style={StylesApp.textinput}
                 className="grow"
                 keyboardType="numeric"
                 value={phrasesUnitBatchEditService.seqnum.toString()}
-                onChangeText={e => handleChange("seqnum", e)}
+                onChangeText={handleChange("seqnum")}
                 readOnly={!phrasesUnitBatchEditService.seqnumChecked}
               />
             </View>

@@ -18,7 +18,7 @@ export default function PhrasesLangDetailDialog(
   const [item] = useState(itemOld ? Object.create(itemOld) as MLangPhrase : phrasesLangService.newLangPhrase());
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const handleChange = (id: string, e: any) => {
+  const handleChange = (id: string) => (e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -45,7 +45,7 @@ export default function PhrasesLangDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.PHRASE}
-              onChangeText={e => handleChange("PHRASE", e)}
+              onChangeText={handleChange("PHRASE")}
             />
           </View>
           <Text>NOTE:</Text>
@@ -53,7 +53,7 @@ export default function PhrasesLangDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.TRANSLATION}
-              onChangeText={e => handleChange("TRANSLATION", e)}
+              onChangeText={handleChange("TRANSLATION")}
             />
           </View>
         </SafeAreaView>

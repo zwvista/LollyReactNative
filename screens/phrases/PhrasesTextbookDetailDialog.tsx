@@ -19,7 +19,7 @@ export default function PhrasesTextbookDetailDialog(
   const [item] = useState(Object.create(phrasesUnitService.textbookPhrases.find(value => value.ID === id)!) as MUnitPhrase);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const handleChange = (id: string, e: any) => {
+  const handleChange = (id: string) => (e: any) => {
     (item as any)[id] = e;
     forceUpdate();
   }
@@ -49,7 +49,7 @@ export default function PhrasesTextbookDetailDialog(
             valueField="value"
             value={settingsService.units.find(o => o.value === item.UNIT)}
             data={settingsService.units}
-            onChange={e => handleChange("UNIT", e.value)}
+            onChange={e => handleChange("UNIT")(e.value)}
           />
           <Text>PART:</Text>
           <Dropdown
@@ -58,7 +58,7 @@ export default function PhrasesTextbookDetailDialog(
             valueField="value"
             value={settingsService.parts.find(o => o.value === item.PART)}
             data={settingsService.parts}
-            onChange={e => handleChange("PART", e.value)}
+            onChange={e => handleChange("PART")(e.value)}
           />
           <Text>SEQNUM:</Text>
           <View className="w-full">
@@ -66,7 +66,7 @@ export default function PhrasesTextbookDetailDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={item.SEQNUM.toString()}
-              onChangeText={e => handleChange("SEQNUM", e)}
+              onChangeText={handleChange("SEQNUM")}
             />
           </View>
           <Text>PHRASEID: {item.PHRASEID}</Text>
@@ -75,7 +75,7 @@ export default function PhrasesTextbookDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.PHRASE}
-              onChangeText={e => handleChange("PHRASE", e)}
+              onChangeText={handleChange("PHRASE")}
             />
           </View>
           <Text>NOTE:</Text>
@@ -83,7 +83,7 @@ export default function PhrasesTextbookDetailDialog(
             <TextInput
               style={StylesApp.textinput}
               value={item.TRANSLATION}
-              onChangeText={e => handleChange("TRANSLATION", e)}
+              onChangeText={handleChange("TRANSLATION")}
             />
           </View>
         </SafeAreaView>
