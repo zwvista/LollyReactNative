@@ -29,9 +29,9 @@ export default function PhrasesReviewScreen({ navigation }:any) {
       headerRight: () =>
         <FontAwesome name='circle-arrow-down' size={30} onPress={() => setShowOptions(true)} />
     });
-    service.onCheckDone = () => forceUpdate();
+    service.onTestUpdated = () => forceUpdate();
     return () => {
-      service.onCheckDone = undefined;
+      service.onTestUpdated = undefined;
       service.stopTimer();
     }
   }, []);

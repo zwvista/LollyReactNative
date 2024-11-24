@@ -29,9 +29,9 @@ export default function WordsReviewScreen({ navigation }:any) {
       headerRight: () =>
         <FontAwesome name='circle-arrow-down' size={30} onPress={() => setShowOptions(true)} />
     });
-    service.onCheckDone = () => forceUpdate();
+    service.onTestUpdated = () => forceUpdate();
     return () => {
-      service.onCheckDone = undefined;
+      service.onTestUpdated = undefined;
       service.stopTimer();
     }
   }, []);
@@ -93,6 +93,7 @@ export default function WordsReviewScreen({ navigation }:any) {
         <View className="items-center">
           {service.wordTargetVisible && <Text className="text-4xl">{service.wordTargetString}</Text>}
           {service.noteTargetVisible && <Text className="text-3xl pt-2">{service.noteTargetString}</Text>}
+          {service.wordHintVisible && <Text className="text-3xl pt-2">{service.wordHintString}</Text>}
         </View>
         <View className="flex-row pt-2">
           <Text>{service.translationString}</Text>

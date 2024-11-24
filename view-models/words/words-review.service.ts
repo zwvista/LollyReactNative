@@ -37,7 +37,7 @@ export default class WordsReviewService implements IReviewOptions {
   }
   subscription?: Subscription;
   inputFocused = false;
-  onCheckDone?: () => void;
+  onTestUpdated?: () => void;
 
   isSpeaking = true;
   indexString = "";
@@ -113,6 +113,7 @@ export default class WordsReviewService implements IReviewOptions {
           this.check(true);
         });
     }
+    this.onTestUpdated?.();
   }
 
   move(toNext: boolean) {
@@ -132,6 +133,7 @@ export default class WordsReviewService implements IReviewOptions {
       this.index--;
       checkOnRepeat();
     }
+    this.onTestUpdated?.();
   }
 
   private async getTranslation(): Promise<string> {
@@ -177,7 +179,7 @@ export default class WordsReviewService implements IReviewOptions {
       this.checkNextStringRes = "Check";
       this.checkPrevStringRes = "Check";
     }
-    this.onCheckDone?.();
+    this.onTestUpdated?.();
   }
 
   private async doTest() {
@@ -206,6 +208,7 @@ export default class WordsReviewService implements IReviewOptions {
         this.wordInputString = this.currentWord;
     } else if (this.options.mode === "Review(Auto)")
       this.stopTimer();
+    this.onTestUpdated?.();
   }
 
   stopTimer() {

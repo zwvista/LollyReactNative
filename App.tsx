@@ -10,7 +10,7 @@ import "reflect-metadata"
 import * as React from 'react';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import SearchScreen from "./screens/misc/SearchScreen";
-import FontAwesome from 'react-native-vector-icons/FontAwesome6';
+import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { NavigationContainer } from '@react-navigation/native';
 import WordsUnitScreen from "./screens/words/WordsUnitScreen.tsx";
 import WordsTextbookScreen from "./screens/words/WordsTextboookScreen.tsx";

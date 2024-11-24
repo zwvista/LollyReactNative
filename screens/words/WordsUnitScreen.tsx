@@ -7,7 +7,7 @@ import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import WordsUnitDetailDialog from "./WordsUnitDetailDialog.tsx";
 import { Dropdown } from "react-native-element-dropdown";
 import StylesApp from "../../components/StylesApp.ts";
-import FontAwesome from "react-native-vector-icons/FontAwesome.js";
+import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons.js";
 import { MSelectItem } from "../../common/selectitem.ts";
 import { useActionSheet } from "@expo/react-native-action-sheet";
