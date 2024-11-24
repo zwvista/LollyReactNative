@@ -22,7 +22,7 @@ export default function ReviewOptionsDialog(
   const reviewModes = settingsService.reviewModes.map(v => ({label: v, value: v}));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-  const onOptionChange = (id: string, e: any) => {
+  const handleChange = (id: string) => (e: any) => {
     (options as any)[id] = e;
     forceUpdate();
   };
@@ -49,31 +49,31 @@ export default function ReviewOptionsDialog(
             valueField="value"
             value={options.mode}
             data={reviewModes}
-            onChange={e => onOptionChange("mode", e.value)}
+            onChange={e => handleChange("mode")(e.value)}
           />
           <BouncyCheckbox
             textStyle={{textDecorationLine: "none"}}
             text="Order(Shuffled):"
             isChecked={options.shuffled}
-            onPress={e => onOptionChange("shuffled", e)}
+            onPress={handleChange("shuffled")}
           />
           <BouncyCheckbox
             textStyle={{textDecorationLine: "none"}}
             text="Speak(Enabled):"
             isChecked={options.speakingEnabled}
-            onPress={e => onOptionChange("speakingEnabled", e)}
+            onPress={handleChange("speakingEnabled")}
           />
           <BouncyCheckbox
             textStyle={{textDecorationLine: "none"}}
             text="On Repeat:"
             isChecked={options.onRepeat}
-            onPress={e => onOptionChange("onRepeat", e)}
+            onPress={handleChange("onRepeat")}
           />
           <BouncyCheckbox
             textStyle={{textDecorationLine: "none"}}
             text="Move forward:"
             isChecked={options.moveForward}
-            onPress={e => onOptionChange("moveForward", e)}
+            onPress={handleChange("moveForward")}
           />
           <Text>Interval:</Text>
           <View className="w-full">
@@ -81,7 +81,7 @@ export default function ReviewOptionsDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={options.interval.toString()}
-              onChangeText={e => onOptionChange("interval", e)}
+              onChangeText={handleChange("interval")}
             />
           </View>
           <Text>Group:</Text>
@@ -90,7 +90,7 @@ export default function ReviewOptionsDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={options.groupSelected.toString()}
-              onChangeText={e => onOptionChange("groupSelected", e)}
+              onChangeText={handleChange("groupSelected")}
             />
           </View>
           <Text>Groups:</Text>
@@ -99,7 +99,7 @@ export default function ReviewOptionsDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={options.groupCount.toString()}
-              onChangeText={e => onOptionChange("groupCount", e)}
+              onChangeText={handleChange("groupCount")}
             />
           </View>
           <Text>Review:</Text>
@@ -108,7 +108,7 @@ export default function ReviewOptionsDialog(
               style={StylesApp.textinput}
               keyboardType="numeric"
               value={options.reviewCount.toString()}
-              onChangeText={e => onOptionChange("reviewCount", e)}
+              onChangeText={handleChange("reviewCount")}
             />
           </View>
         </SafeAreaView>
