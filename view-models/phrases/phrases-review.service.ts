@@ -34,7 +34,7 @@ export default class PhrasesReviewService implements IReviewOptions {
   }
   subscription?: Subscription;
   inputFocused = false;
-  onTestUpdated?: () => void;
+  onCheckDone?: () => void;
 
   isSpeaking = true;
   indexString = "";
@@ -143,6 +143,7 @@ check(toNext: Boolean) {
     this.checkNextStringRes = "Check";
     this.checkPrevStringRes = "Check";
   }
+  this.onCheckDone?.();
 }
 
   private doTest() {
@@ -162,7 +163,6 @@ check(toNext: Boolean) {
       this.indexString = "${index + 1}/$count";
     else if (this.options.mode === "Review(Auto)")
       this.stopTimer();
-    this.onTestUpdated?.();
   }
 
   stopTimer() {

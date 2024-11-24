@@ -29,9 +29,9 @@ export default function PhrasesReviewScreen({ navigation }:any) {
       headerRight: () =>
         <FontAwesome name='circle-arrow-down' size={30} onPress={() => setShowOptions(true)} />
     });
-    service.onTestUpdated = () => forceUpdate();
+    service.onCheckDone = () => forceUpdate();
     return () => {
-      service.onTestUpdated = undefined;
+      service.onCheckDone = undefined;
       service.stopTimer();
     }
   }, []);
@@ -84,7 +84,7 @@ export default function PhrasesReviewScreen({ navigation }:any) {
           />}
         </View>
         <View>
-          <Button title={service.checkPrevStringRes} onPress={() => service.check(false)} />
+          {service.checkPrevVisible && <Button title={service.checkPrevStringRes} onPress={() => service.check(false)} />}
         </View>
       </View>
       <View className="grow justify-center">

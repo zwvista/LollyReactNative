@@ -37,7 +37,7 @@ export default class WordsReviewService implements IReviewOptions {
   }
   subscription?: Subscription;
   inputFocused = false;
-  onTestUpdated?: () => void;
+  onCheckDone?: () => void;
 
   isSpeaking = true;
   indexString = "";
@@ -177,7 +177,7 @@ export default class WordsReviewService implements IReviewOptions {
       this.checkNextStringRes = "Check";
       this.checkPrevStringRes = "Check";
     }
-    this.onTestUpdated?.();
+    this.onCheckDone?.();
   }
 
   private async doTest() {
