@@ -2,8 +2,6 @@ import { Button, Text, TextInput, View } from "react-native";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import ReviewOptionsDialog from "../misc/ReviewOptionsDialog.tsx";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
-import { clone } from "lodash";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
@@ -13,12 +11,9 @@ import PhrasesReviewService from "../../view-models/phrases/phrases-review.servi
 
 export default function PhrasesReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
-  const handleCloseDialog = async (ok: boolean, options: MReviewOptions) => {
+  const handleCloseDialog = async (ok: boolean) => {
     setShowOptions(false);
-    if (ok) {
-      service.options = clone(options);
-      await service.newTest();
-    }
+    if (ok) await service.newTest();
   };
   const settingsService = container.resolve(SettingsService);
   const service = container.resolve(PhrasesReviewService);
@@ -106,7 +101,7 @@ export default function PhrasesReviewScreen({ navigation }:any) {
           />
         </View>
       </View>
-      {showOptions && <ReviewOptionsDialog optionsSaved={service.options} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
+      {showOptions && <ReviewOptionsDialog service={service} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
     </View>
   );
 }

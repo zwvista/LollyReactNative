@@ -1,5 +1,5 @@
 import { UnitPhraseService } from "../../services/wpp/unit-phrase.service.ts";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
+import { IReviewOptions, MReviewOptions } from "../../models/misc/review-options.ts";
 import { interval, Subscription } from "rxjs";
 import { SettingsService } from "../misc/settings.service.ts";
 import { singleton } from "tsyringe";
@@ -7,7 +7,7 @@ import { MUnitPhrase } from "../../models/wpp/unit-phrase.ts";
 import _ from "lodash";
 
 @singleton()
-export default class PhrasesReviewService {
+export default class PhrasesReviewService implements IReviewOptions {
 
   constructor(private unitPhraseService: UnitPhraseService,
               private settingsService: SettingsService) {

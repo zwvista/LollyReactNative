@@ -11,3 +11,7 @@ export class MReviewOptions {
   onRepeat = true;
   moveForward = true;
 }
+
+export interface IReviewOptions {
+  options: MReviewOptions
+}

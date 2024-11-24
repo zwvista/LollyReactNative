@@ -9,16 +9,12 @@ import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import StylesApp from "../../components/StylesApp.ts";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { MReviewOptions } from "../../models/misc/review-options.ts";
-import { clone } from "lodash";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
-  const handleCloseDialog = async (ok: boolean, options: MReviewOptions) => {
+  const handleCloseDialog = async (ok: boolean) => {
     setShowOptions(false);
-    if (ok) {
-      service.options = clone(options);
-      await service.newTest();
-    }
+    if (ok) await service.newTest();
   };
   const settingsService = container.resolve(SettingsService);
   const service = container.resolve(WordsReviewService);
@@ -111,7 +107,7 @@ export default function WordsReviewScreen({ navigation }:any) {
           />
         </View>
       </View>
-      {showOptions && <ReviewOptionsDialog optionsSaved={service.options} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
+      {showOptions && <ReviewOptionsDialog service={service} isDialogOpened={showOptions} handleCloseDialog={handleCloseDialog} />}
     </View>
   );
 }

@@ -3,13 +3,13 @@ import { singleton } from "tsyringe";
 import { UnitWordService } from "../../services/wpp/unit-word.service.ts";
 import { interval, Subscription } from "rxjs";
 import { MUnitWord } from "../../models/wpp/unit-word.ts";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
+import { IReviewOptions, MReviewOptions } from "../../models/misc/review-options.ts";
 import { SettingsService } from "../misc/settings.service.ts";
 import _ from "lodash";
 import { HtmlService } from "../../services/misc/html.service.ts";
 
 @singleton()
-export default class WordsReviewService {
+export default class WordsReviewService implements IReviewOptions {
 
   constructor(private unitWordService: UnitWordService,
               private wordFamiService: WordFamiService,

@@ -4,7 +4,7 @@ import { MUserSetting, MUserSettingInfo } from '../../models/misc/user-setting';
 import { MLanguage } from '../../models/misc/language';
 import { MDictionary } from '../../models/misc/dictionary';
 import { MTextbook } from '../../models/misc/textbook';
-import { async, interval, Subscription } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { DictionaryService } from '../../services/misc/dictionary.service';
 import { TextbookService } from '../../services/misc/textbook.service';
 import { autoCorrect, MAutoCorrect } from '../../models/misc/autocorrect';

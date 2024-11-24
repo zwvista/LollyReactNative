@@ -8,18 +8,17 @@ import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import { clone } from "lodash";
-import WordsReviewService from "../../view-models/words/words-review.service.ts";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
+import { IReviewOptions } from "../../models/misc/review-options.ts";
 
 export default function ReviewOptionsDialog(
-  {optionsSaved, isDialogOpened, handleCloseDialog}: {
-    optionsSaved: MReviewOptions
+  {service, isDialogOpened, handleCloseDialog}: {
+    service: IReviewOptions,
     isDialogOpened: boolean,
-    handleCloseDialog: (ok: boolean, options: MReviewOptions) => void
+    handleCloseDialog: (ok: boolean) => void
   }
 ) {
   const settingsService = container.resolve(SettingsService);
-  const [options,] = React.useState(clone(optionsSaved));
+  const [options,] = React.useState(clone(service.options));
   const reviewModes = settingsService.reviewModes.map(v => ({label: v, value: v}));
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -28,15 +27,20 @@ export default function ReviewOptionsDialog(
     forceUpdate();
   };
 
+  const save = () => {
+    service.options = clone(options);
+    handleCloseDialog(true);
+  };
+
   return (
     <Modal isVisible={isDialogOpened}>
       <TouchableNativeFeedback onPress={Keyboard.dismiss}>
         <SafeAreaView className="p-2 bg-white">
           <View style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View style={{marginRight: 8}}>
-              <Button title="Cancel" onPress={() => handleCloseDialog(false, options)} />
+              <Button title="Cancel" onPress={() => handleCloseDialog(false)} />
             </View>
-            <Button title="Save" onPress={() => handleCloseDialog(true, options)} />
+            <Button title="Save" onPress={save} />
           </View>
           <Text>Mode:</Text>
           <Dropdown

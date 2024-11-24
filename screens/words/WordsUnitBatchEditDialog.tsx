@@ -7,7 +7,6 @@ import * as React from "react";
 import { useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { MSelectItem } from "../../common/selectitem.ts";
 import { WordsUnitService } from "../../view-models/words/words-unit.service.ts";
 import WordsUnitBatchEditService from "../../view-models/words/words-unit-batch-edit.service.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
