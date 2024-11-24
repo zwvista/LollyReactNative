@@ -102,6 +102,7 @@ export default function WordsReviewScreen({ navigation }:any) {
           <TextInput
             className="grow"
             style={StylesApp.textinput}
+            textAlign={'center'}
             value={service.wordInputString}
             onChangeText={handleChange("wordInputString")}
           />
