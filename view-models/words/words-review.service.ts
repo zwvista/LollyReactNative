@@ -33,7 +33,7 @@ export default class WordsReviewService implements IReviewOptions {
   }
   options = new MReviewOptions()
   get isTestMode(): boolean {
-    return this.options.mode == "Test" || this.options.mode == "Textbook";
+    return this.options.mode === "Test" || this.options.mode === "Textbook";
   }
   subscription?: Subscription;
   inputFocused = false;
@@ -144,7 +144,7 @@ export default class WordsReviewService implements IReviewOptions {
   async check(toNext: boolean) {
     if (!this.isTestMode) {
       let b = true;
-      if (this.options.mode == "Review(Manual)" && !!this.wordInputString && this.wordInputString !== this.currentWord) {
+      if (this.options.mode === "Review(Manual)" && !!this.wordInputString && this.wordInputString !== this.currentWord) {
         b = false;
         this.incorrectVisible = true;
       }
@@ -155,7 +155,8 @@ export default class WordsReviewService implements IReviewOptions {
     } else if (!this.correctVisible && !this.incorrectVisible) {
       this.wordInputString = this.settingsService.autoCorrectInput(this.wordInputString);
       this.wordTargetVisible = true;
-      if (this.wordInputString == this.currentWord)
+      this.noteTargetVisible = true;
+      if (this.wordInputString === this.currentWord)
         this.correctVisible = true;
       else
         this.incorrectVisible = true;
@@ -176,6 +177,7 @@ export default class WordsReviewService implements IReviewOptions {
       this.checkNextStringRes = "Check";
       this.checkPrevStringRes = "Check";
     }
+    this.onTestUpdated?.();
   }
 
   private async doTest() {
@@ -204,7 +206,6 @@ export default class WordsReviewService implements IReviewOptions {
         this.wordInputString = this.currentWord;
     } else if (this.options.mode === "Review(Auto)")
       this.stopTimer();
-    this.onTestUpdated?.();
   }
 
   stopTimer() {

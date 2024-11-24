@@ -8,7 +8,6 @@ import BouncyCheckbox from "react-native-bouncy-checkbox";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import StylesApp from "../../components/StylesApp.ts";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
-import { MReviewOptions } from "../../models/misc/review-options.ts";
 
 export default function WordsReviewScreen({ navigation }:any) {
   const [showOptions, setShowOptions] = useState(true);
@@ -43,7 +42,7 @@ export default function WordsReviewScreen({ navigation }:any) {
         <View>
           {service.indexVisible && (<Text>{service.indexString}</Text>)}
         </View>
-        <View className="grow">
+        <View className="grow justify-center items-center">
           {service.accuracyVisible && (<Text>{service.accuracyString}</Text>)}
         </View>
         <View>
@@ -55,7 +54,7 @@ export default function WordsReviewScreen({ navigation }:any) {
         <View>
           <Button title="Speak" onPress={() => settingsService.speak(service.currentWord)} />
         </View>
-        <View className="flex-grow justify-center items-center">
+        <View className="grow justify-center items-center">
           <BouncyCheckbox
             className="flex-none items-center"
             textStyle={{textDecorationLine: "none"}}
@@ -87,7 +86,7 @@ export default function WordsReviewScreen({ navigation }:any) {
           />}
         </View>
         <View>
-          <Button title={service.checkPrevStringRes} onPress={() => service.check(false)} />
+          {service.checkPrevVisible && <Button title={service.checkPrevStringRes} onPress={() => service.check(false)} />}
         </View>
       </View>
       <View className="grow justify-center">
