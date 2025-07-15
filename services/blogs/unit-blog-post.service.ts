@@ -8,13 +8,13 @@ export class UnitBlogPostService extends BaseService {
   async getDataByTextbook(textbookid: number, unit: number): Promise<MUnitBlogPost | undefined> {
     const url = `${this.baseUrlAPI}UNITBLOGPOSTS?filter=TEXTBOOKID,eq,${textbookid}&filter=UNIT,eq,${unit}`;
     const result = await this.httpGet<MUnitBlogPosts>(url);
-    return result.records.map(value => Object.assign(new MUnitBlogPost(), value))[0];
+    return result.records[0];
   }
 
-  private async create(item: MUnitBlogPost): Promise<number | any[]> {
+  private async create(item: MUnitBlogPost): Promise<number> {
     const url = `${this.baseUrlAPI}UNITBLOGPOSTS`;
-    (item as any).ID = null;
-    return await this.httpPost<number | any[]>(url, item);
+    const payload = { ...item, ID: null };
+    return await this.httpPost<number>(url, payload);
   }
 
   private async update(item: MUnitBlogPost): Promise<number> {
@@ -22,17 +22,22 @@ export class UnitBlogPostService extends BaseService {
     return await this.httpPut<number>(url, item);
   }
 
-  async updatePost(textbookid: number, unit: number, content: string) {
-    const o = await this.getDataByTextbook(textbookid, unit);
-    const item = o ?? new MUnitBlogPost();
-    if (item.ID === 0) {
+  async updatePost(textbookid: number, unit: number, content: string): Promise<void> {
+    const existing = await this.getDataByTextbook(textbookid, unit);
+    const item = existing ?? new MUnitBlogPost();
+    if (!item.ID) {
       item.TEXTBOOKID = textbookid;
       item.UNIT = unit;
     }
     item.CONTENT = content;
-    if (item.ID === 0)
+    if (!item.ID)
       await this.create(item);
     else
       await this.update(item);
+  }
+
+  async delete(id: number): Promise<number> {
+    const url = `${this.baseUrlAPI}UNITBLOGPOSTS/${id}`;
+    return await this.httpDelete(url);
   }
 }
