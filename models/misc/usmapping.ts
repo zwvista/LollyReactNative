@@ -1,5 +1,5 @@
-export class MUSMappings {
-  records!: MUSMapping[];
+export interface MUSMappings {
+  records: MUSMapping[];
 }
 export class MUSMapping {
   ID = 0;

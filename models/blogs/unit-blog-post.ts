@@ -1,7 +1,6 @@
-export class MUnitBlogPosts {
-  records!: MUnitBlogPost[];
+export interface MUnitBlogPosts {
+  records: MUnitBlogPost[];
 }
-
 export class MUnitBlogPost {
   ID = 0;
   TEXTBOOKID = 0;

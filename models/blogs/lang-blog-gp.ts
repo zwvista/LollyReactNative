@@ -1,12 +1,11 @@
-export class MLangBlogGP {
-  ID: number = 0;
-  GROUPID: number = 0;
-  POSTID: number = 0;
-  GROUPNAME: string = "";
-  TITLE: string = "";
-  URL: string = "";
-}
-
 export interface MLangBlogGPs {
   records: MLangBlogGP[];
+}
+export class MLangBlogGP {
+  ID = 0;
+  GROUPID = 0;
+  POSTID = 0;
+  GROUPNAME = "";
+  TITLE = "";
+  URL = "";
 }

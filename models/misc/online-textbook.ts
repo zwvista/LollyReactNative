@@ -1,5 +1,5 @@
-export class MOnlineTextbooks {
-  records!: MOnlineTextbook[];
+export interface MOnlineTextbooks {
+  records: MOnlineTextbook[];
 }
 export class MOnlineTextbook {
   ID = 0;
