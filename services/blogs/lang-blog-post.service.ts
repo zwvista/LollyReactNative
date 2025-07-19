@@ -1,7 +1,6 @@
 import { singleton } from "tsyringe";
 import { BaseService } from "../misc/base.service";
 import { MLangBlogPost, MLangBlogPosts } from "../../models/blogs/lang-blog-post.ts";
-import { MLangBlogGroup } from "../../models/blogs/lang-blog-group.ts";
 import { MLangBlogGPs } from "../../models/blogs/lang-blog-gp.ts";
 
 @singleton()
