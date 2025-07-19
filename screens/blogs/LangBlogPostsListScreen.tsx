@@ -11,7 +11,7 @@ import { getPreferredRangeFromArray } from "../../common/common.ts";
 import { MLangBlogPost } from "../../models/blogs/lang-blog-post.ts";
 import { LangBlogGroupsService } from "../../view-models/blogs/lang-blog-groups.service.ts";
 
-export default function LangBlogPostsScreen({ navigation }:any) {
+export default function LangBlogPostsListScreen({ navigation }:any) {
   const langBlogGroupsService = container.resolve(LangBlogGroupsService);
   const settingsService = container.resolve(SettingsService);
   const [showDetail, setShowDetail] = useState(false);
@@ -32,10 +32,12 @@ export default function LangBlogPostsScreen({ navigation }:any) {
   };
 
   const onPressItemRight = (index: number) => {
+    langBlogGroupsService.selectedLangBlogPost = langBlogGroupsService.langBlogPosts[index];
     const [start, end] = getPreferredRangeFromArray(index, langBlogGroupsService.langBlogPosts.length, 50);
-    navigation.navigate("Online Textbooks (Web Page)", {
-      langBlogPosts: langBlogGroupsService.langBlogPosts.slice(start, end),
-      langBlogPostIndex: index - start,
+    navigation.navigate("Language Blog Posts (Content)", {
+      LangBlogGroupsService,
+      posts: langBlogGroupsService.langBlogPosts.slice(start, end),
+      selectedPostIndex: index - start,
     });
   };
 
@@ -43,7 +45,7 @@ export default function LangBlogPostsScreen({ navigation }:any) {
     showActionSheetWithOptions({
       options: [
         "Edit",
-        "Browse Web Page",
+        "Show Content",
         "Cancel"
       ],
       cancelButtonIndex: 2,
@@ -54,7 +56,7 @@ export default function LangBlogPostsScreen({ navigation }:any) {
           showDetailDialog(item.ID);
           break;
         case 1:
-          // Browse Web Page
+          // Show Content
           onPressItemRight(langBlogGroupsService.langBlogPosts.indexOf(item));
           break;
       }

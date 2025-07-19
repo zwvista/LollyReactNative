@@ -4,14 +4,14 @@ import StylesApp from "../../components/StylesApp.ts";
 import WebView from "react-native-webview";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
-import { container } from "tsyringe";
 import { Directions, Gesture, GestureDetector } from "react-native-gesture-handler";
-import { MSelectItem } from "../../common/selectitem.ts";
 import { LangBlogPostsContentService } from "../../view-models/blogs/lang-blog-posts-content.service.ts";
 import { MLangBlogPost } from "../../models/blogs/lang-blog-post.ts";
+import { LangBlogGroupsService } from "../../view-models/blogs/lang-blog-groups.service.ts";
 
-export default function LangBlogPostsContentScreen({ navigation }:any) {
-  const service = container.resolve(LangBlogPostsContentService);
+export default function LangBlogPostsContentScreen({ route, navigation }:any) {
+  const {LangBlogGroupsService, posts, selectedPostIndex}: {LangBlogGroupsService: LangBlogGroupsService, posts: MLangBlogPost[], selectedPostIndex: number} = route.params;
+  const [service,] = useState(new LangBlogPostsContentService(LangBlogGroupsService, posts, selectedPostIndex));
   const [webViewSource, setWebViewSource] = useState({html: ''});
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()

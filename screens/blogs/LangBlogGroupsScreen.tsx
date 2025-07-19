@@ -32,18 +32,15 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
   };
 
   const onPressItemRight = (index: number) => {
-    const [start, end] = getPreferredRangeFromArray(index, langBlogGroupsService.langBlogGroups.length, 50);
-    navigation.navigate("Online Textbooks (Web Page)", {
-      langBlogGroups: langBlogGroupsService.langBlogGroups.slice(start, end),
-      langBlogGroupIndex: index - start,
-    });
+    langBlogGroupsService.selectedLangBlogGroup = langBlogGroupsService.langBlogGroups[index];
+    navigation.navigate("Language Blog Posts (List)");
   };
 
   const onLongPressItem = (item: MLangBlogGroup) => {
     showActionSheetWithOptions({
       options: [
         "Edit",
-        "Browse Web Page",
+        "Show Posts",
         "Cancel"
       ],
       cancelButtonIndex: 2,
@@ -54,7 +51,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
           showDetailDialog(item.ID);
           break;
         case 1:
-          // Browse Web Page
+          // Show Posts
           onPressItemRight(langBlogGroupsService.langBlogGroups.indexOf(item));
           break;
       }

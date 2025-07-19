@@ -30,6 +30,9 @@ import PhrasesReviewScreen from "./screens/phrases/PhrasesReviewScreen.tsx";
 import OnlineTextbooksScreen from "./screens/online-textbooks/OnlineTextbooksScreen.tsx";
 import OnlineTextbooksWebPageScreen from "./screens/online-textbooks/OnlineTextbooksWebPageScreen.tsx";
 import UnitBlogPostsScreen from "./screens/blogs/UnitBlogPostsScreen.tsx";
+import LangBlogGroupsScreen from "./screens/blogs/LangBlogGroupsScreen.tsx";
+import LangBlogPostsListScreen from "./screens/blogs/LangBlogPostsListScreen.tsx";
+import LangBlogPostsContentScreen from "./screens/blogs/LangBlogPostsContentScreen.tsx";
 
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
@@ -88,7 +91,7 @@ function Root() {
        <Drawer.Screen name="Unit Blog Posts" component={UnitBlogPostsScreen} options={{
          drawerIcon: () => <FontAwesome name='bicycle' size={30} color='#130f40' />
        }}/>
-       <Drawer.Screen name="Language Blog Groups" component={UnitBlogPostsScreen} options={{
+       <Drawer.Screen name="Language Blog Groups" component={LangBlogGroupsScreen} options={{
          drawerIcon: () => <FontAwesome name='bicycle' size={30} color='#130f40' />
        }}/>
     </Drawer.Navigator>
@@ -110,6 +113,8 @@ export default function App() {
           <Stack.Screen name="Word Dictionary" component={WordsDictScreen} />
           <Stack.Screen name="Patterns Web Page" component={PatternsWebPageScreen} />
           <Stack.Screen name="Online Textbooks (Web Page)" component={OnlineTextbooksWebPageScreen} />
+          <Stack.Screen name="Language Blog Posts (List)" component={LangBlogPostsListScreen} />
+          <Stack.Screen name="Language Blog Posts (Content)" component={LangBlogPostsContentScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ActionSheetProvider>
