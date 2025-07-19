@@ -31,10 +31,6 @@ import OnlineTextbooksScreen from "./screens/online-textbooks/OnlineTextbooksScr
 import OnlineTextbooksWebPageScreen from "./screens/online-textbooks/OnlineTextbooksWebPageScreen.tsx";
 import UnitBlogPostsScreen from "./screens/blogs/UnitBlogPostsScreen.tsx";
 
-if (__DEV__) {
-  require("./ReactotronConfig");
-}
-
 export const storage = new MMKVLoader().initialize();
 export interface DetailDialogProps {
   id: number,
