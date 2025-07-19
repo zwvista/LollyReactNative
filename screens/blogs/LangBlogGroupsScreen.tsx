@@ -7,7 +7,6 @@ import LangBlogGroupsDetailDialog from "./LangBlogGroupsDetailDialog.tsx";
 import StylesApp from "../../components/StylesApp.ts";
 import FontAwesome from "react-native-vector-icons/FontAwesome6";
 import { useActionSheet } from "@expo/react-native-action-sheet";
-import { getPreferredRangeFromArray } from "../../common/common.ts";
 import { LangBlogGroupsService } from "../../view-models/blogs/lang-blog-groups.service.ts";
 import { MLangBlogGroup } from "../../models/blogs/lang-blog-group.ts";
 
@@ -28,7 +27,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
   };
 
   const onPressItem = (item: MLangBlogGroup) => {
-    settingsService.speak(item.GROUPNAME);
+    settingsService.speak(item.NAME);
   };
 
   const onPressItemRight = (index: number) => {
@@ -92,7 +91,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
             >
               <View style={StylesApp.row}>
                 <View className="grow">
-                  <Text style={StylesApp.itemText1}>{item.GROUPNAME}</Text>
+                  <Text style={StylesApp.itemText1}>{item.NAME}</Text>
                 </View>
                 <FontAwesome name='chevron-right' size={20} onPress={() => onPressItemRight(index)} />
               </View>

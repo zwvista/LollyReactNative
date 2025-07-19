@@ -19,7 +19,7 @@ export default function LangBlogGroupsDetailDialog(
             <Button title="Close" onPress={handleCloseDialog} />
           </View>
           <Text>ID: {item.ID}</Text>
-          <Text>GROUP:{item.GROUPNAME}</Text>
+          <Text>GROUP:{item.NAME}</Text>
         </SafeAreaView>
       </TouchableNativeFeedback>
     </Modal>

@@ -35,7 +35,7 @@ export default function LangBlogPostsListScreen({ navigation }:any) {
     langBlogGroupsService.selectedLangBlogPost = langBlogGroupsService.langBlogPosts[index];
     const [start, end] = getPreferredRangeFromArray(index, langBlogGroupsService.langBlogPosts.length, 50);
     navigation.navigate("Language Blog Posts (Content)", {
-      LangBlogGroupsService,
+      langBlogGroupsService,
       posts: langBlogGroupsService.langBlogPosts.slice(start, end),
       selectedPostIndex: index - start,
     });

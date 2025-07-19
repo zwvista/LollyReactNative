@@ -10,8 +10,8 @@ import { MLangBlogPost } from "../../models/blogs/lang-blog-post.ts";
 import { LangBlogGroupsService } from "../../view-models/blogs/lang-blog-groups.service.ts";
 
 export default function LangBlogPostsContentScreen({ route, navigation }:any) {
-  const {LangBlogGroupsService, posts, selectedPostIndex}: {LangBlogGroupsService: LangBlogGroupsService, posts: MLangBlogPost[], selectedPostIndex: number} = route.params;
-  const [service,] = useState(new LangBlogPostsContentService(LangBlogGroupsService, posts, selectedPostIndex));
+  const {langBlogGroupsService, posts, selectedPostIndex}: {langBlogGroupsService: LangBlogGroupsService, posts: MLangBlogPost[], selectedPostIndex: number} = route.params;
+  const [service,] = useState(new LangBlogPostsContentService(langBlogGroupsService, posts, selectedPostIndex));
   const [webViewSource, setWebViewSource] = useState({html: ''});
   const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()

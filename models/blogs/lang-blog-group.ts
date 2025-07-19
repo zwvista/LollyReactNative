@@ -4,6 +4,6 @@ export interface MLangBlogGroups {
 export class MLangBlogGroup {
   ID = 0;
   LANGID = 0;
-  GROUPNAME = "";
+  NAME = "";
   GPID?: number;
 }
