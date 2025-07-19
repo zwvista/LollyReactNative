@@ -1,6 +1,8 @@
 import { singleton } from "tsyringe";
 import { BaseService } from "../misc/base.service";
 import { MLangBlogPost, MLangBlogPosts } from "../../models/blogs/lang-blog-post.ts";
+import { MLangBlogGroup } from "../../models/blogs/lang-blog-group.ts";
+import { MLangBlogGPs } from "../../models/blogs/lang-blog-gp.ts";
 
 @singleton()
 export class LangBlogPostService extends BaseService {
@@ -9,6 +11,22 @@ export class LangBlogPostService extends BaseService {
     const url = `${this.baseUrlAPI}LANGBLOGPOSTS?filter=LANGID,eq,${langid}&order=TITLE`;
     const result = await this.httpGet<MLangBlogPosts>(url);
     return result.records;
+  }
+
+  async getDataByLangGroup(langid: number, groupid: number): Promise<MLangBlogPost[]> {
+    const url = `${this.baseUrlAPI}VLANGBLOGGP?filter=LANGID,eq,${langid}&filter=GROUPID,eq,${groupid}&order=TITLE`;
+    const result = await this.httpGet<MLangBlogGPs>(url);
+    const list = result.records.map(o => {
+      const g = new MLangBlogPost();
+      g.ID = o.POSTID;
+      g.LANGID = langid;
+      g.TITLE = o.TITLE;
+      g.GPID = o.ID;
+      return g;
+    });
+    const unique = new Map<number, MLangBlogPost>();
+    list.forEach(item => unique.set(item.ID, item));
+    return Array.from(unique.values());
   }
 
   private async create(item: MLangBlogPost): Promise<number> {

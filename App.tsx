@@ -88,6 +88,9 @@ function Root() {
        <Drawer.Screen name="Unit Blog Posts" component={UnitBlogPostsScreen} options={{
          drawerIcon: () => <FontAwesome name='bicycle' size={30} color='#130f40' />
        }}/>
+       <Drawer.Screen name="Language Blog Groups" component={UnitBlogPostsScreen} options={{
+         drawerIcon: () => <FontAwesome name='bicycle' size={30} color='#130f40' />
+       }}/>
     </Drawer.Navigator>
   );
 }
