@@ -7,14 +7,14 @@ import { MLangBlogGPs } from "../../models/blogs/lang-blog-gp.ts";
 @singleton()
 export class LangBlogPostService extends BaseService {
 
-  async getDataByLang(langid: number): Promise<MLangBlogPost[]> {
-    const url = `${this.baseUrlAPI}LANGBLOGPOSTS?filter=LANGID,eq,${langid}&order=TITLE`;
+  async getDataByLang(langid: number, filter: string): Promise<MLangBlogPost[]> {
+    const url = `${this.baseUrlAPI}LANGBLOGPOSTS?filter=LANGID,eq,${langid}&filter=TITLE,cs,${encodeURIComponent(filter)}&order=TITLE`;
     const result = await this.httpGet<MLangBlogPosts>(url);
     return result.records;
   }
 
-  async getDataByLangGroup(langid: number, groupid: number): Promise<MLangBlogPost[]> {
-    const url = `${this.baseUrlAPI}VLANGBLOGGP?filter=LANGID,eq,${langid}&filter=GROUPID,eq,${groupid}&order=TITLE`;
+  async getDataByLangGroup(langid: number, groupid: number, filter: string): Promise<MLangBlogPost[]> {
+    const url = `${this.baseUrlAPI}VLANGBLOGGP?filter=LANGID,eq,${langid}&filter=GROUPID,eq,${groupid}&filter=TITLE,cs,${encodeURIComponent(filter)}&order=TITLE`;
     const result = await this.httpGet<MLangBlogGPs>(url);
     const list = result.records.map(o => {
       const g = new MLangBlogPost();

@@ -65,7 +65,7 @@ export default function LangBlogPostsListScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await langBlogGroupsService.getPosts();
+      await langBlogGroupsService.getPosts(filter);
       forceUpdate();
     })();
   }, [refreshCount]);

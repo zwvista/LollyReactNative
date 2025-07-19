@@ -59,7 +59,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
 
   useEffect(() => {
     (async () => {
-      await langBlogGroupsService.getGroups();
+      await langBlogGroupsService.getGroups(filter);
       forceUpdate();
     })();
   }, [refreshCount]);

@@ -3,13 +3,13 @@ import { LangBlogService } from "./lang-blog.service.ts";
 
 @singleton()
 export class LangBlogGroupsService extends LangBlogService {
-  async getGroups() {
+  async getGroups(filter: string) {
     await this.appService.getData();
-    this.langBlogGroups = await this.langBlogGroupService.getDataByLang(this.settingsService.selectedLang.ID);
+    this.langBlogGroups = await this.langBlogGroupService.getDataByLang(this.settingsService.selectedLang.ID, filter);
   }
 
-  async getPosts() {
+  async getPosts(filter: string) {
     this.langBlogPosts = await this.langBlogPostService.getDataByLangGroup(
-      this.settingsService.selectedLang.ID, this.selectedLangBlogGroup.ID);
+      this.settingsService.selectedLang.ID, this.selectedLangBlogGroup.ID, filter);
   }
 }

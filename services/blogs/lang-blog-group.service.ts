@@ -6,20 +6,20 @@ import { MLangBlogGPs } from "../../models/blogs/lang-blog-gp";
 @singleton()
 export class LangBlogGroupService extends BaseService {
 
-  async getDataByLang(langid: number): Promise<MLangBlogGroup[]> {
-    const url = `${this.baseUrlAPI}LANGBLOGGROUPS?filter=LANGID,eq,${langid}&order=NAME`;
+  async getDataByLang(langid: number, filter: string): Promise<MLangBlogGroup[]> {
+    const url = `${this.baseUrlAPI}LANGBLOGGROUPS?filter=LANGID,eq,${langid}&filter=NAME,cs,${encodeURIComponent(filter)}&order=NAME`;
     const result = await this.httpGet<MLangBlogGroups>(url);
     return result.records;
   }
 
-  async getDataByLangPost(langid: number, postid: number): Promise<MLangBlogGroup[]> {
-    const url = `${this.baseUrlAPI}VLANGBLOGGP?filter=LANGID,eq,${langid}&filter=POSTID,eq,${postid}&order=GROUPNAME`;
+  async getDataByLangPost(langid: number, postid: number, filter: string): Promise<MLangBlogGroup[]> {
+    const url = `${this.baseUrlAPI}VLANGBLOGGP?filter=LANGID,eq,${langid}&filter=POSTID,eq,${postid}&filter=NAME,cs,${encodeURIComponent(filter)}&order=GROUPNAME`;
     const result = await this.httpGet<MLangBlogGPs>(url);
     const list = result.records.map(o => {
       const g = new MLangBlogGroup();
       g.ID = o.GROUPID;
       g.LANGID = langid;
-      g.GROUPNAME = o.GROUPNAME;
+      g.NAME = o.GROUPNAME;
       g.GPID = o.ID;
       return g;
     });
