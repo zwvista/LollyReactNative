@@ -26,12 +26,16 @@ export class UnitPhraseService extends BaseService {
     return result2;
   }
 
-  async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number): Promise<MUnitPhrases> {
+  async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number): Promise<MUnitPhrases>;
+  async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number, page: number, rows: number): Promise<MUnitPhrases>;
+  async getDataByLang(langid: number, textbooks: MTextbook[], filter: string, filterType: number, textbookFilter: number, page?: number, rows?: number): Promise<MUnitPhrases> {
     let url = `${this.baseUrlAPI}VUNITPHRASES?filter=LANGID,eq,${langid}&order=TEXTBOOKID&order=UNIT&order=PART&order=SEQNUM`;
     if (filterType !== 0 && filter)
       url += `&filter=${filterType === 1 ? 'PHRASE' : 'TRANSLATION'},cs,${encodeURIComponent(filter)}`;
     if (textbookFilter !== 0)
       url += `&filter=TEXTBOOKID,eq,${textbookFilter}`;
+    if (page !== undefined && rows !== undefined)
+      url += `&page=${page},${rows}`;
     const result = await this.httpGet<MUnitPhrases>(url);
     return ({
       records: result.records.map(value => {

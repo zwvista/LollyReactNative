@@ -1,6 +1,6 @@
 import { BaseService } from './base.service';
 import { singleton } from 'tsyringe';
-import { MOnlineTextbook, MOnlineTextbooks } from "../../models/misc/online-textbook.ts";
+import { MOnlineTextbook, MOnlineTextbooks } from '../../models/misc/online-textbook';
 
 @singleton()
 export class OnlineTextbookService extends BaseService {
