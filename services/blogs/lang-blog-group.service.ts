@@ -30,7 +30,7 @@ export class LangBlogGroupService extends BaseService {
 
   async create(item: MLangBlogGroup): Promise<number> {
     const url = `${this.baseUrlAPI}LANGBLOGGROUPS`;
-    const payload = { ...item, ID: null };
+    const payload: any = { ...item, ID: null };
     return await this.httpPost<number>(url, payload);
   }
 

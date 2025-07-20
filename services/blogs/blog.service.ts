@@ -1,4 +1,4 @@
-import { SettingsService } from "../../view-models/misc/settings.service.ts";
+import { SettingsService } from '../../view-models/misc/settings.service';
 import _ from "lodash";
 
 export class BlogService {

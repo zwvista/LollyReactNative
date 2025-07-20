@@ -1,6 +1,6 @@
 import { singleton } from "tsyringe";
-import { BaseService } from "../misc/base.service.ts";
-import { MUnitBlogPost, MUnitBlogPosts } from "../../models/blogs/unit-blog-post.ts";
+import { BaseService } from '../misc/base.service';
+import { MUnitBlogPost, MUnitBlogPosts } from '../../models/blogs/unit-blog-post';
 
 @singleton()
 export class UnitBlogPostService extends BaseService {
@@ -13,12 +13,15 @@ export class UnitBlogPostService extends BaseService {
 
   private async create(item: MUnitBlogPost): Promise<number> {
     const url = `${this.baseUrlAPI}UNITBLOGPOSTS`;
-    const payload = { ...item, ID: null };
+    const payload: any = { ...item, ID: null };
     return await this.httpPost<number>(url, payload);
   }
 
+// 更新MUnitBlogPost对象
   private async update(item: MUnitBlogPost): Promise<number> {
+    // 构建请求URL
     const url = `${this.baseUrlAPI}UNITBLOGPOSTS/${item.ID}`;
+    // 发送PUT请求，返回更新后的对象
     return await this.httpPut<number>(url, item);
   }
 

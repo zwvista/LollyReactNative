@@ -1,7 +1,7 @@
 import { singleton } from "tsyringe";
 import { BaseService } from "../misc/base.service";
-import { MLangBlogPost, MLangBlogPosts } from "../../models/blogs/lang-blog-post.ts";
-import { MLangBlogGPs } from "../../models/blogs/lang-blog-gp.ts";
+import { MLangBlogPost, MLangBlogPosts } from '../../models/blogs/lang-blog-post';
+import { MLangBlogGPs } from '../../models/blogs/lang-blog-gp';
 
 @singleton()
 export class LangBlogPostService extends BaseService {
@@ -30,7 +30,7 @@ export class LangBlogPostService extends BaseService {
 
   private async create(item: MLangBlogPost): Promise<number> {
     const url = `${this.baseUrlAPI}LANGBLOGPOSTS`;
-    const payload = { ...item, ID: null };
+    const payload: any = { ...item, ID: null };
     return await this.httpPost<number>(url, payload);
   }
 
