@@ -55,7 +55,7 @@
     "@react-native/metro-config": "0.80.1",
     "@react-native/typescript-config": "0.80.1",
     "@types/lodash": "^4.17.7",
-    "@types/react": "^18.2.6",
+    "@types/react": "^19.1.8",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
