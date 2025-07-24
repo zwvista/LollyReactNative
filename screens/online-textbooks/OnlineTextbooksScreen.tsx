@@ -1,6 +1,6 @@
-import { FlatList, Text, TouchableNativeFeedback, View } from "react-native";
+import { FlatList, RefreshControl, Text, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
 import { OnlineTextbooksService } from "../../view-models/online-textbooks/online-textbooks.service.ts";
@@ -22,7 +22,7 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
 
   const [onlineTextbookFilter, setOnlineTextbookFilter] = useState(0);
   const [reloadCount, onReload] = useReducer(x => x + 1, 0);
-  const [, forceUpdate] = useReducer(x => x + 1, 0);
+  const [refreshing, setRefreshing] = useState(false);
 
   const onOnlineTextbookFilterChange = (e: MSelectItem) => {
     setOnlineTextbookFilter(e.value);
@@ -68,12 +68,14 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
     });
   };
 
-  useEffect(() => {
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
     (async () => {
       await onlineTextbooksService.getData(onlineTextbookFilter);
-      forceUpdate();
+      setRefreshing(false);
     })();
-  }, [reloadCount]);
+  }, [onlineTextbookFilter]);
+  useEffect(onRefresh, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -96,6 +98,7 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
             <View style={{height: 1, backgroundColor: 'gray'}} />
           }
           data={onlineTextbooksService.onlineTextbooks}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}

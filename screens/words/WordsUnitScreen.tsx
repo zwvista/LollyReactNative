@@ -1,6 +1,6 @@
 import { FlatList, Linking, RefreshControl, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
-import { useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
 import { WordsUnitService } from "../../view-models/words/words-unit.service.ts";
 import { SettingsService } from "../../view-models/misc/settings.service.ts";
@@ -29,7 +29,7 @@ export default function WordsUnitScreen({ navigation }:any) {
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [reloadCount, onReload] = useReducer(x => x + 1, 0);
-  const [, forceUpdate] = useReducer(x => x + 1, 0);
+  const [refreshing, setRefreshing] = useState(false);
 
   const getNotes = (ifEmpty: boolean) => {
     wordsUnitService.getNotes(ifEmpty, () => {}, () => {});
@@ -165,12 +165,14 @@ export default function WordsUnitScreen({ navigation }:any) {
     });
   }, [editMode]);
 
-  useEffect(() => {
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
     (async () => {
       await wordsUnitService.getDataInTextbook(filter, filterType);
-      forceUpdate();
+      setRefreshing(false);
     })();
-  }, [reloadCount]);
+  }, [filter, filterType]);
+  useEffect(onRefresh, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -202,6 +204,7 @@ export default function WordsUnitScreen({ navigation }:any) {
             <View style={{height: 1, backgroundColor: 'gray'}} />
           }
           data={wordsUnitService.unitWords}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
           renderItem={({item, index}) =>
             <TouchableNativeFeedback
               onPress={() => onPressItem(item)}
