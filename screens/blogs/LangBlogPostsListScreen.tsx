@@ -19,7 +19,7 @@ export default function LangBlogPostsListScreen({ navigation }:any) {
   const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const showDetailDialog = (id: number) => {
@@ -68,7 +68,7 @@ export default function LangBlogPostsListScreen({ navigation }:any) {
       await langBlogGroupsService.getPosts(filter);
       forceUpdate();
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -79,7 +79,7 @@ export default function LangBlogPostsListScreen({ navigation }:any) {
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
-            onSubmitEditing={onRefresh}
+            onSubmitEditing={onReload}
           />
         </View>
       </View>

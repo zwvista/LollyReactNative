@@ -18,7 +18,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
   const {showActionSheetWithOptions} = useActionSheet();
 
   const [filter, setFilter] = useState('');
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const showDetailDialog = (id: number) => {
@@ -62,7 +62,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
       await langBlogGroupsService.getGroups(filter);
       forceUpdate();
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -73,7 +73,7 @@ export default function LangBlogGroupsScreen({ navigation }:any) {
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
-            onSubmitEditing={onRefresh}
+            onSubmitEditing={onReload}
           />
         </View>
       </View>

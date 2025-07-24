@@ -24,7 +24,7 @@ export default function SearchScreen({ navigation }:any) {
   const [word, setWord] = useState('');
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
   const onlineDict = new OnlineDict(settingsService);
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const logout = async () => {
@@ -47,7 +47,7 @@ export default function SearchScreen({ navigation }:any) {
   const onDictChange = async (e: MDictionary) => {
     settingsService.selectedDictReference = e;
     await settingsService.updateDictReference();
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
@@ -63,7 +63,7 @@ export default function SearchScreen({ navigation }:any) {
       } else {
         GlobalVars.userid = loggedIn;
         await appService.getData();
-        onRefresh();
+        onReload();
       }
     })();
   }, [loginCount]);
@@ -73,7 +73,7 @@ export default function SearchScreen({ navigation }:any) {
       if (settingsService.selectedDictReference)
         await onlineDict.searchDict(word, settingsService.selectedDictReference, setWebViewSource)
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">
@@ -85,7 +85,7 @@ export default function SearchScreen({ navigation }:any) {
               value={word}
               onChangeText={setWord}
               returnKeyType='search'
-              onSubmitEditing={onRefresh}
+              onSubmitEditing={onReload}
             />
           </View>
           <View style={StylesApp.rowCompact}>

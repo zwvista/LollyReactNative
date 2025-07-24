@@ -1,4 +1,4 @@
-import { FlatList, Linking, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
+import { FlatList, Linking, RefreshControl, Text, TextInput, TouchableNativeFeedback, View } from "react-native";
 import * as React from "react";
 import { useEffect, useReducer, useState } from "react";
 import { container } from "tsyringe";
@@ -28,7 +28,7 @@ export default function WordsUnitScreen({ navigation }:any) {
 
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const getNotes = (ifEmpty: boolean) => {
@@ -41,7 +41,7 @@ export default function WordsUnitScreen({ navigation }:any) {
 
   const onFilterTypeChange = (e: MSelectItem) => {
     setFilterType(e.value);
-    onRefresh();
+    onReload();
   }
 
   const showDetailDialog = (id: number) => {
@@ -170,7 +170,7 @@ export default function WordsUnitScreen({ navigation }:any) {
       await wordsUnitService.getDataInTextbook(filter, filterType);
       forceUpdate();
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -181,7 +181,7 @@ export default function WordsUnitScreen({ navigation }:any) {
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
-            onSubmitEditing={onRefresh}
+            onSubmitEditing={onReload}
           />
         </View>
         <View style={StylesApp.rowLeft}>

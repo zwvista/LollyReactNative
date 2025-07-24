@@ -21,12 +21,12 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
   const {showActionSheetWithOptions} = useActionSheet();
 
   const [onlineTextbookFilter, setOnlineTextbookFilter] = useState(0);
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const onOnlineTextbookFilterChange = (e: MSelectItem) => {
     setOnlineTextbookFilter(e.value);
-    onRefresh();
+    onReload();
   }
 
   const showDetailDialog = (id: number) => {
@@ -73,7 +73,7 @@ export default function OnlineTextbooksScreen({ navigation }:any) {
       await onlineTextbooksService.getData(onlineTextbookFilter);
       forceUpdate();
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="p-2">

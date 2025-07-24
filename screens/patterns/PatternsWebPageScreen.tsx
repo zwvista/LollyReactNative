@@ -12,24 +12,24 @@ export default function PatternsWebPageScreen({ route, navigation }:any) {
   const {patterns, patternIndex}: {patterns: MPattern[], patternIndex: number} = route.params;
   const [service,] = useState(new PatternsWebPageService(patterns, patternIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
       service.next(delta);
-      onRefresh();
+      onReload();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onPatternChange = async (e: MPattern) => {
     service.selectedPatternIndex = service.patterns.indexOf(e);
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
     setWebViewSource({uri: service.selectedPattern.URL});
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">

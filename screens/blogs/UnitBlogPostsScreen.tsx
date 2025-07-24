@@ -12,24 +12,24 @@ import { MSelectItem } from "../../common/selectitem.ts";
 export default function UnitBlogPostsScreen({ navigation }:any) {
   const service = container.resolve(UnitBlogPostsService);
   const [webViewSource, setWebViewSource] = useState({html: ''});
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
       service.next(delta);
-      onRefresh();
+      onReload();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onUnitChange = (e: MSelectItem) => {
     service.selectedUnitIndex = service.units.indexOf(e);
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
     (async () => setWebViewSource({html: await service.getHtml()}))();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">

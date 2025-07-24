@@ -25,17 +25,17 @@ export default function WordsTextbookScreen({ navigation }:any) {
   const [filter, setFilter] = useState('');
   const [filterType, setFilterType] = useState(0);
   const [textbookFilter, setTextbookFilter] = useState(0);
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   const onTextbookFilterTypeChange = (e: MSelectItem) => {
     setTextbookFilter(e.value);
-    onRefresh();
+    onReload();
   }
 
   const onFilterTypeChange = (e: MSelectItem) => {
     setFilterType(e.value);
-    onRefresh();
+    onReload();
   }
 
   const showDetailDialog = (id: number) => {
@@ -110,7 +110,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
       await wordsUnitService.getDataInLang(filter, filterType, textbookFilter);
       forceUpdate();
     })();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="p-2">
@@ -121,7 +121,7 @@ export default function WordsTextbookScreen({ navigation }:any) {
             value={filter}
             onChangeText={setFilter}
             returnKeyType='search'
-            onSubmitEditing={onRefresh}
+            onSubmitEditing={onReload}
           />
         </View>
       </View>

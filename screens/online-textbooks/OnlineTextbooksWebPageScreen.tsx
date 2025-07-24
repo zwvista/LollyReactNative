@@ -12,24 +12,24 @@ export default function OnlineTextbooksWebPageScreen({ route, navigation }:any) 
   const {onlineTextbooks, onlineTextbookIndex}: {onlineTextbooks: MOnlineTextbook[], onlineTextbookIndex: number} = route.params;
   const [service,] = useState(new OnlineTextbooksWebPageService(onlineTextbooks, onlineTextbookIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
       service.next(delta);
-      onRefresh();
+      onReload();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onOnlineTextbookChange = async (e: MOnlineTextbook) => {
     service.selectedOnlineTextbookIndex = service.onlineTextbooks.indexOf(e);
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
     setWebViewSource({uri: service.selectedOnlineTextbook.URL});
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">

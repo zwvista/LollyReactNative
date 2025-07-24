@@ -13,31 +13,31 @@ export default function WordsDictScreen({ route, navigation }:any) {
   const {words, wordIndex}: {words: ValueOnly[], wordIndex: number} = route.params;
   const [service,] = useState(new WordsDictService(words, wordIndex));
   const [webViewSource, setWebViewSource] = useState({uri: 'https://google.com'});
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
       service.next(delta);
-      onRefresh();
+      onReload();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onWordChange = async (e: ValueOnly) => {
     service.onWordChange(e);
-    onRefresh();
+    onReload();
   };
 
   const onDictChange = async (e: MDictionary) => {
     await service.onDictChange(e);
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
     (async () =>
       await service.searchDict(setWebViewSource)
     )();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">

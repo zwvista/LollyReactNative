@@ -13,24 +13,24 @@ export default function LangBlogPostsContentScreen({ route, navigation }:any) {
   const {langBlogGroupsService, posts, selectedPostIndex}: {langBlogGroupsService: LangBlogGroupsService, posts: MLangBlogPost[], selectedPostIndex: number} = route.params;
   const [service,] = useState(new LangBlogPostsContentService(langBlogGroupsService, posts, selectedPostIndex));
   const [webViewSource, setWebViewSource] = useState({html: ''});
-  const [refreshCount, onRefresh] = useReducer(x => x + 1, 0);
+  const [reloadCount, onReload] = useReducer(x => x + 1, 0);
   const flingFun = (direction: number, delta: number) => Gesture.Fling()
     .runOnJS(true)
     .direction(direction)
     .onStart(() => {
       service.next(delta);
-      onRefresh();
+      onReload();
     });
   const fling = Gesture.Race(flingFun(Directions.RIGHT, 1), flingFun(Directions.LEFT, -1));
 
   const onPostChange = (e: MLangBlogPost) => {
     service.selectedPostIndex = service.posts.indexOf(e);
-    onRefresh();
+    onReload();
   };
 
   useEffect(() => {
     (async () => setWebViewSource({html: await service.langBlogGroupsService.getHtml()}))();
-  }, [refreshCount]);
+  }, [reloadCount]);
 
   return (
     <View className="flex-1">
